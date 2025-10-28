@@ -1,0 +1,20 @@
+{
+  "InesMod:Strike": {
+    "NAME": "打击",
+    "DESCRIPTION": "造成 !D! 点伤害。"
+  },
+  "InesMod:Defend": {
+    "NAME": "防御",
+    "DESCRIPTION": "获得 !B! 点 格挡 。"
+  },
+  "InesMod:AgentVanguard": {
+    "NAME": "情报官",
+    "DESCRIPTION": "无",
+    "UPGRADE_DESCRIPTION": "无"
+  },
+  "InesMod:PlanOfAction": {
+    "NAME": "行动预谋",
+    "DESCRIPTION": "抽 1 张牌。 NL 获得 1 层 ines:偷取 和 [E] 。",
+    "UPGRADE_DESCRIPTION": "抽 1 张牌。 NL 获得 1 层 ines:偷取。"
+  }
+}

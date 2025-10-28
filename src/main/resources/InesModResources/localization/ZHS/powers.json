@@ -1,0 +1,20 @@
+{
+  "InesMod:StealsPower": {
+    "NAME": "偷取",
+    "DESCRIPTIONS": [
+      "攻击后消耗 #b1 层 #y偷取 ，使所有命中目标失去 #b%d 点临时 #y力量 ，同时自身获得 #b%d 点临时 #y力量 。"
+    ]
+  },
+  "InesMod:StrengthStealPower": {
+    "NAME": "偷取力量",
+    "DESCRIPTIONS": [
+      "获得 #b%d 点 #y力量 ，回合结束时，失去 #b%d 点 #y力量 。"
+    ]
+  },
+  "InesMod:StrengthStolenPower": {
+    "NAME": "被偷取力量",
+    "DESCRIPTIONS": [
+      "失去 #b%d 点 #y力量 ，回合结束时，获得 #b%d 点 #y力量 。"
+    ]
+  }
+}
