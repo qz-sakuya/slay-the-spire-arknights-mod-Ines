@@ -1,6 +1,7 @@
 package InesMod.cards.attack;
 
 import InesMod.cards.AbstractInesCard;
+import InesMod.characters.Ines;
 import InesMod.helpers.ModHelper;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -25,15 +26,17 @@ public class Strike extends AbstractInesCard {
                 1,
                 AbstractCard.CardType.ATTACK,
                 AbstractCard.CardRarity.BASIC,
-                AbstractCard.CardTarget.ENEMY);
+                AbstractCard.CardTarget.ENEMY,
+                Ines.Enums.INES_CARD);
         this.damage = this.baseDamage = 6;
+
         this.tags.add(AbstractCard.CardTags.STARTER_STRIKE);
         this.tags.add(AbstractCard.CardTags.STRIKE);
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        p.useFastAttackAnimation();
+        //p.useFastAttackAnimation();
         this.addToBot(new DamageAction(m, new DamageInfo(p, damage, DamageType.NORMAL)));
     }
 

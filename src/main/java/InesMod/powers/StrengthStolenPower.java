@@ -38,7 +38,6 @@ public class StrengthStolenPower extends AbstractInesPower {
 
     @Override
     public void updateDescription() {
-        InesModMain.logger.info(descriptions[0]);
         this.description = String.format(descriptions[0], this.amount, this.amount);
     }
 

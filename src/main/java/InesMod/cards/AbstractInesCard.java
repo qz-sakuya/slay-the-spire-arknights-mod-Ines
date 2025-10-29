@@ -18,9 +18,10 @@ public abstract class AbstractInesCard extends CustomCard {
                             int COST,
                             CardType TYPE,
                             CardRarity RARITY,
-                            CardTarget TARGET) {
+                            CardTarget TARGET,
+                            CardColor color) {
         super(ID, strings.NAME, useTmpArt ? getTmpImgPath(TYPE) : getImgPath(TYPE, ID), COST, strings.DESCRIPTION, TYPE,
-                Ines.Enums.INES_CARD, RARITY, TARGET);
+                color, RARITY, TARGET);
 
         consumeSteals = 1;
     }

@@ -50,7 +50,6 @@ public class StealsPower extends AbstractInesPower {
 
     @Override
     public void updateDescription() {
-        InesModMain.logger.info(descriptions[0]);
         this.description = String.format(descriptions[0], 1, 1); // TODO：偷取效果提升后改写
     }
 
@@ -92,14 +91,16 @@ public class StealsPower extends AbstractInesPower {
     @Override
     public void onAfterUseCard(AbstractCard card, UseCardAction action) {
         InesModMain.logger.info("===StealsPower: onAfterUseCard===");
-
-        flash();
-        // 给自己加一次力量
         if (consumeNum > 0){
+            flash();
+
+            // 给自己加一次力量
             addToBot(new ApplyPowerAction(owner, owner, new StrengthPower(owner, consumeNum), consumeNum));
             addToBot(new ApplyPowerAction(owner, owner, new StrengthStealPower(owner, consumeNum), consumeNum));
+
+            addToBot(new ReducePowerAction(this.owner, this.owner, StealsPower.ID, consumeNum));
         }
-        addToBot(new ReducePowerAction(this.owner, this.owner, StealsPower.ID, consumeNum));
+
 
         consumeNum = 0;
         stolenTarget.clear();

@@ -1,6 +1,7 @@
 package InesMod.cards.power;
 
 import InesMod.cards.AbstractInesCard;
+import InesMod.characters.Ines;
 import InesMod.helpers.ModHelper;
 import com.megacrit.cardcrawl.actions.common.GainBlockAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -21,8 +22,9 @@ public class AgentVanguard extends AbstractInesCard {
                 cardStrings,
                 2,
                 CardType.POWER,
-                CardRarity.BASIC,
-                CardTarget.SELF);
+                CardRarity.UNCOMMON,
+                CardTarget.SELF,
+                Ines.Enums.INES_CARD);
     }
 
     @Override

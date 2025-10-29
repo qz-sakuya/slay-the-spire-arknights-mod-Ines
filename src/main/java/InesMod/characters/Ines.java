@@ -3,8 +3,10 @@ package InesMod.characters;
 
 // 省略package路径和部分import，复制的时候不要忘记写上自己的package
 
+import InesMod.cards.attack.ShadowAmbush;
 import InesMod.cards.attack.Strike;
 import InesMod.cards.skill.Defend;
+import InesMod.cards.skill.EdgeOfLight;
 import InesMod.cards.skill.PlanOfAction;
 import InesMod.modcore.InesModMain;
 import InesMod.relics.UnassumingNeedle;
@@ -106,10 +108,12 @@ public class Ines extends CustomPlayer {
 //        cardList.add(PlanOfAction.ID);
 
         // TODO：调试用卡组
-        for(int x = 0; x<2; x++) {
+        for(int x = 0; x<1; x++) {
             cardList.add(Strike.ID);
             cardList.add(Defend.ID);
             cardList.add(PlanOfAction.ID);
+            cardList.add(ShadowAmbush.ID);
+            cardList.add(EdgeOfLight.ID);
         }
 
 
@@ -127,8 +131,8 @@ public class Ines extends CustomPlayer {
         return new CharSelectInfo(
                 characterStrings.NAMES[0], // 人物名字
                 characterStrings.TEXT[0], // 人物介绍
-                75, // 当前血量
-                75, // 最大血量
+                70, // 当前血量
+                70, // 最大血量
                 0, // 初始充能球栏位
                 99, // 初始携带金币
                 5, // 每回合抽牌数量

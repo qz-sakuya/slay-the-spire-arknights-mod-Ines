@@ -49,9 +49,10 @@ public abstract class AbstractInesPower extends AbstractPower {
 
     public abstract void updateDescription();
 
+
     public AbstractInesPower makeCopy() {
         try {
-            return (AbstractInesPower)getClass().newInstance();
+            return getClass().newInstance();
         } catch (IllegalAccessException|InstantiationException var2) {
             throw new RuntimeException("cannot create instance of: " + this.ID);
         }

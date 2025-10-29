@@ -16,5 +16,17 @@
     "NAME": "行动预谋",
     "DESCRIPTION": "抽 1 张牌。 NL 获得 1 层 ines:偷取 和 [E] 。",
     "UPGRADE_DESCRIPTION": "抽 1 张牌。 NL 获得 1 层 ines:偷取。"
+  },
+  "InesMod:ShadowWhistle": {
+    "NAME": "影哨",
+    "DESCRIPTION": " 不能被打出 。 NL 进入弃牌堆时，获得 !B! 点格挡并 消耗 。"
+  },
+  "InesMod:ShadowAmbush": {
+    "NAME": "淬影突袭",
+    "DESCRIPTION": "造成 !D! 点伤害。 NL 向手牌中加入 1 张 *影哨 。"
+  },
+  "InesMod:EdgeOfLight": {
+    "NAME": "淬影突袭",
+    "DESCRIPTION": "如果未处于 隐匿 ，获得 1 层 隐匿 。 NL 否则获得 [E]  [E] 。 NL  消耗 。"
   }
 }
