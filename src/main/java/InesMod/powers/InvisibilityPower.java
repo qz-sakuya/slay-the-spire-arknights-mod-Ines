@@ -50,7 +50,8 @@ public class InvisibilityPower extends AbstractInesPower {
 
     @Override
     public void updateDescription() {
-        this.description = descriptions[0] + descriptions[1]; // 有%的字符串没法String.format
+        // 有%的字符串没法String.format
+        this.description = descriptions[0] + descriptions[1] + descriptions[2] + descriptions[3];
     }
 
     @Override
@@ -59,11 +60,12 @@ public class InvisibilityPower extends AbstractInesPower {
     }
 
     @Override
-    public void atStartOfTurn() {
+    public void atEndOfTurn(boolean isPlayer) {
         if (this.amount == 0) {
             addToBot(new RemoveSpecificPowerAction(this.owner, this.owner, InvisibilityPower.ID));
         } else {
             addToBot(new ReducePowerAction(this.owner, this.owner, InvisibilityPower.ID, 1));
+            addToBot(new ApplyPowerAction(this.owner, this.owner, new IllusionPower(this.owner, -1)));
         }
     }
 
@@ -80,13 +82,5 @@ public class InvisibilityPower extends AbstractInesPower {
                 }
             }
         }
-    }
-
-    @Override
-    public int onAttackedToChangeDamage(DamageInfo info, int damageAmount) {
-        if (damageAmount > 0) {
-            addToTop(new ReducePowerAction(this.owner, this.owner, InvisibilityPower.ID, 1));
-        }
-        return 0; // 使伤害归零
     }
 }

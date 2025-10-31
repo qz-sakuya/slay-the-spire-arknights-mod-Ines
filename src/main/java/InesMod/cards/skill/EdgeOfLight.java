@@ -4,9 +4,7 @@ import InesMod.cards.AbstractInesCard;
 import InesMod.characters.Ines;
 import InesMod.helpers.ModHelper;
 import InesMod.powers.InvisibilityPower;
-import InesMod.powers.StealsPower;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
-import com.megacrit.cardcrawl.actions.common.DrawCardAction;
 import com.megacrit.cardcrawl.actions.common.GainEnergyAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -35,8 +33,8 @@ public class EdgeOfLight extends AbstractInesCard {
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        AbstractPower invisibilityPower = p.getPower(InvisibilityPower.ID);
-        if (invisibilityPower != null && invisibilityPower.amount > 0) { // 如果有隐匿
+        AbstractPower powerToFind = p.getPower(InvisibilityPower.ID);
+        if (powerToFind != null) { // 如果有隐匿
             addToBot(new GainEnergyAction(2));
         }
         else{

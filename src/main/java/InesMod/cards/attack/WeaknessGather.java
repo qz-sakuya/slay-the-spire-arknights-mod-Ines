@@ -1,30 +1,34 @@
 package InesMod.cards.attack;
 
+import InesMod.action.SetPowerAction;
 import InesMod.cards.AbstractInesCard;
 import InesMod.cards.status.ShadowWhistle;
 import InesMod.characters.Ines;
 import InesMod.helpers.ModHelper;
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import InesMod.powers.InvisibilityPower;
+import InesMod.powers.StealsPower;
+import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
+import com.megacrit.cardcrawl.actions.common.GainEnergyAction;
 import com.megacrit.cardcrawl.actions.common.MakeTempCardInHandAction;
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.cards.DamageInfo.DamageType;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.AbstractPower;
 
 /**
- * 中文卡名：打击
+ * 中文卡名：弱点收集
  */
-public class ShadowAmbush extends AbstractInesCard {
-    public static final String ID = ModHelper.nameToId(ShadowAmbush.class.getSimpleName());
+public class WeaknessGather extends AbstractInesCard {
+    public static final String ID = ModHelper.nameToId(WeaknessGather.class.getSimpleName());
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID); // 从游戏系统读取本地化资源
 
-    public ShadowAmbush() {
+    public WeaknessGather() {
         super(ID,
-                false,
+                true,
                 cardStrings,
                 1,
                 CardType.ATTACK,
@@ -40,13 +44,15 @@ public class ShadowAmbush extends AbstractInesCard {
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
         this.addToBot(new DamageAction(m, new DamageInfo(p, damage, DamageType.NORMAL)));
-        this.addToBot(new MakeTempCardInHandAction(new ShadowWhistle(), 1));
+
+        addToBot(new SetPowerAction(p, p, new StealsPower(p, magicNumber), magicNumber));
     }
 
     @Override
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
+            this.upgradeDamage(2);
             this.upgradeMagicNumber(1);
         }
     }

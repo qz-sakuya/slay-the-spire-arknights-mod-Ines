@@ -3,6 +3,9 @@ package InesMod.cards.power;
 import InesMod.cards.AbstractInesCard;
 import InesMod.characters.Ines;
 import InesMod.helpers.ModHelper;
+import InesMod.powers.AgentVanguardPower;
+import InesMod.powers.InvisibilityPower;
+import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.GainBlockAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -29,7 +32,7 @@ public class AgentVanguard extends AbstractInesCard {
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        //TODO
+        addToBot(new ApplyPowerAction(p, p, new AgentVanguardPower(p, -1), -1));
     }
 
     @Override

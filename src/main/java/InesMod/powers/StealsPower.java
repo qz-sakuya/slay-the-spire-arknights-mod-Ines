@@ -1,17 +1,22 @@
 package InesMod.powers;
 
+import InesMod.action.ReduceAndKeepPowerAction;
 import InesMod.cards.AbstractInesCard;
 import InesMod.helpers.ModHelper;
 import InesMod.modcore.InesModMain;
+import basemod.BaseMod;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
+import com.megacrit.cardcrawl.actions.common.GainEnergyAction;
 import com.megacrit.cardcrawl.actions.common.ReducePowerAction;
+import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.PowerStrings;
+import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.PoisonPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 
@@ -36,6 +41,7 @@ public class StealsPower extends AbstractInesPower {
                 PowerType.BUFF,
                 amount);
         consumeNum = 0;
+
     }
 
     @Override
@@ -67,6 +73,10 @@ public class StealsPower extends AbstractInesPower {
                 consumeNum = this.amount;
             }
 
+            if (consumeNum > 0){
+                flash();
+                addToTop(new ReduceAndKeepPowerAction(this.owner, this.owner, StealsPower.ID, consumeNum));
+            }
         }
     }
 
@@ -92,17 +102,26 @@ public class StealsPower extends AbstractInesPower {
     public void onAfterUseCard(AbstractCard card, UseCardAction action) {
         InesModMain.logger.info("===StealsPower: onAfterUseCard===");
         if (consumeNum > 0){
-            flash();
 
             // 给自己加一次力量
             addToBot(new ApplyPowerAction(owner, owner, new StrengthPower(owner, consumeNum), consumeNum));
             addToBot(new ApplyPowerAction(owner, owner, new StrengthStealPower(owner, consumeNum), consumeNum));
 
-            addToBot(new ReducePowerAction(this.owner, this.owner, StealsPower.ID, consumeNum));
+            // 如果有情报官能力，获得consumeNum层数的情报
+            AbstractPower powerToFind = owner.getPower(AgentVanguardPower.ID);
+            if (powerToFind != null) {
+                powerToFind.flash();
+                addToBot(new ApplyPowerAction(owner, owner, new InterPower(owner, consumeNum), consumeNum));
+            }
         }
 
 
         consumeNum = 0;
         stolenTarget.clear();
+
+        // 延迟删除，避免onAfterUseCard不触发
+        if (this.amount == 0){
+            this.addToTop(new RemoveSpecificPowerAction(this.owner, this.owner, StealsPower.ID));
+        }
     }
 }

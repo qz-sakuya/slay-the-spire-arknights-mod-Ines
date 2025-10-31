@@ -21,7 +21,7 @@ public abstract class AbstractInesPower extends AbstractPower {
         this.name = strings.NAME;
         this.owner = owner;
         this.type = type;
-        this.amount = amount;
+        this.amount = amount; // -1为不可叠加
         this.descriptions = strings.DESCRIPTIONS;
 
         if (!powerImgCache.containsKey(ID)) {
