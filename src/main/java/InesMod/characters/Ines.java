@@ -5,6 +5,7 @@ package InesMod.characters;
 
 import InesMod.cards.attack.ShadowAmbush;
 import InesMod.cards.attack.Strike;
+import InesMod.cards.test.StrikeTest;
 import InesMod.cards.skill.Defend;
 import InesMod.cards.skill.EdgeOfLight;
 import InesMod.cards.skill.PlanOfAction;
@@ -28,7 +29,6 @@ import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.ScreenShake;
 import com.megacrit.cardcrawl.localization.CharacterStrings;
-import com.megacrit.cardcrawl.relics.Vajra;
 import com.megacrit.cardcrawl.screens.CharSelectInfo;
 import java.util.ArrayList;
 
@@ -179,7 +179,7 @@ public class Ines extends CustomPlayer {
     // 翻牌事件出现的你的职业牌（一般设为打击）
     @Override
     public AbstractCard getStartCardForEvent() {
-        return new Strike();
+        return new StrikeTest();
     }
 
     // 卡牌轨迹颜色

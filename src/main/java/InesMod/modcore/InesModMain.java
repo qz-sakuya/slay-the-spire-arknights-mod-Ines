@@ -1,7 +1,6 @@
 package InesMod.modcore;
 
 import InesMod.cards.AbstractInesCard;
-import InesMod.cards.attack.Strike;
 import InesMod.characters.Ines;
 
 import InesMod.relics.UnassumingNeedle;
@@ -17,7 +16,6 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.localization.*;
 import com.badlogic.gdx.graphics.Color;
-import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

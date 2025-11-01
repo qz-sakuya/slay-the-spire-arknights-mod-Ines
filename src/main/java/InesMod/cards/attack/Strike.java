@@ -1,8 +1,10 @@
 package InesMod.cards.attack;
 
 import InesMod.cards.AbstractInesCard;
+import InesMod.cards.test.StrikeTest;
 import InesMod.characters.Ines;
 import InesMod.helpers.ModHelper;
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
@@ -36,8 +38,8 @@ public class Strike extends AbstractInesCard {
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        //p.useFastAttackAnimation();
-        this.addToBot(new DamageAction(m, new DamageInfo(p, damage, DamageType.NORMAL)));
+        // p.useFastAttackAnimation();
+        this.addToBot(new DamageAction(m, new DamageInfo(p, damage, DamageType.NORMAL), AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
     }
 
     @Override

@@ -42,7 +42,7 @@ public class Defend extends AbstractInesCard {
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeDamage(3);
+            this.upgradeBlock(3);
         }
     }
 }

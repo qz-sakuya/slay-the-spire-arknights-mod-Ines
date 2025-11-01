@@ -7,6 +7,10 @@
     "NAME": "防御",
     "DESCRIPTION": "获得 !B! 点 格挡 。"
   },
+  "InesMod:StrikeTest": {
+    "NAME": "打击测试",
+    "DESCRIPTION": "你不应该在正式版看到此牌"
+  },
   "InesMod:AgentVanguard": {
     "NAME": "情报官",
     "DESCRIPTION": "每消耗 1 层 ines:偷取 ，获得 1 点 ines:情报 。"
@@ -31,5 +35,13 @@
   "InesMod:WeaknessGather": {
     "NAME": "弱点收集",
     "DESCRIPTION": "造成 !D! 点伤害。 NL 将 ines:偷取 层数设置为 !M! 。"
+  },
+  "InesMod:CloseQuartersCombat": {
+    "NAME": "近身格斗",
+    "DESCRIPTION": "造成 !D! 点伤害。 NL 如果你没有 格挡 ，伤害+ !M! 。"
+  },
+  "InesMod:TrackUnderNight": {
+    "NAME": "夜下寻踪",
+    "DESCRIPTION": "造成 !D! 点伤害。 NL 抽 1 张牌。 NL 若处于 ines:隐匿 ，额外抽 1 张牌。"
   }
 }

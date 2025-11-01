@@ -1,52 +1,61 @@
 package InesMod.cards.attack;
 
-import InesMod.action.SetPowerAction;
 import InesMod.cards.AbstractInesCard;
-import InesMod.cards.status.ShadowWhistle;
 import InesMod.characters.Ines;
 import InesMod.helpers.ModHelper;
 import InesMod.powers.InvisibilityPower;
-import InesMod.powers.StealsPower;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
-import com.megacrit.cardcrawl.actions.common.GainEnergyAction;
-import com.megacrit.cardcrawl.actions.common.MakeTempCardInHandAction;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.cards.DamageInfo.DamageType;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 
 /**
- * 中文卡名：弱点收集
+ * 中文卡名：近身格斗
  */
-public class WeaknessGather extends AbstractInesCard {
-    public static final String ID = ModHelper.nameToId(WeaknessGather.class.getSimpleName());
+public class CloseQuartersCombat extends AbstractInesCard {
+    public static final String ID = ModHelper.nameToId(CloseQuartersCombat.class.getSimpleName());
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID); // 从游戏系统读取本地化资源
 
-    public WeaknessGather() {
+    public CloseQuartersCombat() {
         super(ID,
                 false,
                 cardStrings,
                 1,
                 CardType.ATTACK,
-                CardRarity.BASIC,
+                CardRarity.COMMON,
                 CardTarget.ENEMY,
                 Ines.Enums.INES_CARD);
-        this.damage = this.baseDamage = 4;
-        this.magicNumber = this.baseMagicNumber = 1;
-
-        this.cardsToPreview = new ShadowWhistle();
+        this.damage = this.baseDamage = 6;
+        this.magicNumber = this.baseMagicNumber = 6;
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        this.addToBot(new DamageAction(m, new DamageInfo(p, damage, DamageType.NORMAL), AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
+        int tempDamage = this.damage;
+        if(p.currentBlock == 0){
+            tempDamage += this.magicNumber;
 
-        addToBot(new SetPowerAction(p, p, new StealsPower(p, magicNumber), magicNumber));
+            // 重攻击动画
+            this.addToBot(new DamageAction(m, new DamageInfo(p, tempDamage, DamageType.NORMAL), AbstractGameAction.AttackEffect.BLUNT_HEAVY));
+        }
+        else{
+            // 轻攻击动画
+            this.addToBot(new DamageAction(m, new DamageInfo(p, tempDamage, DamageType.NORMAL), AbstractGameAction.AttackEffect.BLUNT_LIGHT));
+        }
+    }
+
+    public void triggerOnGlowCheck() {
+        this.glowColor = AbstractCard.BLUE_BORDER_GLOW_COLOR.cpy();
+        if(AbstractDungeon.player.currentBlock == 0){
+            this.glowColor = AbstractCard.GOLD_BORDER_GLOW_COLOR.cpy();
+        }
     }
 
     @Override
@@ -54,7 +63,7 @@ public class WeaknessGather extends AbstractInesCard {
         if (!this.upgraded) {
             this.upgradeName();
             this.upgradeDamage(2);
-            this.upgradeMagicNumber(1);
+            this.upgradeMagicNumber(2);
         }
     }
 }
