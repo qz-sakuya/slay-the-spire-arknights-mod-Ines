@@ -50,8 +50,8 @@ public class StrengthStealPower extends AbstractInesPower {
         this.description = String.format(descriptions[0], this.amount, this.amount);
     }
 
-
-    public void atEndOfTurn(boolean isPlayer) {
+    @Override
+    public void atEndOfRound() {
         flash();
         addToBot(new ApplyPowerAction(this.owner, this.owner, new StrengthPower(this.owner, -this.amount), -this.amount));
         addToBot(new RemoveSpecificPowerAction(this.owner, this.owner, StrengthStealPower.ID));

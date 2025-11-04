@@ -51,6 +51,7 @@ public class CloseQuartersCombat extends AbstractInesCard {
         }
     }
 
+    @Override
     public void triggerOnGlowCheck() {
         this.glowColor = AbstractCard.BLUE_BORDER_GLOW_COLOR.cpy();
         if(AbstractDungeon.player.currentBlock == 0){

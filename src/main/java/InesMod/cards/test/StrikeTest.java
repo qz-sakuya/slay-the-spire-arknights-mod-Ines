@@ -40,7 +40,6 @@ public class StrikeTest extends AbstractInesCard {
 
             // 横轻斩
             AbstractGameAction.AttackEffect.SLASH_HORIZONTAL,
-
             // 竖轻斩
             AbstractGameAction.AttackEffect.SLASH_VERTICAL,
 
@@ -49,7 +48,6 @@ public class StrikeTest extends AbstractInesCard {
 
             // 挂火
             AbstractGameAction.AttackEffect.FIRE,
-
             // 挂毒
             AbstractGameAction.AttackEffect.POISON,
 

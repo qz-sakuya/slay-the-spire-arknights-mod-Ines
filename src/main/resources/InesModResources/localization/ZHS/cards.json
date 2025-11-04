@@ -9,7 +9,7 @@
   },
   "InesMod:StrikeTest": {
     "NAME": "打击测试",
-    "DESCRIPTION": "你不应该在正式版看到此牌"
+    "DESCRIPTION": "打击测试"
   },
   "InesMod:AgentVanguard": {
     "NAME": "情报官",
@@ -43,5 +43,25 @@
   "InesMod:TrackUnderNight": {
     "NAME": "夜下寻踪",
     "DESCRIPTION": "造成 !D! 点伤害。 NL 抽 1 张牌。 NL 若处于 ines:隐匿 ，额外抽 1 张牌。"
+  },
+  "InesMod:Feint": {
+    "NAME": "佯攻",
+    "DESCRIPTION": "造成 !D! 点伤害。 NL 向手牌中加入 !M! 张 *影哨 。 NL 消耗。",
+    "UPGRADE_DESCRIPTION": "造成 !D! 点伤害。 NL 向手牌中加入 !M! 张 *影哨 。"
+  },
+  "InesMod:ThrowPebble": {
+    "NAME": "抛石子",
+    "DESCRIPTION": "造成 !D! 点伤害 !M! 次。"
+  },
+  "InesMod:ContingencyPlan": {
+    "NAME": "总有后手",
+    "DESCRIPTION": "只有当这张牌是手牌中唯一一种攻击牌时才可以被打出。 NL 造成 !D! 点伤害。",
+    "EXTENDED_DESCRIPTION": [
+      "我的手牌中还有其它攻击牌。"
+    ]
+  },
+  "InesMod:File": {
+    "NAME": "锉刀",
+    "DESCRIPTION": "造成 !D! 点伤害。对拥有 格挡 的敌人造成 !M! 倍伤害。"
   }
 }
