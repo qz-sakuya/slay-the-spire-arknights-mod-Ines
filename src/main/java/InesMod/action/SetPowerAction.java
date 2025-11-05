@@ -137,7 +137,7 @@ public class SetPowerAction extends AbstractGameAction {
                 }
 
                 if (!hasBuffAlready) {
-                    this.target.powers.add(this.powerToApply);
+                    this.target.powers.add(this.powerToApply); // 添加新能力到列表
                     Collections.sort(this.target.powers);
                     this.powerToApply.onInitialApplication();
                     this.powerToApply.flash();

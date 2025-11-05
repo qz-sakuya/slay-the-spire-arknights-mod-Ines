@@ -57,11 +57,19 @@
     "NAME": "总有后手",
     "DESCRIPTION": "只有当这张牌是手牌中唯一一种攻击牌时才可以被打出。 NL 造成 !D! 点伤害。",
     "EXTENDED_DESCRIPTION": [
-      "我的手牌中还有其它攻击牌。"
+      "手牌中还有其它 NL 攻击牌……"
     ]
   },
   "InesMod:File": {
     "NAME": "锉刀",
     "DESCRIPTION": "造成 !D! 点伤害。对拥有 格挡 的敌人造成 !M! 倍伤害。"
+  },
+  "InesMod:ThoroughAnalysis": {
+    "NAME": "分析透彻",
+    "DESCRIPTION": "拥有 !M! 层 ines:偷取 时， ines:偷取 额外使目标获得 1 层 易伤 。"
+  },
+  "InesMod:GloomyClouds": {
+    "NAME": "阴云笼罩",
+    "DESCRIPTION": "获得 !M! 层 ines:隐匿 。 2 个回合内，你不能再获得 ines:隐匿 。"
   }
 }

@@ -119,6 +119,8 @@ public class InesModMain implements
         BaseMod.loadCustomStringsFile(RelicStrings.class, "InesModResources/localization/" + lang + "/relics.json");
         // 添加能力文本
         BaseMod.loadCustomStringsFile(PowerStrings.class, "InesModResources/localization/" + lang + "/powers.json");
+        // 添加UI文本
+        BaseMod.loadCustomStringsFile(UIStrings.class, "InesModResources/localization/" + lang + "/ui.json");
 
     }
 

@@ -205,9 +205,9 @@ public class Ines extends CustomPlayer {
     public void doCharSelectScreenSelectEffect() {
         // InesModMain.logger.info("===点击人物选择按钮，开始播放音频===");
         if (MathUtils.randomBoolean()) {
-            CardCrawlGame.sound.playV("Ines_choose_1", 1.3F);
+            CardCrawlGame.sound.playV("Ines_choose_1", 1.4F);
         } else {
-            CardCrawlGame.sound.playV("Ines_choose_2", 1.2F);
+            CardCrawlGame.sound.playV("Ines_choose_2", 1.3F);
         }
 
         CardCrawlGame.screenShake.shake(ScreenShake.ShakeIntensity.MED, ScreenShake.ShakeDur.SHORT, false);

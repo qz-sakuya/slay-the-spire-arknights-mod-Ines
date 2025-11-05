@@ -51,6 +51,7 @@ public class TrackUnderNight extends AbstractInesCard {
         }
     }
 
+    @Override
     public void triggerOnGlowCheck() {
         this.glowColor = AbstractCard.BLUE_BORDER_GLOW_COLOR.cpy();
         AbstractPower powerToFind = AbstractDungeon.player.getPower(InvisibilityPower.ID);

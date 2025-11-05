@@ -15,7 +15,9 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
+import com.megacrit.cardcrawl.powers.VulnerablePower;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -30,7 +32,7 @@ public class InvisibilityPower extends AbstractInesPower {
 
     public InvisibilityPower(AbstractCreature owner, int amount) {
         super(ID,
-                true,
+                false,
                 powerStrings,
                 owner,
                 PowerType.BUFF,

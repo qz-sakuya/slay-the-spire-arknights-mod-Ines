@@ -4,11 +4,7 @@ import InesMod.action.ReduceAndKeepPowerAction;
 import InesMod.cards.AbstractInesCard;
 import InesMod.helpers.ModHelper;
 import InesMod.modcore.InesModMain;
-import basemod.BaseMod;
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
-import com.megacrit.cardcrawl.actions.common.GainEnergyAction;
-import com.megacrit.cardcrawl.actions.common.ReducePowerAction;
 import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -17,8 +13,8 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
-import com.megacrit.cardcrawl.powers.PoisonPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
+import com.megacrit.cardcrawl.powers.VulnerablePower;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -33,6 +29,8 @@ public class StealsPower extends AbstractInesPower {
     private int consumeNum; // 一次偷取中，应用偷取的层数
     private final Set<AbstractCreature> stolenTarget = new HashSet<>(); // 一次偷取中，已经被偷取的怪物id
 
+    private int amountBeforeReduce; // 一次偷取中，消耗偷取前的层数
+
     public StealsPower(AbstractCreature owner, int amount) {
         super(ID,
                 false,
@@ -41,6 +39,7 @@ public class StealsPower extends AbstractInesPower {
                 PowerType.BUFF,
                 amount);
         consumeNum = 0;
+        amountBeforeReduce = 0;
 
     }
 
@@ -75,6 +74,7 @@ public class StealsPower extends AbstractInesPower {
 
             if (consumeNum > 0){
                 flash();
+                amountBeforeReduce = this.amount;
                 addToTop(new ReduceAndKeepPowerAction(this.owner, this.owner, StealsPower.ID, consumeNum));
             }
         }
@@ -93,6 +93,19 @@ public class StealsPower extends AbstractInesPower {
             // 给当前目标减一次力量
             addToBot(new ApplyPowerAction(target, owner, new StrengthPower(target, -consumeNum), -consumeNum));
             addToBot(new ApplyPowerAction(target, owner, new StrengthStolenPower(target, consumeNum), consumeNum));
+
+
+            // 如果有分析透彻能力，判断是否给予易伤
+            AbstractPower thoroughAnalysisPower = owner.getPower(ThoroughAnalysisPower.ID);
+            if (thoroughAnalysisPower != null && amountBeforeReduce >= thoroughAnalysisPower.amount) {
+                thoroughAnalysisPower.flash();
+                addToBot(new ApplyPowerAction(target, owner, new VulnerablePower(target, consumeNum, false), consumeNum));
+            }
+
+
+
+
+
             stolenTarget.add(target); // 记录该目标
         }
     }
@@ -107,12 +120,16 @@ public class StealsPower extends AbstractInesPower {
             addToBot(new ApplyPowerAction(owner, owner, new StrengthPower(owner, consumeNum), consumeNum));
             addToBot(new ApplyPowerAction(owner, owner, new StrengthStealPower(owner, consumeNum), consumeNum));
 
-            // 如果有情报官能力，获得consumeNum层数的情报
-            AbstractPower powerToFind = owner.getPower(AgentVanguardPower.ID);
-            if (powerToFind != null) {
-                powerToFind.flash();
-                addToBot(new ApplyPowerAction(owner, owner, new InterPower(owner, consumeNum), consumeNum));
+            // 如果有情报官能力，获得 consumeNum层数 * 能力层数 的情报
+            AbstractPower agentVanguardPower = owner.getPower(AgentVanguardPower.ID);
+            if (agentVanguardPower != null) {
+                agentVanguardPower.flash();
+                int tempNum = consumeNum*agentVanguardPower.amount;
+
+                addToBot(new ApplyPowerAction(owner, owner, new InterPower(owner, tempNum), tempNum));
             }
+
+
         }
 
 

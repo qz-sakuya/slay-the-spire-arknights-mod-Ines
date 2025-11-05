@@ -23,7 +23,7 @@ public class InterPower extends AbstractInesPower {
 
     public InterPower(AbstractCreature owner, int amount) {
         super(ID,
-                true,
+                false,
                 powerStrings,
                 owner,
                 PowerType.BUFF,
