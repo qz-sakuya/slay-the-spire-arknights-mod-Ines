@@ -17,8 +17,8 @@
   },
   "InesMod:PlanOfAction": {
     "NAME": "行动预谋",
-    "DESCRIPTION": "抽 1 张牌。 NL 获得 1 层 ines:偷取 和 [E] 。",
-    "UPGRADE_DESCRIPTION": "抽 2 张牌。 NL 获得 2 层 ines:偷取 和 [E] 。"
+    "DESCRIPTION": "抽 1 张牌。 NL 获得 !M! 层 ines:偷取 和 [E] 。",
+    "UPGRADE_DESCRIPTION": "抽 2 张牌。 NL 获得 !M! 层 ines:偷取 和 [E] 。"
   },
   "InesMod:ShadowWhistle": {
     "NAME": "影哨",
@@ -66,10 +66,18 @@
   },
   "InesMod:ThoroughAnalysis": {
     "NAME": "分析透彻",
-    "DESCRIPTION": "拥有 !M! 层 ines:偷取 时， ines:偷取 额外使目标获得 1 层 易伤 。"
+    "DESCRIPTION": "拥有至少 !M! 层 ines:偷取 时，每消耗 1 层 ines:偷取 给予 1 层 易伤 。"
   },
   "InesMod:GloomyClouds": {
     "NAME": "阴云笼罩",
-    "DESCRIPTION": "获得 !M! 层 ines:隐匿 。 2 个回合内，你不能再获得 ines:隐匿 。"
+    "DESCRIPTION": "获得 !M! 层 ines:隐匿 。 NL  2 个回合内，你不能再获得 ines:隐匿 。"
+  },
+  "InesMod:ShadowSlash": {
+    "NAME": "影斩",
+    "DESCRIPTION": "造成 !D! 点伤害。 NL 消耗所有 ines:偷取 ，然后获得等量 ines:偷取 。"
+  },
+  "InesMod:ShadowBind": {
+    "NAME": "影之束缚",
+    "DESCRIPTION": "造成 !D! 点伤害 2 次。 NL 消耗所有 ines:偷取 ，每层额外给予 1 层 虚弱 。"
   }
 }

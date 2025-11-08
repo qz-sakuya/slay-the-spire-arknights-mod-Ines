@@ -1,0 +1,62 @@
+package InesMod.cards.attack;
+
+import InesMod.cards.AbstractInesCard;
+import InesMod.characters.Ines;
+import InesMod.helpers.ModHelper;
+import InesMod.powers.StealsPower;
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
+import com.megacrit.cardcrawl.actions.common.DamageAction;
+import com.megacrit.cardcrawl.cards.DamageInfo;
+import com.megacrit.cardcrawl.cards.DamageInfo.DamageType;
+import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.localization.CardStrings;
+import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.AbstractPower;
+import com.megacrit.cardcrawl.powers.WeakPower;
+
+/**
+ * 中文卡名：影之束缚
+ */
+public class ShadowBind extends AbstractInesCard {
+    public static final String ID = ModHelper.nameToId(ShadowBind.class.getSimpleName());
+    private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID); // 从游戏系统读取本地化资源
+
+    public ShadowBind() {
+        super(ID,
+                true,
+                cardStrings,
+                1,
+                CardType.ATTACK,
+                CardRarity.UNCOMMON,
+                CardTarget.ENEMY,
+                Ines.Enums.INES_CARD);
+        this.damage = this.baseDamage = 6;
+
+        this.consumeSteals = 999;
+    }
+
+    @Override
+    public void use(AbstractPlayer p, AbstractMonster m) {
+        this.addToBot(new DamageAction(m, new DamageInfo(p, damage, DamageType.NORMAL), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
+        this.addToBot(new DamageAction(m, new DamageInfo(p, damage, DamageType.NORMAL), AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
+
+
+        int getStealsNum = 0;
+        AbstractPower stealsPower = p.getPower(StealsPower.ID);
+        if (stealsPower != null) {
+            getStealsNum = stealsPower.amount;
+        }
+        addToBot(new ApplyPowerAction(m, p, new WeakPower(p, getStealsNum,false), getStealsNum));
+    }
+
+
+    @Override
+    public void upgrade() {
+        if (!this.upgraded) {
+            this.upgradeName();
+            this.upgradeDamage(2);
+        }
+    }
+}

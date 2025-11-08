@@ -3,6 +3,7 @@ package InesMod.modcore;
 import InesMod.cards.AbstractInesCard;
 import InesMod.characters.Ines;
 
+import InesMod.helpers.ModConfig;
 import InesMod.relics.UnassumingNeedle;
 import basemod.AutoAdd;
 import basemod.helpers.RelicType;
@@ -33,7 +34,7 @@ public class InesModMain implements
         EditRelicsSubscriber,
         EditKeywordsSubscriber,
         //OnStartBattleSubscriber,
-        //PostInitializeSubscriber,
+        PostInitializeSubscriber,
         AddAudioSubscriber
 
 {
@@ -65,6 +66,8 @@ public class InesModMain implements
     public static final Color MY_COLOR = new Color(116F / 255.0F, 48F / 255.0F, 50F / 255.0F, 1.0F);
 
 
+
+
     public InesModMain() {
         BaseMod.subscribe(this);
         BaseMod.addColor(Ines.Enums.INES_CARD, MY_COLOR, MY_COLOR, MY_COLOR,
@@ -72,7 +75,11 @@ public class InesModMain implements
                 BG_ATTACK_512, BG_SKILL_512, BG_POWER_512, ENERGY_ORB, BG_ATTACK_1024,
                 BG_SKILL_1024, BG_POWER_1024, BIG_ORB, SMALL_ORB
         );
+        InesModMain.logger.info("===正在回忆设置项===");
+        ModConfig.initModSettings();
+        InesModMain.logger.info("===设置情报已收集===");
     }
+
 
     public static void initialize() {
         new InesModMain();
@@ -166,6 +173,13 @@ public class InesModMain implements
         InesModMain.logger.info("===关键词情报已收集===");
     }
 
+    @Override
+    public void receivePostInitialize() {
+        ModConfig.initModConfigMenu();
+    }
+
+
+    // 辅助方法
     private String selectLanguage(){
         String lang;
         if (language == Settings.GameLanguage.ZHS) {

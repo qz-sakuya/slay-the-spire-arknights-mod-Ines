@@ -29,6 +29,7 @@ import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.ScreenShake;
 import com.megacrit.cardcrawl.localization.CharacterStrings;
+import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.screens.CharSelectInfo;
 import java.util.ArrayList;
 
@@ -60,6 +61,11 @@ public class Ines extends CustomPlayer {
     private static final float[] LAYER_SPEED = new float[]{-40.0F, -32.0F, 20.0F, -20.0F, 0.0F, -10.0F, -8.0F, 5.0F, -5.0F, 0.0F};
     // 人物的本地化文本，如卡牌的本地化文本一样，如何书写见下
     private static final CharacterStrings characterStrings = CardCrawlGame.languagePack.getCharacterString("InesMod:Ines");
+
+    // 每次战斗中，洞悉的条件计数
+    public int counterForInsight = 0;
+    // 每次战斗中，洞悉的条件要求
+    public int needForInsight = 10;
 
     public Ines(String name) {
         super(name, Enums.INES, ORB_TEXTURES,"InesModResources/img/UI/orb/vfx.png", LAYER_SPEED, null, null);
@@ -287,4 +293,16 @@ public class Ines extends CustomPlayer {
     }
 
 
+    // 重载战斗前触发函数，加入重置洞悉条件计数为0的逻辑
+    @Override
+    public void applyStartOfCombatPreDrawLogic() {
+        for (AbstractRelic r : this.relics) {
+            if (r != null) {
+                r.atBattleStartPreDraw();
+            }
+        }
+        counterForInsight = 0;
+        needForInsight = 10;
+        InesModMain.logger.info("===回合开始，counterForInsight：{}===",counterForInsight);
+    }
 }

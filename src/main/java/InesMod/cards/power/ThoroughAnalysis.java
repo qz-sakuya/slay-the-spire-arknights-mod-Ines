@@ -11,6 +11,8 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.AbstractPower;
+import com.megacrit.cardcrawl.powers.VulnerablePower;
 
 /**
  * 中文卡名：分析透彻
@@ -33,7 +35,13 @@ public class ThoroughAnalysis extends AbstractInesCard {
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        addToBot(new SetPowerAction(p, p, new ThoroughAnalysisPower(p, magicNumber), magicNumber));
+        int tempNum = magicNumber;
+        AbstractPower thoroughAnalysisPower = p.getPower(ThoroughAnalysisPower.ID);
+        if (thoroughAnalysisPower != null && magicNumber > thoroughAnalysisPower.amount) {
+            tempNum = thoroughAnalysisPower.amount;
+        }
+
+        addToBot(new SetPowerAction(p, p, new ThoroughAnalysisPower(p, tempNum), tempNum));
     }
 
     @Override

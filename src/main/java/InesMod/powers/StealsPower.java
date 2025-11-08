@@ -1,8 +1,12 @@
 package InesMod.powers;
 
+import InesMod.action.ApplyStealsToTargetAction;
 import InesMod.action.ReduceAndKeepPowerAction;
 import InesMod.cards.AbstractInesCard;
+import InesMod.characters.Ines;
+import InesMod.helpers.ModConfig;
 import InesMod.helpers.ModHelper;
+import InesMod.helpers.TutorialHelper;
 import InesMod.modcore.InesModMain;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
@@ -14,7 +18,6 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
-import com.megacrit.cardcrawl.powers.VulnerablePower;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -26,10 +29,10 @@ public class StealsPower extends AbstractInesPower {
     public static final String ID = ModHelper.nameToId(StealsPower.class.getSimpleName());
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(ID); // 从游戏系统读取本地化资源
 
-    private int consumeNum; // 一次偷取中，应用偷取的层数
+    private int consumeNum; // 一次偷取中，消耗偷取的层数
     private final Set<AbstractCreature> stolenTarget = new HashSet<>(); // 一次偷取中，已经被偷取的怪物id
 
-    private int amountBeforeReduce; // 一次偷取中，消耗偷取前的层数
+    public int amountBeforeReduce; // 一次偷取中，消耗偷取前的层数
 
     public StealsPower(AbstractCreature owner, int amount) {
         super(ID,
@@ -41,6 +44,7 @@ public class StealsPower extends AbstractInesPower {
         consumeNum = 0;
         amountBeforeReduce = 0;
 
+        this.priority = 4; // 排在 洞悉（优先级5）及大多数power前面
     }
 
     @Override
@@ -85,26 +89,11 @@ public class StealsPower extends AbstractInesPower {
     @Override
     public void onAttack(DamageInfo info, int damageAmount, AbstractCreature target) {
         InesModMain.logger.info("===StealsPower: onAttack===");
-        InesModMain.logger.info("===StealsPower: consumeNum:"+consumeNum);
 
         if (consumeNum > 0
                 && !stolenTarget.contains(target)
-                && damageAmount > 0 && target != this.owner && info.type == DamageInfo.DamageType.NORMAL) {
-            // 给当前目标减一次力量
-            addToBot(new ApplyPowerAction(target, owner, new StrengthPower(target, -consumeNum), -consumeNum));
-            addToBot(new ApplyPowerAction(target, owner, new StrengthStolenPower(target, consumeNum), consumeNum));
-
-
-            // 如果有分析透彻能力，判断是否给予易伤
-            AbstractPower thoroughAnalysisPower = owner.getPower(ThoroughAnalysisPower.ID);
-            if (thoroughAnalysisPower != null && amountBeforeReduce >= thoroughAnalysisPower.amount) {
-                thoroughAnalysisPower.flash();
-                addToBot(new ApplyPowerAction(target, owner, new VulnerablePower(target, consumeNum, false), consumeNum));
-            }
-
-
-
-
+                && target != this.owner && info.type == DamageInfo.DamageType.NORMAL) {
+            addToBot(new ApplyStealsToTargetAction(owner, target, consumeNum, amountBeforeReduce));
 
             stolenTarget.add(target); // 记录该目标
         }
@@ -120,6 +109,30 @@ public class StealsPower extends AbstractInesPower {
             addToBot(new ApplyPowerAction(owner, owner, new StrengthPower(owner, consumeNum), consumeNum));
             addToBot(new ApplyPowerAction(owner, owner, new StrengthStealPower(owner, consumeNum), consumeNum));
 
+
+            // 处理洞悉相关逻辑
+            if (owner instanceof Ines) {
+                Ines inesOwner = (Ines) owner;
+                inesOwner.counterForInsight += consumeNum;
+                while (inesOwner.counterForInsight >= inesOwner.needForInsight) {
+                    inesOwner.counterForInsight -= inesOwner.needForInsight;
+                    inesOwner.needForInsight += 2; // 每次获得洞悉，所需层数+2。
+
+                    addToBot(new ApplyPowerAction(owner, owner, new InsightPower(owner, 1), 1));
+
+                    // 显示教程
+                    if (!ModConfig.tutorialClosed1) {
+                        TutorialHelper.playTutorial1(owner);
+                    }
+                }
+
+                // 如果有洞悉能力，更新其描述
+                AbstractPower insightPower = owner.getPower(InsightPower.ID);
+                if (insightPower != null) {
+                    insightPower.updateDescription();
+                }
+            }
+
             // 如果有情报官能力，获得 consumeNum层数 * 能力层数 的情报
             AbstractPower agentVanguardPower = owner.getPower(AgentVanguardPower.ID);
             if (agentVanguardPower != null) {
@@ -128,15 +141,13 @@ public class StealsPower extends AbstractInesPower {
 
                 addToBot(new ApplyPowerAction(owner, owner, new InterPower(owner, tempNum), tempNum));
             }
-
-
         }
 
 
         consumeNum = 0;
         stolenTarget.clear();
 
-        // 延迟删除，避免onAfterUseCard不触发
+        // 延迟remove，避免onAfterUseCard不触发
         if (this.amount == 0){
             this.addToTop(new RemoveSpecificPowerAction(this.owner, this.owner, StealsPower.ID));
         }
