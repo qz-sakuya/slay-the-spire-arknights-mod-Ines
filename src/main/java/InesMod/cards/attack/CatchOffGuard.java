@@ -13,36 +13,47 @@ import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.cards.DamageInfo.DamageType;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 /**
- * 中文卡名：打击
+ * 中文卡名：出其不意
  */
-public class ShadowAmbush extends AbstractInesCard {
-    public static final String ID = ModHelper.nameToId(ShadowAmbush.class.getSimpleName());
+public class CatchOffGuard extends AbstractInesCard {
+    public static final String ID = ModHelper.nameToId(CatchOffGuard.class.getSimpleName());
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID); // 从游戏系统读取本地化资源
 
-    public ShadowAmbush() {
+    public CatchOffGuard() {
         super(ID,
                 false,
                 cardStrings,
-                1,
+                0,
                 CardType.ATTACK,
-                CardRarity.COMMON,
+                CardRarity.BASIC,
                 CardTarget.ENEMY,
                 Ines.Enums.INES_CARD);
-        this.damage = this.baseDamage = 4;
+        this.damage = this.baseDamage = 10;
         this.magicNumber = this.baseMagicNumber = 1;
 
-        this.cardsToPreview = new ShadowWhistle();
+        this.exhaust = true;
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        this.addToBot(new DamageAction(m, new DamageInfo(p, damage, DamageType.NORMAL), AbstractGameAction.AttackEffect.SLASH_HEAVY));
-        this.addToBot(new MakeTempCardInHandAction(new ShadowWhistle(), 1)); // 生成1张影哨
+        // 刚打出去，所以列表中有自己
+        if (AbstractDungeon.actionManager.cardsPlayedThisTurn.size() == 1 && AbstractDungeon.actionManager.cardsPlayedThisTurn.get(0) == this) {
+            this.addToBot(new DamageAction(m, new DamageInfo(p, damage, DamageType.NORMAL), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
+            this.addToBot(new DrawCardAction(p, this.magicNumber));
+        }
+    }
 
+    @Override
+    public void triggerOnGlowCheck() {
+        this.glowColor = AbstractCard.BLUE_BORDER_GLOW_COLOR.cpy();
+        if(AbstractDungeon.actionManager.cardsPlayedThisTurn.isEmpty()){
+            this.glowColor = AbstractCard.GOLD_BORDER_GLOW_COLOR.cpy();
+        }
     }
 
     @Override

@@ -1,12 +1,15 @@
 package InesMod.cards.attack;
 
+import InesMod.action.ColouredSlashEffectAction;
 import InesMod.cards.AbstractInesCard;
 import InesMod.characters.Ines;
 import InesMod.helpers.ModHelper;
+import InesMod.modcore.InesModMain;
 import InesMod.powers.StealsPower;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
+import com.megacrit.cardcrawl.actions.utility.SFXAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.cards.DamageInfo.DamageType;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -39,8 +42,18 @@ public class ShadowBind extends AbstractInesCard {
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        this.addToBot(new DamageAction(m, new DamageInfo(p, damage, DamageType.NORMAL), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
-        this.addToBot(new DamageAction(m, new DamageInfo(p, damage, DamageType.NORMAL), AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
+        this.addToBot(new SFXAction("ATTACK_WHIFF_1", 0.2F));
+        this.addToBot(new SFXAction("ATTACK_FAST", 0.2F));
+        this.addToBot(new ColouredSlashEffectAction(m,135.0F, 3.0F,InesModMain.MY_COLOR_DARK,InesModMain.MY_COLOR));
+
+        this.addToBot(new DamageAction(m, new DamageInfo(p, damage, DamageType.NORMAL), AbstractGameAction.AttackEffect.NONE));
+
+
+        this.addToBot(new SFXAction("ATTACK_WHIFF_1", 0.2F));
+        this.addToBot(new SFXAction("ATTACK_FAST", 0.2F));
+        this.addToBot(new ColouredSlashEffectAction(m,45.0F, 3.0F,InesModMain.MY_COLOR_DARK,InesModMain.MY_COLOR));
+
+        this.addToBot(new DamageAction(m, new DamageInfo(p, damage, DamageType.NORMAL), AbstractGameAction.AttackEffect.NONE));
 
 
         int getStealsNum = 0;

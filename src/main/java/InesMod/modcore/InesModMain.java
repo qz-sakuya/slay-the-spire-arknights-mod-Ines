@@ -65,7 +65,7 @@ public class InesModMain implements
     // 主题色(116,48,50)
     public static final Color MY_COLOR = new Color(116F / 255.0F, 48F / 255.0F, 50F / 255.0F, 1.0F);
 
-
+    public static final Color MY_COLOR_DARK = new Color(97F / 255.0F, 41F / 255.0F, 43F / 255.0F, 1.0F);
 
 
     public InesModMain() {

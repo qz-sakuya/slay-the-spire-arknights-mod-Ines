@@ -16,6 +16,7 @@ import com.megacrit.cardcrawl.localization.PowerStrings;
 
 /**
  * 中文名：虚影
+ * 一个很有趣的事情是，虚影因为回合最后添加，一般在“缓冲”后面，所以优先消耗缓冲，这也是强度的一个设定
  */
 public class IllusionPower extends AbstractInesPower {
     public static final String ID = ModHelper.nameToId(IllusionPower.class.getSimpleName());

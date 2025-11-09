@@ -9,7 +9,7 @@
   },
   "InesMod:StrikeTest": {
     "NAME": "打击测试",
-    "DESCRIPTION": "打击测试"
+    "DESCRIPTION": "打击测试。 NL 造成 !D! 点伤害。"
   },
   "InesMod:AgentVanguard": {
     "NAME": "情报官",
@@ -79,5 +79,17 @@
   "InesMod:ShadowBind": {
     "NAME": "影之束缚",
     "DESCRIPTION": "造成 !D! 点伤害 2 次。 NL 消耗所有 ines:偷取 ，每层额外给予 1 层 虚弱 。"
+  },
+  "InesMod:CatchOffGuard": {
+    "NAME": "出其不意",
+    "DESCRIPTION": "如果本回合尚未出牌， NL 造成 !D! 点伤害， NL 抽 !M! 张牌。 NL  消耗 。"
+  },
+  "InesMod:ThroatLock": {
+    "NAME": "锁喉",
+    "DESCRIPTION": "造成 !D! 点伤害。 NL 若不处于 ines:隐匿 ， 消耗 。"
+  },
+  "InesMod:TimeGap": {
+    "NAME": "时间差",
+    "DESCRIPTION": "获得 1 层 ines:隐匿 。此牌每被打出一次，其耗能+1。"
   }
 }

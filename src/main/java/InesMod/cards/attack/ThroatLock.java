@@ -1,58 +1,56 @@
 package InesMod.cards.attack;
 
-import InesMod.action.ColouredSlashEffectAction;
 import InesMod.cards.AbstractInesCard;
+import InesMod.cards.status.ShadowWhistle;
 import InesMod.characters.Ines;
 import InesMod.helpers.ModHelper;
-import InesMod.modcore.InesModMain;
-import InesMod.powers.StealsPower;
+import InesMod.powers.AgentVanguardPower;
+import InesMod.powers.InterPower;
+import InesMod.powers.InvisibilityPower;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
-import com.megacrit.cardcrawl.actions.utility.SFXAction;
+import com.megacrit.cardcrawl.actions.common.ExhaustSpecificCardAction;
+import com.megacrit.cardcrawl.actions.common.MakeTempCardInHandAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.cards.DamageInfo.DamageType;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 
 /**
- * 中文卡名：影斩
+ * 中文卡名：锁喉
  */
-public class ShadowSlash extends AbstractInesCard {
-    public static final String ID = ModHelper.nameToId(ShadowSlash.class.getSimpleName());
+public class ThroatLock extends AbstractInesCard {
+    public static final String ID = ModHelper.nameToId(ThroatLock.class.getSimpleName());
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID); // 从游戏系统读取本地化资源
 
-    public ShadowSlash() {
+    public ThroatLock() {
         super(ID,
                 false,
                 cardStrings,
-                2,
+                0,
                 CardType.ATTACK,
-                CardRarity.RARE,
+                CardRarity.COMMON,
                 CardTarget.ENEMY,
                 Ines.Enums.INES_CARD);
-        this.damage = this.baseDamage = 12;
+        this.damage = this.baseDamage = 11;
 
-        this.consumeSteals = 999;
+        this.exhaust = false;
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        this.addToBot(new SFXAction("ATTACK_MAGIC_BEAM_SHORT", 0.7F, true));
-        this.addToBot(new SFXAction("ATTACK_IRON_3", 0.2F));
-        this.addToBot(new ColouredSlashEffectAction(m,45.0F, 4.0F,InesModMain.MY_COLOR_DARK,InesModMain.MY_COLOR));
+        this.addToBot(new DamageAction(m, new DamageInfo(p, damage, DamageType.NORMAL), AbstractGameAction.AttackEffect.BLUNT_HEAVY));
 
-        this.addToBot(new DamageAction(m, new DamageInfo(p, damage, DamageType.NORMAL), AbstractGameAction.AttackEffect.NONE));
-
-        int getStealsNum = 0;
-        AbstractPower stealsPower = p.getPower(StealsPower.ID);
-        if (stealsPower != null) {
-            getStealsNum = stealsPower.amount;
+        // 如果不处于隐匿，消耗
+        AbstractPower invisibilityPower = p.getPower(InvisibilityPower.ID);
+        if (invisibilityPower == null) {
+            this.exhaust = true;
         }
-        addToBot(new ApplyPowerAction(p, p, new StealsPower(p, getStealsNum), getStealsNum));
     }
 
 
@@ -60,7 +58,7 @@ public class ShadowSlash extends AbstractInesCard {
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeDamage(6);
+            this.upgradeDamage(3);
         }
     }
 }

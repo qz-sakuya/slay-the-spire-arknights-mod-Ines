@@ -15,7 +15,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 
 /**
  * 中文卡名：打击测试
- * 只用于测试特效，正式版不注册
+ * 只用于测试特效等，正式版不注册
  */
 
 @AutoAdd.Ignore
@@ -81,7 +81,9 @@ public class StrikeTest extends AbstractInesCard {
         // 获取当前特效
         AbstractGameAction.AttackEffect effect = EFFECTS[testEffectNum];
 
-        this.addToBot(new DamageAction(m, new DamageInfo(p, 0, DamageInfo.DamageType.NORMAL), effect));
+        this.addToBot(new DamageAction(m, new DamageInfo(p, damage, DamageInfo.DamageType.NORMAL), effect));
+
+        this.baseDamage+= 2; // 测试use时（后）修改值 // 结论：似乎和通过action修改（玻璃刀刃）没有区别，但还是建议使用action
 
         testEffectNum = (testEffectNum + 1) % EFFECTS.length;
     }

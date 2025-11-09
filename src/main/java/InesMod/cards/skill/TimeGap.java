@@ -3,27 +3,26 @@ package InesMod.cards.skill;
 import InesMod.cards.AbstractInesCard;
 import InesMod.characters.Ines;
 import InesMod.helpers.ModHelper;
+import InesMod.powers.InvisibilityPower;
 import InesMod.powers.StealsPower;
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.DrawCardAction;
 import com.megacrit.cardcrawl.actions.common.GainEnergyAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 /**
- * 中文卡名：行动预谋
+ * 中文卡名：时间差
  */
-public class PlanOfAction extends AbstractInesCard {
-    public static final String ID = ModHelper.nameToId(PlanOfAction.class.getSimpleName());
+public class TimeGap extends AbstractInesCard {
+    public static final String ID = ModHelper.nameToId(TimeGap.class.getSimpleName());
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID); // 从游戏系统读取本地化资源
 
-    public PlanOfAction() {
+    public TimeGap() {
         super(ID,
-                true,
+                false,
                 cardStrings,
                 1,
                 CardType.SKILL,
@@ -36,20 +35,15 @@ public class PlanOfAction extends AbstractInesCard {
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        this.addToBot(new DrawCardAction(p, this.draw));
-        this.addToBot(new ApplyPowerAction(p, p, new StealsPower(p, this.magicNumber ), this.magicNumber));
-        this.addToBot(new GainEnergyAction(1));
+        this.addToBot(new ApplyPowerAction(p, p, new InvisibilityPower(p, 1), 1));
+        this.cost += 1;
     }
 
     @Override
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.draw = 2;
-            this.upgradeMagicNumber(1);
-
-            this.rawDescription = cardStrings.UPGRADE_DESCRIPTION;
-            this.initializeDescription();
+            upgradeBaseCost(0);
         }
     }
 }
