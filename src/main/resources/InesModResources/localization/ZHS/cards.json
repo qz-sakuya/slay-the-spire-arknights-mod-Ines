@@ -91,5 +91,26 @@
   "InesMod:TimeGap": {
     "NAME": "时间差",
     "DESCRIPTION": "获得 1 层 ines:隐匿 。此牌每被打出一次，其耗能+1。"
+  },
+  "InesMod:PreciseRecon": {
+    "NAME": "精准探查",
+    "DESCRIPTION": " ines:潜伏 。 NL 攻击如果消耗了 ines:偷取 ，获得 !M! 点 ines:情报 。"
+  },
+  "InesMod:LayTraps": {
+    "NAME": "布设陷阱",
+    "DESCRIPTION": " ines:潜伏 。 NL 攻击如果消耗了 ines:偷取 ，给予 !M! 点 易伤 。"
+  },
+  "InesMod:Disguise": {
+    "NAME": "伪装",
+    "DESCRIPTION": "获得 !B! 点格挡。 NL 向手牌中加入 !M! 张 *影哨 。"
+  },
+  "InesMod:Infiltration": {
+    "NAME": "渗透",
+    "DESCRIPTION": "获得等同于敌人数量的 ines:偷取 。",
+    "UPGRADE_DESCRIPTION": "获得等同于敌人数量+1的 ines:偷取 。"
+  },
+  "InesMod:TopSecretOperation": {
+    "NAME": "绝密行动",
+    "DESCRIPTION": " ines:自动打出 。对所有敌人造成 !D! 点伤害 2 次。 NL 若无法 ines:自动打出 则 消耗 。"
   }
 }

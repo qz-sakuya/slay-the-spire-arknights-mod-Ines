@@ -7,7 +7,7 @@ import com.megacrit.cardcrawl.localization.PowerStrings;
 
 /**
  * 中文名：分析透彻
- * 此power的效果由StealsPower代行
+ * 此 power 的效果由 ApplyStealsToTargetAction 代行
  */
 public class ThoroughAnalysisPower extends AbstractInesPower {
     public static final String ID = ModHelper.nameToId(ThoroughAnalysisPower.class.getSimpleName());

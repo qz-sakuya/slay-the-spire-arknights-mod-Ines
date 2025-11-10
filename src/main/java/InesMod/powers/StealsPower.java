@@ -93,7 +93,7 @@ public class StealsPower extends AbstractInesPower {
         if (consumeNum > 0
                 && !stolenTarget.contains(target)
                 && target != this.owner && info.type == DamageInfo.DamageType.NORMAL) {
-            addToBot(new ApplyStealsToTargetAction(owner, target, consumeNum, amountBeforeReduce));
+            addToBot(new ApplyStealsToTargetAction(owner, target, consumeNum, true, amountBeforeReduce));
 
             stolenTarget.add(target); // 记录该目标
         }

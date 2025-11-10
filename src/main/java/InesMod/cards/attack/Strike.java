@@ -38,7 +38,6 @@ public class Strike extends AbstractInesCard {
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        // p.useFastAttackAnimation();
         this.addToBot(new DamageAction(m, new DamageInfo(p, damage, DamageType.NORMAL), AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
     }
 

@@ -1,6 +1,7 @@
 package InesMod.modcore;
 
 import InesMod.cards.AbstractInesCard;
+import InesMod.cards.attack.TopSecretOperation;
 import InesMod.characters.Ines;
 
 import InesMod.helpers.ModConfig;
@@ -13,8 +14,12 @@ import com.evacipated.cardcrawl.modthespire.lib.SpireInitializer;
 
 import basemod.BaseMod;
 import com.google.gson.Gson;
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.CardQueueItem;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.*;
 import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
@@ -35,7 +40,9 @@ public class InesModMain implements
         EditKeywordsSubscriber,
         //OnStartBattleSubscriber,
         PostInitializeSubscriber,
-        AddAudioSubscriber
+        AddAudioSubscriber,
+        PostDrawSubscriber,
+        OnCardUseSubscriber
 
 {
     public static final Logger logger = LogManager.getLogger(InesModMain.class);
@@ -176,6 +183,26 @@ public class InesModMain implements
     @Override
     public void receivePostInitialize() {
         ModConfig.initModConfigMenu();
+    }
+
+
+    @Override
+    public void receivePostDraw(AbstractCard c) {
+        InesModMain.logger.info("===InesModMain-receivePostDraw-cardID：{}===",c.cardID);
+
+        if (c.cardID.equals(TopSecretOperation.ID)){
+            TopSecretOperation topSecretOperation = (TopSecretOperation) c;
+            topSecretOperation.autoUse();
+        }
+
+
+    }
+
+    @Override
+    public void receiveCardUsed(AbstractCard c) {
+//        if (!this.successPlay) {
+//
+//        }
     }
 
 

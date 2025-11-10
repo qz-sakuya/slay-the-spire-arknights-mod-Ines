@@ -36,13 +36,17 @@ public class CatchOffGuard extends AbstractInesCard {
         this.damage = this.baseDamage = 10;
         this.magicNumber = this.baseMagicNumber = 1;
 
+        this.consumeSteals = 0;
         this.exhaust = true;
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
+        this.consumeSteals = 0;
+
         // 刚打出去，所以列表中有自己
         if (AbstractDungeon.actionManager.cardsPlayedThisTurn.size() == 1 && AbstractDungeon.actionManager.cardsPlayedThisTurn.get(0) == this) {
+            this.consumeSteals = 1;
             this.addToBot(new DamageAction(m, new DamageInfo(p, damage, DamageType.NORMAL), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
             this.addToBot(new DrawCardAction(p, this.magicNumber));
         }

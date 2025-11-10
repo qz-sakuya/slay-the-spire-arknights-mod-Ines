@@ -58,7 +58,7 @@ public class InvisibilityPower extends AbstractInesPower {
 
     @Override
     public float modifyBlock(float blockAmount) {
-        return blockAmount * 1.25F; // 从卡牌获得的格挡增加
+        return blockAmount * 1.5F; // 从卡牌获得的格挡增加
     }
 
     @Override

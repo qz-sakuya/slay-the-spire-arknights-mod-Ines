@@ -71,8 +71,8 @@ public class InsightPower extends AbstractInesPower {
         if (consumeNum > 0
                 && !stolenTarget.contains(target)
                 && target != this.owner && info.type == DamageInfo.DamageType.NORMAL) {
-            // 不参与 分析透彻 的效果，因为不算消耗偷取
-            addToBot(new ApplyStealsToTargetAction(owner, target, consumeNum, 0));
+            // 不参与其他效果
+            addToBot(new ApplyStealsToTargetAction(owner, target, consumeNum, false));
 
             stolenTarget.add(target); // 记录该目标
         }

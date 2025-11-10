@@ -151,19 +151,12 @@ public class Ines extends CustomPlayer {
 
     @Override
     public void useFastAttackAnimation() {
+        InesModMain.logger.info("===Ines人物：useFastAttackAnimation===");
         this.state.setAnimation(0, "Attack", false);
         this.state.addAnimation(0, "Idle", true, 0.0F);
         this.state.getCurrent(0).setTimeScale(1.2F);
     }
 
-    @Override
-    public void useSlowAttackAnimation() {
-        this.state.setAnimation(0, "Skill_2_Begin", false);
-        this.state.setAnimation(0, "Skill_2_Attack", false);
-        this.state.setAnimation(0, "Skill_2_End", false);
-        this.state.addAnimation(0, "Idle", true, 0.0F);
-        this.state.getCurrent(0).setTimeScale(1.2F); // 加快动画速度
-    }
 
     @Override
     public void playDeathAnimation() {
