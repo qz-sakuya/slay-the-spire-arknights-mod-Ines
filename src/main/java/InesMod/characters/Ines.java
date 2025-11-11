@@ -105,10 +105,10 @@ public class Ines extends CustomPlayer {
         ArrayList<String> cardList = new ArrayList<>();
 
 
-//        for(int x = 0; x<5; x++) {
+//        for(int x = 0; x<4; x++) {
 //            cardList.add(Strike.ID);
 //        }
-//        for(int x = 0; x<5; x++) {
+//        for(int x = 0; x<4; x++) {
 //            cardList.add(Defend.ID);
 //        }
 //        cardList.add(PlanOfAction.ID);

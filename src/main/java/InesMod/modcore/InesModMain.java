@@ -188,21 +188,12 @@ public class InesModMain implements
 
     @Override
     public void receivePostDraw(AbstractCard c) {
-        InesModMain.logger.info("===InesModMain-receivePostDraw-cardID：{}===",c.cardID);
-
-        if (c.cardID.equals(TopSecretOperation.ID)){
-            TopSecretOperation topSecretOperation = (TopSecretOperation) c;
-            topSecretOperation.autoUse();
-        }
-
-
+        // 暂时没用到
     }
 
     @Override
     public void receiveCardUsed(AbstractCard c) {
-//        if (!this.successPlay) {
-//
-//        }
+        // 暂时没用到
     }
 
 

@@ -34,15 +34,15 @@ public class ApplyPowerActionPatch {
     public static class Fun {
         @SpirePrefixPatch
         public static void Prefix(ApplyPowerAction __instance) {
-            InesModMain.logger.info("===ApplyPowerActionPatch Fun：begin===");
+//            InesModMain.logger.info("===ApplyPowerActionPatch Fun：begin===");
 
             AbstractPower powerToApply = ReflectionHacks.getPrivate(__instance, ApplyPowerAction.class, "powerToApply");
             if (powerToApply == null) {
                 return;
             }
 
-            InesModMain.logger.info("===ApplyPowerActionPatch Fun：被添加的能力ID{}===", powerToApply.ID);
-            InesModMain.logger.info("===ApplyPowerActionPatch Fun：被添加的能力层数{}===", powerToApply.amount);
+//            InesModMain.logger.info("===ApplyPowerActionPatch Fun：被添加的能力ID{}===", powerToApply.ID);
+//            InesModMain.logger.info("===ApplyPowerActionPatch Fun：被添加的能力层数{}===", powerToApply.amount);
 
 
             if (__instance.source != null) {

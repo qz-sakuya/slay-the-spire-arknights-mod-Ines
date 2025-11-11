@@ -47,6 +47,7 @@ public abstract class AbstractInesPower extends AbstractPower {
         powerImgCache.put(ID + "_48", new TextureAtlas.AtlasRegion(ImageMaster.loadImage(path48), 0, 0, 32, 32));
     }
 
+
     public abstract void updateDescription();
 
 
@@ -65,4 +66,8 @@ public abstract class AbstractInesPower extends AbstractPower {
     private static String getImgPath(String size, String id) {
         return String.format("InesModResources/img/powers/%s%s.png",ModHelper.idToName(id),size);
     }
+
+    // 自定义回调
+    public void onCardMove() {}
+
 }

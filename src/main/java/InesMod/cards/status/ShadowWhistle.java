@@ -35,6 +35,7 @@ public class ShadowWhistle extends AbstractInesCard {
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {}
 
+    @Override
     public void onMoveToDiscard() {
         this.addToBot(new GainBlockAction(AbstractDungeon.player, AbstractDungeon.player, this.block));
         addToTop(new ExhaustSpecificCardAction(this, AbstractDungeon.player.discardPile));

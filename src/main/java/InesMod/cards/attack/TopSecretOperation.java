@@ -1,5 +1,6 @@
 package InesMod.cards.attack;
 
+import InesMod.action.TopSecretOperationAutoUseAction;
 import InesMod.cards.AbstractInesCard;
 import InesMod.characters.Ines;
 import InesMod.helpers.ModHelper;
@@ -35,7 +36,7 @@ public class TopSecretOperation extends AbstractInesCard {
     public static final String ID = ModHelper.nameToId(TopSecretOperation.class.getSimpleName());
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID); // 从游戏系统读取本地化资源
 
-    public boolean successPlay = false;
+
 
     public TopSecretOperation() {
         super(ID,
@@ -53,8 +54,6 @@ public class TopSecretOperation extends AbstractInesCard {
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        this.successPlay = true;
-
         for (int i = 0; i<2; i++){
             addToBot(new SFXAction("ATTACK_HEAVY"));
             addToBot(new VFXAction(p, new CleaveEffect(), 0.08F));
@@ -62,21 +61,14 @@ public class TopSecretOperation extends AbstractInesCard {
         }
     }
 
-    // 用于外部调用
+
+    // 对于 冥想 将此牌加入手牌，无法触发 自动打出 ，猜测是强制结束回合，新 NewQueueCardAction 没有触发
+    @Override
     public void autoUse() {
         InesModMain.logger.info("===TopSecretOperation-autoUse===");
-        this.successPlay = false;
-        this.applyPowers();
 
-        if (!this.hasEnoughEnergy() || !this.cardPlayable(null)){
-            // 无法打出则消耗
-            addToTop(new ExhaustSpecificCardAction(this, AbstractDungeon.player.hand));
-        }
-        else {
-            // 消耗能量打出
-            this.addToBot(new LoseEnergyAction(this.cost));
-            addToTop(new NewQueueCardAction(this, true, true, true));
-        }
+        // 必须在 action 中判断能量与打出条件
+        addToTop(new TopSecretOperationAutoUseAction(this));
     }
 
     @Override
@@ -95,6 +87,4 @@ public class TopSecretOperation extends AbstractInesCard {
         }
     }
 
-
-    // TODO：patch moveToHand函数，使得加入手牌时也触发效果。还有查阅攻击药水的实现
 }

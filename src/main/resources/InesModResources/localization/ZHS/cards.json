@@ -38,7 +38,7 @@
   },
   "InesMod:CloseQuartersCombat": {
     "NAME": "近身格斗",
-    "DESCRIPTION": "造成 !D! 点伤害。 NL 如果你没有 格挡 ，伤害+ !M! 。"
+    "DESCRIPTION": "造成 !D! 点伤害。 NL 如果你没有 格挡 ， NL 伤害+ !M! 。"
   },
   "InesMod:TrackUnderNight": {
     "NAME": "夜下寻踪",
@@ -98,7 +98,7 @@
   },
   "InesMod:LayTraps": {
     "NAME": "布设陷阱",
-    "DESCRIPTION": " ines:潜伏 。 NL 攻击如果消耗了 ines:偷取 ，给予 !M! 点 易伤 。"
+    "DESCRIPTION": " ines:潜伏 。 NL 攻击如果消耗了 ines:偷取 ，给予 !M! 层 易伤 。"
   },
   "InesMod:Disguise": {
     "NAME": "伪装",
@@ -112,5 +112,14 @@
   "InesMod:TopSecretOperation": {
     "NAME": "绝密行动",
     "DESCRIPTION": " ines:自动打出 。对所有敌人造成 !D! 点伤害 2 次。 NL 若无法 ines:自动打出 则 消耗 。"
+  },
+  "InesMod:AdHocSupply": {
+    "NAME": "临时补给",
+    "DESCRIPTION": "下一次手牌数不超过 1 时，获得 [E] 。",
+    "UPGRADE_DESCRIPTION": "下一次手牌数不超过 1 时，获得 [E]  [E] 。"
+  },
+  "InesMod:AdHocStrategy": {
+    "NAME": "临时战略",
+    "DESCRIPTION": "下一次手牌数不超过 1 时，抽 !M! 张牌。"
   }
 }

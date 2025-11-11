@@ -40,7 +40,7 @@ public class ShadowAmbush extends AbstractInesCard {
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        this.addToBot(new DamageAction(m, new DamageInfo(p, damage, DamageType.NORMAL), AbstractGameAction.AttackEffect.SLASH_HEAVY));
+        this.addToBot(new DamageAction(m, new DamageInfo(p, damage, DamageType.NORMAL), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
         this.addToBot(new MakeTempCardInHandAction(new ShadowWhistle(), 1)); // 生成1张影哨
 
     }

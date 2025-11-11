@@ -2,7 +2,13 @@ package InesMod.cards;
 
 import InesMod.characters.Ines;
 import InesMod.helpers.ModHelper;
+import InesMod.modcore.InesModMain;
 import basemod.abstracts.CustomCard;
+import com.megacrit.cardcrawl.actions.common.ExhaustSpecificCardAction;
+import com.megacrit.cardcrawl.actions.unique.LoseEnergyAction;
+import com.megacrit.cardcrawl.actions.utility.NewQueueCardAction;
+import com.megacrit.cardcrawl.cards.CardGroup;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 
 
@@ -12,6 +18,9 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 
 public abstract class AbstractInesCard extends CustomCard {
     public int consumeSteals; // 此牌消耗偷取的层数
+
+    public CardGroup.CardGroupType lastAddedTo; // 上次加入到的 CardGroup
+
     public AbstractInesCard(String ID,
                             boolean useTmpArt,
                             CardStrings strings,
@@ -69,4 +78,7 @@ public abstract class AbstractInesCard extends CustomCard {
         }
         return String.format("InesModResources/img/cards/%s/%s_%s.png", type, ModHelper.idToName(id), type);
     }
+
+    // 触发自动打出时调用
+    public void autoUse(){};
 }
