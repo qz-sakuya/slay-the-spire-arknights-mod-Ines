@@ -121,5 +121,17 @@
   "InesMod:AdHocStrategy": {
     "NAME": "临时战略",
     "DESCRIPTION": "下一次手牌数不超过 1 时，抽 !M! 张牌。"
+  },
+  "InesMod:BreakTheShadow": {
+    "NAME": "破影",
+    "DESCRIPTION": "造成 !D! 点伤害。 NL 每当 *影哨 被 消耗 时，此牌从弃牌堆返回手牌。 NL  保留 。"
+  },
+  "InesMod:VeiledInSight": {
+    "NAME": "隐于目光",
+    "DESCRIPTION": "对所有敌人造成 !D! 点伤害。获得 1 层 ines:隐匿 。 NL 本回合你无法再打出攻击牌。"
+  },
+  "InesMod:GuidedThrow": {
+    "NAME": "牵引投掷",
+    "DESCRIPTION": "对所有敌人造成 !D! 点伤害。 NL 消耗等同于敌人数量的 ines:偷取 。"
   }
 }

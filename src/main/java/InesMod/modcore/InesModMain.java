@@ -1,11 +1,12 @@
 package InesMod.modcore;
 
 import InesMod.cards.AbstractInesCard;
-import InesMod.cards.attack.TopSecretOperation;
 import InesMod.characters.Ines;
 
 import InesMod.helpers.ModConfig;
+import InesMod.powers.InvisibilityPower;
 import InesMod.relics.UnassumingNeedle;
+import InesMod.vfx.InvisibilityAuraEffect;
 import basemod.AutoAdd;
 import basemod.helpers.RelicType;
 import basemod.interfaces.*;
@@ -14,19 +15,23 @@ import com.evacipated.cardcrawl.modthespire.lib.SpireInitializer;
 
 import basemod.BaseMod;
 import com.google.gson.Gson;
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.CardQueueItem;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.*;
 import com.badlogic.gdx.graphics.Color;
+import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.monsters.MonsterGroup;
+import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
 
 import static com.megacrit.cardcrawl.core.Settings.language;
 
@@ -207,4 +212,53 @@ public class InesModMain implements
         }
         return lang;
     }
+
+//    // 自动检测隐匿并播放特效
+//    private float invisibilityAuraEffectTimer = 0f;
+//    private static final float invisibilityAuraEffectInterval = 0.8f; // 每 0.8 秒一次
+//
+//    @Override
+//    public void receivePostUpdate() {
+//
+//        if (AbstractDungeon.getCurrRoom() != null && AbstractDungeon.getCurrRoom().phase == AbstractRoom.RoomPhase.COMBAT) {
+//            InesModMain.logger.info("===receivePostUpdate：处于战斗房间，处理特效===");
+//
+//            // 操作计时器
+//            invisibilityAuraEffectTimer += com.badlogic.gdx.Gdx.graphics.getDeltaTime();
+//            boolean invisibilityAuraEffectIsOn = invisibilityAuraEffectTimer >= invisibilityAuraEffectInterval;
+//
+//
+//            // 检查所有生物
+//            ArrayList<AbstractCreature> creatures = new ArrayList<>();
+//            creatures.add(AbstractDungeon.player);
+//
+//            MonsterGroup monsters = AbstractDungeon.getMonsters();
+//            if (monsters != null && monsters.monsters != null) {
+//                for (AbstractMonster m : monsters.monsters) {
+//                    if (m != null && !m.isDeadOrEscaped()) {
+//                        creatures.add(m);
+//                    }
+//                }
+//            }
+//
+//            // 为每一个目标判断特效
+//            for (AbstractCreature c : creatures) {
+//                if (c == null || c.isDeadOrEscaped()) continue;
+//
+//                if (invisibilityAuraEffectIsOn) {
+//                    invisibilityAuraEffectTimer = 0; // 重置计时器
+//
+//                    InvisibilityPower power = (InvisibilityPower) c.getPower(InvisibilityPower.ID);
+//                    if (power != null && power.amount > 0) {
+//                        // 添加特效到动作队列
+//                        AbstractDungeon.actionManager.addToBottom(
+//                                new VFXAction(c, new InvisibilityAuraEffect(Color.BLACK, c.hb.cX, c.hb.cY), 0.33f)
+//                        );
+//                    }
+//                }
+//            }
+//        }
+//
+//    }
+
 }

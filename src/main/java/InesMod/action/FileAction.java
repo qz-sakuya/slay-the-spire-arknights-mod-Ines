@@ -45,7 +45,7 @@ public class FileAction extends AbstractGameAction {
         }
         // InesModMain.logger.info("===FileAction：判断后伤害{}===", this.info.output);
 
-        if (this.duration == 0.01F && this.target != null && this.target.currentHealth > 0) {
+        if (this.duration == 0.01F && this.target.currentHealth > 0) {
             if (this.info.type != DamageInfo.DamageType.THORNS &&
                     this.info.owner.isDying) {
                 this.isDone = true;

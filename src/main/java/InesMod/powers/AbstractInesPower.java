@@ -2,10 +2,13 @@ package InesMod.powers;
 
 import InesMod.helpers.ModHelper;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
+import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -67,7 +70,8 @@ public abstract class AbstractInesPower extends AbstractPower {
         return String.format("InesModResources/img/powers/%s%s.png",ModHelper.idToName(id),size);
     }
 
+
     // 自定义回调
-    public void onCardMove() {}
+    public void onCardMove(AbstractCard c, CardGroup.CardGroupType groupType) {}
 
 }

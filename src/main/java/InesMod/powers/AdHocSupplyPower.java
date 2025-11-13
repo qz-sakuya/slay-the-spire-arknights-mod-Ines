@@ -5,6 +5,8 @@ import InesMod.action.AdHocSupplyAction;
 import InesMod.helpers.ModHelper;
 import com.megacrit.cardcrawl.actions.common.DrawCardAction;
 import com.megacrit.cardcrawl.actions.common.ReducePowerAction;
+import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -29,7 +31,7 @@ public class AdHocSupplyPower extends AbstractInesPower {
     }
 
     @Override
-    public void onCardMove() {
+    public void onCardMove(AbstractCard c, CardGroup.CardGroupType groupType) {
         addToBot(new AdHocSupplyAction(owner, amount));
     }
 

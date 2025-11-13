@@ -90,10 +90,38 @@ public class CardGroupAddPatch {
         }
 
         // 触发自定义回调
-        for (AbstractPower power : AbstractDungeon.player.powers) {
-            if (power instanceof AbstractInesPower){
-                AbstractInesPower inesPower = (AbstractInesPower)power;
-                inesPower.onCardMove();
+        for (AbstractPower powerToCall : AbstractDungeon.player.powers) {
+            if (powerToCall instanceof AbstractInesPower){
+                AbstractInesPower inesPower = (AbstractInesPower)powerToCall;
+                inesPower.onCardMove(c, __instance.type);
+            }
+        }
+
+        for (AbstractCard cardToCall : AbstractDungeon.player.hand.group) {
+            if (cardToCall instanceof AbstractInesCard){
+                AbstractInesCard inesCard = (AbstractInesCard)cardToCall;
+                inesCard.onCardMove(c, __instance.type);
+            }
+        }
+
+        for (AbstractCard cardToCall : AbstractDungeon.player.discardPile.group) {
+            if (cardToCall instanceof AbstractInesCard){
+                AbstractInesCard inesCard = (AbstractInesCard)cardToCall;
+                inesCard.onCardMove(c, __instance.type);
+            }
+        }
+
+        for (AbstractCard cardToCall : AbstractDungeon.player.drawPile.group) {
+            if (cardToCall instanceof AbstractInesCard){
+                AbstractInesCard inesCard = (AbstractInesCard)cardToCall;
+                inesCard.onCardMove(c, __instance.type);
+            }
+        }
+
+        for (AbstractCard cardToCall : AbstractDungeon.player.exhaustPile.group) {
+            if (cardToCall instanceof AbstractInesCard){
+                AbstractInesCard inesCard = (AbstractInesCard)cardToCall;
+                inesCard.onCardMove(c, __instance.type);
             }
         }
     }

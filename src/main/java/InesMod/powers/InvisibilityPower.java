@@ -4,7 +4,14 @@ import InesMod.cards.AbstractInesCard;
 import InesMod.cards.status.ShadowWhistle;
 import InesMod.helpers.ModHelper;
 import InesMod.modcore.InesModMain;
+import InesMod.vfx.InvisibilityAuraEffect;
+import InesMod.vfx.InvisibilityEffect;
+import basemod.ReflectionHacks;
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.*;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -12,12 +19,17 @@ import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.powers.VulnerablePower;
+import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
+import com.megacrit.cardcrawl.vfx.combat.VerticalAuraEffect;
+import com.megacrit.cardcrawl.vfx.stance.StanceAuraEffect;
+import com.megacrit.cardcrawl.vfx.stance.WrathParticleEffect;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -30,6 +42,7 @@ public class InvisibilityPower extends AbstractInesPower {
     public static final String ID = ModHelper.nameToId(InvisibilityPower.class.getSimpleName());
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(ID); // 从游戏系统读取本地化资源
 
+
     public InvisibilityPower(AbstractCreature owner, int amount) {
         super(ID,
                 false,
@@ -38,7 +51,11 @@ public class InvisibilityPower extends AbstractInesPower {
                 PowerType.BUFF,
                 amount);
         this.isTurnBased = true;
+
+        ArrayList<AbstractGameEffect> effect = ReflectionHacks.getPrivate(this, AbstractPower.class, "effect");
+        effect.add(new InvisibilityEffect());
     }
+
 
     @Override
     public void stackPower(int stackAmount) {
@@ -85,4 +102,6 @@ public class InvisibilityPower extends AbstractInesPower {
             }
         }
     }
+
+
 }

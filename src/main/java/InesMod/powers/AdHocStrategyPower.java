@@ -3,6 +3,8 @@ package InesMod.powers;
 import InesMod.action.AdHocStrategyAction;
 import InesMod.helpers.ModHelper;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
+import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.PowerStrings;
@@ -26,7 +28,7 @@ public class AdHocStrategyPower extends AbstractInesPower {
     }
 
     @Override
-    public void onCardMove() {
+    public void onCardMove(AbstractCard c, CardGroup.CardGroupType groupType) {
         addToBot(new AdHocStrategyAction(owner, amount));
     }
 

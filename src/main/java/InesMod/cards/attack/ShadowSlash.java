@@ -1,6 +1,6 @@
 package InesMod.cards.attack;
 
-import InesMod.action.ColouredSlashEffectAction;
+import InesMod.vfx.ColouredSlashEffect;
 import InesMod.cards.AbstractInesCard;
 import InesMod.characters.Ines;
 import InesMod.helpers.ModHelper;
@@ -43,7 +43,7 @@ public class ShadowSlash extends AbstractInesCard {
     public void use(AbstractPlayer p, AbstractMonster m) {
         this.addToBot(new SFXAction("ATTACK_MAGIC_BEAM_SHORT", 0.7F, true));
         this.addToBot(new SFXAction("ATTACK_IRON_3", 0.2F));
-        this.addToBot(new ColouredSlashEffectAction(m,45.0F, 4.0F,InesModMain.MY_COLOR_DARK,InesModMain.MY_COLOR));
+        this.addToBot(new ColouredSlashEffect(m,45.0F, 4.0F,InesModMain.MY_COLOR_DARK,InesModMain.MY_COLOR));
 
         this.addToBot(new DamageAction(m, new DamageInfo(p, damage, DamageType.NORMAL), AbstractGameAction.AttackEffect.NONE));
 

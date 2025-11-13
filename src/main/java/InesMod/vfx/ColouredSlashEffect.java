@@ -1,4 +1,4 @@
-package InesMod.action;
+package InesMod.vfx;
 
 
 import com.badlogic.gdx.graphics.Color;
@@ -9,7 +9,7 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.combat.AnimatedSlashEffect;
 
-public class ColouredSlashEffectAction extends AbstractGameAction {
+public class ColouredSlashEffect extends AbstractGameAction {
     private final float angle;
     private final float targetScale;
     private final Color color1;
@@ -17,7 +17,7 @@ public class ColouredSlashEffectAction extends AbstractGameAction {
 
 
 
-    public ColouredSlashEffectAction(AbstractMonster m, float angle, float targetScale, Color color1, Color color2) {
+    public ColouredSlashEffect(AbstractMonster m, float angle, float targetScale, Color color1, Color color2) {
         this.source = m;
         this.angle = angle;
         this.targetScale = targetScale;
