@@ -56,9 +56,6 @@ public class WinFirst extends AbstractInesCard {
         if (!this.upgraded) {
             this.upgradeName();
             this.upgradeBaseCost(0);
-
-            this.rawDescription = cardStrings.UPGRADE_DESCRIPTION;
-            this.initializeDescription();
         }
     }
 }
