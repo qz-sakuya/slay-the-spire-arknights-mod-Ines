@@ -1,17 +1,11 @@
 package InesMod.powers;
 
-import InesMod.cards.status.ShadowWhistle;
-import InesMod.helpers.ModHelper;
-import com.megacrit.cardcrawl.actions.common.ExhaustSpecificCardAction;
+import InesMod.helpers.PathHelper;
 import com.megacrit.cardcrawl.actions.common.GainEnergyAction;
-import com.megacrit.cardcrawl.actions.common.ReducePowerAction;
 import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
-import com.megacrit.cardcrawl.actions.utility.UseCardAction;
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 
 /**
@@ -19,7 +13,7 @@ import com.megacrit.cardcrawl.localization.PowerStrings;
  * 一个很有趣的事情是，虚影因为回合最后添加，一般在“缓冲”后面，所以优先消耗缓冲，这也是强度的一个设定
  */
 public class IllusionPower extends AbstractInesPower {
-    public static final String ID = ModHelper.nameToId(IllusionPower.class.getSimpleName());
+    public static final String ID = PathHelper.nameToId(IllusionPower.class.getSimpleName());
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(ID); // 从游戏系统读取本地化资源
 
     public IllusionPower(AbstractCreature owner, int amount) {

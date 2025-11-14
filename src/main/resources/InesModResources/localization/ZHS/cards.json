@@ -17,8 +17,8 @@
   },
   "InesMod:PlanOfAction": {
     "NAME": "行动预谋",
-    "DESCRIPTION": "抽 1 张牌。 NL 获得 !M! 层 ines:偷取 和 [E] 。",
-    "UPGRADE_DESCRIPTION": "抽 2 张牌。 NL 获得 !M! 层 ines:偷取 和 [E] 。"
+    "DESCRIPTION": "抽 !M! 张牌。 NL 获得 !M! 层 ines:偷取 和 [E] 。",
+    "UPGRADE_DESCRIPTION": "抽 !M! 张牌。 NL 获得 !M! 层 ines:偷取 和 [E] 。"
   },
   "InesMod:ShadowWhistle": {
     "NAME": "影哨",
@@ -26,7 +26,7 @@
   },
   "InesMod:ShadowAmbush": {
     "NAME": "淬影突袭",
-    "DESCRIPTION": "造成 !D! 点伤害。 NL 向手牌中加入 1 张 *影哨 。"
+    "DESCRIPTION": "造成 !D! 点伤害。 NL 向手牌中加入 !M! 张 *影哨 。"
   },
   "InesMod:EdgeOfLight": {
     "NAME": "光影边缘",
@@ -46,7 +46,7 @@
   },
   "InesMod:Feint": {
     "NAME": "佯攻",
-    "DESCRIPTION": "造成 !D! 点伤害。 NL 向手牌中加入 !M! 张 *影哨 。 NL 消耗。",
+    "DESCRIPTION": "造成 !D! 点伤害。 NL 向手牌中加入 !M! 张 *影哨 。 NL  消耗 。",
     "UPGRADE_DESCRIPTION": "造成 !D! 点伤害。 NL 向手牌中加入 !M! 张 *影哨 。"
   },
   "InesMod:ThrowPebble": {
@@ -106,8 +106,8 @@
   },
   "InesMod:Infiltration": {
     "NAME": "渗透",
-    "DESCRIPTION": "获得等同于敌人数量的 ines:偷取 。",
-    "UPGRADE_DESCRIPTION": "获得等同于敌人数量+1的 ines:偷取 。"
+    "DESCRIPTION": "获得等同于敌人数量的 ines:偷取 。抽 1 张牌。 NL 在弃牌堆放入一张此牌的复制品。",
+    "UPGRADE_DESCRIPTION": "获得等同于敌人数量+1的 ines:偷取 。抽 1 张牌。 NL 在弃牌堆放入一张此牌的复制品。"
   },
   "InesMod:TopSecretOperation": {
     "NAME": "绝密行动",
@@ -133,5 +133,56 @@
   "InesMod:GuidedThrow": {
     "NAME": "牵引投掷",
     "DESCRIPTION": "对所有敌人造成 !D! 点伤害。 NL 消耗等同于敌人数量的 ines:偷取 。"
+  },
+  "InesMod:MasterTheGame": {
+    "NAME": "掌控全局",
+    "DESCRIPTION": "造成 !D! 点伤害。 NL 本回合内，在 ines:隐匿 下打出攻击牌改为丢弃 *影哨 。",
+    "UPGRADE_DESCRIPTION": "造成 !D! 点伤害。 NL 本回合内，在 ines:隐匿 下打出攻击牌改为丢弃 *影哨 。 NL  保留 。"
+  },
+  "InesMod:WeaponStockpile": {
+    "NAME": "武器储备",
+    "DESCRIPTION": "现在与接下来 !M! 个回合开始时，增加 1 张 *小刀 到你的手牌。"
+  },
+  "InesMod:DataOrganization": {
+    "NAME": "数据整理",
+    "DESCRIPTION": "获得 !B! 点格挡。 NL 选择任意张手牌加入抽牌堆，丢弃其它所有手牌。"
+  },
+  "InesMod:OldIntel": {
+    "NAME": "旧情报",
+    "DESCRIPTION": "抽 !M! 张牌。 NL 丢弃 1 张牌。 NL 此牌每进入弃牌堆一次，抽牌数-1。",
+    "UPGRADE_DESCRIPTION": "抽 !M! 张牌。 NL 丢弃 1 张牌。 NL 此牌每被打出一次， NL 抽牌数-1。"
+  },
+  "InesMod:ImmediateEffect": {
+    "NAME": "立竿见影",
+    "DESCRIPTION": "获得 1 层 ines:隐匿 。 NL  消耗 。 NL  虚无 。"
+  },
+  "InesMod:EmergencyRetreat": {
+    "NAME": "紧急撤退",
+    "DESCRIPTION": "丢弃所有手牌。向手牌中加入 !M! 张 *影哨 。 NL  虚无 。 NL  消耗 。",
+    "UPGRADE_DESCRIPTION":"丢弃所有手牌。向手牌中加入 !M! 张 *影哨 。 NL  虚无 。"
+  },
+  "InesMod:LayeredShadows": {
+    "NAME": "叠影",
+    "DESCRIPTION": "将手牌中 *影哨 的数量翻倍。",
+    "UPGRADE_DESCRIPTION":"将手牌中 *影哨 的数量翻倍。 NL  保留 。"
+  },
+  "InesMod:Sprint": {
+    "NAME": "疾跑",
+    "DESCRIPTION": " ines:自动打出 。 NL 你打出的下 !M! 张攻击牌耗能变为0。"
+  },
+  "InesMod:FadeIntoShadow": {
+    "NAME": "遁入影中",
+    "DESCRIPTION": "获得 1 层 ines:隐匿 。 NL 结束你的回合。"
+  },
+  "InesMod:WinFirst": {
+    "NAME": "先手为强",
+    "DESCRIPTION": " 固有 。 NL 获得等同于敌人数量的 能量 。 NL  消耗 。"
+  },
+  "InesMod:Wander": {
+    "NAME": "徘徊",
+    "DESCRIPTION": "手牌和抽牌堆中每有 1 张 *影哨 ，获得 !M! 点 格挡 。",
+    "EXTENDED_DESCRIPTION": [
+      " NL （获得 !B! 点格挡。）"
+    ]
   }
 }

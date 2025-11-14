@@ -3,10 +3,9 @@ package InesMod.cards.attack;
 import InesMod.cards.AbstractInesCard;
 import InesMod.cards.status.ShadowWhistle;
 import InesMod.characters.Ines;
-import InesMod.helpers.ModHelper;
+import InesMod.helpers.PathHelper;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
-import com.megacrit.cardcrawl.actions.common.MakeTempCardInHandAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.cards.DamageInfo.DamageType;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -18,7 +17,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
  * 中文卡名：抛石子
  */
 public class ThrowPebble extends AbstractInesCard {
-    public static final String ID = ModHelper.nameToId(ThrowPebble.class.getSimpleName());
+    public static final String ID = PathHelper.nameToId(ThrowPebble.class.getSimpleName());
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID); // 从游戏系统读取本地化资源
 
     public ThrowPebble() {
@@ -33,7 +32,7 @@ public class ThrowPebble extends AbstractInesCard {
         this.damage = this.baseDamage = 3;
         this.magicNumber = this.baseMagicNumber = 3;
 
-        this.cardsToPreview = new ShadowWhistle();
+
     }
 
     @Override

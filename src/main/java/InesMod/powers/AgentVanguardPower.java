@@ -1,9 +1,6 @@
 package InesMod.powers;
 
-import InesMod.helpers.ModHelper;
-import com.megacrit.cardcrawl.actions.common.GainEnergyAction;
-import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
-import com.megacrit.cardcrawl.cards.DamageInfo;
+import InesMod.helpers.PathHelper;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.PowerStrings;
@@ -13,7 +10,7 @@ import com.megacrit.cardcrawl.localization.PowerStrings;
  * 此power的效果由StealsPower代行
  */
 public class AgentVanguardPower extends AbstractInesPower {
-    public static final String ID = ModHelper.nameToId(AgentVanguardPower.class.getSimpleName());
+    public static final String ID = PathHelper.nameToId(AgentVanguardPower.class.getSimpleName());
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(ID); // 从游戏系统读取本地化资源
 
     public AgentVanguardPower(AbstractCreature owner, int amount) {

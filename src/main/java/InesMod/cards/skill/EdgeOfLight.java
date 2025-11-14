@@ -2,7 +2,7 @@ package InesMod.cards.skill;
 
 import InesMod.cards.AbstractInesCard;
 import InesMod.characters.Ines;
-import InesMod.helpers.ModHelper;
+import InesMod.helpers.PathHelper;
 import InesMod.powers.InvisibilityPower;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.GainEnergyAction;
@@ -16,7 +16,7 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
  * 中文卡名：光影边缘
  */
 public class EdgeOfLight extends AbstractInesCard {
-    public static final String ID = ModHelper.nameToId(EdgeOfLight.class.getSimpleName());
+    public static final String ID = PathHelper.nameToId(EdgeOfLight.class.getSimpleName());
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID); // 从游戏系统读取本地化资源
 
     public EdgeOfLight() {

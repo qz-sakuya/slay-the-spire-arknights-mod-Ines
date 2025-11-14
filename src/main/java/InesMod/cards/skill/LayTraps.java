@@ -2,7 +2,7 @@ package InesMod.cards.skill;
 
 import InesMod.cards.AbstractInesCard;
 import InesMod.characters.Ines;
-import InesMod.helpers.ModHelper;
+import InesMod.helpers.PathHelper;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
@@ -13,7 +13,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
  * 此卡的效果由 ApplyStealsToTargetAction 代行
  */
 public class LayTraps extends AbstractInesCard {
-    public static final String ID = ModHelper.nameToId(LayTraps.class.getSimpleName());
+    public static final String ID = PathHelper.nameToId(LayTraps.class.getSimpleName());
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID); // 从游戏系统读取本地化资源
 
     public LayTraps() {

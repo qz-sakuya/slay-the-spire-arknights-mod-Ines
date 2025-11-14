@@ -3,7 +3,7 @@ package InesMod.cards.attack;
 import InesMod.vfx.ColouredSlashEffect;
 import InesMod.cards.AbstractInesCard;
 import InesMod.characters.Ines;
-import InesMod.helpers.ModHelper;
+import InesMod.helpers.PathHelper;
 import InesMod.modcore.InesModMain;
 import InesMod.powers.StealsPower;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
@@ -23,7 +23,7 @@ import com.megacrit.cardcrawl.powers.WeakPower;
  * 中文卡名：影之束缚
  */
 public class ShadowBind extends AbstractInesCard {
-    public static final String ID = ModHelper.nameToId(ShadowBind.class.getSimpleName());
+    public static final String ID = PathHelper.nameToId(ShadowBind.class.getSimpleName());
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID); // 从游戏系统读取本地化资源
 
     public ShadowBind() {

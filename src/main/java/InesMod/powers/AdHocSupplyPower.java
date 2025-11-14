@@ -1,13 +1,9 @@
 package InesMod.powers;
 
-import InesMod.action.AdHocStrategyAction;
 import InesMod.action.AdHocSupplyAction;
-import InesMod.helpers.ModHelper;
-import com.megacrit.cardcrawl.actions.common.DrawCardAction;
-import com.megacrit.cardcrawl.actions.common.ReducePowerAction;
+import InesMod.helpers.PathHelper;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
-import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.PowerStrings;
@@ -16,7 +12,7 @@ import com.megacrit.cardcrawl.localization.PowerStrings;
  * 中文名：临时补给
  */
 public class AdHocSupplyPower extends AbstractInesPower {
-    public static final String ID = ModHelper.nameToId(AdHocSupplyPower.class.getSimpleName());
+    public static final String ID = PathHelper.nameToId(AdHocSupplyPower.class.getSimpleName());
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(ID); // 从游戏系统读取本地化资源
 
     public AdHocSupplyPower(AbstractCreature owner, int amount) {

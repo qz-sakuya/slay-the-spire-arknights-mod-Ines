@@ -3,8 +3,7 @@ package InesMod.cards.power;
 import InesMod.action.SetPowerAction;
 import InesMod.cards.AbstractInesCard;
 import InesMod.characters.Ines;
-import InesMod.helpers.ModHelper;
-import InesMod.powers.AgentVanguardPower;
+import InesMod.helpers.PathHelper;
 import InesMod.powers.InvisibilityPower;
 import InesMod.powers.NoInvisibilityPower;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
@@ -17,7 +16,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
  * 中文卡名：阴云笼罩
  */
 public class GloomyClouds extends AbstractInesCard {
-    public static final String ID = ModHelper.nameToId(GloomyClouds.class.getSimpleName());
+    public static final String ID = PathHelper.nameToId(GloomyClouds.class.getSimpleName());
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID); // 从游戏系统读取本地化资源
 
     public GloomyClouds() {

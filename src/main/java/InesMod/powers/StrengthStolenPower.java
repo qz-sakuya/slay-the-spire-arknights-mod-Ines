@@ -1,7 +1,6 @@
 package InesMod.powers;
 
-import InesMod.helpers.ModHelper;
-import InesMod.modcore.InesModMain;
+import InesMod.helpers.PathHelper;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.core.AbstractCreature;
@@ -13,7 +12,7 @@ import com.megacrit.cardcrawl.powers.StrengthPower;
  * 中文名：偷取力量
  */
 public class StrengthStolenPower extends AbstractInesPower {
-    public static final String ID = ModHelper.nameToId(StrengthStolenPower.class.getSimpleName());
+    public static final String ID = PathHelper.nameToId(StrengthStolenPower.class.getSimpleName());
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(ID); // 从游戏系统读取本地化资源
 
 

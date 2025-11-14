@@ -3,7 +3,7 @@ package InesMod.cards.attack;
 import InesMod.vfx.ColouredSlashEffect;
 import InesMod.cards.AbstractInesCard;
 import InesMod.characters.Ines;
-import InesMod.helpers.ModHelper;
+import InesMod.helpers.PathHelper;
 import InesMod.modcore.InesModMain;
 import InesMod.powers.StealsPower;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
@@ -22,7 +22,7 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
  * 中文卡名：影斩
  */
 public class ShadowSlash extends AbstractInesCard {
-    public static final String ID = ModHelper.nameToId(ShadowSlash.class.getSimpleName());
+    public static final String ID = PathHelper.nameToId(ShadowSlash.class.getSimpleName());
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID); // 从游戏系统读取本地化资源
 
     public ShadowSlash() {

@@ -2,11 +2,8 @@ package InesMod.cards.skill;
 
 import InesMod.cards.AbstractInesCard;
 import InesMod.characters.Ines;
-import InesMod.helpers.ModHelper;
-import com.megacrit.cardcrawl.actions.common.DamageAction;
+import InesMod.helpers.PathHelper;
 import com.megacrit.cardcrawl.actions.common.GainBlockAction;
-import com.megacrit.cardcrawl.cards.DamageInfo;
-import com.megacrit.cardcrawl.cards.DamageInfo.DamageType;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
@@ -16,7 +13,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
  * 中文卡名：防御
  */
 public class Defend extends AbstractInesCard {
-    public static final String ID = ModHelper.nameToId(Defend.class.getSimpleName());
+    public static final String ID = PathHelper.nameToId(Defend.class.getSimpleName());
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID); // 从游戏系统读取本地化资源
 
     public Defend() {

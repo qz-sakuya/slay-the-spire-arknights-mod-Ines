@@ -29,15 +29,15 @@ public class ModConfig {
 
     // 加载所有config，包括可调整的和不可调整的
     public static void initModSettings() {
-        defaultSetting.setProperty(ModHelper.nameToId("BAN_EXTRA_ENDING"), String.valueOf(banExtraEnding));
-        defaultSetting.setProperty(ModHelper.nameToId("TUTORIAL_CLOSED_1"), String.valueOf(tutorialClosed1));
+        defaultSetting.setProperty(PathHelper.nameToId("BAN_EXTRA_ENDING"), String.valueOf(banExtraEnding));
+        defaultSetting.setProperty(PathHelper.nameToId("TUTORIAL_CLOSED_1"), String.valueOf(tutorialClosed1));
 
         try {
             config = new SpireConfig("InesModArknights", "Common", defaultSetting);
             config.load();
 
-            banExtraEnding = config.getBool(ModHelper.nameToId("BAN_EXTRA_ENDING"));
-            tutorialClosed1 = config.getBool(ModHelper.nameToId("TUTORIAL_CLOSED_1"));
+            banExtraEnding = config.getBool(PathHelper.nameToId("BAN_EXTRA_ENDING"));
+            tutorialClosed1 = config.getBool(PathHelper.nameToId("TUTORIAL_CLOSED_1"));
 
             InesModMain.logger.info("===加载config: banExtraEnding:{}===",banExtraEnding);
             InesModMain.logger.info("===加载config: tutorialClosed1:{}===",tutorialClosed1);
@@ -51,19 +51,19 @@ public class ModConfig {
     public static void initModConfigMenu() {
         settingsPanel = new ModPanel();
         addEnableMenu();
-        String modConfDesc = (CardCrawlGame.languagePack.getUIString(ModHelper.nameToId("Config"))).TEXT[0];
+        String modConfDesc = (CardCrawlGame.languagePack.getUIString(PathHelper.nameToId("Config"))).TEXT[0];
         Texture badge = ImageMaster.loadImage("InesModResources/img/char/small_orb.png");
         BaseMod.registerModBadge(badge, "InesMod（伊内丝）", "轻千轻子Sakuya", modConfDesc, settingsPanel);
     }
 
     private static void addEnableMenu() {
-        UIStrings uis = CardCrawlGame.languagePack.getUIString(ModHelper.nameToId("Config"));
+        UIStrings uis = CardCrawlGame.languagePack.getUIString(PathHelper.nameToId("Config"));
 
         // 设置1按钮
         ModLabeledToggleButton btn1 = new ModLabeledToggleButton(uis.TEXT[1], 350.0F, 700.0F, Settings.CREAM_COLOR, FontHelper.charDescFont, banExtraEnding, settingsPanel, modLabel -> {
         }, modToggleButton -> {
             banExtraEnding = modToggleButton.enabled;
-            config.setBool(ModHelper.nameToId("BAN_EXTRA_ENDING"), banExtraEnding);
+            config.setBool(PathHelper.nameToId("BAN_EXTRA_ENDING"), banExtraEnding);
             try {
                 config.save();
             } catch (IOException e) {

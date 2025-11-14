@@ -1,7 +1,6 @@
 package InesMod.powers;
 
-import InesMod.helpers.ModHelper;
-import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
+import InesMod.helpers.PathHelper;
 import com.megacrit.cardcrawl.actions.common.ReducePowerAction;
 import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.core.AbstractCreature;
@@ -13,7 +12,7 @@ import com.megacrit.cardcrawl.localization.PowerStrings;
  * 此 power 的效果由 ApplyPowerActionPatch 代行
  */
 public class NoInvisibilityPower extends AbstractInesPower {
-    public static final String ID = ModHelper.nameToId(NoInvisibilityPower.class.getSimpleName());
+    public static final String ID = PathHelper.nameToId(NoInvisibilityPower.class.getSimpleName());
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(ID); // 从游戏系统读取本地化资源
 
     public NoInvisibilityPower(AbstractCreature owner, int amount) {

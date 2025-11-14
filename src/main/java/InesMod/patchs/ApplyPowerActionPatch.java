@@ -1,23 +1,16 @@
 package InesMod.patchs;
 
-import InesMod.helpers.ModHelper;
+import InesMod.helpers.PathHelper;
 import InesMod.modcore.InesModMain;
-import InesMod.powers.AgentVanguardPower;
 import InesMod.powers.InvisibilityPower;
 import InesMod.powers.NoInvisibilityPower;
 import basemod.ReflectionHacks;
-import com.evacipated.cardcrawl.modthespire.lib.ByRef;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePrefixPatch;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
-import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.localization.UIStrings;
-import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.vfx.ThoughtBubble;
 
@@ -26,7 +19,7 @@ import com.megacrit.cardcrawl.vfx.ThoughtBubble;
  *  在方法开头，加入不能获取隐匿的检测
  */
 public class ApplyPowerActionPatch {
-    public static final String ID = ModHelper.nameToId(ApplyPowerActionPatch.class.getSimpleName());
+    public static final String ID = PathHelper.nameToId(ApplyPowerActionPatch.class.getSimpleName());
     private static final UIStrings uiStrings = CardCrawlGame.languagePack.getUIString(ID); // 从游戏系统读取本地化资源
 
 

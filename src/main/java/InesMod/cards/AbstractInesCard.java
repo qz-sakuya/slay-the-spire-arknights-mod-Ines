@@ -1,15 +1,9 @@
 package InesMod.cards;
 
-import InesMod.characters.Ines;
-import InesMod.helpers.ModHelper;
-import InesMod.modcore.InesModMain;
+import InesMod.helpers.PathHelper;
 import basemod.abstracts.CustomCard;
-import com.megacrit.cardcrawl.actions.common.ExhaustSpecificCardAction;
-import com.megacrit.cardcrawl.actions.unique.LoseEnergyAction;
-import com.megacrit.cardcrawl.actions.utility.NewQueueCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 
 
@@ -77,7 +71,7 @@ public abstract class AbstractInesCard extends CustomCard {
             default:
                 throw new IllegalStateException("Unexpected value: " + t);
         }
-        return String.format("InesModResources/img/cards/%s/%s_%s.png", type, ModHelper.idToName(id), type);
+        return String.format("InesModResources/img/cards/%s/%s_%s.png", type, PathHelper.idToName(id), type);
     }
 
     // 触发自动打出时调用

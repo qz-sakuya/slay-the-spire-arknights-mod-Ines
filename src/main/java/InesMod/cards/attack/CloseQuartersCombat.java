@@ -2,8 +2,7 @@ package InesMod.cards.attack;
 
 import InesMod.cards.AbstractInesCard;
 import InesMod.characters.Ines;
-import InesMod.helpers.ModHelper;
-import InesMod.powers.InvisibilityPower;
+import InesMod.helpers.PathHelper;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -14,13 +13,12 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.AbstractPower;
 
 /**
  * 中文卡名：近身格斗
  */
 public class CloseQuartersCombat extends AbstractInesCard {
-    public static final String ID = ModHelper.nameToId(CloseQuartersCombat.class.getSimpleName());
+    public static final String ID = PathHelper.nameToId(CloseQuartersCombat.class.getSimpleName());
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID); // 从游戏系统读取本地化资源
 
     public CloseQuartersCombat() {

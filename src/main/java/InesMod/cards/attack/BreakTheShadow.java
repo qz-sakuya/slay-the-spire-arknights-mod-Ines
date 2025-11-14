@@ -1,13 +1,11 @@
 package InesMod.cards.attack;
 
-import InesMod.action.AdHocSupplyAction;
 import InesMod.cards.AbstractInesCard;
 import InesMod.cards.status.ShadowWhistle;
 import InesMod.characters.Ines;
-import InesMod.helpers.ModHelper;
+import InesMod.helpers.PathHelper;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
-import com.megacrit.cardcrawl.actions.common.MakeTempCardInHandAction;
 import com.megacrit.cardcrawl.actions.utility.DiscardToHandAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
@@ -22,7 +20,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
  * 中文卡名：破影
  */
 public class BreakTheShadow extends AbstractInesCard {
-    public static final String ID = ModHelper.nameToId(BreakTheShadow.class.getSimpleName());
+    public static final String ID = PathHelper.nameToId(BreakTheShadow.class.getSimpleName());
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID); // 从游戏系统读取本地化资源
 
     public BreakTheShadow() {

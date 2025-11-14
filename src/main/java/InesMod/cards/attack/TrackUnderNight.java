@@ -2,13 +2,11 @@ package InesMod.cards.attack;
 
 import InesMod.cards.AbstractInesCard;
 import InesMod.characters.Ines;
-import InesMod.helpers.ModHelper;
+import InesMod.helpers.PathHelper;
 import InesMod.powers.InvisibilityPower;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.actions.common.DrawCardAction;
-import com.megacrit.cardcrawl.actions.common.GainEnergyAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.cards.DamageInfo.DamageType;
@@ -23,7 +21,7 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
  * 中文卡名：夜下寻踪
  */
 public class TrackUnderNight extends AbstractInesCard {
-    public static final String ID = ModHelper.nameToId(TrackUnderNight.class.getSimpleName());
+    public static final String ID = PathHelper.nameToId(TrackUnderNight.class.getSimpleName());
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID); // 从游戏系统读取本地化资源
 
     public TrackUnderNight() {

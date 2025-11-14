@@ -2,14 +2,12 @@ package InesMod.cards.skill;
 
 import InesMod.cards.AbstractInesCard;
 import InesMod.characters.Ines;
-import InesMod.helpers.ModHelper;
+import InesMod.helpers.PathHelper;
 import InesMod.powers.StealsPower;
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.DrawCardAction;
 import com.megacrit.cardcrawl.actions.common.GainEnergyAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -18,7 +16,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
  * 中文卡名：行动预谋
  */
 public class PlanOfAction extends AbstractInesCard {
-    public static final String ID = ModHelper.nameToId(PlanOfAction.class.getSimpleName());
+    public static final String ID = PathHelper.nameToId(PlanOfAction.class.getSimpleName());
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID); // 从游戏系统读取本地化资源
 
     public PlanOfAction() {
@@ -48,6 +46,7 @@ public class PlanOfAction extends AbstractInesCard {
             this.draw = 2;
             this.upgradeMagicNumber(1);
 
+            // 升级文本是为了预留两个值提升不一致的情况
             this.rawDescription = cardStrings.UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

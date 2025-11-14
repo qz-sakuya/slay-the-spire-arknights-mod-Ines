@@ -1,9 +1,8 @@
 package InesMod.cards.attack;
 
 import InesMod.cards.AbstractInesCard;
-import InesMod.cards.test.StrikeTest;
 import InesMod.characters.Ines;
-import InesMod.helpers.ModHelper;
+import InesMod.helpers.PathHelper;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -18,7 +17,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
  * 中文卡名：打击
  */
 public class Strike extends AbstractInesCard {
-    public static final String ID = ModHelper.nameToId(Strike.class.getSimpleName());
+    public static final String ID = PathHelper.nameToId(Strike.class.getSimpleName());
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID); // 从游戏系统读取本地化资源
 
     public Strike() {

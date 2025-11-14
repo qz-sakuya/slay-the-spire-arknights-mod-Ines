@@ -12,7 +12,7 @@ import com.megacrit.cardcrawl.ui.FtueTip;
 import java.io.IOException;
 
 public class TutorialHelper {
-    private static final UIStrings tips = CardCrawlGame.languagePack.getUIString(ModHelper.nameToId("Tips"));
+    private static final UIStrings tips = CardCrawlGame.languagePack.getUIString(PathHelper.nameToId("Tips"));
 
 
     public static void playTutorial1(AbstractCreature p) {
@@ -25,7 +25,7 @@ public class TutorialHelper {
 
             try {
                 SpireConfig config = new SpireConfig("InesModArknights", "Common");
-                config.setBool(ModHelper.nameToId("TUTORIAL_CLOSED_1"), true);
+                config.setBool(PathHelper.nameToId("TUTORIAL_CLOSED_1"), true);
                 config.save();
             } catch (IOException e) {
                 e.printStackTrace();

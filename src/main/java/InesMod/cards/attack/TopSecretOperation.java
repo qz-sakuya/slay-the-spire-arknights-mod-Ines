@@ -1,31 +1,20 @@
 package InesMod.cards.attack;
 
-import InesMod.action.TopSecretOperationAutoUseAction;
+import InesMod.action.AutoUseOrExhaustAction;
 import InesMod.cards.AbstractInesCard;
 import InesMod.characters.Ines;
-import InesMod.helpers.ModHelper;
+import InesMod.helpers.PathHelper;
 import InesMod.modcore.InesModMain;
-import basemod.interfaces.OnCardUseSubscriber;
-import basemod.interfaces.PostDrawSubscriber;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.*;
-import com.megacrit.cardcrawl.actions.unique.LoseEnergyAction;
-import com.megacrit.cardcrawl.actions.utility.NewQueueCardAction;
 import com.megacrit.cardcrawl.actions.utility.SFXAction;
-import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.CardQueueItem;
-import com.megacrit.cardcrawl.cards.DamageInfo;
-import com.megacrit.cardcrawl.cards.DamageInfo.DamageType;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
-import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import com.megacrit.cardcrawl.vfx.combat.CleaveEffect;
 
 /**
@@ -33,7 +22,7 @@ import com.megacrit.cardcrawl.vfx.combat.CleaveEffect;
  *
  */
 public class TopSecretOperation extends AbstractInesCard {
-    public static final String ID = ModHelper.nameToId(TopSecretOperation.class.getSimpleName());
+    public static final String ID = PathHelper.nameToId(TopSecretOperation.class.getSimpleName());
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID); // 从游戏系统读取本地化资源
 
 
@@ -68,7 +57,7 @@ public class TopSecretOperation extends AbstractInesCard {
         InesModMain.logger.info("===TopSecretOperation-autoUse===");
 
         // 必须在 action 中判断能量与打出条件
-        addToTop(new TopSecretOperationAutoUseAction(this));
+        addToTop(new AutoUseOrExhaustAction(this));
     }
 
     @Override

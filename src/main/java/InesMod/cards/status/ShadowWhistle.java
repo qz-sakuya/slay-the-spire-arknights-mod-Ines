@@ -1,12 +1,9 @@
 package InesMod.cards.status;
 
+import InesMod.action.SimpleExhaustAction;
 import InesMod.cards.AbstractInesCard;
-import InesMod.characters.Ines;
-import InesMod.helpers.ModHelper;
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.common.ExhaustSpecificCardAction;
+import InesMod.helpers.PathHelper;
 import com.megacrit.cardcrawl.actions.common.GainBlockAction;
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -17,7 +14,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
  * 中文卡名：影哨
  */
 public class ShadowWhistle extends AbstractInesCard {
-    public static final String ID = ModHelper.nameToId(ShadowWhistle.class.getSimpleName());
+    public static final String ID = PathHelper.nameToId(ShadowWhistle.class.getSimpleName());
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID); // 从游戏系统读取本地化资源
 
     public ShadowWhistle() {
@@ -37,8 +34,8 @@ public class ShadowWhistle extends AbstractInesCard {
 
     @Override
     public void onMoveToDiscard() {
-        this.addToBot(new GainBlockAction(AbstractDungeon.player, AbstractDungeon.player, this.block));
-        addToTop(new ExhaustSpecificCardAction(this, AbstractDungeon.player.discardPile));
+        addToBot(new GainBlockAction(AbstractDungeon.player, AbstractDungeon.player, this.block));
+        addToTop(new SimpleExhaustAction(this, AbstractDungeon.player.discardPile));
     }
 
     @Override

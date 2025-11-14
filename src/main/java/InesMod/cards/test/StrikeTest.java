@@ -2,7 +2,7 @@ package InesMod.cards.test;
 
 import InesMod.cards.AbstractInesCard;
 import InesMod.characters.Ines;
-import InesMod.helpers.ModHelper;
+import InesMod.helpers.PathHelper;
 import basemod.AutoAdd;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
@@ -20,7 +20,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 
 @AutoAdd.Ignore
 public class StrikeTest extends AbstractInesCard {
-    public static final String ID = ModHelper.nameToId(StrikeTest.class.getSimpleName());
+    public static final String ID = PathHelper.nameToId(StrikeTest.class.getSimpleName());
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
 
     // 当前特效索引

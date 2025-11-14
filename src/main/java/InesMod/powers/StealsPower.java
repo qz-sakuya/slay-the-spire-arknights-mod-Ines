@@ -5,7 +5,7 @@ import InesMod.action.ReduceAndKeepPowerAction;
 import InesMod.cards.AbstractInesCard;
 import InesMod.characters.Ines;
 import InesMod.helpers.ModConfig;
-import InesMod.helpers.ModHelper;
+import InesMod.helpers.PathHelper;
 import InesMod.helpers.TutorialHelper;
 import InesMod.modcore.InesModMain;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
@@ -26,7 +26,7 @@ import java.util.Set;
  * 中文名：偷取
  */
 public class StealsPower extends AbstractInesPower {
-    public static final String ID = ModHelper.nameToId(StealsPower.class.getSimpleName());
+    public static final String ID = PathHelper.nameToId(StealsPower.class.getSimpleName());
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(ID); // 从游戏系统读取本地化资源
 
     private int consumeNum; // 一次偷取中，消耗偷取的层数

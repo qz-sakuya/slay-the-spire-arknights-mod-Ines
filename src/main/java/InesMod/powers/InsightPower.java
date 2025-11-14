@@ -1,22 +1,16 @@
 package InesMod.powers;
 
 import InesMod.action.ApplyStealsToTargetAction;
-import InesMod.action.ReduceAndKeepPowerAction;
-import InesMod.cards.AbstractInesCard;
 import InesMod.characters.Ines;
-import InesMod.helpers.ModHelper;
-import InesMod.modcore.InesModMain;
+import InesMod.helpers.PathHelper;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
-import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.PowerStrings;
-import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
-import com.megacrit.cardcrawl.powers.VulnerablePower;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -26,7 +20,7 @@ import java.util.Set;
  * 和 StealsPower 有相似代码，但独立上偷取效果。这么做的目的是，当没有 StealsPower 实例时，也能正常触发。
  */
 public class InsightPower extends AbstractInesPower {
-    public static final String ID = ModHelper.nameToId(InsightPower.class.getSimpleName());
+    public static final String ID = PathHelper.nameToId(InsightPower.class.getSimpleName());
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(ID); // 从游戏系统读取本地化资源
 
     private int consumeNum; // 一次偷取中，消耗偷取的层数

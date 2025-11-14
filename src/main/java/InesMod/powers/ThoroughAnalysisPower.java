@@ -1,6 +1,6 @@
 package InesMod.powers;
 
-import InesMod.helpers.ModHelper;
+import InesMod.helpers.PathHelper;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.PowerStrings;
@@ -10,7 +10,7 @@ import com.megacrit.cardcrawl.localization.PowerStrings;
  * 此 power 的效果由 ApplyStealsToTargetAction 代行
  */
 public class ThoroughAnalysisPower extends AbstractInesPower {
-    public static final String ID = ModHelper.nameToId(ThoroughAnalysisPower.class.getSimpleName());
+    public static final String ID = PathHelper.nameToId(ThoroughAnalysisPower.class.getSimpleName());
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(ID); // 从游戏系统读取本地化资源
 
     public ThoroughAnalysisPower(AbstractCreature owner, int amount) {
