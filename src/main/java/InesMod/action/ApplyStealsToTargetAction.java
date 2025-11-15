@@ -21,8 +21,6 @@ import com.megacrit.cardcrawl.powers.VulnerablePower;
  * 判断手牌是否未满，然后抽1张牌
  */
 public class ApplyStealsToTargetAction extends AbstractGameAction {
-    AbstractCreature source;
-    AbstractCreature target;
     int consumeNum;
     int amountBeforeReduce;
     boolean triggerOther = true; // 是否触发其他效果
@@ -42,6 +40,8 @@ public class ApplyStealsToTargetAction extends AbstractGameAction {
 
     @Override
     public void update() {
+        InesModMain.logger.info("===ApplyStealsToTargetAction: start，当前consumeNum:{}===",consumeNum);
+
         // 给当前目标减一次力量
         if (!target.hasPower("Artifact")) {
             addToTop(new ApplyPowerAction(target, source, new StrengthStolenPower(target, consumeNum), consumeNum));
@@ -69,11 +69,13 @@ public class ApplyStealsToTargetAction extends AbstractGameAction {
                 for (AbstractCard c : p.hand.group) {
                     // 精准探查
                     if (c.cardID.equals(PreciseRecon.ID)) {
+                        InesModMain.logger.info("===ApplyStealsToTargetAction: 触发精准探查===");
                         addToBot(new ApplyPowerAction(source, source, new InterPower(source, c.magicNumber), c.magicNumber));
                     }
 
                     // 布设陷阱
                     if (c.cardID.equals(LayTraps.ID)) {
+                        InesModMain.logger.info("===ApplyStealsToTargetAction: 触发布设陷阱===");
                         addToBot(new ApplyPowerAction(target, source, new VulnerablePower(target, c.magicNumber, false), c.magicNumber));
                     }
                 }

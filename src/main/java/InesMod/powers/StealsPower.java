@@ -64,7 +64,8 @@ public class StealsPower extends AbstractInesPower {
 
     @Override
     public void onUseCard(AbstractCard card, UseCardAction action) {
-        InesModMain.logger.info("===StealsPower: onUseCard===");
+        InesModMain.logger.info("===StealsPower: onUseCard, 当前卡牌id{}===",card.cardID);
+        consumeNum = 0;
         if (card.type == AbstractCard.CardType.ATTACK) {
             // 获取消耗偷取的层数，如果没有则默认1
             consumeNum = 1;
@@ -81,6 +82,7 @@ public class StealsPower extends AbstractInesPower {
                 amountBeforeReduce = this.amount;
                 addToTop(new ReduceAndKeepPowerAction(this.owner, this.owner, StealsPower.ID, consumeNum));
             }
+            InesModMain.logger.info("===StealsPower:  onUseCard，设置consumeNum为{}===",consumeNum);
         }
     }
 
@@ -102,7 +104,7 @@ public class StealsPower extends AbstractInesPower {
 
     @Override
     public void onAfterUseCard(AbstractCard card, UseCardAction action) {
-        InesModMain.logger.info("===StealsPower: onAfterUseCard===");
+        InesModMain.logger.info("===StealsPower: onAfterUseCard,当前卡牌id{}, 当前consumeNum{}===",card.cardID,consumeNum);
         if (consumeNum > 0){
 
             // 给自己加一次力量

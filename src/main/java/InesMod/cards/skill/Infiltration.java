@@ -47,7 +47,7 @@ public class Infiltration extends AbstractInesCard {
         }
         this.addToBot(new ApplyPowerAction(p, p, new StealsPower(p, count), count));
 
-        this.addToBot(new DrawCardAction(p, this.draw));
+        // this.addToBot(new DrawCardAction(p, this.draw));
         this.addToBot(new MakeTempCardInDiscardAction(makeStatEquivalentCopy(), 1));
     }
 

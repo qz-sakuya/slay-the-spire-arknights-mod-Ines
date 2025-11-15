@@ -1,14 +1,12 @@
-package InesMod.cards.attack;
+package InesMod.cards.skill;
 
-import InesMod.action.CloseQuartersCombatAction;
+import InesMod.action.EngageEnemyAction;
+import InesMod.action.SilhouetteAction;
 import InesMod.cards.AbstractInesCard;
+import InesMod.cards.status.ShadowWhistle;
 import InesMod.characters.Ines;
 import InesMod.helpers.PathHelper;
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.DamageInfo;
-import com.megacrit.cardcrawl.cards.DamageInfo.DamageType;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -16,44 +14,57 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 /**
- * 中文卡名：近身格斗
+ * 中文卡名：接敌
  */
-public class CloseQuartersCombat extends AbstractInesCard {
-    public static final String ID = PathHelper.nameToId(CloseQuartersCombat.class.getSimpleName());
+public class EngageEnemy extends AbstractInesCard {
+    public static final String ID = PathHelper.nameToId(EngageEnemy.class.getSimpleName());
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID); // 从游戏系统读取本地化资源
 
-    public CloseQuartersCombat() {
+    public EngageEnemy() {
         super(ID,
-                false,
+                true,
                 cardStrings,
                 1,
-                CardType.ATTACK,
-                CardRarity.COMMON,
-                CardTarget.ENEMY,
+                CardType.SKILL,
+                CardRarity.UNCOMMON,
+                CardTarget.SELF,
                 Ines.Enums.INES_CARD);
-        this.damage = this.baseDamage = 6;
-        this.magicNumber = this.baseMagicNumber = 6;
+        this.block = this.baseBlock = 7;
+        this.baseMagicNumber = this.magicNumber = 7;
+
+        this.cardsToPreview = new ShadowWhistle();
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        addToBot(new CloseQuartersCombatAction(p, m, damage, magicNumber));
+        addToBot(new EngageEnemyAction(p, m, block, magicNumber));
     }
 
     @Override
     public void triggerOnGlowCheck() {
         this.glowColor = AbstractCard.BLUE_BORDER_GLOW_COLOR.cpy();
-        if(AbstractDungeon.player.currentBlock == 0){
+
+        int cnt = 0;
+        // 遍历手牌
+        for (AbstractCard c : AbstractDungeon.player.hand.group) {
+            if (c.cardID.equals(ShadowWhistle.ID)) {
+                cnt++;
+                break; // 可以提前退出循环
+            }
+        }
+
+        if(cnt == 0){
             this.glowColor = AbstractCard.GOLD_BORDER_GLOW_COLOR.cpy();
         }
     }
+
 
     @Override
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeDamage(2);
-            this.upgradeMagicNumber(2);
+            this.upgradeBlock(3);
+            this.upgradeMagicNumber(3);
         }
     }
 }

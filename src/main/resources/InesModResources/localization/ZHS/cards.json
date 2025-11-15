@@ -46,7 +46,7 @@
   },
   "InesMod:Feint": {
     "NAME": "佯攻",
-    "DESCRIPTION": "造成 !D! 点伤害。 NL 向手牌中加入 !M! 张 *影哨 。 NL  消耗 。",
+    "DESCRIPTION": "造成 !D! 点伤害。 NL 向手牌中加入 !M! 张 *影哨 。 消耗 。",
     "UPGRADE_DESCRIPTION": "造成 !D! 点伤害。 NL 向手牌中加入 !M! 张 *影哨 。"
   },
   "InesMod:ThrowPebble": {
@@ -106,8 +106,8 @@
   },
   "InesMod:Infiltration": {
     "NAME": "渗透",
-    "DESCRIPTION": "获得等同于敌人数量的 ines:偷取 。抽 1 张牌。 NL 在弃牌堆放入一张此牌的复制品。",
-    "UPGRADE_DESCRIPTION": "获得等同于敌人数量+1的 ines:偷取 。抽 1 张牌。 NL 在弃牌堆放入一张此牌的复制品。"
+    "DESCRIPTION": "获得等同于敌人数量的 ines:偷取 。 NL 在弃牌堆放入一张此牌的复制品。",
+    "UPGRADE_DESCRIPTION": "获得等同于敌人数量+1的 ines:偷取 。 NL 在弃牌堆放入一张此牌的复制品。"
   },
   "InesMod:TopSecretOperation": {
     "NAME": "绝密行动",
@@ -154,12 +154,12 @@
   },
   "InesMod:ImmediateEffect": {
     "NAME": "立竿见影",
-    "DESCRIPTION": "获得 1 层 ines:隐匿 。 NL  消耗 。 NL  虚无 。"
+    "DESCRIPTION": " 虚无 。 NL 获得 1 层 ines:隐匿 。 NL  消耗 。"
   },
   "InesMod:EmergencyRetreat": {
     "NAME": "紧急撤退",
-    "DESCRIPTION": "丢弃所有手牌。向手牌中加入 !M! 张 *影哨 。 NL  虚无 。 NL  消耗 。",
-    "UPGRADE_DESCRIPTION":"丢弃所有手牌。向手牌中加入 !M! 张 *影哨 。 NL  虚无 。"
+    "DESCRIPTION": " 虚无 。 NL 丢弃所有手牌。向手牌中加入 !M! 张 *影哨 。 NL  消耗 。",
+    "UPGRADE_DESCRIPTION":" 虚无 。 NL 丢弃所有手牌。向手牌中加入 !M! 张 *影哨 。"
   },
   "InesMod:LayeredShadows": {
     "NAME": "叠影",
@@ -184,5 +184,27 @@
     "EXTENDED_DESCRIPTION": [
       " NL （获得 !B! 点格挡。）"
     ]
+  },
+  "InesMod:MurkyNight": {
+    "NAME": "暗夜无明",
+    "DESCRIPTION": " ines:潜伏 。 NL 打出手牌时将其 消耗 ，将 !M! 张 *影哨 加入手牌。"
+  },
+  "InesMod:Silhouette": {
+    "NAME": "背影",
+    "DESCRIPTION": "将手牌中所有 *影哨 移入抽牌堆，然后抽相应数量的牌。 NL  消耗 。",
+    "UPGRADE_DESCRIPTION":"将手牌中所有 *影哨 移入抽牌堆，然后抽相应数量的牌。"
+  },
+  "InesMod:DeadlyOpportunity": {
+    "NAME": "致命契机",
+    "DESCRIPTION": "下一张打出的攻击牌造成 2 倍伤害，随后失去所有 格挡 并结束你的回合。",
+    "UPGRADE_DESCRIPTION":"下一张打出的攻击牌造成 2 倍伤害，随后失去一半 格挡 并结束你的回合。"
+  },
+  "InesMod:IntelNetwork": {
+    "NAME": "情报网",
+    "DESCRIPTION": "获得 !M! 点 ines:情报 。然后抽 1 张牌。"
+  },
+  "InesMod:EngageEnemy": {
+    "NAME": "接敌",
+    "DESCRIPTION": "获得 !B! 点 格挡 。 NL 如果手牌中没有 *影哨 ，额外获得 !M! 点 格挡 。"
   }
 }

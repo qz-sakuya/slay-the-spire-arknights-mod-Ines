@@ -198,7 +198,33 @@ public class InesModMain implements
 
     @Override
     public void receiveCardUsed(AbstractCard c) {
-        // 暂时没用到
+        for (AbstractCard cardToCall : AbstractDungeon.player.hand.group) {
+            if (cardToCall instanceof AbstractInesCard){
+                AbstractInesCard inesCard = (AbstractInesCard)cardToCall;
+                inesCard.onReceiveCardUsed(c);
+            }
+        }
+
+        for (AbstractCard cardToCall : AbstractDungeon.player.discardPile.group) {
+            if (cardToCall instanceof AbstractInesCard){
+                AbstractInesCard inesCard = (AbstractInesCard)cardToCall;
+                inesCard.onReceiveCardUsed(c);
+            }
+        }
+
+        for (AbstractCard cardToCall : AbstractDungeon.player.drawPile.group) {
+            if (cardToCall instanceof AbstractInesCard){
+                AbstractInesCard inesCard = (AbstractInesCard)cardToCall;
+                inesCard.onReceiveCardUsed(c);
+            }
+        }
+
+        for (AbstractCard cardToCall : AbstractDungeon.player.exhaustPile.group) {
+            if (cardToCall instanceof AbstractInesCard){
+                AbstractInesCard inesCard = (AbstractInesCard)cardToCall;
+                inesCard.onReceiveCardUsed(c);
+            }
+        }
     }
 
 
@@ -213,52 +239,5 @@ public class InesModMain implements
         return lang;
     }
 
-//    // 自动检测隐匿并播放特效
-//    private float invisibilityAuraEffectTimer = 0f;
-//    private static final float invisibilityAuraEffectInterval = 0.8f; // 每 0.8 秒一次
-//
-//    @Override
-//    public void receivePostUpdate() {
-//
-//        if (AbstractDungeon.getCurrRoom() != null && AbstractDungeon.getCurrRoom().phase == AbstractRoom.RoomPhase.COMBAT) {
-//            InesModMain.logger.info("===receivePostUpdate：处于战斗房间，处理特效===");
-//
-//            // 操作计时器
-//            invisibilityAuraEffectTimer += com.badlogic.gdx.Gdx.graphics.getDeltaTime();
-//            boolean invisibilityAuraEffectIsOn = invisibilityAuraEffectTimer >= invisibilityAuraEffectInterval;
-//
-//
-//            // 检查所有生物
-//            ArrayList<AbstractCreature> creatures = new ArrayList<>();
-//            creatures.add(AbstractDungeon.player);
-//
-//            MonsterGroup monsters = AbstractDungeon.getMonsters();
-//            if (monsters != null && monsters.monsters != null) {
-//                for (AbstractMonster m : monsters.monsters) {
-//                    if (m != null && !m.isDeadOrEscaped()) {
-//                        creatures.add(m);
-//                    }
-//                }
-//            }
-//
-//            // 为每一个目标判断特效
-//            for (AbstractCreature c : creatures) {
-//                if (c == null || c.isDeadOrEscaped()) continue;
-//
-//                if (invisibilityAuraEffectIsOn) {
-//                    invisibilityAuraEffectTimer = 0; // 重置计时器
-//
-//                    InvisibilityPower power = (InvisibilityPower) c.getPower(InvisibilityPower.ID);
-//                    if (power != null && power.amount > 0) {
-//                        // 添加特效到动作队列
-//                        AbstractDungeon.actionManager.addToBottom(
-//                                new VFXAction(c, new InvisibilityAuraEffect(Color.BLACK, c.hb.cX, c.hb.cY), 0.33f)
-//                        );
-//                    }
-//                }
-//            }
-//        }
-//
-//    }
 
 }

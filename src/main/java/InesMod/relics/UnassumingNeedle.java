@@ -34,8 +34,9 @@ public class UnassumingNeedle extends CustomRelic {
     public void atBattleStart() {
         super.atBattleStart();
 
-        // 获得4层偷取
-        addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new StealsPower(AbstractDungeon.player, 4), 4));
+        // 获得3层偷取
+        int cnt = 3;
+        addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new StealsPower(AbstractDungeon.player, cnt), cnt));
     }
 
     public AbstractRelic makeCopy() {

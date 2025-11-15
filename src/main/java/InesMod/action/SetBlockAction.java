@@ -1,0 +1,71 @@
+package InesMod.action;
+
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.core.AbstractCreature;
+import com.megacrit.cardcrawl.core.Settings;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.vfx.combat.FlashAtkImgEffect;
+
+/**
+ * 设置格挡 的动作
+ * 根据 GainBlockAction 修改
+ */
+public class SetBlockAction extends AbstractGameAction {
+        private static final float DUR = 0.25F;
+
+        public SetBlockAction(AbstractCreature target, int amount) {
+            this.target = target;
+            this.amount = amount;
+            this.actionType = ActionType.BLOCK;
+            this.duration = 0.25F;
+            this.startDuration = 0.25F;
+        }
+
+        public SetBlockAction(AbstractCreature target, AbstractCreature source, int amount) {
+            this.setValues(target, source, amount);
+            this.actionType = ActionType.BLOCK;
+            this.duration = 0.25F;
+            this.startDuration = 0.25F;
+        }
+
+        public SetBlockAction(AbstractCreature target, int amount, boolean superFast) {
+            this(target, amount);
+            if (superFast) {
+                this.duration = this.startDuration = Settings.ACTION_DUR_XFAST;
+            }
+
+        }
+
+        public SetBlockAction(AbstractCreature target, AbstractCreature source, int amount, boolean superFast) {
+            this(target, source, amount);
+            if (superFast) {
+                this.duration = this.startDuration = Settings.ACTION_DUR_XFAST;
+            }
+
+        }
+
+        public void update() {
+            if (!this.target.isDying && !this.target.isDead && this.duration == this.startDuration) {
+                int currentBlock = this.target.currentBlock;
+
+                if (this.amount == 0 && currentBlock > 0) {
+                    this.target.loseBlock(); // 直接调用 失去所有格挡 的函数
+                    this.tickDuration();
+                }
+
+                if (this.amount > currentBlock) {
+                    // 添加格挡才播放动画
+                    AbstractDungeon.effectList.add(new FlashAtkImgEffect(this.target.hb.cX, this.target.hb.cY, AttackEffect.SHIELD));
+                }
+
+                this.target.currentBlock = amount; // 直接设置格挡
+
+                for(AbstractCard c : AbstractDungeon.player.hand.group) {
+                    c.applyPowers();
+                }
+            }
+
+            this.tickDuration();
+        }
+    }

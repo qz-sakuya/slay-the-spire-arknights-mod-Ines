@@ -79,5 +79,6 @@ public abstract class AbstractInesCard extends CustomCard {
 
     // 自定义回调
     public void onCardMove(AbstractCard c, CardGroup.CardGroupType groupType) {}
+    public void onReceiveCardUsed(AbstractCard c) {}
 
 }

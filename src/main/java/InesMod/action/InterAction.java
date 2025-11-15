@@ -32,7 +32,6 @@ import java.util.Collections;
  * 判断手牌是否未满，然后抽1张牌
  */
 public class InterAction extends AbstractGameAction {
-    AbstractCreature source;
     int amount;
 
     public InterAction(AbstractPlayer source, int drawAmount) {
