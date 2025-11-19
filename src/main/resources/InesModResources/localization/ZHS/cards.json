@@ -206,5 +206,13 @@
   "InesMod:EngageEnemy": {
     "NAME": "接敌",
     "DESCRIPTION": "获得 !B! 点 格挡 。 NL 如果手牌中没有 *影哨 ，额外获得 !M! 点 格挡 。"
+  },
+  "InesMod:SecretHRLetter": {
+    "NAME": "人事部密信",
+    "DESCRIPTION": "当前所有手牌在本回合的耗能-2。"
+  },
+  "InesMod:EternalMigration": {
+    "NAME": "无尽迁徙",
+    "DESCRIPTION": "在本回合结束后，额外获得一回合。 NL  消耗 。"
   }
 }
