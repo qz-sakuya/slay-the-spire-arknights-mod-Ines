@@ -41,7 +41,7 @@ public class EternalMigrationPower extends AbstractInesPower {
             addToBot(new RemoveSpecificPowerAction(this.owner, this.owner, EternalMigrationPower.ID));
 
             // 灰蓝色特效
-            addToBot(new VFXAction(new WhirlwindEffect(new Color(60/255F, 69/25F, 60/78F, 1.0F), true)));
+            addToBot(new VFXAction(new WhirlwindEffect(new Color(60/255F, 69/255F, 78/255F, 1.0F), true)));
 
             // 额外回合
             addToBot(new SkipEnemiesTurnAction());

@@ -1,7 +1,7 @@
 package InesMod.characters;
 
 
-// 省略package路径和部分import，复制的时候不要忘记写上自己的package
+// TODO：加入游戏结束时的neow文本（心脏，与考虑额外结局）
 
 import InesMod.cards.attack.ShadowAmbush;
 import InesMod.cards.attack.Strike;
@@ -41,7 +41,7 @@ public class Ines extends CustomPlayer {
     private static final String MY_CHARACTER_SHOULDER_1 = "InesModResources/img/char/shoulder1.png";
     // 火堆的人物立绘（行动后）
     private static final String MY_CHARACTER_SHOULDER_2 = "InesModResources/img/char/shoulder2.png";
-    // 人物死亡图像
+    // 人物死亡图像（实际没有，因为模型已经包含）
     private static final String CORPSE_IMAGE = "InesModResources/img/char/corpse.png";
     // 战斗界面左下角能量图标的每个图层
     private static final String[] ORB_TEXTURES = new String[]{

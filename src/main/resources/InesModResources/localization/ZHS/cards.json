@@ -209,7 +209,7 @@
   },
   "InesMod:SecretHRLetter": {
     "NAME": "人事部密信",
-    "DESCRIPTION": "当前所有手牌在本回合的耗能-2。"
+    "DESCRIPTION": "当前所有手牌在本回合的耗能-2。 NL  消耗 。"
   },
   "InesMod:EternalMigration": {
     "NAME": "无尽迁徙",

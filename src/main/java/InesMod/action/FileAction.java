@@ -26,7 +26,7 @@ public class FileAction extends AbstractGameAction {
         setValues(target, info);
         this.m = target;
         this.actionType = AbstractGameAction.ActionType.DAMAGE;
-        this.attackEffect = AbstractGameAction.AttackEffect.SLASH_VERTICAL;
+        this.attackEffect = AttackEffect.SLASH_DIAGONAL;
         this.duration = 0.01F;
         this.magicNumber = magicNumber;
     }

@@ -38,7 +38,7 @@ public class EternalMigration extends AbstractInesCard {
                 CardTarget.SELF,
                 Ines.Enums.INES_CARD);
 
-        this.cardsToPreview = new ShadowWhistle();
+        this.exhaust = true;
     }
 
     @Override

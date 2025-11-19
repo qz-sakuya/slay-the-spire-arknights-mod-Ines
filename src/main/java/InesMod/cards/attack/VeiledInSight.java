@@ -32,8 +32,6 @@ public class VeiledInSight extends AbstractInesCard {
                 Ines.Enums.INES_CARD);
         this.baseDamage = 9;
         this.isMultiDamage = true;
-
-        this.selfRetain = true;
     }
 
     @Override

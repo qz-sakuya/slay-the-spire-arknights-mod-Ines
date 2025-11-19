@@ -31,7 +31,7 @@ public class StrikeTest extends AbstractInesCard {
             AbstractGameAction.AttackEffect.BLUNT_LIGHT,
             AbstractGameAction.AttackEffect.BLUNT_HEAVY,
 
-            // 斜劈，左上到右下， 轻重好像只有特效大小的微微区别，一般用轻的
+            // 斜劈，右上到左下， 轻重好像只有特效大小的微微区别，一般用轻的
             AbstractGameAction.AttackEffect.SLASH_DIAGONAL,
             AbstractGameAction.AttackEffect.SMASH,
 

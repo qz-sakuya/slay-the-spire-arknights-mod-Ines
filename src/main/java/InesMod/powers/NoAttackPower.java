@@ -37,7 +37,12 @@ public class NoAttackPower extends AbstractInesPower {
         if (AbstractDungeon.player.hasPower("Entangled")){
             return true; // 不重复触发对话框
         }
-        return false;
+
+        if (card.type == AbstractCard.CardType.ATTACK) {
+            return false;
+        }
+
+        return true;
     }
 
     @Override

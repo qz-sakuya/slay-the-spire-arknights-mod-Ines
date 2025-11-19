@@ -41,8 +41,10 @@ public class ShadowSlash extends AbstractInesCard {
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        this.addToBot(new SFXAction("ATTACK_MAGIC_BEAM_SHORT", 0.7F, true));
-        this.addToBot(new SFXAction("ATTACK_IRON_3", 0.2F));
+        // this.addToBot(new SFXAction("ATTACK_MAGIC_BEAM_SHORT", 0.7F, true));
+        // this.addToBot(new SFXAction("ATTACK_IRON_3", 0.2F));
+
+        this.addToBot(new SFXAction("ATTACK_HEAVY", 0.2F));
         this.addToBot(new ColouredSlashEffect(m,45.0F, 4.0F,InesModMain.MY_COLOR_DARK,InesModMain.MY_COLOR));
 
         this.addToBot(new DamageAction(m, new DamageInfo(p, damage, DamageType.NORMAL), AbstractGameAction.AttackEffect.NONE));

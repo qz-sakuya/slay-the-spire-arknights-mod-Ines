@@ -30,7 +30,7 @@ public class SecretHRLetter extends AbstractInesCard {
                 CardTarget.SELF,
                 Ines.Enums.INES_CARD);
 
-        this.cardsToPreview = new ShadowWhistle();
+        this.exhaust = true;
     }
 
     @Override
