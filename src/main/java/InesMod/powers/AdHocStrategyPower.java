@@ -1,11 +1,14 @@
 package InesMod.powers;
 
 import InesMod.action.AdHocStrategyAction;
+import InesMod.action.AdHocSupplyAction;
+import InesMod.characters.Ines;
 import InesMod.helpers.PathHelper;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 
 /**
@@ -14,6 +17,8 @@ import com.megacrit.cardcrawl.localization.PowerStrings;
 public class AdHocStrategyPower extends AbstractInesPower {
     public static final String ID = PathHelper.nameToId(AdHocStrategyPower.class.getSimpleName());
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(ID); // 从游戏系统读取本地化资源
+
+    public boolean inEndTurnPeriod; // 与 临时补给 的处理相同
 
     public AdHocStrategyPower(AbstractCreature owner, int amount) {
         super(ID,
@@ -24,11 +29,35 @@ public class AdHocStrategyPower extends AbstractInesPower {
                 amount);
 
         this.priority = 8; // 排在 临时补给 后面
+
+        if (AbstractDungeon.player instanceof Ines) {
+            this.inEndTurnPeriod = ((Ines)AbstractDungeon.player).inEndTurnPeriod;
+        }
+        else {
+            this.inEndTurnPeriod = false;
+        }
     }
+
 
     @Override
     public void onCardMove(AbstractCard c, CardGroup.CardGroupType groupType) {
+        if (!this.inEndTurnPeriod) {
+            addToBot(new AdHocStrategyAction(owner, amount));
+        }
+    }
+
+    @Override
+    public void atStartOfTurn() {
+        this.inEndTurnPeriod = false;
+
         addToBot(new AdHocStrategyAction(owner, amount));
+    }
+
+    @Override
+    public void atEndOfTurn(boolean isPlayer) {
+        if(isPlayer) {
+            this.inEndTurnPeriod = true;
+        }
     }
 
     @Override

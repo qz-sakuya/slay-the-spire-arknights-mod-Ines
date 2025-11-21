@@ -13,7 +13,7 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 /**
  *  给 CardGroup 的 add 方法进行patch
  *  如果 CardGroup 是手牌，触发 自动打出 效果
- *  使用此函数的例子：秘密武器
+ *  此外，触发自定义回调
  */
 public class CardGroupAddPatch {
 

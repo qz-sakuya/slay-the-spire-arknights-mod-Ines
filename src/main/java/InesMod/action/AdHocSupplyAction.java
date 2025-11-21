@@ -1,5 +1,7 @@
 package InesMod.action;
 
+import InesMod.modcore.InesModMain;
+import InesMod.powers.AdHocStrategyPower;
 import InesMod.powers.AdHocSupplyPower;
 import InesMod.powers.AgentVanguardPower;
 import InesMod.powers.InterPower;
@@ -26,15 +28,19 @@ public class AdHocSupplyAction extends AbstractGameAction {
     }
 
     public void update() {
-        if (owner instanceof AbstractPlayer && ((AbstractPlayer)owner).hand.size() <= 1){
-            // 获得能量
-            addToTop(new GainEnergyAction(1));
-            addToTop(new ReducePowerAction(owner, owner, AdHocSupplyPower.ID, amount));
+        AbstractPower powerToGet = owner.getPower(AdHocSupplyPower.ID);
 
-            AbstractPower powerToGet = owner.getPower(AdHocSupplyPower.ID);
-            if (powerToGet != null) {
-                powerToGet.flash();
-            }
+        if (powerToGet != null
+                && owner instanceof AbstractPlayer
+                && ((AbstractPlayer)owner).hand.size() <= 1
+                && !((AdHocSupplyPower)powerToGet).inEndTurnPeriod // 未处于回合结束
+        )
+        {
+            powerToGet.flash();
+
+            // 获得能量
+            addToTop(new GainEnergyAction(amount));
+            addToTop(new ReducePowerAction(owner, owner, AdHocSupplyPower.ID, amount));
         }
         this.isDone = true;
     }

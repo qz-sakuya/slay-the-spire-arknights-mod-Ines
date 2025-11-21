@@ -29,6 +29,7 @@ import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.ScreenShake;
 import com.megacrit.cardcrawl.localization.CharacterStrings;
+import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.screens.CharSelectInfo;
 import java.util.ArrayList;
@@ -62,10 +63,17 @@ public class Ines extends CustomPlayer {
     // 人物的本地化文本，如卡牌的本地化文本一样，如何书写见下
     private static final CharacterStrings characterStrings = CardCrawlGame.languagePack.getCharacterString("InesMod:Ines");
 
+    // ---自定义全局变量---
+
     // 每次战斗中，洞悉的条件计数
     public int counterForInsight = 0;
     // 每次战斗中，洞悉的条件要求
     public int needForInsight = 10;
+
+    // 是否处于 回合结束 阶段
+    public boolean inEndTurnPeriod = false;
+
+    // ---自定义全局变量End---
 
     public Ines(String name) {
         super(name, Enums.INES, ORB_TEXTURES,"InesModResources/img/UI/orb/vfx.png", LAYER_SPEED, null, null);
@@ -297,5 +305,28 @@ public class Ines extends CustomPlayer {
         counterForInsight = 0;
         needForInsight = 10;
         InesModMain.logger.info("===回合开始，counterForInsight：{}===",counterForInsight);
+    }
+
+    // 重载此函数，以统计回合结束状态
+    @Override
+    public void applyEndOfTurnTriggers() {
+        for (AbstractPower p : this.powers) {
+            if (!this.isPlayer) {
+                p.atEndOfTurnPreEndTurnCards(false);
+            }
+            p.atEndOfTurn(this.isPlayer);
+        }
+
+        this.inEndTurnPeriod = true;
+    }
+
+    // 重载此函数，以统计回合结束状态
+    @Override
+    public void applyStartOfTurnPowers() {
+        for(AbstractPower p : this.powers) {
+            p.atStartOfTurn();
+        }
+
+        this.inEndTurnPeriod = false;
     }
 }
