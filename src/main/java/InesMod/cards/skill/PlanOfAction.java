@@ -28,14 +28,13 @@ public class PlanOfAction extends AbstractInesCard {
                 CardRarity.BASIC,
                 CardTarget.SELF,
                 Ines.Enums.INES_CARD);
-        this.draw = 1;
         this.magicNumber = this.baseMagicNumber = 1;
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        this.addToBot(new DrawCardAction(p, this.draw));
-        this.addToBot(new ApplyPowerAction(p, p, new StealsPower(p, this.magicNumber ), this.magicNumber));
+        this.addToBot(new DrawCardAction(p, this.magicNumber));
+        this.addToBot(new ApplyPowerAction(p, p, new StealsPower(p, 1), 1));
         this.addToBot(new GainEnergyAction(1));
     }
 
@@ -43,12 +42,7 @@ public class PlanOfAction extends AbstractInesCard {
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.draw = 2;
             this.upgradeMagicNumber(1);
-
-            // 升级文本是为了预留两个值提升不一致的情况
-            this.rawDescription = cardStrings.UPGRADE_DESCRIPTION;
-            this.initializeDescription();
         }
     }
 }

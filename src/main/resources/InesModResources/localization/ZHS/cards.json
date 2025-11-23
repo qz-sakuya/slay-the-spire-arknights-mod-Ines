@@ -17,8 +17,7 @@
   },
   "InesMod:PlanOfAction": {
     "NAME": "行动预谋",
-    "DESCRIPTION": "抽 !M! 张牌。 NL 获得 !M! 层 ines:偷取 和 [E] 。",
-    "UPGRADE_DESCRIPTION": "抽 !M! 张牌。 NL 获得 !M! 层 ines:偷取 和 [E] 。"
+    "DESCRIPTION": "抽 !M! 张牌。 NL 获得 1 层 ines:偷取 和 [E] 。"
   },
   "InesMod:ShadowWhistle": {
     "NAME": "影哨",
