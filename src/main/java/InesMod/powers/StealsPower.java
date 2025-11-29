@@ -4,7 +4,7 @@ import InesMod.action.ApplyStealsToTargetAction;
 import InesMod.action.ReduceAndKeepPowerAction;
 import InesMod.cards.AbstractInesCard;
 import InesMod.characters.Ines;
-import InesMod.helpers.ModConfig;
+import InesMod.helpers.ConfigHelper;
 import InesMod.helpers.PathHelper;
 import InesMod.helpers.TutorialHelper;
 import InesMod.modcore.InesModMain;
@@ -123,7 +123,7 @@ public class StealsPower extends AbstractInesPower {
                     addToBot(new ApplyPowerAction(owner, owner, new InsightPower(owner, 1), 1));
 
                     // 显示教程
-                    if (!ModConfig.tutorialClosed1) {
+                    if (!ConfigHelper.tutorialClosed1) {
                         TutorialHelper.playTutorial1(owner);
                     }
                 }

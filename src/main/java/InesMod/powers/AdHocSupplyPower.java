@@ -61,6 +61,10 @@ public class AdHocSupplyPower extends AbstractInesPower {
 
     @Override
     public void updateDescription() {
-        this.description = String.format(descriptions[0], this.amount);
+        StringBuilder tempText = new StringBuilder();
+        for (int i = 0; i<this.amount; i++) {
+            tempText.append(" [E] ");
+        }
+        this.description = String.format(descriptions[0], tempText);
     }
 }

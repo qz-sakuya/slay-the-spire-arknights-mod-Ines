@@ -16,12 +16,12 @@ public class TutorialHelper {
 
 
     public static void playTutorial1(AbstractCreature p) {
-        if (!ModConfig.tutorialClosed1) {
+        if (!ConfigHelper.tutorialClosed1) {
             float x = p.hb.cX + p.hb.width + 140.0F * Settings.scale;
             float y = p.hb.cY;
             AbstractDungeon.ftue = new FtueTip(tips.TEXT[0], tips.TEXT[1]+tips.TEXT[2], x, y, FtueTip.TipType.CREATURE);
             ReflectionHacks.setPrivate(AbstractDungeon.ftue, FtueTip.class, "m", p);
-            ModConfig.tutorialClosed1 = true;
+            ConfigHelper.tutorialClosed1 = true;
 
             try {
                 SpireConfig config = new SpireConfig("InesModArknights", "Common");

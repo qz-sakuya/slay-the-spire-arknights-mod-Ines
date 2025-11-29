@@ -3,10 +3,10 @@ package InesMod.modcore;
 import InesMod.cards.AbstractInesCard;
 import InesMod.characters.Ines;
 
-import InesMod.helpers.ModConfig;
-import InesMod.powers.InvisibilityPower;
+import InesMod.enums.InesCardTags;
+import InesMod.helpers.ConfigHelper;
+import InesMod.helpers.PathHelper;
 import InesMod.relics.UnassumingNeedle;
-import InesMod.vfx.InvisibilityAuraEffect;
 import basemod.AutoAdd;
 import basemod.helpers.RelicType;
 import basemod.interfaces.*;
@@ -15,23 +15,17 @@ import com.evacipated.cardcrawl.modthespire.lib.SpireInitializer;
 
 import basemod.BaseMod;
 import com.google.gson.Gson;
-import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.*;
 import com.badlogic.gdx.graphics.Color;
-import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.monsters.MonsterGroup;
-import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
 
 import static com.megacrit.cardcrawl.core.Settings.language;
 
@@ -47,7 +41,8 @@ public class InesModMain implements
         PostInitializeSubscriber,
         AddAudioSubscriber,
         PostDrawSubscriber,
-        OnCardUseSubscriber
+        OnCardUseSubscriber,
+        OnPlayerTurnStartSubscriber
 
 {
     public static final Logger logger = LogManager.getLogger(InesModMain.class);
@@ -79,6 +74,7 @@ public class InesModMain implements
 
     public static final Color MY_COLOR_DARK = new Color(97F / 255.0F, 41F / 255.0F, 43F / 255.0F, 1.0F);
 
+    private static UIStrings retainThisTurnStrings = null;
 
     public InesModMain() {
         BaseMod.subscribe(this);
@@ -88,7 +84,7 @@ public class InesModMain implements
                 BG_SKILL_1024, BG_POWER_1024, BIG_ORB, SMALL_ORB
         );
         InesModMain.logger.info("===正在回忆设置项===");
-        ModConfig.initModSettings();
+        ConfigHelper.initModSettings();
         InesModMain.logger.info("===设置情报已收集===");
     }
 
@@ -140,7 +136,6 @@ public class InesModMain implements
         BaseMod.loadCustomStringsFile(PowerStrings.class, "InesModResources/localization/" + lang + "/powers.json");
         // 添加UI文本
         BaseMod.loadCustomStringsFile(UIStrings.class, "InesModResources/localization/" + lang + "/ui.json");
-
     }
 
 
@@ -187,7 +182,7 @@ public class InesModMain implements
 
     @Override
     public void receivePostInitialize() {
-        ModConfig.initModConfigMenu();
+        ConfigHelper.initModConfigMenu();
     }
 
 
@@ -197,7 +192,31 @@ public class InesModMain implements
     }
 
     @Override
+    public void  receiveOnPlayerTurnStart(){
+        InesModMain.logger.info("===InesModMain: receiveOnPlayerTurnStart===");
+
+        // 重置“在本回合保留。”词条
+        for (AbstractCard c : AbstractDungeon.player.hand.group) {
+            resetCardsRetainThisTurn(c);
+        }
+
+        for (AbstractCard c : AbstractDungeon.player.discardPile.group) {
+            resetCardsRetainThisTurn(c);
+        }
+
+        for (AbstractCard c : AbstractDungeon.player.drawPile.group) {
+            resetCardsRetainThisTurn(c);
+        }
+
+        for (AbstractCard c : AbstractDungeon.player.exhaustPile.group) {
+            resetCardsRetainThisTurn(c);
+        }
+    }
+
+    @Override
     public void receiveCardUsed(AbstractCard c) {
+        InesModMain.logger.info("===InesModMain: receiveCardUsed===");
+
         for (AbstractCard cardToCall : AbstractDungeon.player.hand.group) {
             if (cardToCall instanceof AbstractInesCard){
                 AbstractInesCard inesCard = (AbstractInesCard)cardToCall;
@@ -228,7 +247,8 @@ public class InesModMain implements
     }
 
 
-    // 辅助方法
+    // ========辅助方法=========
+
     private String selectLanguage(){
         String lang;
         if (language == Settings.GameLanguage.ZHS) {
@@ -237,6 +257,23 @@ public class InesModMain implements
             lang = "ENG"; // 如果没有相应语言的版本，默认加载英语
         }
         return lang;
+    }
+
+    // 如果卡牌具有“在本回合保留。”，则重置
+    private void resetCardsRetainThisTurn(AbstractCard card) {
+        if (retainThisTurnStrings == null) {
+            retainThisTurnStrings = CardCrawlGame.languagePack.getUIString(PathHelper.nameToId("RetainCardsThisTurnAction"));
+        }
+
+        if (card.tags.contains(InesCardTags.RetainThisTurn)) {
+            // 删除tag与文本
+            card.tags.remove(InesCardTags.RetainThisTurn);
+            card.rawDescription =  card.rawDescription.replace(retainThisTurnStrings.TEXT[1], "");
+            card.initializeDescription();
+
+            // 不再保留
+            card.retain = false;
+        }
     }
 
 

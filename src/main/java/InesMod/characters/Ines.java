@@ -5,7 +5,7 @@ package InesMod.characters;
 
 import InesMod.cards.attack.ShadowAmbush;
 import InesMod.cards.attack.Strike;
-import InesMod.cards.test.StrikeTest;
+import InesMod.cards.test.UNUSEDStrikeTest;
 import InesMod.cards.skill.Defend;
 import InesMod.cards.skill.EdgeOfLight;
 import InesMod.cards.skill.PlanOfAction;
@@ -186,7 +186,7 @@ public class Ines extends CustomPlayer {
     // 翻牌事件出现的你的职业牌（一般设为打击）
     @Override
     public AbstractCard getStartCardForEvent() {
-        return new StrikeTest();
+        return new UNUSEDStrikeTest();
     }
 
     // 卡牌轨迹颜色

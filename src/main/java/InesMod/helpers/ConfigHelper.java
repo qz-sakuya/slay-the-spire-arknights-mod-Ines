@@ -14,7 +14,7 @@ import com.megacrit.cardcrawl.localization.UIStrings;
 import java.io.IOException;
 import java.util.Properties;
 
-public class ModConfig {
+public class ConfigHelper {
     // ---可调整的config---
     public static boolean banExtraEnding = false;
 

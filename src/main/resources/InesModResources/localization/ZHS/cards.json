@@ -89,7 +89,7 @@
   },
   "InesMod:TimeGap": {
     "NAME": "时间差",
-    "DESCRIPTION": "获得 1 层 ines:隐匿 。此牌每被打出一次，其耗能+1。"
+    "DESCRIPTION": "获得 1 层 ines:隐匿 。 NL 此牌每被打出一次，其耗能+1。"
   },
   "InesMod:PreciseRecon": {
     "NAME": "精准探查",
@@ -213,5 +213,13 @@
   "InesMod:EternalMigration": {
     "NAME": "无尽迁徙",
     "DESCRIPTION": "在本回合结束后，额外获得一回合。 NL  消耗 。"
+  },
+  "InesMod:EndlessNight": {
+    "NAME": "漫漫长夜",
+    "DESCRIPTION": "获得 !B! 点 格挡 和 [E] 。 NL 本回合结束时 保留 所有 *影哨 。"
+  },
+  "InesMod:CriticalInfo": {
+    "NAME": "重点信息",
+    "DESCRIPTION": "选择最多 !M! 张手牌 ines:在本回合保留 ，丢弃其它所有手牌。"
   }
 }

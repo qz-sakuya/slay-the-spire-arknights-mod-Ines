@@ -19,8 +19,8 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
  */
 
 @AutoAdd.Ignore
-public class StrikeTest extends AbstractInesCard {
-    public static final String ID = PathHelper.nameToId(StrikeTest.class.getSimpleName());
+public class UNUSEDStrikeTest extends AbstractInesCard {
+    public static final String ID = PathHelper.nameToId(UNUSEDStrikeTest.class.getSimpleName());
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
 
     // 当前特效索引
@@ -61,7 +61,7 @@ public class StrikeTest extends AbstractInesCard {
             // 还有一些牌有专属特效，例如爪击、刮削、流云飞袖
     };
 
-    public StrikeTest() {
+    public UNUSEDStrikeTest() {
         super(ID,
                 true,
                 cardStrings,

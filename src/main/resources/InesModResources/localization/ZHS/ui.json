@@ -17,7 +17,7 @@
       "每有 #b1 层 #y洞悉 ，攻击额外生效 #b1 层 #y偷取 （不视作消耗），战斗结束后获得 #b1 点 #y真相 。"
     ]
   },
-  "InesMod:SelectHandCard": {
+  "InesMod:UNUSEDSelectHandCard": {
     "TEXT": [
       "选择 %d 张牌",
       "选择至少一张牌",
@@ -28,6 +28,12 @@
   "InesMod:MoveCardsToDeckAction": {
     "TEXT": [
       "加入抽牌堆。"
+    ]
+  },
+  "InesMod:RetainCardsThisTurnAction": {
+    "TEXT": [
+      "在本回合保留。",
+      " NL  ines:在本回合保留 。"
     ]
   }
 }

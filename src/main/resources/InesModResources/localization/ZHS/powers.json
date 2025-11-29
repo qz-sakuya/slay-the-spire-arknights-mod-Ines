@@ -66,7 +66,7 @@
   "InesMod:AdHocSupplyPower": {
     "NAME": "临时补给",
     "DESCRIPTIONS": [
-      "下一次手牌数不超过 #b1 时，获得 #b%d 点能量。"
+      "下一次手牌数不超过 #b1 时，获得%s。"
     ]
   },
   "InesMod:AdHocStrategyPower": {
@@ -104,6 +104,12 @@
     "NAME": "无尽迁徙",
     "DESCRIPTIONS": [
       "在本回合结束后，额外获得一回合。"
+    ]
+  },
+  "InesMod:EndlessNightPower": {
+    "NAME": "漫漫长夜",
+    "DESCRIPTIONS": [
+      "本回合结束时保留所有 #y影哨 。"
     ]
   }
 }

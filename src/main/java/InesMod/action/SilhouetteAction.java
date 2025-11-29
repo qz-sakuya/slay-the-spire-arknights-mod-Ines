@@ -19,9 +19,6 @@ import java.util.ArrayList;
  * 背影 的效果
  */
 public class SilhouetteAction extends AbstractGameAction {
-    private static final UIStrings uiStrings = CardCrawlGame.languagePack.getUIString(PathHelper.nameToId("MoveCardsToDeckAction"));
-
-
     public SilhouetteAction(AbstractPlayer source) {
         this.source = source;
         this.actionType = ActionType.CARD_MANIPULATION;
