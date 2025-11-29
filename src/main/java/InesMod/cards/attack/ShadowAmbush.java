@@ -27,7 +27,7 @@ public class ShadowAmbush extends AbstractInesCard {
                 cardStrings,
                 1,
                 CardType.ATTACK,
-                CardRarity.COMMON,
+                CardRarity.BASIC,
                 CardTarget.ENEMY,
                 Ines.Enums.INES_CARD);
         this.damage = this.baseDamage = 4;

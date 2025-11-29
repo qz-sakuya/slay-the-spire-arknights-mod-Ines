@@ -28,7 +28,7 @@ public class CatchOffGuard extends AbstractInesCard {
                 cardStrings,
                 0,
                 CardType.ATTACK,
-                CardRarity.BASIC,
+                CardRarity.COMMON,
                 CardTarget.ENEMY,
                 Ines.Enums.INES_CARD);
         this.damage = this.baseDamage = 10;

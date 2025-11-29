@@ -1,11 +1,10 @@
 package InesMod.cards.skill;
 
+import InesMod.action.DelayToAddAction;
 import InesMod.cards.AbstractInesCard;
 import InesMod.cards.status.ShadowWhistle;
 import InesMod.characters.Ines;
 import InesMod.helpers.PathHelper;
-import InesMod.powers.InvisibilityPower;
-import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.DiscardAction;
 import com.megacrit.cardcrawl.actions.common.MakeTempCardInHandAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -41,7 +40,10 @@ public class EmergencyRetreat extends AbstractInesCard {
     public void use(AbstractPlayer p, AbstractMonster m) {
         // 丢弃所有手牌
         addToBot(new DiscardAction(p, p,99,false));
-        this.addToBot(new MakeTempCardInHandAction(new ShadowWhistle(), magicNumber)); // 生成3张影哨
+
+        // 生成3张影哨
+        // 延迟是为了触发 临时补给 和 临时战略
+        addToBot(new DelayToAddAction(new MakeTempCardInHandAction(new ShadowWhistle(), magicNumber)));
     }
 
     @Override

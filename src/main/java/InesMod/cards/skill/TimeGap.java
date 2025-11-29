@@ -23,7 +23,7 @@ public class TimeGap extends AbstractInesCard {
                 cardStrings,
                 1,
                 CardType.SKILL,
-                CardRarity.BASIC,
+                CardRarity.UNCOMMON,
                 CardTarget.SELF,
                 Ines.Enums.INES_CARD);
         this.draw = 1;

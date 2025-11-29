@@ -23,7 +23,7 @@ public class AdHocStrategy extends AbstractInesCard {
                 cardStrings,
                 0,
                 CardType.SKILL,
-                CardRarity.BASIC,
+                CardRarity.COMMON,
                 CardTarget.SELF,
                 Ines.Enums.INES_CARD);
         this.magicNumber = this.baseMagicNumber = 2;
