@@ -25,7 +25,7 @@ public class BreakTheShadow extends AbstractInesCard {
 
     public BreakTheShadow() {
         super(ID,
-                true,
+                false,
                 cardStrings,
                 0,
                 CardType.ATTACK,

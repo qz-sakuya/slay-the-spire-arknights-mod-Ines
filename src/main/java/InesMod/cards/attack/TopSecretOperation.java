@@ -29,7 +29,7 @@ public class TopSecretOperation extends AbstractInesCard {
 
     public TopSecretOperation() {
         super(ID,
-                true,
+                false,
                 cardStrings,
                 2,
                 CardType.ATTACK,
