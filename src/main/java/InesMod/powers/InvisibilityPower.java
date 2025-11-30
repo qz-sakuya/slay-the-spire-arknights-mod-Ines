@@ -8,6 +8,7 @@ import basemod.ReflectionHacks;
 import com.megacrit.cardcrawl.actions.common.*;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -65,9 +66,18 @@ public class InvisibilityPower extends AbstractInesPower {
         if (this.amount == 0) {
             addToBot(new RemoveSpecificPowerAction(this.owner, this.owner, InvisibilityPower.ID));
         } else {
-            addToBot(new ReducePowerAction(this.owner, this.owner, InvisibilityPower.ID, 1));
-            addToBot(new ApplyPowerAction(this.owner, this.owner, new IllusionPower(this.owner, -1)));
+            int numToChange = 1;
+
+            // 如果有 速战速决 ，额外转化1层隐匿
+            AbstractPower quickVictoryPower = owner.getPower(QuickVictoryPower.ID);
+            if (quickVictoryPower != null && this.amount >= 2) {
+                numToChange = 2;
+            }
+
+            addToBot(new ReducePowerAction(this.owner, this.owner, InvisibilityPower.ID, numToChange));
+            addToBot(new ApplyPowerAction(this.owner, this.owner, new IllusionPower(this.owner, numToChange)));
         }
+
     }
 
 

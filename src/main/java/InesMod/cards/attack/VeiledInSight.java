@@ -1,5 +1,6 @@
 package InesMod.cards.attack;
 
+import InesMod.action.ApplyNonStackPowerAction;
 import InesMod.cards.AbstractInesCard;
 import InesMod.cards.status.ShadowWhistle;
 import InesMod.characters.Ines;
@@ -38,7 +39,7 @@ public class VeiledInSight extends AbstractInesCard {
     public void use(AbstractPlayer p, AbstractMonster m) {
         addToBot(new DamageAllEnemiesAction(p, this.multiDamage, this.damageTypeForTurn, AbstractGameAction.AttackEffect.SLASH_VERTICAL));
         addToBot(new ApplyPowerAction(p, p, new InvisibilityPower(p, 1), 1));
-        addToBot(new ApplyPowerAction(p, p, new NoAttackPower(p,-1), -1));
+        addToBot(new ApplyNonStackPowerAction(p, p, new NoAttackPower(p,-1)));
     }
 
 

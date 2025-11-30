@@ -1,5 +1,6 @@
 package InesMod.cards.skill;
 
+import InesMod.action.ApplyNonStackPowerAction;
 import InesMod.action.MurkyNightAction;
 import InesMod.cards.AbstractInesCard;
 import InesMod.cards.status.ShadowWhistle;
@@ -48,7 +49,7 @@ public class DeadlyOpportunity extends AbstractInesCard {
             }
         }
         else {
-            addToBot(new ApplyPowerAction(p, p, new DeadlyOpportunityPower(p, -1, this.upgraded), -1));
+            addToBot(new ApplyNonStackPowerAction(p, p, new DeadlyOpportunityPower(p, -1, this.upgraded)));
         }
 
     }

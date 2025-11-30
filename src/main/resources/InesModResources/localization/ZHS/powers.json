@@ -29,7 +29,7 @@
   "InesMod:IllusionPower": {
     "NAME": "虚影",
     "DESCRIPTIONS": [
-      "可抵挡一次攻击伤害或在回合开始时转为 [E] 。"
+      "可抵挡 #b%d 次攻击伤害或在回合开始时转为%s。"
     ]
   },
   "InesMod:AgentVanguardPower": {
@@ -110,6 +110,12 @@
     "NAME": "漫漫长夜",
     "DESCRIPTIONS": [
       "本回合结束时保留所有 #y影哨 。"
+    ]
+  },
+  "InesMod:QuickVictoryPower": {
+    "NAME": "速战速决",
+    "DESCRIPTIONS": [
+      "处于 #y隐匿 时，攻击造成 #b2 倍伤害。 NL 回合结束时，额外失去 #b1 层 #y隐匿 并获得 #b1 层 #y虚影 。"
     ]
   }
 }

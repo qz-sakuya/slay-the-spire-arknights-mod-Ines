@@ -221,5 +221,9 @@
   "InesMod:CriticalInfo": {
     "NAME": "重点信息",
     "DESCRIPTION": "选择最多 !M! 张手牌 ines:在本回合保留 ，丢弃其它所有手牌。"
+  },
+  "InesMod:QuickVictory": {
+    "NAME": "速战速决",
+    "DESCRIPTION": "处于 ines:隐匿 时，攻击造成 2 倍伤害。回合结束时，额外失去 1 层 ines:隐匿 并获得 1 层 ines:虚影 。"
   }
 }

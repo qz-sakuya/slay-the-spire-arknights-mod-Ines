@@ -1,5 +1,6 @@
 package InesMod.cards.attack;
 
+import InesMod.action.ApplyNonStackPowerAction;
 import InesMod.cards.AbstractInesCard;
 import InesMod.cards.status.ShadowWhistle;
 import InesMod.characters.Ines;
@@ -40,7 +41,7 @@ public class MasterTheGame extends AbstractInesCard {
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
         addToBot(new DamageAction(m, new DamageInfo(p, damage, DamageType.NORMAL), AbstractGameAction.AttackEffect.SLASH_VERTICAL));
-        addToBot(new ApplyPowerAction(p, p, new MasterTheGamePower(p, -1), -1));
+        addToBot(new ApplyNonStackPowerAction(p, p, new MasterTheGamePower(p, -1)));
     }
 
 

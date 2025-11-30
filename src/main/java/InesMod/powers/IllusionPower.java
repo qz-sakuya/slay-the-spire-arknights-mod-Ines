@@ -2,6 +2,7 @@ package InesMod.powers;
 
 import InesMod.helpers.PathHelper;
 import com.megacrit.cardcrawl.actions.common.GainEnergyAction;
+import com.megacrit.cardcrawl.actions.common.ReducePowerAction;
 import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
@@ -22,20 +23,26 @@ public class IllusionPower extends AbstractInesPower {
                 powerStrings,
                 owner,
                 PowerType.BUFF,
-                amount); // 此能力不可叠加
+                amount);
     }
+
 
 
     @Override
     public void updateDescription() {
-        this.description = descriptions[0];
+        StringBuilder energyText = new StringBuilder();
+        for (int i = 0; i<this.amount; i++) {
+            energyText.append(" [E] ");
+        }
+        this.description = String.format(descriptions[0], this.amount, energyText);
     }
 
 
     @Override
     public void atStartOfTurn() {
-        addToBot(new GainEnergyAction(1));
-        addToBot(new RemoveSpecificPowerAction(this.owner, this.owner, IllusionPower.ID));
+        flash();
+        addToBot(new ReducePowerAction(this.owner, this.owner, IllusionPower.ID,this.amount));
+        addToBot(new GainEnergyAction(this.amount));
     }
 
 
@@ -44,7 +51,7 @@ public class IllusionPower extends AbstractInesPower {
     @Override
     public int onAttackedToChangeDamage(DamageInfo info, int damageAmount) {
         if (damageAmount > 0) {
-            addToBot(new RemoveSpecificPowerAction(this.owner, this.owner, IllusionPower.ID));
+            addToTop(new ReducePowerAction(this.owner, this.owner, IllusionPower.ID,1));
         }
         return 0; // 使伤害归零
     }
