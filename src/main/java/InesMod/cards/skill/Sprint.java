@@ -22,7 +22,7 @@ public class Sprint extends AbstractInesCard {
 
     public Sprint() {
         super(ID,
-                true,
+                false,
                 cardStrings,
                 1,
                 CardType.SKILL,

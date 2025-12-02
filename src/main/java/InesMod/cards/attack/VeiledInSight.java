@@ -24,7 +24,7 @@ public class VeiledInSight extends AbstractInesCard {
 
     public VeiledInSight() {
         super(ID,
-                true,
+                false,
                 cardStrings,
                 2,
                 CardType.ATTACK,

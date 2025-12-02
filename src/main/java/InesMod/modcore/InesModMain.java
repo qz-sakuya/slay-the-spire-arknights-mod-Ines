@@ -266,9 +266,8 @@ public class InesModMain implements
         }
 
         if (card.tags.contains(InesCardTags.RetainThisTurn)) {
-            // 删除tag与文本
+            // 删除tag（文本由patch处理）
             card.tags.remove(InesCardTags.RetainThisTurn);
-            card.rawDescription =  card.rawDescription.replace(retainThisTurnStrings.TEXT[1], "");
             card.initializeDescription();
 
             // 不再保留

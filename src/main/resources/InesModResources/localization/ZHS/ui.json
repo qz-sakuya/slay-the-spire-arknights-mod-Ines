@@ -35,5 +35,10 @@
       "在本回合保留。",
       " NL  ines:在本回合保留 。"
     ]
+  },
+  "InesMod:CardTags": {
+    "TEXT": [
+      " NL  ines:在本回合保留 。"
+    ]
   }
 }

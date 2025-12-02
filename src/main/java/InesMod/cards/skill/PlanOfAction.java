@@ -21,7 +21,7 @@ public class PlanOfAction extends AbstractInesCard {
 
     public PlanOfAction() {
         super(ID,
-                true,
+                false,
                 cardStrings,
                 1,
                 CardType.SKILL,

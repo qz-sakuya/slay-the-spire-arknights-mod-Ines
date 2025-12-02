@@ -175,7 +175,8 @@
   },
   "InesMod:WinFirst": {
     "NAME": "先手为强",
-    "DESCRIPTION": " 固有 。 NL 获得等同于敌人数量的 能量 。 NL  消耗 。"
+    "DESCRIPTION": " 固有 。 NL 获得等同于敌人数量的 能量 。 NL  消耗 。",
+    "UPGRADE_DESCRIPTION": " 固有 。 NL 获得等同于敌人数量+1的 能量 。 NL  消耗 。"
   },
   "InesMod:Wander": {
     "NAME": "徘徊",

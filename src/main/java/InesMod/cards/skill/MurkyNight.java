@@ -27,7 +27,7 @@ public class MurkyNight extends AbstractInesCard {
 
     public MurkyNight() {
         super(ID,
-                true,
+                false,
                 cardStrings,
                 2,
                 CardType.SKILL,

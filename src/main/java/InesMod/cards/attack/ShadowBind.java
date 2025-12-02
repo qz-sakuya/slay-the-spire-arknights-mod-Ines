@@ -28,7 +28,7 @@ public class ShadowBind extends AbstractInesCard {
 
     public ShadowBind() {
         super(ID,
-                true,
+                false,
                 cardStrings,
                 1,
                 CardType.ATTACK,

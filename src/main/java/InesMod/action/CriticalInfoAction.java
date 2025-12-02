@@ -59,9 +59,8 @@ public class CriticalInfoAction extends AbstractGameAction {
                     // 使选中的牌在本回合保留
                     c.retain = true;
 
-                    // 添加tag与文本
+                    // 添加tag（文本由patch处理）
                     c.tags.add(InesCardTags.RetainThisTurn);
-                    c.rawDescription = c.rawDescription + TEXT[1];
                     c.initializeDescription();
                 }
                 addToTop(new AddCardToHandAction(c));

@@ -23,7 +23,7 @@ public class WinFirst extends AbstractInesCard {
 
     public WinFirst() {
         super(ID,
-                true,
+                false,
                 cardStrings,
                 0,
                 CardType.SKILL,
@@ -56,6 +56,9 @@ public class WinFirst extends AbstractInesCard {
         if (!this.upgraded) {
             this.upgradeName();
             this.upgradeBaseCost(0);
+
+            this.rawDescription = cardStrings.UPGRADE_DESCRIPTION;
+            this.initializeDescription();
         }
     }
 }
