@@ -1,11 +1,10 @@
 package InesMod.characters;
 
 
-// TODO：加入游戏结束时的neow文本（心脏，与考虑额外结局）
+// TODO：加入游戏结束时的neow文本（心脏，与考虑额外结局），参考萃香mod
 
 import InesMod.cards.attack.ShadowAmbush;
 import InesMod.cards.attack.Strike;
-import InesMod.cards.test.UNUSEDStrikeTest;
 import InesMod.cards.skill.Defend;
 import InesMod.cards.skill.EdgeOfLight;
 import InesMod.cards.skill.PlanOfAction;
@@ -99,7 +98,7 @@ public class Ines extends CustomPlayer {
         InesModMain.logger.info("===============开始导入模型================");
         loadAnimation("InesModResources/model/char_4087_ines.atlas",
                 "InesModResources/model/char_4087_ines.json",
-                        1.8F);
+                        1.6F);
 
         AnimationState.TrackEntry e = this.state.setAnimation(0, "Idle", true);
         e.setTime(e.getEndTime() * MathUtils.random());
@@ -186,7 +185,7 @@ public class Ines extends CustomPlayer {
     // 翻牌事件出现的你的职业牌（一般设为打击）
     @Override
     public AbstractCard getStartCardForEvent() {
-        return new UNUSEDStrikeTest();
+        return new Strike();
     }
 
     // 卡牌轨迹颜色

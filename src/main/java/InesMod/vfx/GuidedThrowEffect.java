@@ -53,7 +53,7 @@ public class GuidedThrowEffect extends AbstractGameEffect {
 
         this.color = InesModMain.MY_COLOR_DARK;
 
-        float baseBounce = 400.0F; // 弹跳高度
+        float baseBounce = 390.0F; // 弹跳高度
         if (this.sY > this.dY) {
             this.bounceHeight = baseBounce * Settings.scale;
         } else {

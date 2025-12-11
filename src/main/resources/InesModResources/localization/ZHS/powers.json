@@ -117,5 +117,23 @@
     "DESCRIPTIONS": [
       "处于 #y隐匿 时，攻击造成 #b2 倍伤害。 NL 回合结束时，额外失去 #b1 层 #y隐匿 并获得 #b1 层 #y虚影 。"
     ]
+  },
+  "InesMod:RapidRedeploymentPower": {
+    "NAME": "快速重部署",
+    "DESCRIPTIONS": [
+      "下回合开始时，抽 #b%d 张牌且这些牌在一回合内耗能变为 #b0 。"
+    ]
+  },
+  "InesMod:ShadowWeavePower": {
+    "NAME": "影织",
+    "DESCRIPTIONS": [
+      "回合开始时，向手牌中加入 #b%d 张 #y影哨 。"
+    ]
+  },
+  "InesMod:LoneReturnPower": {
+    "NAME": "独影归途",
+    "DESCRIPTIONS": [
+      "回合开始时，获得 #b%d 层 #y偷取 。"
+    ]
   }
 }

@@ -226,5 +226,22 @@
   "InesMod:QuickVictory": {
     "NAME": "速战速决",
     "DESCRIPTION": "处于 ines:隐匿 时，攻击造成 2 倍伤害。回合结束时，额外失去 1 层 ines:隐匿 并获得 1 层 ines:虚影 。"
+  },
+  "InesMod:RapidRedeployment": {
+    "NAME": "快速重部署",
+    "DESCRIPTION": "下回合开始时，抽 !M! 张牌且这些牌在一回合内耗能变为 0 。"
+  },
+  "InesMod:ChaseWithShadow": {
+    "NAME": "乘影追击",
+    "DESCRIPTION": "造成 !D! 点伤害。 NL 如果上一张打出的牌是非同名攻击牌，此牌从弃牌堆返回手牌。",
+    "UPGRADE_DESCRIPTION":"造成 !D! 点伤害。 NL 如果上一张打出的牌是非同名攻击牌，此牌从弃牌堆返回手牌。 NL  保留 。"
+  },
+  "InesMod:ShadowWeave": {
+    "NAME": "影织",
+    "DESCRIPTION": "你的回合开始时，向手牌中加入 1 张 *影哨 。"
+  },
+  "InesMod:LoneReturn": {
+    "NAME": "独影归途",
+    "DESCRIPTION": "回合开始时，获得 !M! 层 ines:偷取 。"
   }
 }
