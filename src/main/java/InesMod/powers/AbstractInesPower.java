@@ -1,10 +1,14 @@
 package InesMod.powers;
 
 import InesMod.helpers.PathHelper;
+import InesMod.modcore.InesModMain;
+import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.core.AbstractCreature;
+import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
@@ -18,12 +22,18 @@ public abstract class AbstractInesPower extends AbstractPower {
     private static final Map<String, TextureAtlas.AtlasRegion> powerImgCache = new HashMap<>();
     public String[] descriptions;
 
-    public AbstractInesPower(String ID, boolean useTmpArt, PowerStrings strings, AbstractCreature owner, PowerType type, int amount) {
+    // 可选的第二个数字
+    public Integer secondAmount = null;
+    private final Color redColor = new Color(1.0F, 0.0F, 0.0F, 1.0F);
+    private final Color greenColor = new Color(0.0F, 1.0F, 0.0F, 1.0F);
+
+    public AbstractInesPower(String ID, boolean useTmpArt, PowerStrings strings, AbstractCreature owner, PowerType type, int amount, Integer secondAmount) {
         this.ID = ID;
         this.name = strings.NAME;
         this.owner = owner;
         this.type = type;
         this.amount = amount; // -1为不可叠加
+        this.secondAmount = secondAmount;
         this.descriptions = strings.DESCRIPTIONS;
 
         if (!powerImgCache.containsKey(ID)) {
@@ -38,6 +48,10 @@ public abstract class AbstractInesPower extends AbstractPower {
         // 首次添加能力更新描述
         this.updateDescription();
     }
+    public AbstractInesPower(String ID, boolean useTmpArt, PowerStrings strings, AbstractCreature owner, PowerType type, int amount) {
+        this(ID, useTmpArt, strings, owner, type, amount, null);
+    }
+
 
 
     // 加载图片并放入缓存
@@ -73,4 +87,32 @@ public abstract class AbstractInesPower extends AbstractPower {
     // 自定义回调
     public void onCardMove(AbstractCard c, CardGroup.CardGroupType groupType) {}
 
+
+    // 绘制第二个数字
+    public void renderSecondAmount(SpriteBatch sb, float x, float y, Color c) {
+        if (secondAmount == null) {
+            return;
+        }
+
+        // InesModMain.logger.info("===AbstractInesPower renderSecondAmount：secondAmount层数：{}===",secondAmount);
+
+        /*
+        if (this.secondAmount > 0) {
+            if (!this.isTurnBased) {
+                this.greenColor.a = c.a;
+                c = this.greenColor;
+            }
+
+            FontHelper.renderFontRightTopAligned(sb, FontHelper.powerAmountFont, Integer.toString(this.secondAmount), x, y, this.fontScale, c);
+        } else if (this.secondAmount < 0) {
+            this.redColor.a = c.a;
+            c = this.redColor;
+            FontHelper.renderFontRightTopAligned(sb, FontHelper.powerAmountFont, Integer.toString(this.secondAmount), x, y, this.fontScale, c);
+        }
+         */
+
+        // 默认白色
+        FontHelper.renderFontRightTopAligned(sb, FontHelper.powerAmountFont, Integer.toString(this.secondAmount), x, y, this.fontScale, c);
+
+    }
 }

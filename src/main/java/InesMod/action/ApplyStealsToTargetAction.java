@@ -3,10 +3,7 @@ package InesMod.action;
 import InesMod.cards.skill.LayTraps;
 import InesMod.cards.skill.PreciseRecon;
 import InesMod.modcore.InesModMain;
-import InesMod.powers.InterPower;
-import InesMod.powers.StealsPower;
-import InesMod.powers.StrengthStolenPower;
-import InesMod.powers.ThoroughAnalysisPower;
+import InesMod.powers.*;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -56,11 +53,13 @@ public class ApplyStealsToTargetAction extends AbstractGameAction {
         if (triggerOther) {
             // 如果有分析透彻能力，判断是否给予易伤
             AbstractPower thoroughAnalysisPower = source.getPower(ThoroughAnalysisPower.ID);
-            if (thoroughAnalysisPower != null && amountBeforeReduce >= thoroughAnalysisPower.amount) {
+            if (thoroughAnalysisPower instanceof AbstractInesPower
+                    && amountBeforeReduce >= ((AbstractInesPower)thoroughAnalysisPower).secondAmount) {
                 InesModMain.logger.info("===ApplyStealsToTargetAction: 分析透彻给予易伤，层数:{}===",consumeNum);
 
                 thoroughAnalysisPower.flash();
-                addToBot(new ApplyPowerAction(target, source, new VulnerablePower(target, consumeNum, false), consumeNum));
+                int numToAdd = consumeNum * thoroughAnalysisPower.amount;
+                addToBot(new ApplyPowerAction(target, source, new VulnerablePower(target, numToAdd, false), numToAdd));
             }
 
             // 如果手牌中有 精准探查 或 布设陷阱，触发效果

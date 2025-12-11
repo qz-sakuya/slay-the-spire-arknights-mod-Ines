@@ -47,7 +47,7 @@
   "InesMod:ThoroughAnalysisPower": {
     "NAME": "分析透彻",
     "DESCRIPTIONS": [
-      "拥有 #b%d 层 #y偷取 时， #y偷取 额外使目标获得 #b1 层 #y易伤 。"
+      "拥有 #b%d 层 #y偷取 时， 每消耗 #b1 层 #y偷取 额外使目标获得 #b%d 层 #y易伤 。"
     ]
   },
   "InesMod:NoInvisibilityPower": {

@@ -1,10 +1,13 @@
 package InesMod.cards.power;
 
 import InesMod.action.SetPowerAction;
+import InesMod.action.SetPowerSecondAmountAction;
 import InesMod.cards.AbstractInesCard;
 import InesMod.characters.Ines;
 import InesMod.helpers.PathHelper;
+import InesMod.powers.AbstractInesPower;
 import InesMod.powers.ThoroughAnalysisPower;
+import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
@@ -32,13 +35,18 @@ public class ThoroughAnalysis extends AbstractInesCard {
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        int tempNum = magicNumber;
-        AbstractPower thoroughAnalysisPower = p.getPower(ThoroughAnalysisPower.ID);
-        if (thoroughAnalysisPower != null && magicNumber > thoroughAnalysisPower.amount) {
-            tempNum = thoroughAnalysisPower.amount; // 修正为更小值
-        }
+        AbstractPower powerToGet = p.getPower(ThoroughAnalysisPower.ID);
+        if (powerToGet instanceof AbstractInesPower){
+            AbstractInesPower thoroughAnalysisPower = (AbstractInesPower) powerToGet;
 
-        addToBot(new SetPowerAction(p, p, new ThoroughAnalysisPower(p, tempNum), tempNum));
+            if (magicNumber < thoroughAnalysisPower.secondAmount) {
+                // 修正条件为更小值
+                addToBot(new SetPowerSecondAmountAction(p, p, ThoroughAnalysisPower.ID, magicNumber, true));
+            }
+        }else{
+            // 效果不可叠加
+            addToBot(new SetPowerAction(p, p, new ThoroughAnalysisPower(p, 1, magicNumber), 1));
+        }
     }
 
     @Override

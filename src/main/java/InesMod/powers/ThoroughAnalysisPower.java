@@ -13,19 +13,19 @@ public class ThoroughAnalysisPower extends AbstractInesPower {
     public static final String ID = PathHelper.nameToId(ThoroughAnalysisPower.class.getSimpleName());
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(ID); // 从游戏系统读取本地化资源
 
-    public ThoroughAnalysisPower(AbstractCreature owner, int amount) {
+    public ThoroughAnalysisPower(AbstractCreature owner, int amount, int secondAmount) {
         super(ID,
                 false,
                 powerStrings,
                 owner,
                 PowerType.BUFF,
-                amount);
-        this.isTurnBased = true; // 只是为了显示白色
+                amount,
+                secondAmount);
     }
 
 
     @Override
     public void updateDescription() {
-        this.description = String.format(descriptions[0], this.amount);
+        this.description = String.format(descriptions[0], this.secondAmount, this.amount);
     }
 }
