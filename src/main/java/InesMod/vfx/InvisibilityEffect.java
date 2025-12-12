@@ -35,9 +35,9 @@ public class InvisibilityEffect extends AbstractGameEffect {
 
 
         // 当计时器小于等于0时，添加特效并重置计时器
-        LoggerHelper.info("===InvisibilityEffect：timer{}===", timer);
+        // LoggerHelper.info("===InvisibilityEffect：timer{}===", timer);
         if (timer <= 0.0f) {
-            LoggerHelper.info("===InvisibilityEffect：触发一次特效===");
+            // LoggerHelper.info("===InvisibilityEffect：触发一次特效===");
             AbstractDungeon.effectsQueue.add(new InvisibilityAuraEffect("Wrath"));
             timer = EFFECT_INTERVAL; // 重置为固定间隔
         }

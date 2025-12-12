@@ -54,10 +54,18 @@ public class InterAction extends AbstractGameAction {
             // 如果有情报
             AbstractPower powerToFind = p.getPower(InterPower.ID);
             if (powerToFind != null) {
-                LoggerHelper.info("===情报action：具有情报===");
-                powerToFind.flash();
-                addToTop(new DrawCardAction(source, cardToDraw));
-                addToTop(new ReducePowerAction(this.source, this.source, InterPower.ID, cardToDraw));
+                LoggerHelper.info("===情报action：具有情报，层数：{}===",powerToFind.amount);
+
+                int cardCanDraw =  AbstractDungeon.player.drawPile.group.size()
+                        + AbstractDungeon.player.discardPile.group.size();
+
+                if (cardCanDraw > 0) {
+                    LoggerHelper.info("===情报action：具有可抽的牌，张数：{}===",cardCanDraw);
+
+                    powerToFind.flash();
+                    addToTop(new DrawCardAction(source, cardToDraw));
+                    addToTop(new ReducePowerAction(this.source, this.source, InterPower.ID, cardToDraw));
+                }
             }
         }
 

@@ -3,48 +3,56 @@ package InesMod.cards.skill;
 import InesMod.cards.AbstractInesCard;
 import InesMod.characters.Ines;
 import InesMod.helpers.PathHelper;
-import InesMod.powers.InvisibilityPower;
-import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
+import com.megacrit.cardcrawl.actions.common.HealAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 /**
- * 中文卡名：时间差
+ * 中文卡名：水煮口粮
  */
-public class TimeGap extends AbstractInesCard {
-    public static final String ID = PathHelper.nameToId(TimeGap.class.getSimpleName());
+public class BoiledRations extends AbstractInesCard {
+    public static final String ID = PathHelper.nameToId(BoiledRations.class.getSimpleName());
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID); // 从游戏系统读取本地化资源
 
+    private int magicNumberUpgradeNum; // 治疗量成长值
 
-
-    public TimeGap() {
+    public BoiledRations() {
         super(ID,
                 false,
                 cardStrings,
-                1,
+                0,
                 CardType.SKILL,
                 CardRarity.UNCOMMON,
                 CardTarget.SELF,
                 Ines.Enums.INES_CARD);
-        this.magicNumber = this.baseMagicNumber = 1;
+        this.magicNumber = this.baseMagicNumber = 3;
+        this.magicNumberUpgradeNum = this.magicNumber;
 
+        this.exhaust = true;
+        this.tags.add(CardTags.HEALING);
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        this.addToBot(new ApplyPowerAction(p, p, new InvisibilityPower(p, 1), 1));
-        updateCost(1);
+        addToBot(new HealAction(p, p, magicNumber));
     }
 
-
+    @Override
+    public void triggerWhenDrawn() {
+        upgradeMagicNumber(magicNumberUpgradeNum);
+    }
 
     @Override
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            upgradeBaseCost(0);
+            upgradeMagicNumber(1);
+            this.magicNumberUpgradeNum += 1;
+
+            this.rawDescription = cardStrings.UPGRADE_DESCRIPTION;
+            this.initializeDescription();
         }
     }
 }

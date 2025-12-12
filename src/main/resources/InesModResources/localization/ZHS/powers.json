@@ -135,5 +135,12 @@
     "DESCRIPTIONS": [
       "回合开始时，获得 #b%d 层 #y偷取 。"
     ]
+  },
+  "InesMod:ShiftFrontlinesPower": {
+    "NAME": "转移阵线",
+    "DESCRIPTIONS": [
+      "本回合内每丢弃 #b1 张牌，下回合开始时就获得 #b%d 点 #y情报 。",
+      " NL （已丢弃 #b%d 张牌）"
+    ]
   }
 }
