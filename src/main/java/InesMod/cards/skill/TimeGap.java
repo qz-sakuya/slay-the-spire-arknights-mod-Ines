@@ -33,7 +33,7 @@ public class TimeGap extends AbstractInesCard {
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
         this.addToBot(new ApplyPowerAction(p, p, new InvisibilityPower(p, 1), 1));
-        this.cost += 1;
+        updateCost(1);
     }
 
     @Override

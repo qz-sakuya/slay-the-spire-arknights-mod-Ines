@@ -243,5 +243,16 @@
   "InesMod:LoneReturn": {
     "NAME": "独影归途",
     "DESCRIPTION": "回合开始时，获得 !M! 层 ines:偷取 。"
+  },
+  "InesMod:NecessaryCost": {
+    "NAME": "必要代价",
+    "DESCRIPTION": "消耗所有 [E] 并丢弃所有手牌，造成相应次数的 !D! 点伤害。"
+  },
+  "InesMod:IntelTrade": {
+    "NAME": "情报交易",
+    "DESCRIPTION": "消耗 1 张牌，以增加 1 张随机能力牌到手牌，其本回合耗能变为 0 。 NL  消耗 。",
+    "EXTENDED_DESCRIPTION": [
+      "没有其它可以消耗的牌……"
+    ]
   }
 }
