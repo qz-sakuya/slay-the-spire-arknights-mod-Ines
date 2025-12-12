@@ -42,9 +42,9 @@ public class UnassumingNeedle extends CustomRelic {
 
     @Override
     public void atTurnStart() {
-          if (this.counter > 0) {
-              addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new StealsPower(AbstractDungeon.player, this.counter), this.counter));
-              addToBot(new UpgradeRelicCounterAction(this,-1));
+        if (this.counter > 0) {
+            addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new StealsPower(AbstractDungeon.player, this.counter), this.counter));
+            addToBot(new UpgradeRelicCounterAction(this,-1));
         }
     }
 
