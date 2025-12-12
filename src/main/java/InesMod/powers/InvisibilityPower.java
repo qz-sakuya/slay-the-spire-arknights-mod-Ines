@@ -1,6 +1,7 @@
 package InesMod.powers;
 
 import InesMod.cards.status.ShadowWhistle;
+import InesMod.helpers.LoggerHelper;
 import InesMod.helpers.PathHelper;
 import InesMod.modcore.InesModMain;
 import InesMod.vfx.InvisibilityEffect;
@@ -93,12 +94,12 @@ public class InvisibilityPower extends AbstractInesPower {
                 }
             }
 
-            InesModMain.logger.info("===InvisibilityPower: shadowWhistleGroup size:{}===",shadowWhistleGroup.size());
+            LoggerHelper.info("===InvisibilityPower: shadowWhistleGroup size:{}===",shadowWhistleGroup.size());
 
             if (!shadowWhistleGroup.isEmpty()) {
                 // 随机选取一张影哨
                 int randomIndex = AbstractDungeon.cardRandomRng.random(shadowWhistleGroup.size()-1);
-                InesModMain.logger.info("===InvisibilityPower: randomIndex:{}===",randomIndex);
+                LoggerHelper.info("===InvisibilityPower: randomIndex:{}===",randomIndex);
                 AbstractCard randomCard = shadowWhistleGroup.get(randomIndex);
 
                 // 如果有 掌握全局 能力

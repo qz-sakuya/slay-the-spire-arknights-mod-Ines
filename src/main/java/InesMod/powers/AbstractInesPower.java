@@ -94,7 +94,7 @@ public abstract class AbstractInesPower extends AbstractPower {
             return;
         }
 
-        // InesModMain.logger.info("===AbstractInesPower renderSecondAmount：secondAmount层数：{}===",secondAmount);
+        // LoggerHelper.info("===AbstractInesPower renderSecondAmount：secondAmount层数：{}===",secondAmount);
 
         /*
         if (this.secondAmount > 0) {

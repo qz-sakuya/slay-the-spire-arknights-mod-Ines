@@ -8,6 +8,7 @@ import InesMod.cards.attack.Strike;
 import InesMod.cards.skill.Defend;
 import InesMod.cards.skill.EdgeOfLight;
 import InesMod.cards.skill.PlanOfAction;
+import InesMod.helpers.LoggerHelper;
 import InesMod.modcore.InesModMain;
 import InesMod.relics.UnassumingNeedle;
 import basemod.abstracts.CustomPlayer;
@@ -95,7 +96,7 @@ public class Ines extends CustomPlayer {
         );
 
         // 设置动画
-        InesModMain.logger.info("===============开始导入模型================");
+        LoggerHelper.info("InesMod：开始导入模型");
         loadAnimation("InesModResources/model/char_4087_ines.atlas",
                 "InesModResources/model/char_4087_ines.json",
                         1.6F);
@@ -158,7 +159,7 @@ public class Ines extends CustomPlayer {
 
     @Override
     public void useFastAttackAnimation() {
-        InesModMain.logger.info("===Ines人物：useFastAttackAnimation===");
+        LoggerHelper.info("===Ines人物：useFastAttackAnimation===");
         this.state.setAnimation(0, "Attack", false);
         this.state.addAnimation(0, "Idle", true, 0.0F);
         this.state.getCurrent(0).setTimeScale(1.2F);
@@ -209,7 +210,7 @@ public class Ines extends CustomPlayer {
     // 人物选择界面点击你的人物按钮时触发的方法，这里为屏幕轻微震动
     @Override
     public void doCharSelectScreenSelectEffect() {
-        // InesModMain.logger.info("===点击人物选择按钮，开始播放音频===");
+        // LoggerHelper.info("===点击人物选择按钮，开始播放音频===");
         if (MathUtils.randomBoolean()) {
             CardCrawlGame.sound.playV("Ines_choose_1", 1.4F);
         } else {
@@ -303,7 +304,7 @@ public class Ines extends CustomPlayer {
         }
         counterForInsight = 0;
         needForInsight = 10;
-        InesModMain.logger.info("===回合开始，counterForInsight：{}===",counterForInsight);
+        LoggerHelper.info("===回合开始，counterForInsight：{}===",counterForInsight);
     }
 
     // 重载此函数，以统计回合结束状态

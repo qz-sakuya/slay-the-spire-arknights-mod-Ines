@@ -1,6 +1,7 @@
 package InesMod.action;
 
 import InesMod.cards.status.ShadowWhistle;
+import InesMod.helpers.LoggerHelper;
 import InesMod.helpers.PathHelper;
 import InesMod.modcore.InesModMain;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
@@ -27,7 +28,7 @@ public class SilhouetteAction extends AbstractGameAction {
 
     @Override
     public void update() {
-        InesModMain.logger.info("===SilhouetteAction：start===");
+        LoggerHelper.info("===SilhouetteAction：start===");
         int cnt = 0;
 
 

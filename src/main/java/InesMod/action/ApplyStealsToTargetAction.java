@@ -2,6 +2,7 @@ package InesMod.action;
 
 import InesMod.cards.skill.LayTraps;
 import InesMod.cards.skill.PreciseRecon;
+import InesMod.helpers.LoggerHelper;
 import InesMod.modcore.InesModMain;
 import InesMod.powers.*;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
@@ -37,7 +38,7 @@ public class ApplyStealsToTargetAction extends AbstractGameAction {
 
     @Override
     public void update() {
-        InesModMain.logger.info("===ApplyStealsToTargetAction: start，当前consumeNum:{}===",consumeNum);
+        LoggerHelper.info("===ApplyStealsToTargetAction: start，当前consumeNum:{}===",consumeNum);
 
         // 给当前目标减一次力量
         if (!target.hasPower("Artifact")) {
@@ -55,7 +56,7 @@ public class ApplyStealsToTargetAction extends AbstractGameAction {
             AbstractPower thoroughAnalysisPower = source.getPower(ThoroughAnalysisPower.ID);
             if (thoroughAnalysisPower instanceof AbstractInesPower
                     && amountBeforeReduce >= ((AbstractInesPower)thoroughAnalysisPower).secondAmount) {
-                InesModMain.logger.info("===ApplyStealsToTargetAction: 分析透彻给予易伤，层数:{}===",consumeNum);
+                LoggerHelper.info("===ApplyStealsToTargetAction: 分析透彻给予易伤，层数:{}===",consumeNum);
 
                 thoroughAnalysisPower.flash();
                 int numToAdd = consumeNum * thoroughAnalysisPower.amount;
@@ -68,13 +69,13 @@ public class ApplyStealsToTargetAction extends AbstractGameAction {
                 for (AbstractCard c : p.hand.group) {
                     // 精准探查
                     if (c.cardID.equals(PreciseRecon.ID)) {
-                        InesModMain.logger.info("===ApplyStealsToTargetAction: 触发精准探查===");
+                        LoggerHelper.info("===ApplyStealsToTargetAction: 触发精准探查===");
                         addToBot(new ApplyPowerAction(source, source, new InterPower(source, c.magicNumber), c.magicNumber));
                     }
 
                     // 布设陷阱
                     if (c.cardID.equals(LayTraps.ID)) {
-                        InesModMain.logger.info("===ApplyStealsToTargetAction: 触发布设陷阱===");
+                        LoggerHelper.info("===ApplyStealsToTargetAction: 触发布设陷阱===");
                         addToBot(new ApplyPowerAction(target, source, new VulnerablePower(target, c.magicNumber, false), c.magicNumber));
                     }
                 }

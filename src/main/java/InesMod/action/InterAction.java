@@ -1,5 +1,6 @@
 package InesMod.action;
 
+import InesMod.helpers.LoggerHelper;
 import InesMod.modcore.InesModMain;
 import InesMod.powers.AgentVanguardPower;
 import InesMod.powers.InterPower;
@@ -43,17 +44,17 @@ public class InterAction extends AbstractGameAction {
 
     @Override
     public void update() {
-        InesModMain.logger.info("===情报action：开始===");
+        LoggerHelper.info("===情报action：开始===");
         AbstractPlayer p = (AbstractPlayer)source;
 
         if (!p.hasPower("No Draw") && p.hand.size() < 10) {
-            InesModMain.logger.info("===情报action：抽牌上限未满===");
+            LoggerHelper.info("===情报action：抽牌上限未满===");
             int cardToDraw = 1;
 
             // 如果有情报
             AbstractPower powerToFind = p.getPower(InterPower.ID);
             if (powerToFind != null) {
-                InesModMain.logger.info("===情报action：具有情报===");
+                LoggerHelper.info("===情报action：具有情报===");
                 powerToFind.flash();
                 addToTop(new DrawCardAction(source, cardToDraw));
                 addToTop(new ReducePowerAction(this.source, this.source, InterPower.ID, cardToDraw));

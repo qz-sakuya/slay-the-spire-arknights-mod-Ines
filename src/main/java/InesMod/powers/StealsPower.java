@@ -5,6 +5,7 @@ import InesMod.action.ReduceAndKeepPowerAction;
 import InesMod.cards.AbstractInesCard;
 import InesMod.characters.Ines;
 import InesMod.helpers.ConfigHelper;
+import InesMod.helpers.LoggerHelper;
 import InesMod.helpers.PathHelper;
 import InesMod.helpers.TutorialHelper;
 import InesMod.modcore.InesModMain;
@@ -64,7 +65,7 @@ public class StealsPower extends AbstractInesPower {
 
     @Override
     public void onUseCard(AbstractCard card, UseCardAction action) {
-        InesModMain.logger.info("===StealsPower: onUseCard, 当前卡牌id{}===",card.cardID);
+        LoggerHelper.info("===StealsPower: onUseCard, 当前卡牌id{}===",card.cardID);
         consumeNum = 0;
         if (card.type == AbstractCard.CardType.ATTACK) {
             // 获取消耗偷取的层数，如果没有则默认1
@@ -82,7 +83,7 @@ public class StealsPower extends AbstractInesPower {
                 amountBeforeReduce = this.amount;
                 addToTop(new ReduceAndKeepPowerAction(this.owner, this.owner, StealsPower.ID, consumeNum));
             }
-            InesModMain.logger.info("===StealsPower:  onUseCard，设置consumeNum为{}===",consumeNum);
+            LoggerHelper.info("===StealsPower:  onUseCard，设置consumeNum为{}===",consumeNum);
         }
     }
 
@@ -90,7 +91,7 @@ public class StealsPower extends AbstractInesPower {
 
     @Override
     public void onAttack(DamageInfo info, int damageAmount, AbstractCreature target) {
-        InesModMain.logger.info("===StealsPower: onAttack===");
+        LoggerHelper.info("===StealsPower: onAttack===");
 
         if (consumeNum > 0
                 && !stolenTarget.contains(target)
@@ -104,7 +105,7 @@ public class StealsPower extends AbstractInesPower {
 
     @Override
     public void onAfterUseCard(AbstractCard card, UseCardAction action) {
-        InesModMain.logger.info("===StealsPower: onAfterUseCard,当前卡牌id{}, 当前consumeNum{}===",card.cardID,consumeNum);
+        LoggerHelper.info("===StealsPower: onAfterUseCard,当前卡牌id{}, 当前consumeNum{}===",card.cardID,consumeNum);
         if (consumeNum > 0){
 
             // 给自己加一次力量

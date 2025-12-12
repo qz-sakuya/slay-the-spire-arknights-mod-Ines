@@ -1,5 +1,6 @@
 package InesMod.patchs;
 
+import InesMod.helpers.LoggerHelper;
 import InesMod.helpers.PathHelper;
 import InesMod.modcore.InesModMain;
 import InesMod.powers.InvisibilityPower;
@@ -27,15 +28,15 @@ public class ApplyPowerActionPatch {
     public static class Fun {
         @SpirePrefixPatch
         public static void Prefix(ApplyPowerAction __instance) {
-//            InesModMain.logger.info("===ApplyPowerActionPatch Fun：begin===");
+//            LoggerHelper.info("===ApplyPowerActionPatch Fun：begin===");
 
             AbstractPower powerToApply = ReflectionHacks.getPrivate(__instance, ApplyPowerAction.class, "powerToApply");
             if (powerToApply == null) {
                 return;
             }
 
-//            InesModMain.logger.info("===ApplyPowerActionPatch Fun：被添加的能力ID{}===", powerToApply.ID);
-//            InesModMain.logger.info("===ApplyPowerActionPatch Fun：被添加的能力层数{}===", powerToApply.amount);
+//            LoggerHelper.info("===ApplyPowerActionPatch Fun：被添加的能力ID{}===", powerToApply.ID);
+//            LoggerHelper.info("===ApplyPowerActionPatch Fun：被添加的能力层数{}===", powerToApply.amount);
 
 
             if (__instance.source != null) {
@@ -43,7 +44,7 @@ public class ApplyPowerActionPatch {
                 // 如果不能获得隐匿，且是添加隐匿，则禁止
                 AbstractPower noInvisibilityPower = __instance.source.getPower(NoInvisibilityPower.ID);
                 if (noInvisibilityPower != null && powerToApply.ID.equals(InvisibilityPower.ID)) {
-                    InesModMain.logger.info("===ApplyPowerActionPatch Fun：阻止添加隐匿===");
+                    LoggerHelper.info("===ApplyPowerActionPatch Fun：阻止添加隐匿===");
 
                     noInvisibilityPower.flash();
                     __instance.target = null; // 将目标设为空，后续就不会添加

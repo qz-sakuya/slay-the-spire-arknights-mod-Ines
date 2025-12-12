@@ -37,13 +37,13 @@ public class FileAction extends AbstractGameAction {
             return;
         }
 
-        // InesModMain.logger.info("===FileAction：原伤害{}===", this.info.output);
-        // InesModMain.logger.info("===FileAction：目标格挡{}===", this.m.currentBlock);
+        // LoggerHelper.info("===FileAction：原伤害{}===", this.info.output);
+        // LoggerHelper.info("===FileAction：目标格挡{}===", this.m.currentBlock);
         if (this.m.currentBlock > 0) { // 有格挡
             this.info.output *= this.magicNumber;
             this.info.isModified = true;
         }
-        // InesModMain.logger.info("===FileAction：判断后伤害{}===", this.info.output);
+        // LoggerHelper.info("===FileAction：判断后伤害{}===", this.info.output);
 
         if (this.duration == 0.01F && this.target.currentHealth > 0) {
             if (this.info.type != DamageInfo.DamageType.THORNS &&

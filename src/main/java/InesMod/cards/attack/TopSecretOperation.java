@@ -3,6 +3,7 @@ package InesMod.cards.attack;
 import InesMod.action.AutoUseOrExhaustAction;
 import InesMod.cards.AbstractInesCard;
 import InesMod.characters.Ines;
+import InesMod.helpers.LoggerHelper;
 import InesMod.helpers.PathHelper;
 import InesMod.modcore.InesModMain;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
@@ -54,7 +55,7 @@ public class TopSecretOperation extends AbstractInesCard {
     // 对于 冥想 将此牌加入手牌，无法触发 自动打出 ，猜测是强制结束回合，新 NewQueueCardAction 没有触发
     @Override
     public void autoUse() {
-        InesModMain.logger.info("===TopSecretOperation-autoUse===");
+        LoggerHelper.info("===TopSecretOperation-autoUse===");
 
         // 必须在 action 中判断能量与打出条件
         addToTop(new AutoUseOrExhaustAction(this));

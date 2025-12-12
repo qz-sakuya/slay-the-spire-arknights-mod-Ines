@@ -5,6 +5,7 @@ import InesMod.characters.Ines;
 
 import InesMod.enums.InesCardTags;
 import InesMod.helpers.ConfigHelper;
+import InesMod.helpers.LoggerHelper;
 import InesMod.helpers.PathHelper;
 import InesMod.relics.UnassumingNeedle;
 import basemod.AutoAdd;
@@ -45,8 +46,6 @@ public class InesModMain implements
         OnPlayerTurnStartSubscriber
 
 {
-    public static final Logger logger = LogManager.getLogger(InesModMain.class);
-
     // 人物选择界面按钮的图片
     private static final String MY_CHARACTER_BUTTON = "InesModResources/img/char/Character_Button.png";
     // 人物选择界面的立绘
@@ -83,9 +82,9 @@ public class InesModMain implements
                 BG_ATTACK_512, BG_SKILL_512, BG_POWER_512, ENERGY_ORB, BG_ATTACK_1024,
                 BG_SKILL_1024, BG_POWER_1024, BIG_ORB, SMALL_ORB
         );
-        InesModMain.logger.info("===正在回忆设置项===");
+        LoggerHelper.info("===正在回忆设置项===");
         ConfigHelper.initModSettings();
-        InesModMain.logger.info("===设置情报已收集===");
+        LoggerHelper.info("===设置情报已收集===");
     }
 
 
@@ -97,15 +96,15 @@ public class InesModMain implements
 
     @Override
     public void receiveEditCharacters() {
-        InesModMain.logger.info("===正在回忆人物===");
+        LoggerHelper.info("===正在回忆人物===");
         // 向basemod注册人物
         BaseMod.addCharacter(new Ines(CardCrawlGame.playerName), MY_CHARACTER_BUTTON, MY_CHARACTER_PORTRAIT, Ines.Enums.INES);
-        InesModMain.logger.info("===人物情报已收集===");
+        LoggerHelper.info("===人物情报已收集===");
     }
 
     @Override
     public void receiveEditCards() {
-        InesModMain.logger.info("===正在回忆卡牌===");
+        LoggerHelper.info("===正在回忆卡牌===");
         // 向basemod注册卡牌
         AutoAdd cards = new AutoAdd("InesModArknights");
         cards.packageFilter(AbstractInesCard.class).setDefaultSeen(false).any(AbstractInesCard.class, (info, card) -> {
@@ -117,7 +116,7 @@ public class InesModMain implements
                 UnlockTracker.unlockCard(card.cardID); // TODO：暂时全解锁
             }
         });
-        InesModMain.logger.info("===卡牌情报已收集===");
+        LoggerHelper.info("===卡牌情报已收集===");
     }
 
 
@@ -143,27 +142,27 @@ public class InesModMain implements
 
     @Override
     public void receiveAddAudio() {
-        InesModMain.logger.info("===正在回忆音频===");
+        LoggerHelper.info("===正在回忆音频===");
         // 注册音频
         BaseMod.addAudio("Ines_choose_1", "InesModResources/sound/Ines_choose_1.wav");
         BaseMod.addAudio("Ines_choose_2", "InesModResources/sound/Ines_choose_2.wav");
 
-        InesModMain.logger.info("===音频情报已收集===");
+        LoggerHelper.info("===音频情报已收集===");
     }
 
 
     @Override
     public void receiveEditRelics() {
-        InesModMain.logger.info("===正在回忆遗物===");
+        LoggerHelper.info("===正在回忆遗物===");
         // 注册遗物
         BaseMod.addRelic(new UnassumingNeedle(), RelicType.SHARED);
 
-        InesModMain.logger.info("===遗物情报已收集===");
+        LoggerHelper.info("===遗物情报已收集===");
     }
 
     @Override
     public void receiveEditKeywords() {
-        InesModMain.logger.info("===正在回忆关键词===");
+        LoggerHelper.info("===正在回忆关键词===");
         String lang = selectLanguage();
 
         Gson gson = new Gson();
@@ -177,7 +176,7 @@ public class InesModMain implements
             }
         }
 
-        InesModMain.logger.info("===关键词情报已收集===");
+        LoggerHelper.info("===关键词情报已收集===");
     }
 
     @Override
@@ -193,7 +192,7 @@ public class InesModMain implements
 
     @Override
     public void  receiveOnPlayerTurnStart(){
-        InesModMain.logger.info("===InesModMain: receiveOnPlayerTurnStart===");
+        LoggerHelper.info("===InesModMain: receiveOnPlayerTurnStart===");
 
         // 重置“在本回合保留。”词条
         for (AbstractCard c : AbstractDungeon.player.hand.group) {
@@ -215,7 +214,7 @@ public class InesModMain implements
 
     @Override
     public void receiveCardUsed(AbstractCard c) {
-        InesModMain.logger.info("===InesModMain: receiveCardUsed===");
+        LoggerHelper.info("===InesModMain: receiveCardUsed===");
 
         for (AbstractCard cardToCall : AbstractDungeon.player.hand.group) {
             if (cardToCall instanceof AbstractInesCard){

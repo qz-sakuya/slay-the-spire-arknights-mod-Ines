@@ -17,6 +17,7 @@ import java.util.Properties;
 public class ConfigHelper {
     // ---可调整的config---
     public static boolean banExtraEnding = false;
+    public static boolean dontShowLoggerInfo = false;
 
     // ---不可调整的config---
     public static boolean tutorialClosed1 = false;
@@ -30,6 +31,8 @@ public class ConfigHelper {
     // 加载所有config，包括可调整的和不可调整的
     public static void initModSettings() {
         defaultSetting.setProperty(PathHelper.nameToId("BAN_EXTRA_ENDING"), String.valueOf(banExtraEnding));
+        defaultSetting.setProperty(PathHelper.nameToId("DONT_SHOW_LOGGER_INFO"), String.valueOf(dontShowLoggerInfo));
+
         defaultSetting.setProperty(PathHelper.nameToId("TUTORIAL_CLOSED_1"), String.valueOf(tutorialClosed1));
 
         try {
@@ -37,13 +40,15 @@ public class ConfigHelper {
             config.load();
 
             banExtraEnding = config.getBool(PathHelper.nameToId("BAN_EXTRA_ENDING"));
+            dontShowLoggerInfo = config.getBool(PathHelper.nameToId("DONT_SHOW_LOGGER_INFO"));
+
             tutorialClosed1 = config.getBool(PathHelper.nameToId("TUTORIAL_CLOSED_1"));
 
-            InesModMain.logger.info("===加载config: banExtraEnding:{}===",banExtraEnding);
-            InesModMain.logger.info("===加载config: tutorialClosed1:{}===",tutorialClosed1);
+            LoggerHelper.info("===加载config: banExtraEnding:{}===",banExtraEnding);
+            LoggerHelper.info("===加载config: tutorialClosed1:{}===",tutorialClosed1);
 
         } catch (Exception e) {
-            InesModMain.logger.info("===加载config失败{}===",e.getLocalizedMessage());
+            LoggerHelper.info("===加载config失败{}===",e.getLocalizedMessage());
         }
     }
 
@@ -60,17 +65,30 @@ public class ConfigHelper {
         UIStrings uis = CardCrawlGame.languagePack.getUIString(PathHelper.nameToId("Config"));
 
         // 设置1按钮
-        ModLabeledToggleButton btn1 = new ModLabeledToggleButton(uis.TEXT[1], 350.0F, 700.0F, Settings.CREAM_COLOR, FontHelper.charDescFont, banExtraEnding, settingsPanel, modLabel -> {
+        ModLabeledToggleButton btn1 = new ModLabeledToggleButton(uis.TEXT[1], 350.0F, 800.0F, Settings.CREAM_COLOR, FontHelper.charDescFont, banExtraEnding, settingsPanel, modLabel -> {
         }, modToggleButton -> {
             banExtraEnding = modToggleButton.enabled;
             config.setBool(PathHelper.nameToId("BAN_EXTRA_ENDING"), banExtraEnding);
             try {
                 config.save();
             } catch (IOException e) {
-                InesModMain.logger.info("===save config credit failed{}===",e.getLocalizedMessage());
+                LoggerHelper.info("===save config credit failed{}===",e.getLocalizedMessage());
+            }
+        });
+
+        // 设置2按钮
+        ModLabeledToggleButton btn2 = new ModLabeledToggleButton(uis.TEXT[2], 350.0F, 300.0F, Settings.CREAM_COLOR, FontHelper.charDescFont, banExtraEnding, settingsPanel, modLabel -> {
+        }, modToggleButton -> {
+            dontShowLoggerInfo = modToggleButton.enabled;
+            config.setBool(PathHelper.nameToId("DONT_SHOW_LOGGER_INFO"), dontShowLoggerInfo);
+            try {
+                config.save();
+            } catch (IOException e) {
+                LoggerHelper.info("===save config credit failed{}===",e.getLocalizedMessage());
             }
         });
 
         settingsPanel.addUIElement(btn1);
+        settingsPanel.addUIElement(btn2);
     }
 }

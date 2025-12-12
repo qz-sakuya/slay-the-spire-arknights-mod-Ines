@@ -1,5 +1,6 @@
 package InesMod.patchs;
 
+import InesMod.helpers.LoggerHelper;
 import InesMod.helpers.PathHelper;
 import InesMod.modcore.InesModMain;
 import InesMod.powers.InvisibilityPower;
@@ -25,7 +26,7 @@ public class HandCardSelectScreenBugFixPatch {
     public static class Fun {
         @SpirePostfixPatch
         public static void Postfix(HandCardSelectScreen __instance) {
-            InesModMain.logger.info("===InesMod: HandCardSelectScreenBugFixPatch: Postfix===");
+            LoggerHelper.info("===InesMod: HandCardSelectScreenBugFixPatch: Postfix===");
 
             boolean anyNumber = ReflectionHacks.getPrivate(__instance, HandCardSelectScreen.class, "anyNumber");
             if (__instance.selectedCards.size() == 1 && anyNumber && !__instance.canPickZero) {

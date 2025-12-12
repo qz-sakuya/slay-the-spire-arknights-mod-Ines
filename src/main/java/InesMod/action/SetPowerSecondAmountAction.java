@@ -1,5 +1,6 @@
 package InesMod.action;
 
+import InesMod.helpers.LoggerHelper;
 import InesMod.modcore.InesModMain;
 import InesMod.powers.AbstractInesPower;
 import com.badlogic.gdx.Gdx;
@@ -62,7 +63,7 @@ public class SetPowerSecondAmountAction extends AbstractGameAction {
 
     @Override
     public void update() {
-        InesModMain.logger.info("===SetPowerSecondAmountAction update: powerId:{},层数：{}===",powerToApplyID,amount);
+        LoggerHelper.info("===SetPowerSecondAmountAction update: powerId:{},层数：{}===",powerToApplyID,amount);
         if (this.target != null && !this.target.isDeadOrEscaped()) {
             if (this.duration == this.startingDuration) {
                 if (this.target instanceof AbstractMonster && this.target.isDeadOrEscaped()) {

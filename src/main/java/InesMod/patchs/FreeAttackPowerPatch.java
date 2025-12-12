@@ -1,5 +1,6 @@
 package InesMod.patchs;
 
+import InesMod.helpers.LoggerHelper;
 import InesMod.helpers.PathHelper;
 import InesMod.modcore.InesModMain;
 import InesMod.powers.InvisibilityPower;
@@ -28,7 +29,7 @@ public class FreeAttackPowerPatch {
     public static class Fun {
         @SpirePostfixPatch
         public static void Postfix(FreeAttackPower __instance, AbstractCard card, UseCardAction action) {
-            InesModMain.logger.info("===FreeAttackPowerPatch Fun：begin===");
+            LoggerHelper.info("===FreeAttackPowerPatch Fun：begin===");
             __instance.updateDescription();
         }
 

@@ -2,6 +2,7 @@ package InesMod.cards.skill;
 
 import InesMod.cards.AbstractInesCard;
 import InesMod.characters.Ines;
+import InesMod.helpers.LoggerHelper;
 import InesMod.helpers.PathHelper;
 import InesMod.modcore.InesModMain;
 import com.megacrit.cardcrawl.actions.common.DiscardAction;
@@ -32,7 +33,7 @@ public class OldIntel extends AbstractInesCard {
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        InesModMain.logger.info("===OldIntel：use：baseMagicNumber：{}===",this.baseMagicNumber);
+        LoggerHelper.info("===OldIntel：use：baseMagicNumber：{}===",this.baseMagicNumber);
         addToBot(new DrawCardAction(p, this.magicNumber));
         addToBot(new DiscardAction(p, p, 1, false));
 
@@ -41,19 +42,19 @@ public class OldIntel extends AbstractInesCard {
             if (this.baseMagicNumber < 0) {
                 this.baseMagicNumber = 0;
             }
-            InesModMain.logger.info("===OldIntel：use：baseMagicNumber-1,now:：{}===",this.baseMagicNumber);
+            LoggerHelper.info("===OldIntel：use：baseMagicNumber-1,now:：{}===",this.baseMagicNumber);
         }
     }
 
     @Override
     public void onMoveToDiscard() {
-        InesModMain.logger.info("===OldIntel：onMoveToDiscard：baseMagicNumber：{}===",this.baseMagicNumber);
+        LoggerHelper.info("===OldIntel：onMoveToDiscard：baseMagicNumber：{}===",this.baseMagicNumber);
         if(!this.upgraded){
             this.baseMagicNumber -= 1;
             if (this.baseMagicNumber < 0) {
                 this.baseMagicNumber = 0;
             }
-            InesModMain.logger.info("===OldIntel：onMoveToDiscard：baseMagicNumber-1,now:：{}===",this.baseMagicNumber);
+            LoggerHelper.info("===OldIntel：onMoveToDiscard：baseMagicNumber-1,now:：{}===",this.baseMagicNumber);
         }
     }
 

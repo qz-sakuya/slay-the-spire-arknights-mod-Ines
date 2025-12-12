@@ -1,5 +1,6 @@
 package InesMod.action;
 
+import InesMod.helpers.LoggerHelper;
 import InesMod.helpers.PathHelper;
 import InesMod.helpers.TextHelper;
 import InesMod.modcore.InesModMain;
@@ -34,7 +35,7 @@ public class MoveCardsToDeckAction extends AbstractGameAction {
 
     @Override
     public void update() {
-        InesModMain.logger.info("===MoveCardsToDeckAction：start===");
+        LoggerHelper.info("===MoveCardsToDeckAction：start===");
 
         if (this.duration == 0.5F) {
             AbstractDungeon.handCardSelectScreen.open(uiStrings.TEXT[0], amount, anyNumber, canPickZero);
