@@ -87,6 +87,9 @@ public abstract class AbstractInesPower extends AbstractPower {
     // 自定义回调
     public void onCardMove(AbstractCard c, CardGroup.CardGroupType groupType) {}
 
+    // 补充一个手动弃牌时的回调，与遗物的同名
+    public void onManualDiscard(){}
+
 
     // 绘制第二个数字
     public void renderSecondAmount(SpriteBatch sb, float x, float y, Color c) {

@@ -1,5 +1,6 @@
 package InesMod.relics;
 
+import InesMod.action.UpgradeRelicCounterAction;
 import InesMod.powers.StealsPower;
 import basemod.abstracts.CustomRelic;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
@@ -23,6 +24,8 @@ public class UnassumingNeedle extends CustomRelic {
         super(ID, ImageMaster.loadImage(IMG_PATH), RELIC_TIER, LANDING_SOUND);
         // 如果你需要轮廓图，取消注释下面一行并注释上面一行，不需要就删除
         // super(ID, ImageMaster.loadImage(IMG_PATH), ImageMaster.loadImage(OUTLINE_PATH), RELIC_TIER, LANDING_SOUND);
+
+        this.counter = 3;
     }
 
     // 遗物初始描述
@@ -34,9 +37,15 @@ public class UnassumingNeedle extends CustomRelic {
     public void atBattleStart() {
         super.atBattleStart();
 
-        // 获得3层偷取
-        int cnt = 3;
-        addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new StealsPower(AbstractDungeon.player, cnt), cnt));
+        this.counter = 3;
+    }
+
+    @Override
+    public void atTurnStart() {
+          if (this.counter > 0) {
+              addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new StealsPower(AbstractDungeon.player, this.counter), this.counter));
+              addToBot(new UpgradeRelicCounterAction(this,-1));
+        }
     }
 
     public AbstractRelic makeCopy() {

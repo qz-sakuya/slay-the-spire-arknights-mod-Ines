@@ -22,9 +22,6 @@ import com.badlogic.gdx.graphics.Color;
  *  使其绘制第二个数字
  */
 public class renderPowerSecondAmountPatch {
-    public static final String ID = PathHelper.nameToId("CardTags");
-    private static final UIStrings uiStrings = CardCrawlGame.languagePack.getUIString(ID);
-
 
     @SpirePatch(clz = AbstractCreature.class, method = "renderPowerIcons")
     public static class Fun {
