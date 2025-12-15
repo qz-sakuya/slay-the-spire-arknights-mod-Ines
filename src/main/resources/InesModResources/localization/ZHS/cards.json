@@ -257,8 +257,8 @@
   },
   "InesMod:BoiledRations": {
     "NAME": "水煮口粮",
-    "DESCRIPTION": "回复 !M! 点生命值。 NL 此牌每被抽到一次，其效果+3。 NL  消耗 。",
-    "UPGRADE_DESCRIPTION":"回复 !M! 点生命值。 NL 此牌每被抽到一次，其效果+4。 NL  消耗 。"
+    "DESCRIPTION": "回复 !M! 点生命值。 NL 此牌每被抽到一次，其效果+1。 NL  消耗 。",
+    "UPGRADE_DESCRIPTION":"回复 !M! 点生命值。 NL 此牌每被抽到一次，其效果+2。 NL  消耗 。"
   },
   "InesMod:ShiftFrontlines": {
     "NAME": "转移阵线",

@@ -28,7 +28,7 @@ public class BoiledRations extends AbstractInesCard {
                 CardTarget.SELF,
                 Ines.Enums.INES_CARD);
         this.magicNumber = this.baseMagicNumber = 3;
-        this.magicNumberUpgradeNum = this.magicNumber;
+        this.magicNumberUpgradeNum = 1;
 
         this.exhaust = true;
         this.tags.add(CardTags.HEALING);
