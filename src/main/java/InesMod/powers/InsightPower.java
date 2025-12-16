@@ -10,6 +10,7 @@ import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.PowerStrings;
+import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 
 import java.util.HashSet;
@@ -76,10 +77,19 @@ public class InsightPower extends AbstractInesPower {
     @Override
     public void onAfterUseCard(AbstractCard card, UseCardAction action) {
         if (consumeNum > 0){
+            int strengthToApply = consumeNum;
+
+            // 如果有 佣兵手段 ，提升力量效果
+            AbstractPower mercenaryTacticsPower = owner.getPower(MercenaryTacticsPower.ID);
+            if (mercenaryTacticsPower != null) {
+                mercenaryTacticsPower.flash();
+                strengthToApply += (mercenaryTacticsPower.amount * consumeNum);
+            }
 
             // 给自己加一次力量
-            addToBot(new ApplyPowerAction(owner, owner, new StrengthPower(owner, consumeNum), consumeNum));
-            addToBot(new ApplyPowerAction(owner, owner, new StrengthStealPower(owner, consumeNum), consumeNum));
+            addToBot(new ApplyPowerAction(owner, owner, new StrengthPower(owner, strengthToApply), strengthToApply));
+            addToBot(new ApplyPowerAction(owner, owner, new StrengthStealPower(owner, strengthToApply), strengthToApply));
+
         }
 
 

@@ -45,7 +45,7 @@ public class StealsPower extends AbstractInesPower {
         consumeNum = 0;
         amountBeforeReduce = 0;
 
-        this.priority = 4; // 排在 洞悉（优先级5）及大多数power前面
+        this.priority = 3; // 排在 洞悉（优先级5）及大多数power（优先级默认5）前面
     }
 
     @Override
@@ -107,13 +107,21 @@ public class StealsPower extends AbstractInesPower {
     public void onAfterUseCard(AbstractCard card, UseCardAction action) {
         LoggerHelper.info("===StealsPower: onAfterUseCard,当前卡牌id{}, 当前consumeNum{}===",card.cardID,consumeNum);
         if (consumeNum > 0){
+            int strengthToApply = consumeNum;
+
+            // 如果有 佣兵手段 ，提升力量效果
+            AbstractPower mercenaryTacticsPower = owner.getPower(MercenaryTacticsPower.ID);
+            if (mercenaryTacticsPower != null) {
+                mercenaryTacticsPower.flash();
+                strengthToApply += (mercenaryTacticsPower.amount * consumeNum);
+            }
 
             // 给自己加一次力量
-            addToBot(new ApplyPowerAction(owner, owner, new StrengthPower(owner, consumeNum), consumeNum));
-            addToBot(new ApplyPowerAction(owner, owner, new StrengthStealPower(owner, consumeNum), consumeNum));
+            addToBot(new ApplyPowerAction(owner, owner, new StrengthPower(owner, strengthToApply), strengthToApply));
+            addToBot(new ApplyPowerAction(owner, owner, new StrengthStealPower(owner, strengthToApply), strengthToApply));
 
 
-            // 处理洞悉相关逻辑
+            // 处理 洞悉 相关逻辑
             if (owner instanceof Ines) {
                 Ines inesOwner = (Ines) owner;
                 inesOwner.counterForInsight += consumeNum;

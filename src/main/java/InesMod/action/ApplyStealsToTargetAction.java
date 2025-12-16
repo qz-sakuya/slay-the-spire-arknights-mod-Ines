@@ -40,14 +40,23 @@ public class ApplyStealsToTargetAction extends AbstractGameAction {
     public void update() {
         LoggerHelper.info("===ApplyStealsToTargetAction: start，当前consumeNum:{}===",consumeNum);
 
+        int strengthToApply = consumeNum;
+
+        // 如果有 佣兵手段 ，提升力量效果
+        AbstractPower mercenaryTacticsPower = source.getPower(MercenaryTacticsPower.ID);
+        if (mercenaryTacticsPower != null) {
+            mercenaryTacticsPower.flash();
+            strengthToApply += (mercenaryTacticsPower.amount * consumeNum);
+        }
+
         // 给当前目标减一次力量
         if (!target.hasPower("Artifact")) {
-            addToTop(new ApplyPowerAction(target, source, new StrengthStolenPower(target, consumeNum), consumeNum));
-            addToTop(new ApplyPowerAction(target, source, new StrengthPower(target, -consumeNum), -consumeNum));
+            addToTop(new ApplyPowerAction(target, source, new StrengthStolenPower(target, strengthToApply), strengthToApply));
+            addToTop(new ApplyPowerAction(target, source, new StrengthPower(target, -strengthToApply), -strengthToApply));
         }
         else {
             // 如果有人工制品，则不挂“被偷取力量”
-            addToTop(new ApplyPowerAction(target, source, new StrengthPower(target, -consumeNum), -consumeNum));
+            addToTop(new ApplyPowerAction(target, source, new StrengthPower(target, -strengthToApply), -strengthToApply));
         }
 
 

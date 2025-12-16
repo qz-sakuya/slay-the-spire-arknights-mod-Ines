@@ -1,5 +1,6 @@
 package InesMod.powers;
 
+import InesMod.cards.power.ShadowTerritory;
 import InesMod.cards.status.ShadowWhistle;
 import InesMod.helpers.LoggerHelper;
 import InesMod.helpers.PathHelper;
@@ -15,6 +16,7 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
+import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 
 import java.util.ArrayList;
@@ -77,6 +79,13 @@ public class InvisibilityPower extends AbstractInesPower {
 
             addToBot(new ReducePowerAction(this.owner, this.owner, InvisibilityPower.ID, numToChange));
             addToBot(new ApplyPowerAction(this.owner, this.owner, new IllusionPower(this.owner, numToChange)));
+
+            // 如果有 影之疆土 ，获得力量
+            AbstractPower shadowTerritoryPower = owner.getPower(ShadowTerritoryPower.ID);
+            if (shadowTerritoryPower != null) {
+                shadowTerritoryPower.flash();
+                addToBot(new ApplyPowerAction(owner, owner, new StrengthPower(owner, shadowTerritoryPower.amount), shadowTerritoryPower.amount));
+            }
         }
 
     }

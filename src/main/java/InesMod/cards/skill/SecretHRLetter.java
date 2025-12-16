@@ -22,7 +22,7 @@ public class SecretHRLetter extends AbstractInesCard {
 
     public SecretHRLetter() {
         super(ID,
-                true,
+                false,
                 cardStrings,
                 3,
                 CardType.SKILL,
@@ -37,7 +37,7 @@ public class SecretHRLetter extends AbstractInesCard {
     public void use(AbstractPlayer p, AbstractMonster m) {
         // 遍历手牌
         for (AbstractCard c : AbstractDungeon.player.hand.group) {
-            c.setCostForTurn(c.cost - 2); // 耗能-2
+            c.setCostForTurn(c.costForTurn - 2); // 耗能-2
         }
     }
 

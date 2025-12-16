@@ -33,8 +33,8 @@ public class PlanOfAction extends AbstractInesCard {
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        this.addToBot(new DrawCardAction(p, this.magicNumber));
-        this.addToBot(new ApplyPowerAction(p, p, new StealsPower(p, 1), 1));
+        this.addToBot(new DrawCardAction(p, magicNumber));
+        this.addToBot(new ApplyPowerAction(p, p, new StealsPower(p, magicNumber), magicNumber));
         this.addToBot(new GainEnergyAction(1));
     }
 

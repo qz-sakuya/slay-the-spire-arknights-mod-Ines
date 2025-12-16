@@ -142,5 +142,29 @@
       "本回合内每丢弃 #b1 张牌，下回合开始时就获得 #b%d 点 #y情报 。",
       " NL （已丢弃 #b%d 张牌）"
     ]
+  },
+  "InesMod:ShadowTerritoryPower": {
+    "NAME": "影之疆土",
+    "DESCRIPTIONS": [
+      "回合结束时，如果处于 #y隐匿 ，获得 #b%d 点 #y力量 。"
+    ]
+  },
+  "InesMod:RouteMappingPower": {
+    "NAME": "路线绘制",
+    "DESCRIPTIONS": [
+      "每有 #b1 张 #y影哨 进入手牌，获得 #b%d 层 #y偷取 。"
+    ]
+  },
+  "InesMod:MercenaryTacticsPower": {
+    "NAME": "佣兵手段",
+    "DESCRIPTIONS": [
+      " #y偷取 的 #y力量 效果 #b+%d 。"
+    ]
+  },
+  "InesMod:LurkInDeepShadowsPower": {
+    "NAME": "匿于深影",
+    "DESCRIPTIONS": [
+      "回合结束时，选择任意张 #y影哨 加入抽牌堆。 NL 每当抽到 #y影哨 时，额外抽 #b1 张牌。"
+    ]
   }
 }

@@ -17,7 +17,7 @@
   },
   "InesMod:PlanOfAction": {
     "NAME": "行动预谋",
-    "DESCRIPTION": "抽 !M! 张牌。 NL 获得 1 层 ines:偷取 和 [E] 。"
+    "DESCRIPTION": "抽 !M! 张牌。 NL 获得 !M! 层 ines:偷取 和 [E] 。"
   },
   "InesMod:ShadowWhistle": {
     "NAME": "影哨",
@@ -135,8 +135,8 @@
   },
   "InesMod:MasterTheGame": {
     "NAME": "掌控全局",
-    "DESCRIPTION": "造成 !D! 点伤害。 NL 本回合内，在 ines:隐匿 下打出攻击牌改为丢弃 *影哨 。",
-    "UPGRADE_DESCRIPTION": "造成 !D! 点伤害。 NL 本回合内，在 ines:隐匿 下打出攻击牌改为丢弃 *影哨 。 NL  保留 。"
+    "DESCRIPTION": "造成 !D! 点伤害。 NL 本回合在 ines:隐匿 下打出攻击牌改为丢弃 *影哨 。",
+    "UPGRADE_DESCRIPTION": "造成 !D! 点伤害。 NL 本回合在 ines:隐匿 下打出攻击牌改为丢弃 *影哨 。 NL  保留 。"
   },
   "InesMod:WeaponStockpile": {
     "NAME": "武器储备",
@@ -242,7 +242,8 @@
   },
   "InesMod:LoneReturn": {
     "NAME": "独影归途",
-    "DESCRIPTION": "回合开始时，获得 !M! 层 ines:偷取 。"
+    "DESCRIPTION": "你的回合开始时，获得 !M! 层 ines:偷取 。",
+    "UPGRADE_DESCRIPTION": "你的回合开始时，获得 !M! 层 ines:偷取 。 NL  固有 。"
   },
   "InesMod:NecessaryCost": {
     "NAME": "必要代价",
@@ -264,5 +265,26 @@
     "NAME": "转移阵线",
     "DESCRIPTION": "本回合内每丢弃 1 张牌，下回合开始时就获得 1 点 ines:情报 。",
     "UPGRADE_DESCRIPTION":"本回合内每丢弃 1 张牌，下回合开始时就获得 1 点 ines:情报 。 NL  保留 。"
+  },
+  "InesMod:ShadowTerritory": {
+    "NAME": "影之疆土",
+    "DESCRIPTION": "你的回合结束时，如果处于 ines:隐匿 ，获得 !M! 点 力量 。"
+  },
+  "InesMod:RouteMapping": {
+    "NAME": "路线绘制",
+    "DESCRIPTION": "每有 1 张 *影哨 进入手牌，获得 !M! 层 ines:偷取 。"
+  },
+  "InesMod:MercenaryTactics": {
+    "NAME": "佣兵手段",
+    "DESCRIPTION": " ines:偷取 的 力量 效果+1。"
+  },
+  "InesMod:RoyalAllianceTreaty": {
+    "NAME": "王庭盟约",
+    "DESCRIPTION": "你与所有敌人获得 2 层 无实体 。",
+    "UPGRADE_DESCRIPTION":"你与所有敌人获得 2 层 无实体 。 NL  保留 。"
+  },
+  "InesMod:LurkInDeepShadows": {
+    "NAME": "匿于深影",
+    "DESCRIPTION": "回合结束时，选择任意张 *影哨 加入抽牌堆。 NL 每当抽到 *影哨 时，额外抽 1 张牌。"
   }
 }
