@@ -25,7 +25,7 @@ public class PreciseRecon extends AbstractInesCard {
                 CardRarity.COMMON,
                 CardTarget.SELF,
                 Ines.Enums.INES_CARD);
-        this.magicNumber = this.baseMagicNumber = 2;
+        this.magicNumber = this.baseMagicNumber = 1;
     }
 
     @Override

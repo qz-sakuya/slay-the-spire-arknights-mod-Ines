@@ -25,7 +25,7 @@ public class ThoroughAnalysis extends AbstractInesCard {
         super(ID,
                 false,
                 cardStrings,
-                1,
+                0,
                 CardType.POWER,
                 CardRarity.UNCOMMON,
                 CardTarget.SELF,
