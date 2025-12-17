@@ -29,19 +29,25 @@ public class Wander extends AbstractInesCard {
                 CardRarity.UNCOMMON,
                 CardTarget.SELF,
                 Ines.Enums.INES_CARD);
-        this.magicNumber = this.baseMagicNumber = 5;
+        this.block = this.baseBlock = 5;
+        this.magicNumber = this.baseMagicNumber = 0;
 
         this.cardsToPreview = new ShadowWhistle();
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        this.addToBot(new GainBlockAction(p, p, block));
+        applyPowers();
+        this.magicNumber = this.baseMagicNumber;
+        for (int i = 0; i < this.magicNumber; ++i) {
+            this.addToBot(new GainBlockAction(p, p, block));
+        }
     }
 
     @Override
     public void applyPowers() {
         super.applyPowers();
+
         int cnt = 0;
         // 遍历手牌
         for (AbstractCard c : AbstractDungeon.player.hand.group) {
@@ -55,7 +61,7 @@ public class Wander extends AbstractInesCard {
                 cnt++;
             }
         }
-        this.baseBlock = cnt * magicNumber;
+        this.baseMagicNumber = cnt;
 
         // 添加额外文本
         this.rawDescription = cardStrings.DESCRIPTION + cardStrings.EXTENDED_DESCRIPTION[0];
@@ -66,7 +72,7 @@ public class Wander extends AbstractInesCard {
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            upgradeMagicNumber(2);
+            upgradeBlock(2);
         }
     }
 }

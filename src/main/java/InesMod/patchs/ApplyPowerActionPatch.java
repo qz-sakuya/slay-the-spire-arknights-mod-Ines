@@ -1,8 +1,7 @@
 package InesMod.patchs;
 
-import InesMod.helpers.LoggerHelper;
+import InesMod.helpers.LogHelper;
 import InesMod.helpers.PathHelper;
-import InesMod.modcore.InesModMain;
 import InesMod.powers.InvisibilityPower;
 import InesMod.powers.NoInvisibilityPower;
 import basemod.ReflectionHacks;
@@ -44,7 +43,7 @@ public class ApplyPowerActionPatch {
                 // 如果不能获得隐匿，且是添加隐匿，则禁止
                 AbstractPower noInvisibilityPower = __instance.source.getPower(NoInvisibilityPower.ID);
                 if (noInvisibilityPower != null && powerToApply.ID.equals(InvisibilityPower.ID)) {
-                    LoggerHelper.info("===ApplyPowerActionPatch Fun：阻止添加隐匿===");
+                    LogHelper.info("===ApplyPowerActionPatch Fun：阻止添加隐匿===");
 
                     noInvisibilityPower.flash();
                     __instance.target = null; // 将目标设为空，后续就不会添加

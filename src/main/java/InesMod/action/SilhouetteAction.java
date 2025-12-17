@@ -1,18 +1,12 @@
 package InesMod.action;
 
 import InesMod.cards.status.ShadowWhistle;
-import InesMod.helpers.LoggerHelper;
-import InesMod.helpers.PathHelper;
-import InesMod.modcore.InesModMain;
+import InesMod.helpers.LogHelper;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DrawCardAction;
-import com.megacrit.cardcrawl.actions.utility.WaitAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.core.AbstractCreature;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.localization.UIStrings;
 
 import java.util.ArrayList;
 
@@ -28,7 +22,7 @@ public class SilhouetteAction extends AbstractGameAction {
 
     @Override
     public void update() {
-        LoggerHelper.info("===SilhouetteAction：start===");
+        LogHelper.info("===SilhouetteAction：start===");
         int cnt = 0;
 
 

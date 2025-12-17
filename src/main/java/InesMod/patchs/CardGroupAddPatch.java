@@ -1,8 +1,7 @@
 package InesMod.patchs;
 
 import InesMod.cards.AbstractInesCard;
-import InesMod.helpers.LoggerHelper;
-import InesMod.modcore.InesModMain;
+import InesMod.helpers.LogHelper;
 import InesMod.powers.AbstractInesPower;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePrefixPatch;
@@ -23,7 +22,7 @@ public class CardGroupAddPatch {
     public static class AddToTop {
         @SpirePrefixPatch
         public static void Prefix(CardGroup __instance, AbstractCard c) {
-            LoggerHelper.info("===CardGroupAddPatch AddToTop：begin===");
+            LogHelper.info("===CardGroupAddPatch AddToTop：begin===");
             Work(__instance,c);
         }
     }
@@ -32,7 +31,7 @@ public class CardGroupAddPatch {
     public static class AddToBottom {
         @SpirePrefixPatch
         public static void Prefix(CardGroup __instance, AbstractCard c) {
-            LoggerHelper.info("===CardGroupAddPatch AddToBottom：begin===");
+            LogHelper.info("===CardGroupAddPatch AddToBottom：begin===");
             Work(__instance,c);
         }
     }
@@ -41,7 +40,7 @@ public class CardGroupAddPatch {
     public static class AddToRandomSpot {
         @SpirePrefixPatch
         public static void Prefix(CardGroup __instance, AbstractCard c) {
-            LoggerHelper.info("===CardGroupAddPatch AddToRandomSpot：begin===");
+            LogHelper.info("===CardGroupAddPatch AddToRandomSpot：begin===");
             Work(__instance,c);
         }
     }
@@ -50,15 +49,15 @@ public class CardGroupAddPatch {
     public static class AddToHand {
         @SpirePrefixPatch
         public static void Prefix(CardGroup __instance, AbstractCard c) {
-            LoggerHelper.info("===CardGroupAddPatch AddToHand：begin===");
+            LogHelper.info("===CardGroupAddPatch AddToHand：begin===");
             Work(__instance,c);
         }
 
     }
 
     public static void Work(CardGroup __instance, AbstractCard c) {
-        LoggerHelper.info("===CardGroupAddPatch：被加入的卡牌ID{}===", c.cardID);
-        LoggerHelper.info("===CardGroupAddPatch：牌被加入的位置{}===", __instance.type);
+        LogHelper.info("===CardGroupAddPatch：被加入的卡牌ID{}===", c.cardID);
+        LogHelper.info("===CardGroupAddPatch：牌被加入的位置{}===", __instance.type);
 
         // 触发自动打出
         if (c instanceof AbstractInesCard ){
@@ -69,11 +68,11 @@ public class CardGroupAddPatch {
                     tmp.autoUse();
                 }
                 else{
-                    LoggerHelper.info("===CardGroupAddPatch：从手牌回到手牌，跳过===");
+                    LogHelper.info("===CardGroupAddPatch：从手牌回到手牌，跳过===");
                 }
             }
             else{
-                LoggerHelper.info("===CardGroupAddPatch：被 add 的 CardGroup 不是手牌，跳过===");
+                LogHelper.info("===CardGroupAddPatch：被 add 的 CardGroup 不是手牌，跳过===");
             }
         }
 
@@ -86,7 +85,7 @@ public class CardGroupAddPatch {
                     __instance.type == CardGroup.CardGroupType.EXHAUST_PILE) {
 
                 tmp.lastAddedTo = __instance.type;
-                LoggerHelper.info("===CardGroupAddPatch：更新卡牌lastAddedTo为: {}===", tmp.lastAddedTo);
+                LogHelper.info("===CardGroupAddPatch：更新卡牌lastAddedTo为: {}===", tmp.lastAddedTo);
             }
         }
 

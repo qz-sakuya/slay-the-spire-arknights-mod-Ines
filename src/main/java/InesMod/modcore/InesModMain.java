@@ -5,7 +5,7 @@ import InesMod.characters.Ines;
 
 import InesMod.enums.InesCardTags;
 import InesMod.helpers.ConfigHelper;
-import InesMod.helpers.LoggerHelper;
+import InesMod.helpers.LogHelper;
 import InesMod.helpers.PathHelper;
 import InesMod.relics.UnassumingNeedle;
 import basemod.AutoAdd;
@@ -23,8 +23,6 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.*;
 import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 import java.nio.charset.StandardCharsets;
 
@@ -43,6 +41,7 @@ public class InesModMain implements
         AddAudioSubscriber,
         PostDrawSubscriber,
         OnCardUseSubscriber,
+        PostExhaustSubscriber,
         OnPlayerTurnStartSubscriber
 
 {
@@ -82,9 +81,9 @@ public class InesModMain implements
                 BG_ATTACK_512, BG_SKILL_512, BG_POWER_512, ENERGY_ORB, BG_ATTACK_1024,
                 BG_SKILL_1024, BG_POWER_1024, BIG_ORB, SMALL_ORB
         );
-        LoggerHelper.info("===正在回忆设置项===");
+        LogHelper.info("===正在回忆设置项===");
         ConfigHelper.initModSettings();
-        LoggerHelper.info("===设置情报已收集===");
+        LogHelper.info("===设置情报已收集===");
     }
 
 
@@ -96,15 +95,15 @@ public class InesModMain implements
 
     @Override
     public void receiveEditCharacters() {
-        LoggerHelper.info("===正在回忆人物===");
+        LogHelper.info("===正在回忆人物===");
         // 向basemod注册人物
         BaseMod.addCharacter(new Ines(CardCrawlGame.playerName), MY_CHARACTER_BUTTON, MY_CHARACTER_PORTRAIT, Ines.Enums.INES);
-        LoggerHelper.info("===人物情报已收集===");
+        LogHelper.info("===人物情报已收集===");
     }
 
     @Override
     public void receiveEditCards() {
-        LoggerHelper.info("===正在回忆卡牌===");
+        LogHelper.info("===正在回忆卡牌===");
         // 向basemod注册卡牌
         AutoAdd cards = new AutoAdd("InesModArknights");
         cards.packageFilter(AbstractInesCard.class).setDefaultSeen(false).any(AbstractInesCard.class, (info, card) -> {
@@ -116,7 +115,7 @@ public class InesModMain implements
                 UnlockTracker.unlockCard(card.cardID); // TODO：暂时全解锁
             }
         });
-        LoggerHelper.info("===卡牌情报已收集===");
+        LogHelper.info("===卡牌情报已收集===");
     }
 
 
@@ -142,27 +141,27 @@ public class InesModMain implements
 
     @Override
     public void receiveAddAudio() {
-        LoggerHelper.info("===正在回忆音频===");
+        LogHelper.info("===正在回忆音频===");
         // 注册音频
         BaseMod.addAudio("Ines_choose_1", "InesModResources/sound/Ines_choose_1.wav");
         BaseMod.addAudio("Ines_choose_2", "InesModResources/sound/Ines_choose_2.wav");
 
-        LoggerHelper.info("===音频情报已收集===");
+        LogHelper.info("===音频情报已收集===");
     }
 
 
     @Override
     public void receiveEditRelics() {
-        LoggerHelper.info("===正在回忆遗物===");
+        LogHelper.info("===正在回忆遗物===");
         // 注册遗物
         BaseMod.addRelic(new UnassumingNeedle(), RelicType.SHARED);
 
-        LoggerHelper.info("===遗物情报已收集===");
+        LogHelper.info("===遗物情报已收集===");
     }
 
     @Override
     public void receiveEditKeywords() {
-        LoggerHelper.info("===正在回忆关键词===");
+        LogHelper.info("===正在回忆关键词===");
         String lang = selectLanguage();
 
         Gson gson = new Gson();
@@ -176,7 +175,7 @@ public class InesModMain implements
             }
         }
 
-        LoggerHelper.info("===关键词情报已收集===");
+        LogHelper.info("===关键词情报已收集===");
     }
 
     @Override
@@ -191,8 +190,13 @@ public class InesModMain implements
     }
 
     @Override
+    public void receivePostExhaust(AbstractCard c){
+        // 弃用此接口，改为自定义回调
+    }
+
+    @Override
     public void  receiveOnPlayerTurnStart(){
-        LoggerHelper.info("===InesModMain: receiveOnPlayerTurnStart===");
+        LogHelper.info("===InesModMain: receiveOnPlayerTurnStart===");
 
         // 重置“在本回合保留。”词条
         for (AbstractCard c : AbstractDungeon.player.hand.group) {
@@ -214,7 +218,7 @@ public class InesModMain implements
 
     @Override
     public void receiveCardUsed(AbstractCard c) {
-        LoggerHelper.info("===InesModMain: receiveCardUsed===");
+        LogHelper.info("===InesModMain: receiveCardUsed===");
 
         for (AbstractCard cardToCall : AbstractDungeon.player.hand.group) {
             if (cardToCall instanceof AbstractInesCard){

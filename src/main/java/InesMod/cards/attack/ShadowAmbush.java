@@ -39,7 +39,7 @@ public class ShadowAmbush extends AbstractInesCard {
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
         this.addToBot(new DamageAction(m, new DamageInfo(p, damage, DamageType.NORMAL), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
-        this.addToBot(new MakeTempCardInHandAction(new ShadowWhistle(), 1)); // 生成1张影哨
+        this.addToBot(new MakeTempCardInHandAction(new ShadowWhistle(), magicNumber));
 
     }
 
@@ -47,7 +47,7 @@ public class ShadowAmbush extends AbstractInesCard {
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeMagicNumber(1);
+            this.upgradeDamage(4);
         }
     }
 }

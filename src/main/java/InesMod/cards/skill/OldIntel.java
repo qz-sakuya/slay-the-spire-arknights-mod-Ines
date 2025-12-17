@@ -1,16 +1,11 @@
 package InesMod.cards.skill;
 
 import InesMod.cards.AbstractInesCard;
-import InesMod.cards.status.ShadowWhistle;
 import InesMod.characters.Ines;
-import InesMod.helpers.LoggerHelper;
+import InesMod.helpers.LogHelper;
 import InesMod.helpers.PathHelper;
-import InesMod.modcore.InesModMain;
 import com.megacrit.cardcrawl.actions.common.DiscardAction;
 import com.megacrit.cardcrawl.actions.common.DrawCardAction;
-import com.megacrit.cardcrawl.actions.utility.DiscardToHandAction;
-import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
@@ -37,7 +32,7 @@ public class OldIntel extends AbstractInesCard {
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        LoggerHelper.info("===OldIntel：use：baseMagicNumber：{}===",this.baseMagicNumber);
+        LogHelper.info("===OldIntel：use：baseMagicNumber：{}===",this.baseMagicNumber);
         addToBot(new DrawCardAction(p, this.magicNumber));
         addToBot(new DiscardAction(p, p, 1, false));
 
@@ -48,14 +43,14 @@ public class OldIntel extends AbstractInesCard {
             if (this.baseMagicNumber < 0) {
                 this.baseMagicNumber = 0;
             }
-            LoggerHelper.info("===OldIntel：use：baseMagicNumber-1,当前值:：{}===",this.baseMagicNumber);
+            LogHelper.info("===OldIntel：use：baseMagicNumber-1,当前值:：{}===",this.baseMagicNumber);
         }
     }
 
     // 有bug一回合触发两次onMoveToDiscard，但是bug又不能稳定复现，后面再出现再修吧
     @Override
     public void onMoveToDiscard() {
-        LoggerHelper.info("===OldIntel：onMoveToDiscard：baseMagicNumber：{}===",this.baseMagicNumber);
+        LogHelper.info("===OldIntel：onMoveToDiscard：baseMagicNumber：{}===",this.baseMagicNumber);
         if(!this.upgraded){
 
             this.upgradeMagicNumber(-1);
@@ -63,7 +58,7 @@ public class OldIntel extends AbstractInesCard {
             if (this.baseMagicNumber < 0) {
                 this.baseMagicNumber = 0;
             }
-            LoggerHelper.info("===OldIntel：onMoveToDiscard：baseMagicNumber-1,当前值:：{}===",this.baseMagicNumber);
+            LogHelper.info("===OldIntel：onMoveToDiscard：baseMagicNumber-1,当前值:：{}===",this.baseMagicNumber);
         }
     }
 

@@ -1,16 +1,13 @@
 package InesMod.powers;
 
-import InesMod.cards.power.ShadowTerritory;
 import InesMod.cards.status.ShadowWhistle;
-import InesMod.helpers.LoggerHelper;
+import InesMod.helpers.LogHelper;
 import InesMod.helpers.PathHelper;
-import InesMod.modcore.InesModMain;
 import InesMod.vfx.InvisibilityEffect;
 import basemod.ReflectionHacks;
 import com.megacrit.cardcrawl.actions.common.*;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -103,12 +100,12 @@ public class InvisibilityPower extends AbstractInesPower {
                 }
             }
 
-            LoggerHelper.info("===InvisibilityPower: shadowWhistleGroup size:{}===",shadowWhistleGroup.size());
+            LogHelper.info("===InvisibilityPower: shadowWhistleGroup size:{}===",shadowWhistleGroup.size());
 
             if (!shadowWhistleGroup.isEmpty()) {
                 // 随机选取一张影哨
                 int randomIndex = AbstractDungeon.cardRandomRng.random(shadowWhistleGroup.size()-1);
-                LoggerHelper.info("===InvisibilityPower: randomIndex:{}===",randomIndex);
+                LogHelper.info("===InvisibilityPower: randomIndex:{}===",randomIndex);
                 AbstractCard randomCard = shadowWhistleGroup.get(randomIndex);
 
                 // 如果有 掌握全局 能力

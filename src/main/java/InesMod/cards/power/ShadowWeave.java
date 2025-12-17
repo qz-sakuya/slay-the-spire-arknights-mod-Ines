@@ -1,6 +1,7 @@
 package InesMod.cards.power;
 
 import InesMod.cards.AbstractInesCard;
+import InesMod.cards.status.ShadowWhistle;
 import InesMod.characters.Ines;
 import InesMod.helpers.PathHelper;
 import InesMod.powers.AgentVanguardPower;
@@ -27,6 +28,8 @@ public class ShadowWeave extends AbstractInesCard {
                 CardRarity.UNCOMMON,
                 CardTarget.SELF,
                 Ines.Enums.INES_CARD);
+
+        this.cardsToPreview = new ShadowWhistle();
     }
 
     @Override

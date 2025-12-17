@@ -8,7 +8,7 @@ import InesMod.cards.attack.Strike;
 import InesMod.cards.skill.Defend;
 import InesMod.cards.skill.EdgeOfLight;
 import InesMod.cards.skill.PlanOfAction;
-import InesMod.helpers.LoggerHelper;
+import InesMod.helpers.LogHelper;
 import InesMod.modcore.InesModMain;
 import InesMod.relics.UnassumingNeedle;
 import basemod.abstracts.CustomPlayer;
@@ -37,7 +37,8 @@ import java.util.ArrayList;
 
 import static sun.misc.Version.print;
 
-public class Ines extends CustomPlayer {
+public class Ines extends CustomPlayer
+{
     // 火堆的人物立绘（行动前）
     private static final String MY_CHARACTER_SHOULDER_1 = "InesModResources/img/char/shoulder1.png";
     // 火堆的人物立绘（行动后）
@@ -73,6 +74,9 @@ public class Ines extends CustomPlayer {
     // 是否处于 回合结束 阶段
     public boolean inEndTurnPeriod = false;
 
+    // 每次战斗中，消耗的次数
+    public int exhaustCount = 0;
+
     // ---自定义全局变量End---
 
     public Ines(String name) {
@@ -96,7 +100,7 @@ public class Ines extends CustomPlayer {
         );
 
         // 设置动画
-        LoggerHelper.info("InesMod：开始导入模型");
+        LogHelper.info("InesMod：开始导入模型");
         loadAnimation("InesModResources/model/char_4087_ines.atlas",
                 "InesModResources/model/char_4087_ines.json",
                         1.6F);
@@ -159,7 +163,7 @@ public class Ines extends CustomPlayer {
 
     @Override
     public void useFastAttackAnimation() {
-        LoggerHelper.info("===Ines人物：useFastAttackAnimation===");
+        LogHelper.info("===Ines人物：useFastAttackAnimation===");
         this.state.setAnimation(0, "Attack", false);
         this.state.addAnimation(0, "Idle", true, 0.0F);
         this.state.getCurrent(0).setTimeScale(1.2F);
@@ -294,7 +298,7 @@ public class Ines extends CustomPlayer {
     }
 
 
-    // 重载战斗前触发函数，加入重置洞悉条件计数为0的逻辑
+    // 重载战斗前触发函数，加入重置洞悉条件计数为0的逻辑，以及重置其他统计信息
     @Override
     public void applyStartOfCombatPreDrawLogic() {
         for (AbstractRelic r : this.relics) {
@@ -303,8 +307,10 @@ public class Ines extends CustomPlayer {
             }
         }
         counterForInsight = 0;
-        needForInsight = 10;
-        LoggerHelper.info("===回合开始，counterForInsight：{}===",counterForInsight);
+        needForInsight = 12; // 洞悉的初始条件
+        LogHelper.info("===回合开始，counterForInsight：{}===",counterForInsight);
+
+        exhaustCount = 0;
     }
 
     // 重载此函数，以统计回合结束状态
@@ -328,5 +334,12 @@ public class Ines extends CustomPlayer {
         }
 
         this.inEndTurnPeriod = false;
+    }
+
+
+    // 自定义回调
+    public void onExhaust(AbstractCard c){
+        // 统计一次战斗中的消耗数
+        exhaustCount += 1;
     }
 }

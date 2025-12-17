@@ -2,6 +2,7 @@ package InesMod.cards.skill;
 
 import InesMod.action.ApplyNonStackPowerAction;
 import InesMod.cards.AbstractInesCard;
+import InesMod.cards.status.ShadowWhistle;
 import InesMod.characters.Ines;
 import InesMod.helpers.PathHelper;
 import InesMod.powers.AdHocStrategyPower;
@@ -33,7 +34,7 @@ public class EndlessNight extends AbstractInesCard {
                 Ines.Enums.INES_CARD);
         this.block = this.baseBlock = 9;
 
-
+        this.cardsToPreview = new ShadowWhistle();
     }
 
     @Override

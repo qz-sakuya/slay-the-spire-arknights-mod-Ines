@@ -44,6 +44,7 @@ public class File extends AbstractInesCard {
         if (!this.upgraded) {
             this.upgradeName();
             this.upgradeMagicNumber(1);
+            this.upgradeDamage(1);
         }
     }
 }

@@ -79,6 +79,10 @@ public abstract class AbstractInesCard extends CustomCard {
 
     // 自定义回调
     public void onCardMove(AbstractCard c, CardGroup.CardGroupType groupType) {}
+
     public void onReceiveCardUsed(AbstractCard c) {}
 
+    public void onExhaust(AbstractCard c) {} // 任何卡被消耗（和onCardMove的区别在于，不计算“向消耗堆加入某牌”）
+
+    //public void onDiscard(AbstractCard c) {} // 任何卡被丢弃（和onCardMove的区别在于，不计算“向弃牌堆加入某牌”）
 }

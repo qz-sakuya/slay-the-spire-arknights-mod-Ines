@@ -1,11 +1,8 @@
 package InesMod.action;
 
-import InesMod.helpers.LoggerHelper;
-import InesMod.modcore.InesModMain;
+import InesMod.helpers.LogHelper;
 import InesMod.powers.AbstractInesPower;
-import com.badlogic.gdx.Gdx;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.utility.TextAboveCreatureAction;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
@@ -13,15 +10,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.UIStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
-import com.megacrit.cardcrawl.powers.DexterityPower;
-import com.megacrit.cardcrawl.powers.NoDrawPower;
-import com.megacrit.cardcrawl.powers.StrengthPower;
-import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import com.megacrit.cardcrawl.vfx.combat.FlashAtkImgEffect;
-import com.megacrit.cardcrawl.vfx.combat.PowerBuffEffect;
-import com.megacrit.cardcrawl.vfx.combat.PowerDebuffEffect;
-
-import java.util.Collections;
 
 /**
  * 直接设置某个能力的第二个数字
@@ -63,7 +52,7 @@ public class SetPowerSecondAmountAction extends AbstractGameAction {
 
     @Override
     public void update() {
-        LoggerHelper.info("===SetPowerSecondAmountAction update: powerId:{},层数：{}===",powerToApplyID,amount);
+        LogHelper.info("===SetPowerSecondAmountAction update: powerId:{},层数：{}===",powerToApplyID,amount);
         if (this.target != null && !this.target.isDeadOrEscaped()) {
             if (this.duration == this.startingDuration) {
                 if (this.target instanceof AbstractMonster && this.target.isDeadOrEscaped()) {

@@ -2,6 +2,7 @@ package InesMod.cards.power;
 
 import InesMod.action.ApplyNonStackPowerAction;
 import InesMod.cards.AbstractInesCard;
+import InesMod.cards.status.ShadowWhistle;
 import InesMod.characters.Ines;
 import InesMod.helpers.PathHelper;
 import InesMod.powers.RouteMappingPower;
@@ -29,6 +30,8 @@ public class RouteMapping extends AbstractInesCard {
                 CardTarget.SELF,
                 Ines.Enums.INES_CARD);
         this.magicNumber = this.baseMagicNumber = 1;
+
+        this.cardsToPreview = new ShadowWhistle();
     }
 
     @Override

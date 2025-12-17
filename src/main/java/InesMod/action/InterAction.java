@@ -1,32 +1,13 @@
 package InesMod.action;
 
-import InesMod.helpers.LoggerHelper;
-import InesMod.modcore.InesModMain;
-import InesMod.powers.AgentVanguardPower;
+import InesMod.helpers.LogHelper;
 import InesMod.powers.InterPower;
-import com.badlogic.gdx.Gdx;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.DrawCardAction;
 import com.megacrit.cardcrawl.actions.common.ReducePowerAction;
-import com.megacrit.cardcrawl.actions.utility.TextAboveCreatureAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.core.AbstractCreature;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.localization.UIStrings;
-import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
-import com.megacrit.cardcrawl.powers.DexterityPower;
-import com.megacrit.cardcrawl.powers.NoDrawPower;
-import com.megacrit.cardcrawl.powers.StrengthPower;
-import com.megacrit.cardcrawl.unlock.UnlockTracker;
-import com.megacrit.cardcrawl.vfx.combat.FlashAtkImgEffect;
-import com.megacrit.cardcrawl.vfx.combat.PowerBuffEffect;
-import com.megacrit.cardcrawl.vfx.combat.PowerDebuffEffect;
-
-import java.util.Collections;
 
 /**
  * 情报 的效果
@@ -44,23 +25,23 @@ public class InterAction extends AbstractGameAction {
 
     @Override
     public void update() {
-        LoggerHelper.info("===情报action：开始===");
+        LogHelper.info("===情报action：开始===");
         AbstractPlayer p = (AbstractPlayer)source;
 
         if (!p.hasPower("No Draw") && p.hand.size() < 10) {
-            LoggerHelper.info("===情报action：抽牌上限未满===");
+            LogHelper.info("===情报action：抽牌上限未满===");
             int cardToDraw = 1;
 
             // 如果有情报
             AbstractPower powerToFind = p.getPower(InterPower.ID);
             if (powerToFind != null) {
-                LoggerHelper.info("===情报action：具有情报，层数：{}===",powerToFind.amount);
+                LogHelper.info("===情报action：具有情报，层数：{}===",powerToFind.amount);
 
                 int cardCanDraw =  AbstractDungeon.player.drawPile.group.size()
                         + AbstractDungeon.player.discardPile.group.size();
 
                 if (cardCanDraw > 0) {
-                    LoggerHelper.info("===情报action：具有可抽的牌，张数：{}===",cardCanDraw);
+                    LogHelper.info("===情报action：具有可抽的牌，张数：{}===",cardCanDraw);
 
                     powerToFind.flash();
                     addToTop(new DrawCardAction(source, cardToDraw));

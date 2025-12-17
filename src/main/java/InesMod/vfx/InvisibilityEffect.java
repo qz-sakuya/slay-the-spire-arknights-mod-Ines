@@ -1,12 +1,9 @@
 package InesMod.vfx;
 
-import InesMod.helpers.LoggerHelper;
-import InesMod.modcore.InesModMain;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
-import com.megacrit.cardcrawl.vfx.stance.StanceAuraEffect;
 
 /**
  * 隐匿 的特效触发器

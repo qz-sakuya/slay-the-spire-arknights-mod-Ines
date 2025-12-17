@@ -1,8 +1,7 @@
 package InesMod.action;
 
-import InesMod.helpers.LoggerHelper;
+import InesMod.helpers.LogHelper;
 import InesMod.helpers.PathHelper;
-import InesMod.modcore.InesModMain;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DiscardAction;
 import com.megacrit.cardcrawl.actions.utility.WaitAction;
@@ -33,7 +32,7 @@ public class MoveCardsToDeckAndDiscardOthersAction extends AbstractGameAction {
 
     @Override
     public void update() {
-        LoggerHelper.info("===MoveCardsToDeckAndDiscardOthersAction：start===");
+        LogHelper.info("===MoveCardsToDeckAndDiscardOthersAction：start===");
 
         if (this.duration == 0.5F) {
             AbstractDungeon.handCardSelectScreen.open(uiStrings.TEXT[0], amount, anyNumber, canPickZero);

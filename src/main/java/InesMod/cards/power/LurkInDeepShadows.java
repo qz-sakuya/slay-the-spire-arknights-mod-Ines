@@ -2,6 +2,7 @@ package InesMod.cards.power;
 
 import InesMod.action.ApplyNonStackPowerAction;
 import InesMod.cards.AbstractInesCard;
+import InesMod.cards.status.ShadowWhistle;
 import InesMod.characters.Ines;
 import InesMod.helpers.PathHelper;
 import InesMod.powers.LurkInDeepShadowsPower;
@@ -29,7 +30,7 @@ public class LurkInDeepShadows extends AbstractInesCard {
                 CardTarget.SELF,
                 Ines.Enums.INES_CARD);
 
-
+        this.cardsToPreview = new ShadowWhistle();
     }
 
     @Override

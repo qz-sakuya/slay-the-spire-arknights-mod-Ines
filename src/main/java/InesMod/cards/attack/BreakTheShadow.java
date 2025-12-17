@@ -54,8 +54,8 @@ public class BreakTheShadow extends AbstractInesCard {
 
 
     @Override
-    public void onCardMove(AbstractCard c, CardGroup.CardGroupType groupType) {
-        if (c.cardID.equals(ShadowWhistle.ID) && groupType.equals(CardGroup.CardGroupType.EXHAUST_PILE)) {
+    public void onExhaust(AbstractCard c) {
+        if (c.cardID.equals(ShadowWhistle.ID)) {
             addToBot(new DiscardToHandAction(this));
         }
     }

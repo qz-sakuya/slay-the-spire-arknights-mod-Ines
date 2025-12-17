@@ -1,6 +1,5 @@
 package InesMod.helpers;
 
-import InesMod.modcore.InesModMain;
 import basemod.BaseMod;
 import basemod.ModLabeledToggleButton;
 import basemod.ModPanel;
@@ -44,11 +43,11 @@ public class ConfigHelper {
 
             tutorialClosed1 = config.getBool(PathHelper.nameToId("TUTORIAL_CLOSED_1"));
 
-            LoggerHelper.info("===加载config: banExtraEnding:{}===",banExtraEnding);
-            LoggerHelper.info("===加载config: tutorialClosed1:{}===",tutorialClosed1);
+            LogHelper.info("===加载config: banExtraEnding:{}===",banExtraEnding);
+            LogHelper.info("===加载config: tutorialClosed1:{}===",tutorialClosed1);
 
         } catch (Exception e) {
-            LoggerHelper.info("===加载config失败{}===",e.getLocalizedMessage());
+            LogHelper.info("===加载config失败{}===",e.getLocalizedMessage());
         }
     }
 
@@ -72,7 +71,7 @@ public class ConfigHelper {
             try {
                 config.save();
             } catch (IOException e) {
-                LoggerHelper.info("===save config credit failed{}===",e.getLocalizedMessage());
+                LogHelper.info("===save config credit failed{}===",e.getLocalizedMessage());
             }
         });
 
@@ -84,7 +83,7 @@ public class ConfigHelper {
             try {
                 config.save();
             } catch (IOException e) {
-                LoggerHelper.info("===save config credit failed{}===",e.getLocalizedMessage());
+                LogHelper.info("===save config credit failed{}===",e.getLocalizedMessage());
             }
         });
 

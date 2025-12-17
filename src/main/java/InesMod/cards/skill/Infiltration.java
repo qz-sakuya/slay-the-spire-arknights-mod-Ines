@@ -29,22 +29,24 @@ public class Infiltration extends AbstractInesCard {
                 CardRarity.COMMON,
                 CardTarget.ALL,// 自身与所有敌人
                 Ines.Enums.INES_CARD);
-        this.draw = 1;
+        this.magicNumber = baseMagicNumber = 2;
 
     }
  
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
         int count = 0;
-        for (AbstractMonster mon : (AbstractDungeon.getMonsters()).monsters) {
-            if (!mon.isDeadOrEscaped()) {
-                count++;
-            }
-        }
-        // 升级额外+1
-        if (this.upgraded) {
-            count++;
-        }
+//        for (AbstractMonster mon : (AbstractDungeon.getMonsters()).monsters) {
+//            if (!mon.isDeadOrEscaped()) {
+//                count++;
+//            }
+//        }
+//        // 升级额外+1
+//        if (this.upgraded) {
+//            count++;
+//        }
+
+        count = magicNumber;
         this.addToBot(new ApplyPowerAction(p, p, new StealsPower(p, count), count));
 
         // this.addToBot(new DrawCardAction(p, this.draw));
@@ -55,9 +57,10 @@ public class Infiltration extends AbstractInesCard {
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
+            this.upgradeMagicNumber(1);
 
-            this.rawDescription = cardStrings.UPGRADE_DESCRIPTION;
-            this.initializeDescription();
+//            this.rawDescription = cardStrings.UPGRADE_DESCRIPTION;
+//            this.initializeDescription();
         }
     }
 }

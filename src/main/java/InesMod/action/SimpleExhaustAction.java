@@ -1,25 +1,19 @@
 package InesMod.action;
 
-import InesMod.helpers.PathHelper;
-import InesMod.modcore.InesModMain;
+import InesMod.characters.Ines;
+import InesMod.patchs.moveToExhaustPilePatch;
 import basemod.ReflectionHacks;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.utility.WaitAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
-import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.core.AbstractCreature;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.localization.UIStrings;
-import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
-import com.megacrit.cardcrawl.vfx.cardManip.ExhaustCardEffect;
 
 /**
  * 快速消耗一张卡 的动作
+ * 修改自 moveToExhaustPile
+ * 似乎无法触发 receivePostExhaust 的接口
  */
 public class SimpleExhaustAction extends AbstractGameAction {
     private final AbstractCard targetCard;
@@ -51,12 +45,16 @@ public class SimpleExhaustAction extends AbstractGameAction {
             method.invoke(this.group, targetCard); // 第一个参数是 CardGroup 实例，第二个是卡牌
 
             // 此处删除了显示特效
+            // AbstractDungeon.effectList.add(new ExhaustCardEffect(c));
 
             AbstractDungeon.player.exhaustPile.addToTop(targetCard);
-            AbstractDungeon.player.onCardDrawOrDiscard();
+            AbstractDungeon.player.onCardDrawOrDiscard(); // 原写法，不太明白但是照搬
 
             this.targetCard.exhaustOnUseOnce = false;
             this.targetCard.freeToPlayOnce = false;
+
+            // 触发自定义回调
+            moveToExhaustPilePatch.Work(targetCard);
         }
 
         this.isDone = true;

@@ -54,7 +54,7 @@
   },
   "InesMod:ContingencyPlan": {
     "NAME": "总有后手",
-    "DESCRIPTION": "只有当这张牌是手牌中唯一一种攻击牌时才可以被打出。 NL 造成 !D! 点伤害。",
+    "DESCRIPTION": "只有当这张牌是手牌中唯一名称的攻击牌时才可以被打出。 NL 造成 !D! 点伤害。",
     "EXTENDED_DESCRIPTION": [
       "手牌中还有其它 NL 攻击牌……"
     ]
@@ -105,8 +105,8 @@
   },
   "InesMod:Infiltration": {
     "NAME": "渗透",
-    "DESCRIPTION": "获得等同于敌人数量的 ines:偷取 。 NL 在弃牌堆放入一张此牌的复制品。",
-    "UPGRADE_DESCRIPTION": "获得等同于敌人数量+1的 ines:偷取 。 NL 在弃牌堆放入一张此牌的复制品。"
+    "DESCRIPTION": "获得 !M! 层 ines:偷取 。 NL 在弃牌堆放入一张此牌的复制品。",
+    "UPGRADE_DESCRIPTION": "获得 !M! 层 ines:偷取 。 NL 在弃牌堆放入一张此牌的复制品。"
   },
   "InesMod:TopSecretOperation": {
     "NAME": "绝密行动",
@@ -180,9 +180,9 @@
   },
   "InesMod:Wander": {
     "NAME": "徘徊",
-    "DESCRIPTION": "手牌和抽牌堆中每有 1 张 *影哨 ，获得 !M! 点 格挡 。",
+    "DESCRIPTION": "手牌和抽牌堆中每有 1 张 *影哨 ，获得 !B! 点 格挡  1 次。",
     "EXTENDED_DESCRIPTION": [
-      " NL （获得 !B! 点格挡。）"
+      " NL （获得 !M! 次。）"
     ]
   },
   "InesMod:MurkyNight": {
@@ -201,7 +201,7 @@
   },
   "InesMod:IntelNetwork": {
     "NAME": "情报网",
-    "DESCRIPTION": "获得 !M! 点 ines:情报 。然后抽 1 张牌。"
+    "DESCRIPTION": "获得 !M! 点 ines:情报 。 NL 然后抽 1 张牌。"
   },
   "InesMod:EngageEnemy": {
     "NAME": "接敌",
@@ -286,5 +286,13 @@
   "InesMod:LurkInDeepShadows": {
     "NAME": "匿于深影",
     "DESCRIPTION": "回合结束时，选择任意张 *影哨 加入抽牌堆。 NL 每当抽到 *影哨 时，额外抽 1 张牌。"
+  },
+  "InesMod:ExperienceGain": {
+    "NAME": "经验积累",
+    "DESCRIPTION": "获得 1  ines:情报 、 1  ines:隐匿 、 1  ines:偷取 和 1  *影哨 。 NL 本次战斗每消耗 4 张牌，此牌耗能-1。",
+    "UPGRADE_DESCRIPTION": "获得 1  ines:情报 、 1  ines:隐匿 、 1  ines:偷取 和 1  *影哨 。 NL 本次战斗每消耗 3 张牌，此牌耗能-1。",
+    "EXTENDED_DESCRIPTION": [
+      " NL （已消耗 !M! 张牌)"
+    ]
   }
 }
