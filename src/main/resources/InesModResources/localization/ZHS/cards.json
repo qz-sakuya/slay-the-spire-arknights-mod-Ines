@@ -294,5 +294,13 @@
     "EXTENDED_DESCRIPTION": [
       " NL （已消耗 !M! 张牌)"
     ]
+  },
+  "InesMod:PhotographicMemory": {
+    "NAME": "过目不忘",
+    "DESCRIPTION": "下一次出牌时，将其一张耗能为 !M! 的复制品加入抽牌堆。 NL  消耗 。"
+  },
+  "InesMod:ShadowWhistleRetrieval": {
+    "NAME": "影哨回收",
+    "DESCRIPTION": "每消耗 1 张 *影哨 ，获得 !M! 点格挡。"
   }
 }

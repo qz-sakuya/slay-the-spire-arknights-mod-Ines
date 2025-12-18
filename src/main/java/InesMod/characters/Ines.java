@@ -2,6 +2,7 @@ package InesMod.characters;
 
 
 // TODO：加入游戏结束时的neow文本（心脏，与考虑额外结局），参考萃香mod
+// TODO：卡牌百科中显示部分卡图来源
 
 import InesMod.cards.attack.ShadowAmbush;
 import InesMod.cards.attack.Strike;

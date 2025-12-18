@@ -166,5 +166,17 @@
     "DESCRIPTIONS": [
       "回合结束时，选择任意张 #y影哨 加入抽牌堆。 NL 每当抽到 #y影哨 时，额外抽 #b1 张牌。"
     ]
+  },
+  "InesMod:PhotographicMemoryPower": {
+    "NAME": "过目不忘",
+    "DESCRIPTIONS": [
+      "下 #b%d 次出牌时，将其一张耗能为 #b%d 的复制品加入抽牌堆。"
+    ]
+  },
+  "InesMod:ShadowWhistleRetrievalPower": {
+    "NAME": "影哨回收",
+    "DESCRIPTIONS": [
+      "每消耗 #b1 张 #y影哨 ，获得 #b%d 点 #y格挡 。"
+    ]
   }
 }
