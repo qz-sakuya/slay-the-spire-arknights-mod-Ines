@@ -27,7 +27,7 @@ public class Disguise extends AbstractInesCard {
                 CardRarity.COMMON,
                 CardTarget.SELF,
                 Ines.Enums.INES_CARD);
-        this.block = this.baseBlock = 4;
+        this.block = this.baseBlock = 3;
         this.magicNumber = this.baseMagicNumber = 1;
 
         this.cardsToPreview = new ShadowWhistle();
@@ -43,7 +43,7 @@ public class Disguise extends AbstractInesCard {
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            upgradeMagicNumber(1);
+            upgradeBlock(3);
         }
     }
 }

@@ -33,7 +33,8 @@ public class TrackUnderNight extends AbstractInesCard {
                 CardRarity.UNCOMMON,
                 CardTarget.ENEMY,
                 Ines.Enums.INES_CARD);
-        this.damage = this.baseDamage = 6;
+        this.damage = this.baseDamage = 8;
+        this.magicNumber = this.baseMagicNumber = 1;
     }
 
     @Override
@@ -42,7 +43,7 @@ public class TrackUnderNight extends AbstractInesCard {
 
         AbstractPower powerToFind = p.getPower(InvisibilityPower.ID);
         if (powerToFind != null) { // 如果有隐匿
-            addToBot(new DrawCardAction(p, 1));
+            addToBot(new DrawCardAction(p, 1 + magicNumber));
         }
         else{
             addToBot(new DrawCardAction(p, 1));
@@ -62,7 +63,8 @@ public class TrackUnderNight extends AbstractInesCard {
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeDamage(4);
+            this.upgradeDamage(2);
+            this.upgradeMagicNumber(1);
         }
     }
 }

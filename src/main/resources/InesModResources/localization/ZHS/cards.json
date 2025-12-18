@@ -41,7 +41,7 @@
   },
   "InesMod:TrackUnderNight": {
     "NAME": "夜下寻踪",
-    "DESCRIPTION": "造成 !D! 点伤害。 NL 抽 1 张牌。 NL 若处于 ines:隐匿 ，额外抽 1 张牌。"
+    "DESCRIPTION": "造成 !D! 点伤害。 NL 抽 1 张牌。 NL 若处于 ines:隐匿 ，额外抽 !M! 张牌。"
   },
   "InesMod:Feint": {
     "NAME": "佯攻",

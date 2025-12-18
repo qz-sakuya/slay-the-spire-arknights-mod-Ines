@@ -32,7 +32,7 @@ public class EndlessNight extends AbstractInesCard {
                 CardRarity.UNCOMMON,
                 CardTarget.SELF,
                 Ines.Enums.INES_CARD);
-        this.block = this.baseBlock = 9;
+        this.block = this.baseBlock = 6;
 
         this.cardsToPreview = new ShadowWhistle();
     }
@@ -48,7 +48,7 @@ public class EndlessNight extends AbstractInesCard {
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeBlock(3);
+            this.upgradeBlock(2);
         }
     }
 }
