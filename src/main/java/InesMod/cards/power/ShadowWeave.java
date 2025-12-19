@@ -15,7 +15,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 /**
  * 中文卡名：影织
  */
-public class ShadowWeave extends AbstractInesCard {
+public class ShadowWeave extends AbstractInesCard  {
     public static final String ID = PathHelper.nameToId(ShadowWeave.class.getSimpleName());
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID); // 从游戏系统读取本地化资源
 
@@ -23,7 +23,7 @@ public class ShadowWeave extends AbstractInesCard {
         super(ID,
                 false,
                 cardStrings,
-                1,
+                2,
                 CardType.POWER,
                 CardRarity.UNCOMMON,
                 CardTarget.SELF,
@@ -41,7 +41,7 @@ public class ShadowWeave extends AbstractInesCard {
     public void upgrade() {
         if (!this.upgraded) {
             upgradeName();
-            upgradeBaseCost(0);
+            upgradeBaseCost(1);
         }
     }
 }

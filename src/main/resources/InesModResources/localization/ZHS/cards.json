@@ -302,5 +302,10 @@
   "InesMod:ShadowWhistleRetrieval": {
     "NAME": "影哨回收",
     "DESCRIPTION": "每消耗 1 张 *影哨 ，获得 !M! 点格挡。"
+  },
+  "InesMod:NightInWhiteBirchForest": {
+    "NAME": "白桦林的夜晚",
+    "DESCRIPTION": "回复 !M! 点生命。 NL 这张牌每被打出 1 次，效果永久-2。 NL  消耗 。",
+    "UPGRADE_DESCRIPTION":"回复 !M! 点生命。 NL 这张牌每被打出 1 次，效果永久-1。 NL  消耗 。"
   }
 }
