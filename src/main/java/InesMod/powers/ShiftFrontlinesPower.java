@@ -37,7 +37,7 @@ public class ShiftFrontlinesPower extends AbstractInesPower {
     }
 
     @Override
-    public void onManualDiscard() {
+    public void onManualDiscard(AbstractCard c) {
         this.secondAmount += 1;
         this.updateDescription();
     }

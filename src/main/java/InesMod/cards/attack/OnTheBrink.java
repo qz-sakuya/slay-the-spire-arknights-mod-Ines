@@ -1,0 +1,110 @@
+package InesMod.cards.attack;
+
+import InesMod.action.ResetOnTheBrinkAction;
+import InesMod.cards.AbstractInesCard;
+import InesMod.characters.Ines;
+import InesMod.helpers.PathHelper;
+import InesMod.vfx.OnTheBrinkEffect;
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.animations.VFXAction;
+import com.megacrit.cardcrawl.actions.common.DamageAction;
+import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.DamageInfo;
+import com.megacrit.cardcrawl.cards.DamageInfo.DamageType;
+import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.core.Settings;
+import com.megacrit.cardcrawl.localization.CardStrings;
+import com.megacrit.cardcrawl.monsters.AbstractMonster;
+
+/**
+ * 中文卡名：一触即发
+ */
+public class OnTheBrink extends AbstractInesCard {
+    public static final String ID = PathHelper.nameToId(OnTheBrink.class.getSimpleName());
+    private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID); // 从游戏系统读取本地化资源
+
+    public int initDamage = 6;
+    int updateAmount = 1;
+
+    public OnTheBrink() {
+        super(ID,
+                false,
+                cardStrings,
+                1,
+                CardType.ATTACK,
+                CardRarity.RARE,
+                CardTarget.ENEMY,
+                Ines.Enums.INES_CARD);
+        this.damage = this.baseDamage = initDamage;
+        this.magicNumber = this.baseMagicNumber = 0;
+    }
+
+    @Override
+    public void use(AbstractPlayer p, AbstractMonster m) {
+        this.addToBot(new VFXAction(new OnTheBrinkEffect(m.hb.cX, m.hb.cY,400f * Settings.scale), 0.4F));
+        this.addToBot(new DamageAction(m, new DamageInfo(p, damage, DamageType.NORMAL), AbstractGameAction.AttackEffect.SLASH_VERTICAL));
+    }
+
+
+//    @Override
+//    public void onCardMove(AbstractCard c, CardGroup.CardGroupType groupType) {
+//        if (c.type != AbstractCard.CardType.ATTACK && groupType == CardGroup.CardGroupType.DISCARD_PILE) {
+//            upgradeDamage(updateAmount);
+//
+//            this.baseMagicNumber += updateAmount;
+//
+//            // 添加额外文本
+//            this.rawDescription = cardStrings.DESCRIPTION + cardStrings.EXTENDED_DESCRIPTION[0];
+//            initializeDescription();
+//        }
+//    }
+
+    @Override
+    public void onManualDiscard(AbstractCard c){
+        tryUpdateDamage(c);
+    }
+
+    @Override
+    public void onReceiveCardUsed(AbstractCard c) {
+        tryUpdateDamage(c);
+
+        if (c.type == AbstractCard.CardType.ATTACK) {
+            addToBot(new ResetOnTheBrinkAction(this));
+        }
+    }
+
+    private void tryUpdateDamage(AbstractCard c){
+        if (c.type != AbstractCard.CardType.ATTACK) {
+            upgradeDamage(updateAmount);
+
+            this.baseMagicNumber += updateAmount;
+
+            // 添加额外文本
+            this.rawDescription = cardStrings.DESCRIPTION + cardStrings.EXTENDED_DESCRIPTION[0];
+            initializeDescription();
+        }
+    }
+
+
+
+    @Override
+    public AbstractCard makeStatEquivalentCopy() {
+        OnTheBrink card = (OnTheBrink) super.makeStatEquivalentCopy();
+
+        card.initDamage = this.initDamage;
+        card.updateAmount = this.updateAmount;
+        return card;
+    }
+
+    @Override
+    public void upgrade() {
+        if (!this.upgraded) {
+            this.upgradeName();
+            this.updateAmount = 2;
+
+            this.rawDescription = cardStrings.UPGRADE_DESCRIPTION;
+            this.initializeDescription();
+        }
+    }
+}

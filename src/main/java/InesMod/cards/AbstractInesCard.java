@@ -78,11 +78,23 @@ public abstract class AbstractInesCard extends CustomCard {
     public void autoUse(){};
 
     // 自定义回调
-    public void onCardMove(AbstractCard c, CardGroup.CardGroupType groupType) {}
 
+    // 任何卡被打出
     public void onReceiveCardUsed(AbstractCard c) {}
 
-    public void onExhaust(AbstractCard c) {} // 任何卡被消耗（和onCardMove的区别在于，不计算“向消耗堆加入某牌”）
+    // 任何卡被消耗（监测moveToExhaustPile）
+    public void onExhaust(AbstractCard c) {}
 
-    //public void onDiscard(AbstractCard c) {} // 任何卡被丢弃（和onCardMove的区别在于，不计算“向弃牌堆加入某牌”）
+    // 任何卡被丢弃（监测moveToDiscardPile）
+    // public void onDiscard(AbstractCard c) {}
+
+    // 任何卡被手动丢弃（监测incrementDiscard）
+    public void onManualDiscard(AbstractCard c){}
+
+    // 任何卡被移动（监测所有addTo类似函数，比moveTo更底层）
+    public void onCardMove(AbstractCard c, CardGroup.CardGroupType groupType) {}
+
+    /*
+    例如，MakeTempCardInDiscardAction 会使用 addTo 但不使用 moveTo
+     */
 }

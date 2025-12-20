@@ -34,6 +34,7 @@ public class NightInWhiteBirchForest extends AbstractInesCard {
         this.magicNumber = this.baseMagicNumber = misc;
 
         this.exhaust = true;
+        this.tags.add(CardTags.HEALING);
     }
 
     @Override

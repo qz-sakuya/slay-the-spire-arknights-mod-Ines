@@ -4,8 +4,10 @@ package InesMod.characters;
 // TODO：加入游戏结束时的neow文本（心脏，与考虑额外结局），参考萃香mod
 // TODO：卡牌百科中显示部分卡图来源
 
+import InesMod.cards.attack.OnTheBrink;
 import InesMod.cards.attack.ShadowAmbush;
 import InesMod.cards.attack.Strike;
+import InesMod.cards.skill.BattleMemories;
 import InesMod.cards.skill.Defend;
 import InesMod.cards.skill.EdgeOfLight;
 import InesMod.cards.skill.PlanOfAction;
@@ -130,7 +132,7 @@ public class Ines extends CustomPlayer
         for(int x = 0; x<1; x++) {
             cardList.add(Strike.ID);
             cardList.add(Defend.ID);
-            cardList.add(PlanOfAction.ID);
+            cardList.add(OnTheBrink.ID);
             cardList.add(ShadowAmbush.ID);
             cardList.add(EdgeOfLight.ID);
         }

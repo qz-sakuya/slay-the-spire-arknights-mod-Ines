@@ -307,5 +307,21 @@
     "NAME": "白桦林的夜晚",
     "DESCRIPTION": "回复 !M! 点生命。 NL 这张牌每被打出 1 次，效果永久-2。 NL  消耗 。",
     "UPGRADE_DESCRIPTION":"回复 !M! 点生命。 NL 这张牌每被打出 1 次，效果永久-1。 NL  消耗 。"
+  },
+  "InesMod:OnTheBrink": {
+    "NAME": "一触即发",
+    "DESCRIPTION": "造成 !D! 点伤害。 NL 每打出或丢弃1张非攻击牌，此牌伤害+1。打出攻击牌后重置。",
+    "UPGRADE_DESCRIPTION":"造成 !D! 点伤害。 NL 每打出或丢弃1张非攻击牌，此牌伤害+2。打出攻击牌后重置。",
+    "EXTENDED_DESCRIPTION": [
+      " NL （已增加 !M! 伤害)"
+    ]
+  },
+  "InesMod:OneByOne": {
+    "NAME": "一个接一个",
+    "DESCRIPTION": " 虚无 。 ines:潜伏 。 NL 每次打出攻击牌，手牌中随机攻击牌在本回合耗能-1。"
+  },
+  "InesMod:BattleMemories": {
+    "NAME": "斗争往事",
+    "DESCRIPTION": "从抽牌堆与弃牌堆中选择 !M! 张能力牌加入到手牌，这些牌在本回合耗能变为0。 NL  消耗 。"
   }
 }
