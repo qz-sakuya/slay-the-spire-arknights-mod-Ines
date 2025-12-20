@@ -7,6 +7,9 @@ import InesMod.enums.InesCardTags;
 import InesMod.helpers.ConfigHelper;
 import InesMod.helpers.LogHelper;
 import InesMod.helpers.PathHelper;
+import InesMod.truth.TruthManager;
+import InesMod.truth.TruthReward;
+import InesMod.enums.OtherEnum;
 import InesMod.relics.UnassumingNeedle;
 import basemod.AutoAdd;
 import basemod.helpers.RelicType;
@@ -22,9 +25,13 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.*;
 import com.badlogic.gdx.graphics.Color;
+import com.megacrit.cardcrawl.rewards.RewardItem;
+import com.megacrit.cardcrawl.rewards.RewardSave;
+import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
 
 import static com.megacrit.cardcrawl.core.Settings.language;
 
@@ -42,6 +49,9 @@ public class InesModMain implements
         PostDrawSubscriber,
         OnCardUseSubscriber,
         PostExhaustSubscriber,
+        OnStartBattleSubscriber,
+        PostPlayerUpdateSubscriber,
+        StartGameSubscriber,
         OnPlayerTurnStartSubscriber
 
 {
@@ -181,7 +191,36 @@ public class InesModMain implements
     @Override
     public void receivePostInitialize() {
         ConfigHelper.initModConfigMenu();
+
+        BaseMod.registerCustomReward(OtherEnum.INES_TRUTH,
+                rewardSave -> new TruthReward(rewardSave.amount, false),
+                customReward -> new RewardSave(customReward.type.toString(),
+                        null,
+                        ((TruthReward)customReward).amount, 0));
     }
+
+    @Override
+    public void receiveOnBattleStart(AbstractRoom abstractRoom) {
+        TruthManager.setTopPanelItem();
+
+        // 精英领袖房获得额外真相奖励
+        ArrayList<RewardItem> rewards = AbstractDungeon.getCurrRoom().rewards;
+        if (AbstractDungeon.getCurrRoom() instanceof com.megacrit.cardcrawl.rooms.MonsterRoomElite) {
+            rewards.add(0, new TruthReward(2, false));
+        }
+        else if (AbstractDungeon.getCurrRoom() instanceof com.megacrit.cardcrawl.rooms.MonsterRoomBoss) {
+            rewards.add(0, new TruthReward(3, false));
+        }
+    }
+
+    @Override
+    public void receivePostPlayerUpdate() {}
+
+    @Override
+    public void receiveStartGame() {
+        TruthManager.setTopPanelItem();
+    }
+
 
 
     @Override

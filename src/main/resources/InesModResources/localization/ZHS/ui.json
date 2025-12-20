@@ -41,5 +41,17 @@
     "TEXT": [
       " NL  ines:在本回合保留 。"
     ]
+  },
+  "InesMod:TruthTopItem": {
+    "TEXT": [
+      "真相",
+      "从战斗中收集的所有 #y真相 。 NL 可在 #y休息处 解析为 #y奖励 ，或从中触及 #b高塔的秘密 …… NL  NL （暂时没有作用，相关功能正在开发中）"
+    ]
+  },
+  "InesMod:TruthReward": {
+    "TEXT": [
+      "点真相",
+      "（洞悉）"
+    ]
   }
 }

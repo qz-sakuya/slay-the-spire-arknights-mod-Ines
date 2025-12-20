@@ -31,7 +31,7 @@ public class WeaknessGather extends AbstractInesCard {
                 CardRarity.COMMON,
                 CardTarget.ENEMY,
                 Ines.Enums.INES_CARD);
-        this.damage = this.baseDamage = 6;
+        this.damage = this.baseDamage = 8;
         this.magicNumber = this.baseMagicNumber = 1;
 
     }
@@ -47,7 +47,7 @@ public class WeaknessGather extends AbstractInesCard {
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeDamage(2);
+            this.upgradeDamage(1);
             this.upgradeMagicNumber(1);
         }
     }

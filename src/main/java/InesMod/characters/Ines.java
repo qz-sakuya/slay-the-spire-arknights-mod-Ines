@@ -120,22 +120,23 @@ public class Ines extends CustomPlayer
         ArrayList<String> cardList = new ArrayList<>();
 
 
-//        for(int x = 0; x<4; x++) {
-//            cardList.add(Strike.ID);
-//        }
-//        for(int x = 0; x<4; x++) {
-//            cardList.add(Defend.ID);
-//        }
-//        cardList.add(PlanOfAction.ID);
-
-        // TODO：调试用卡组
-        for(int x = 0; x<1; x++) {
+        for(int x = 0; x<4; x++) {
             cardList.add(Strike.ID);
-            cardList.add(Defend.ID);
-            cardList.add(OnTheBrink.ID);
-            cardList.add(ShadowAmbush.ID);
-            cardList.add(EdgeOfLight.ID);
         }
+        for(int x = 0; x<4; x++) {
+            cardList.add(Defend.ID);
+        }
+        cardList.add(PlanOfAction.ID);
+        cardList.add(ShadowAmbush.ID);
+
+//        // TODO：调试用卡组
+//        for(int x = 0; x<1; x++) {
+//            cardList.add(Strike.ID);
+//            cardList.add(Defend.ID);
+//            cardList.add(OnTheBrink.ID);
+//            cardList.add(ShadowAmbush.ID);
+//            cardList.add(EdgeOfLight.ID);
+//        }
 
 
         return cardList;

@@ -31,6 +31,8 @@ public class Sprint extends AbstractInesCard {
                 Ines.Enums.INES_CARD);
         this.magicNumber = baseMagicNumber = 2;
 
+        this.exhaust = true;
+
     }
  
     @Override
@@ -48,7 +50,10 @@ public class Sprint extends AbstractInesCard {
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeMagicNumber(1);
+            this.exhaust = false;
+
+            this.rawDescription = cardStrings.UPGRADE_DESCRIPTION;
+            this.initializeDescription();
         }
     }
 }

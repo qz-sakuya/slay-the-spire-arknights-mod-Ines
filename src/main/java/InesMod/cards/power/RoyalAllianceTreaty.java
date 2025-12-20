@@ -13,6 +13,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
+import com.megacrit.cardcrawl.powers.IntangiblePlayerPower;
 import com.megacrit.cardcrawl.powers.IntangiblePower;
 import com.megacrit.cardcrawl.powers.WeakPower;
 
@@ -37,10 +38,10 @@ public class RoyalAllianceTreaty extends AbstractInesCard {
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        addToBot(new ApplyPowerAction(p, p, new IntangiblePower(p, magicNumber), magicNumber));
+        addToBot(new ApplyPowerAction(p, p, new IntangiblePlayerPower(p, magicNumber), magicNumber));
 
         for (AbstractMonster mo : (AbstractDungeon.getCurrRoom()).monsters.monsters) {
-            addToBot(new ApplyPowerAction(mo, p, new IntangiblePower(mo, this.magicNumber), this.magicNumber, true));
+            addToBot(new ApplyPowerAction(mo, p, new IntangiblePlayerPower(mo, this.magicNumber), this.magicNumber, true));
         }
     }
 

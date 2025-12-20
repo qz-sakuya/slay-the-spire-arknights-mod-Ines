@@ -167,7 +167,8 @@
   },
   "InesMod:Sprint": {
     "NAME": "疾跑",
-    "DESCRIPTION": " ines:自动打出 。 NL 你打出的下 !M! 张攻击牌耗能变为0。"
+    "DESCRIPTION": " ines:自动打出 。 NL 你打出的下 !M! 张攻击牌耗能变为0。 NL  消耗 。",
+    "UPGRADE_DESCRIPTION":" ines:自动打出 。 NL 你打出的下 !M! 张攻击牌耗能变为0。"
   },
   "InesMod:FadeIntoShadow": {
     "NAME": "遁入影中",
@@ -258,8 +259,7 @@
   },
   "InesMod:BoiledRations": {
     "NAME": "水煮口粮",
-    "DESCRIPTION": "回复 !M! 点生命值。 NL 此牌每被抽到一次，其效果+1。 NL  消耗 。",
-    "UPGRADE_DESCRIPTION":"回复 !M! 点生命值。 NL 此牌每被抽到一次，其效果+2。 NL  消耗 。"
+    "DESCRIPTION": "回复 !M! 点生命值。 NL 此牌每被抽到一次，其效果+1。 NL  消耗 。"
   },
   "InesMod:ShiftFrontlines": {
     "NAME": "转移阵线",
@@ -310,8 +310,8 @@
   },
   "InesMod:OnTheBrink": {
     "NAME": "一触即发",
-    "DESCRIPTION": "造成 !D! 点伤害。 NL 每打出或丢弃1张非攻击牌，此牌伤害+1。打出攻击牌后重置。",
-    "UPGRADE_DESCRIPTION":"造成 !D! 点伤害。 NL 每打出或丢弃1张非攻击牌，此牌伤害+2。打出攻击牌后重置。",
+    "DESCRIPTION": "造成 !D! 点伤害。 NL 每打出或丢弃1张非攻击牌，此牌伤害+2。打出攻击牌后重置。",
+    "UPGRADE_DESCRIPTION":"造成 !D! 点伤害。 NL 每打出或丢弃1张非攻击牌，此牌伤害+3。打出攻击牌后重置。",
     "EXTENDED_DESCRIPTION": [
       " NL （已增加 !M! 伤害)"
     ]

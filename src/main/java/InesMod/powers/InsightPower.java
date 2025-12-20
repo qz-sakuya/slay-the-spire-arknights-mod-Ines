@@ -3,16 +3,20 @@ package InesMod.powers;
 import InesMod.action.ApplyStealsToTargetAction;
 import InesMod.characters.Ines;
 import InesMod.helpers.PathHelper;
+import InesMod.truth.TruthReward;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
+import com.megacrit.cardcrawl.rewards.RewardItem;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -35,8 +39,8 @@ public class InsightPower extends AbstractInesPower {
                 PowerType.BUFF,
                 amount);
 
-
     }
+
 
 
     @Override
@@ -97,5 +101,10 @@ public class InsightPower extends AbstractInesPower {
         stolenTarget.clear();
     }
 
-    // TODO：战斗结束后转为等量真相
+    // 战斗结束后转为等量真相
+    @Override
+    public void onVictory(){
+        ArrayList<RewardItem> rewards = AbstractDungeon.getCurrRoom().rewards;
+        rewards.add(0, new TruthReward(amount, true));
+    }
 }

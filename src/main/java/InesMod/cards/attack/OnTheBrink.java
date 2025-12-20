@@ -25,7 +25,7 @@ public class OnTheBrink extends AbstractInesCard {
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID); // 从游戏系统读取本地化资源
 
     public int initDamage = 6;
-    int updateAmount = 1;
+    int updateAmount = 2;
 
     public OnTheBrink() {
         super(ID,
@@ -101,7 +101,7 @@ public class OnTheBrink extends AbstractInesCard {
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.updateAmount = 2;
+            this.updateAmount = 3;
 
             this.rawDescription = cardStrings.UPGRADE_DESCRIPTION;
             this.initializeDescription();

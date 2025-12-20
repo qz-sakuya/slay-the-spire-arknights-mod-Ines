@@ -48,11 +48,7 @@ public class BoiledRations extends AbstractInesCard {
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            upgradeMagicNumber(1);
-            this.magicNumberUpgradeNum += 1;
-
-            this.rawDescription = cardStrings.UPGRADE_DESCRIPTION;
-            this.initializeDescription();
+            upgradeMagicNumber(2);
         }
     }
 }
