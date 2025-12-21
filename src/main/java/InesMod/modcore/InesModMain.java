@@ -43,15 +43,17 @@ public class InesModMain implements
         EditCardsSubscriber,
         EditRelicsSubscriber,
         EditKeywordsSubscriber,
-        //OnStartBattleSubscriber,
         PostInitializeSubscriber,
         AddAudioSubscriber,
         PostDrawSubscriber,
         OnCardUseSubscriber,
         PostExhaustSubscriber,
         OnStartBattleSubscriber,
+//        PostBattleSubscriber,
+//        PostCampfireSubscriber,
         PostPlayerUpdateSubscriber,
         StartGameSubscriber,
+        PreStartGameSubscriber,
         OnPlayerTurnStartSubscriber
 
 {
@@ -203,13 +205,16 @@ public class InesModMain implements
     public void receiveOnBattleStart(AbstractRoom abstractRoom) {
         TruthManager.setTopPanelItem();
 
+
         // 精英领袖房获得额外真相奖励
         ArrayList<RewardItem> rewards = AbstractDungeon.getCurrRoom().rewards;
         if (AbstractDungeon.getCurrRoom() instanceof com.megacrit.cardcrawl.rooms.MonsterRoomElite) {
-            rewards.add(0, new TruthReward(2, false));
+            int truthFromElite = 2;
+            rewards.add(0, new TruthReward(truthFromElite, false));
         }
         else if (AbstractDungeon.getCurrRoom() instanceof com.megacrit.cardcrawl.rooms.MonsterRoomBoss) {
-            rewards.add(0, new TruthReward(3, false));
+            int truthFromBoss = 3;
+            rewards.add(0, new TruthReward(truthFromBoss, false));
         }
     }
 
@@ -221,6 +226,13 @@ public class InesModMain implements
         TruthManager.setTopPanelItem();
     }
 
+
+
+    @Override
+    public void receivePreStartGame(){
+        // 进入存档时，清空未应用的虚值
+        TruthManager.clearVirtual();
+    }
 
 
     @Override

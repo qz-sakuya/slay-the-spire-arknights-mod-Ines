@@ -13,11 +13,12 @@
   },
   "InesMod:AgentVanguard": {
     "NAME": "情报官",
-    "DESCRIPTION": "每消耗 1 层 ines:偷取 ，获得 1 点 ines:情报 。"
+    "DESCRIPTION": "每消耗 1 层 ines:偷取 ，获得 1 点 ines:情报 。",
+    "UPGRADE_DESCRIPTION": " 固有 。 NL 每消耗 1 层 ines:偷取 ，获得 1 点 ines:情报 。"
   },
   "InesMod:PlanOfAction": {
     "NAME": "行动预谋",
-    "DESCRIPTION": "抽 !M! 张牌。 NL 获得 !M! 层 ines:偷取 和 [E] 。"
+    "DESCRIPTION": " ines:检索 随机 !M! 张攻击牌加入手牌。 NL 获得 !M! 层 ines:偷取 和 [E] 。"
   },
   "InesMod:ShadowWhistle": {
     "NAME": "影哨",
@@ -45,7 +46,7 @@
   },
   "InesMod:Feint": {
     "NAME": "佯攻",
-    "DESCRIPTION": "造成 !D! 点伤害。 NL 向手牌中加入 !M! 张 *影哨 。 消耗 。",
+    "DESCRIPTION": "造成 !D! 点伤害。 NL 向手牌中加入 !M! 张 *影哨 。 NL  消耗 。",
     "UPGRADE_DESCRIPTION": "造成 !D! 点伤害。 NL 向手牌中加入 !M! 张 *影哨 。"
   },
   "InesMod:ThrowPebble": {
@@ -153,7 +154,7 @@
   },
   "InesMod:ImmediateEffect": {
     "NAME": "立竿见影",
-    "DESCRIPTION": " 虚无 。 NL 获得 1 层 ines:隐匿 。 NL  消耗 。"
+    "DESCRIPTION": " 虚无 。 NL 获得 !M! 层 ines:隐匿 。 NL  消耗 。"
   },
   "InesMod:EmergencyRetreat": {
     "NAME": "紧急撤退",
@@ -244,11 +245,14 @@
   "InesMod:LoneReturn": {
     "NAME": "独影归途",
     "DESCRIPTION": "你的回合开始时，获得 !M! 层 ines:偷取 。",
-    "UPGRADE_DESCRIPTION": "你的回合开始时，获得 !M! 层 ines:偷取 。 NL  固有 。"
+    "UPGRADE_DESCRIPTION": " 固有 。 NL 你的回合开始时，获得 !M! 层 ines:偷取 。"
   },
   "InesMod:NecessaryCost": {
     "NAME": "必要代价",
-    "DESCRIPTION": "消耗所有 [E] 并丢弃所有手牌，造成相应次数的 !D! 点伤害。"
+    "DESCRIPTION": "消耗所有 [E] 并丢弃所有手牌，造成相应次数的 !D! 点伤害。",
+    "EXTENDED_DESCRIPTION": [
+      " NL （造成 !M! 次）"
+    ]
   },
   "InesMod:IntelTrade": {
     "NAME": "情报交易",
@@ -322,6 +326,6 @@
   },
   "InesMod:BattleMemories": {
     "NAME": "斗争往事",
-    "DESCRIPTION": "从抽牌堆与弃牌堆中选择 !M! 张能力牌加入到手牌，这些牌在本回合耗能变为0。 NL  消耗 。"
+    "DESCRIPTION": " ines:检索  !M! 张能力牌加入手牌，这些牌在本回合耗能变为0。 NL  消耗 。"
   }
 }

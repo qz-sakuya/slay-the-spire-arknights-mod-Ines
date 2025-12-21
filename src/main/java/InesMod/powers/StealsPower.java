@@ -2,6 +2,7 @@ package InesMod.powers;
 
 import InesMod.action.ApplyStealsToTargetAction;
 import InesMod.action.ReduceAndKeepPowerAction;
+
 import InesMod.cards.AbstractInesCard;
 import InesMod.characters.Ines;
 import InesMod.helpers.ConfigHelper;
@@ -117,7 +118,7 @@ public class StealsPower extends AbstractInesPower {
 
             // 给自己加一次力量
             addToBot(new ApplyPowerAction(owner, owner, new StrengthPower(owner, strengthToApply), strengthToApply));
-            addToBot(new ApplyPowerAction(owner, owner, new StrengthStealPower(owner, strengthToApply), strengthToApply));
+            addToBot(new ApplyPowerAction(owner, owner, new StrengthStealPower(owner, strengthToApply), strengthToApply,true));
 
 
             // 处理 洞悉 相关逻辑

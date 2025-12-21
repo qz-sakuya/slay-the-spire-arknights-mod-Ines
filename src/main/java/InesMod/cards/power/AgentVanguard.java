@@ -21,7 +21,7 @@ public class AgentVanguard extends AbstractInesCard {
         super(ID,
                 false,
                 cardStrings,
-                2,
+                1,
                 CardType.POWER,
                 CardRarity.UNCOMMON,
                 CardTarget.SELF,
@@ -37,7 +37,10 @@ public class AgentVanguard extends AbstractInesCard {
     public void upgrade() {
         if (!this.upgraded) {
             upgradeName();
-            upgradeBaseCost(1);
+            this.isInnate = true;
+
+            this.rawDescription = cardStrings.UPGRADE_DESCRIPTION;
+            this.initializeDescription();
         }
     }
 }

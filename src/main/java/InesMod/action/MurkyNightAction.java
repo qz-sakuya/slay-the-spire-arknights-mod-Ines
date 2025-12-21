@@ -22,7 +22,7 @@ public class MurkyNightAction extends AbstractGameAction {
     }
 
     public void update() {
-        // 来源牌在手牌才触发效果
+        // 潜伏牌在手牌才触发效果
         if (AbstractDungeon.player.hand.group.contains(sourceCard)) {
             addToBot(new ExhaustSpecificCardAction(targetCard, AbstractDungeon.player.discardPile));
 

@@ -3,6 +3,7 @@ package InesMod.powers;
 import InesMod.action.ApplyStealsToTargetAction;
 import InesMod.characters.Ines;
 import InesMod.helpers.PathHelper;
+import InesMod.truth.TruthManager;
 import InesMod.truth.TruthReward;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
@@ -59,8 +60,12 @@ public class InsightPower extends AbstractInesPower {
 
     @Override
     public void onUseCard(AbstractCard card, UseCardAction action) {
-        flash();
-        consumeNum = this.amount;
+        consumeNum = 0;
+        if (card.type == AbstractCard.CardType.ATTACK) {
+            flash();
+            consumeNum = this.amount;
+        }
+
     }
 
 
@@ -105,6 +110,8 @@ public class InsightPower extends AbstractInesPower {
     @Override
     public void onVictory(){
         ArrayList<RewardItem> rewards = AbstractDungeon.getCurrRoom().rewards;
-        rewards.add(0, new TruthReward(amount, true));
+
+        int truthFromInsight = amount;
+        rewards.add(0, new TruthReward(truthFromInsight, true));
     }
 }

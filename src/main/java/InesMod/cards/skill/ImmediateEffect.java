@@ -26,25 +26,26 @@ public class ImmediateEffect extends AbstractInesCard {
         super(ID,
                 false,
                 cardStrings,
-                2,
+                1,
                 CardType.SKILL,
                 CardRarity.COMMON,
                 CardTarget.SELF,
                 Ines.Enums.INES_CARD);
+        this.magicNumber = this.baseMagicNumber = 1;
         this.exhaust = true;
         this.isEthereal = true;
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        addToBot(new ApplyPowerAction(p, p, new InvisibilityPower(p, 1), 1));
+        addToBot(new ApplyPowerAction(p, p, new InvisibilityPower(p, magicNumber), magicNumber));
     }
 
     @Override
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            upgradeBaseCost(1);
+            upgradeMagicNumber(1);
         }
     }
 }

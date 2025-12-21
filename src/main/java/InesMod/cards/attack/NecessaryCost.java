@@ -14,6 +14,7 @@ import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.cards.DamageInfo.DamageType;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
@@ -34,6 +35,7 @@ public class NecessaryCost extends AbstractInesCard {
                 CardTarget.ENEMY,
                 Ines.Enums.INES_CARD);
         this.damage = this.baseDamage = 6;
+        this.magicNumber = this.baseMagicNumber = 0;
     }
 
     @Override
@@ -41,6 +43,14 @@ public class NecessaryCost extends AbstractInesCard {
         addToBot(new NecessaryCostAction(p, m, this.damage, this.freeToPlayOnce, this.energyOnUse));
     }
 
+    @Override
+    public void applyPowers() {
+        this.baseMagicNumber = this.energyOnUse + AbstractDungeon.player.hand.size();
+
+        // 添加额外文本
+        this.rawDescription = cardStrings.DESCRIPTION + cardStrings.EXTENDED_DESCRIPTION[0];
+        initializeDescription();
+    }
 
     @Override
     public void upgrade() {

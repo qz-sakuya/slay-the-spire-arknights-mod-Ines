@@ -36,8 +36,7 @@ public class ChaseWithShadow extends AbstractInesCard {
                 CardRarity.RARE,
                 CardTarget.ENEMY,
                 Ines.Enums.INES_CARD);
-        this.baseDamage = 7;
-        this.isMultiDamage = true;
+        this.damage = this.baseDamage = 7;
     }
 
     @Override

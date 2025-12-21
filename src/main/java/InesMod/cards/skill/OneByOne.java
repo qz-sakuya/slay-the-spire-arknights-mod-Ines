@@ -41,7 +41,8 @@ public class OneByOne extends AbstractInesCard {
 
     @Override
     public void onReceiveCardUsed(AbstractCard c) {
-        if (c.type == AbstractCard.CardType.ATTACK) {
+        // 潜伏牌在手牌才触发效果
+        if (c.type == AbstractCard.CardType.ATTACK && AbstractDungeon.player.hand.group.contains(this)) {
             addToBot(new OneByOneAction(magicNumber));
         }
     }

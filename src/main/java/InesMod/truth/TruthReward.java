@@ -30,7 +30,8 @@ public class TruthReward extends CustomReward {
 
     @Override
     public boolean claimReward() {
-        TruthManager.gain(this.amount);
+        // 不直接获得，而是获得虚值
+        TruthManager.updateVirtual(amount);
         return true;
     }
 }

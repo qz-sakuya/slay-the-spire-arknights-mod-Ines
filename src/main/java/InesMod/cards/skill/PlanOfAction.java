@@ -1,5 +1,7 @@
 package InesMod.cards.skill;
 
+import InesMod.action.RandomSearchCardAction;
+import InesMod.action.SelectPileCardAction;
 import InesMod.cards.AbstractInesCard;
 import InesMod.characters.Ines;
 import InesMod.helpers.PathHelper;
@@ -7,8 +9,10 @@ import InesMod.powers.StealsPower;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.DrawCardAction;
 import com.megacrit.cardcrawl.actions.common.GainEnergyAction;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
@@ -33,7 +37,27 @@ public class PlanOfAction extends AbstractInesCard {
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        this.addToBot(new DrawCardAction(p, magicNumber));
+        // this.addToBot(new DrawCardAction(p, magicNumber));
+
+
+        addToBot(new RandomSearchCardAction(
+                magicNumber,
+                c -> c.type == CardType.ATTACK,
+                (selected) -> {
+                    for (AbstractCard c : selected) {
+                        if (c != null) {
+                            if (AbstractDungeon.player.drawPile.contains(c)) {
+                                AbstractDungeon.player.drawPile.moveToHand(c);
+                            }
+                            else if (AbstractDungeon.player.discardPile.contains(c)) {
+                                AbstractDungeon.player.discardPile.moveToHand(c);
+                            }
+                        }
+                    }
+                    AbstractDungeon.player.hand.refreshHandLayout();
+                }
+        ));
+
         this.addToBot(new ApplyPowerAction(p, p, new StealsPower(p, magicNumber), magicNumber));
         this.addToBot(new GainEnergyAction(1));
     }

@@ -49,14 +49,11 @@ public class ApplyStealsToTargetAction extends AbstractGameAction {
         }
 
         // 给当前目标减一次力量
+        // 如果有人工制品，则不挂“被偷取力量”
         if (!target.hasPower("Artifact")) {
-            addToTop(new ApplyPowerAction(target, source, new StrengthStolenPower(target, strengthToApply), strengthToApply));
-            addToTop(new ApplyPowerAction(target, source, new StrengthPower(target, -strengthToApply), -strengthToApply));
+            addToTop(new ApplyPowerAction(target, source, new StrengthStolenPower(target, strengthToApply), strengthToApply,true));
         }
-        else {
-            // 如果有人工制品，则不挂“被偷取力量”
-            addToTop(new ApplyPowerAction(target, source, new StrengthPower(target, -strengthToApply), -strengthToApply));
-        }
+        addToTop(new ApplyPowerAction(target, source, new StrengthPower(target, -strengthToApply), -strengthToApply));
 
 
         if (triggerOther) {

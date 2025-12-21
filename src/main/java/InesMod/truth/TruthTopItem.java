@@ -36,7 +36,7 @@ public class TruthTopItem extends TopPanelItem {
     @Override
     public void render(SpriteBatch sb, Color color) {
         super.render(sb,color);
-        FontHelper.renderFontLeftTopAligned(sb,FontHelper.topPanelAmountFont,Integer.toString(TruthManager.truthAmount), this.x + 64F* Settings.scale, INFO_TEXT_Y,Settings.CREAM_COLOR);
+        FontHelper.renderFontLeftTopAligned(sb,FontHelper.topPanelAmountFont,Integer.toString(TruthManager.getTotalAmount()), this.x + 64F* Settings.scale, INFO_TEXT_Y,Settings.CREAM_COLOR);
         if(renderTip){
             sb.setColor(Color.WHITE);
             TipHelper.renderGenericTip(this.x,this.y,uiStrings.TEXT[0],uiStrings.TEXT[1]);

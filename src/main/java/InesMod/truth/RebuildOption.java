@@ -41,7 +41,7 @@ public class RebuildOption extends AbstractCampfireOption {
         if(timer<0F){
             timer = 0.1f;
             boolean valid = false;
-            if(TruthManager.truthAmount >= 8){
+            if(TruthManager.getTotalAmount() >= 8){
                 valid = true;
             }
             if(triggered){
