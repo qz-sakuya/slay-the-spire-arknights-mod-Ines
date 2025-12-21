@@ -28,14 +28,15 @@ public class WeaponStockpile extends AbstractInesCard {
                 CardRarity.COMMON,
                 CardTarget.SELF,
                 Ines.Enums.INES_CARD);
-        this.magicNumber = this.baseMagicNumber = 3;
+        this.magicNumber = this.baseMagicNumber = 2;
+        this.exhaust = true;
 
         this.cardsToPreview = new Shiv();
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        this.addToBot(new MakeTempCardInHandAction(new Shiv(), 1)); // 生成1张小刀
+        this.addToBot(new MakeTempCardInHandAction(new Shiv(), 2)); // 生成2张小刀
 
         addToBot(new ApplyPowerAction(p, p, new WeaponStockpilePower(p, magicNumber), magicNumber));
     }
@@ -44,7 +45,10 @@ public class WeaponStockpile extends AbstractInesCard {
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            upgradeMagicNumber(2);
+            this.exhaust = false;
+
+            this.rawDescription = cardStrings.UPGRADE_DESCRIPTION;
+            this.initializeDescription();
         }
     }
 }

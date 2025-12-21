@@ -141,7 +141,8 @@
   },
   "InesMod:WeaponStockpile": {
     "NAME": "武器储备",
-    "DESCRIPTION": "现在与接下来 !M! 个回合开始时，增加 1 张 *小刀 到你的手牌。"
+    "DESCRIPTION": "现在与接下来 !M! 个回合开始时，增加 2 张 *小刀 到你的手牌。 NL  消耗 。",
+    "UPGRADE_DESCRIPTION": "现在与接下来 !M! 个回合开始时，增加 2 张 *小刀 到你的手牌。"
   },
   "InesMod:DataOrganization": {
     "NAME": "数据整理",

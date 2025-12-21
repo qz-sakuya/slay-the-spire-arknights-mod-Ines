@@ -36,7 +36,7 @@ public class WeaponStockpilePower extends AbstractInesPower {
             addToBot(new RemoveSpecificPowerAction(this.owner, this.owner, WeaponStockpilePower.ID));
         } else {
             addToBot(new ReducePowerAction(this.owner, this.owner, WeaponStockpilePower.ID, 1));
-            this.addToBot(new MakeTempCardInHandAction(new Shiv(), 1)); // 生成1张小刀
+            this.addToBot(new MakeTempCardInHandAction(new Shiv(), 2)); // 生成2张小刀
         }
     }
 

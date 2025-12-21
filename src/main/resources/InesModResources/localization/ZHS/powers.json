@@ -90,7 +90,7 @@
   "InesMod:WeaponStockpilePower": {
     "NAME": "武器储备",
     "DESCRIPTIONS": [
-      "回合开始时获得 #b1 张 #y小刀 ，持续 #b%d 回合。"
+      "回合开始时获得 #b2 张 #y小刀 ，持续 #b%d 回合。"
     ]
   },
   "InesMod:DeadlyOpportunityPower": {
