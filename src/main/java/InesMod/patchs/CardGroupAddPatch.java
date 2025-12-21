@@ -56,8 +56,7 @@ public class CardGroupAddPatch {
     }
 
     public static void Work(CardGroup __instance, AbstractCard c) {
-        // LogHelper.info("===CardGroupAddPatch：被加入的卡牌ID{}===", c.cardID);
-        // LogHelper.info("===CardGroupAddPatch：牌被加入的位置{}===", __instance.type);
+        LogHelper.info("===CardGroupAddPatch：被加入的卡牌ID={}，牌被加入的位置={}===", c.cardID, __instance.type);
 
         // 触发自动打出
         if (c instanceof AbstractInesCard ){
@@ -85,7 +84,7 @@ public class CardGroupAddPatch {
                     __instance.type == CardGroup.CardGroupType.EXHAUST_PILE) {
 
                 tmp.lastAddedTo = __instance.type;
-                // LogHelper.info("===CardGroupAddPatch：更新卡牌lastAddedTo为: {}===", tmp.lastAddedTo);
+                LogHelper.info("===CardGroupAddPatch：更新卡牌lastAddedTo为: {}===", tmp.lastAddedTo);
             }
         }
 
@@ -123,6 +122,12 @@ public class CardGroupAddPatch {
                 AbstractInesCard inesCard = (AbstractInesCard)cardToCall;
                 inesCard.onCardMove(c, __instance.type);
             }
+        }
+
+        // 强制触发自身
+        if (c instanceof AbstractInesCard) {
+            AbstractInesCard inesCard = (AbstractInesCard)c;
+            inesCard.onCardMove(c, __instance.type);
         }
     }
 }

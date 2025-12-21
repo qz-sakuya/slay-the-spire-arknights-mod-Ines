@@ -37,7 +37,7 @@ public class ExperienceGain extends AbstractInesCard {
                 CardRarity.RARE,
                 CardTarget.SELF,
                 Ines.Enums.INES_CARD);
-        this.exhaustNeed = 4;
+        this.exhaustNeed = 3;
 
         this.cardsToPreview = new ShadowWhistle();
 
@@ -82,7 +82,7 @@ public class ExperienceGain extends AbstractInesCard {
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.exhaustNeed = 3;
+            this.exhaustNeed -= 1;
             tryDecreaseCost();
 
             // 火堆等界面不显示额外信息

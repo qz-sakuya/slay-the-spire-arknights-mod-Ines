@@ -4,6 +4,8 @@ import InesMod.action.SimpleExhaustAction;
 import InesMod.cards.AbstractInesCard;
 import InesMod.helpers.PathHelper;
 import com.megacrit.cardcrawl.actions.common.GainBlockAction;
+import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -33,9 +35,12 @@ public class ShadowWhistle extends AbstractInesCard {
     public void use(AbstractPlayer p, AbstractMonster m) {}
 
     @Override
-    public void onMoveToDiscard() {
-        addToBot(new GainBlockAction(AbstractDungeon.player, AbstractDungeon.player, this.block));
-        addToTop(new SimpleExhaustAction(this, AbstractDungeon.player.discardPile));
+    // 不建议使用OnMoveToDiscard
+    public void onCardMove(AbstractCard c, CardGroup.CardGroupType groupType) {
+        if (c == this && groupType == CardGroup.CardGroupType.DISCARD_PILE){
+            addToBot(new GainBlockAction(AbstractDungeon.player, AbstractDungeon.player, this.block));
+            addToBot(new SimpleExhaustAction(this, AbstractDungeon.player.discardPile));
+        }
     }
 
     @Override

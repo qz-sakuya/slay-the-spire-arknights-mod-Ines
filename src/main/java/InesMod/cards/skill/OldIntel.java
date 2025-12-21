@@ -6,6 +6,8 @@ import InesMod.helpers.LogHelper;
 import InesMod.helpers.PathHelper;
 import com.megacrit.cardcrawl.actions.common.DiscardAction;
 import com.megacrit.cardcrawl.actions.common.DrawCardAction;
+import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
@@ -48,17 +50,20 @@ public class OldIntel extends AbstractInesCard {
     }
 
     // 有bug一回合触发两次onMoveToDiscard，但是bug又不能稳定复现，后面再出现再修吧
+    // 不能使用onMoveToDiscard否则看弃牌堆就计数
     @Override
-    public void onMoveToDiscard() {
-        LogHelper.info("===OldIntel：onMoveToDiscard：baseMagicNumber：{}===",this.baseMagicNumber);
-        if(!this.upgraded){
+    public void onCardMove(AbstractCard c, CardGroup.CardGroupType groupType) {
+        // LogHelper.info("===OldIntel：onCardMove：begin");
+        if (c == this && groupType == CardGroup.CardGroupType.DISCARD_PILE){
+            if(!this.upgraded){
+                // LogHelper.info("===OldIntel：onCardMove进入弃牌堆：baseMagicNumber：{}===",this.baseMagicNumber);
+                this.upgradeMagicNumber(-1);
 
-            this.upgradeMagicNumber(-1);
-
-            if (this.baseMagicNumber < 0) {
-                this.baseMagicNumber = 0;
+                if (this.baseMagicNumber < 0) {
+                    this.baseMagicNumber = 0;
+                }
+                // LogHelper.info("===OldIntel：onCardMove进入弃牌堆：baseMagicNumber-1,当前值:：{}===",this.baseMagicNumber);
             }
-            LogHelper.info("===OldIntel：onMoveToDiscard：baseMagicNumber-1,当前值:：{}===",this.baseMagicNumber);
         }
     }
 

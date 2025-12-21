@@ -25,17 +25,11 @@ public class CloseQuartersCombatAction extends AbstractGameAction {
     }
 
     public void update() {
-        int tempDamage = this.damage;
         if(source.currentBlock == 0){
-            tempDamage += this.magicNumber;
+            this.addToTop(new DamageAction(target, new DamageInfo(source, damage, DamageInfo.DamageType.NORMAL), AbstractGameAction.AttackEffect.BLUNT_LIGHT));
+        }
+        this.addToTop(new DamageAction(target, new DamageInfo(source, damage, DamageInfo.DamageType.NORMAL), AbstractGameAction.AttackEffect.BLUNT_LIGHT));
 
-            // 重攻击动画
-            this.addToTop(new DamageAction(target, new DamageInfo(source, tempDamage, DamageInfo.DamageType.NORMAL), AbstractGameAction.AttackEffect.BLUNT_HEAVY));
-        }
-        else{
-            // 轻攻击动画
-            this.addToTop(new DamageAction(target, new DamageInfo(source, tempDamage, DamageInfo.DamageType.NORMAL), AbstractGameAction.AttackEffect.BLUNT_LIGHT));
-        }
 
         this.isDone = true;
     }

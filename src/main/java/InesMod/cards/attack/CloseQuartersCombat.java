@@ -48,12 +48,12 @@ public class CloseQuartersCombat extends AbstractInesCard {
         }
     }
 
+
     @Override
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
             this.upgradeDamage(2);
-            this.upgradeMagicNumber(2);
         }
     }
 }

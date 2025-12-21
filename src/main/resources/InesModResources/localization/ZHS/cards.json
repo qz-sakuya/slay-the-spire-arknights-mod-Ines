@@ -38,7 +38,7 @@
   },
   "InesMod:CloseQuartersCombat": {
     "NAME": "近身格斗",
-    "DESCRIPTION": "造成 !D! 点伤害。 NL 如果你没有 格挡 ， NL 伤害+ !M! 。"
+    "DESCRIPTION": "造成 !D! 点伤害。 NL 如果你没有 格挡 ，额外造成 1 次伤害。"
   },
   "InesMod:TrackUnderNight": {
     "NAME": "夜下寻踪",
@@ -293,8 +293,8 @@
   },
   "InesMod:ExperienceGain": {
     "NAME": "经验积累",
-    "DESCRIPTION": "获得 1  ines:情报 、 1  ines:隐匿 、 1  ines:偷取 和 1  *影哨 。 NL 本次战斗每消耗 4 张牌，此牌耗能-1。",
-    "UPGRADE_DESCRIPTION": "获得 1  ines:情报 、 1  ines:隐匿 、 1  ines:偷取 和 1  *影哨 。 NL 本次战斗每消耗 3 张牌，此牌耗能-1。",
+    "DESCRIPTION": "获得 1  ines:情报 、 1  ines:隐匿 、 1  ines:偷取 和 1  *影哨 。 NL 本次战斗每消耗 3 张牌，此牌耗能-1。",
+    "UPGRADE_DESCRIPTION": "获得 1  ines:情报 、 1  ines:隐匿 、 1  ines:偷取 和 1  *影哨 。 NL 本次战斗每消耗 2 张牌，此牌耗能-1。",
     "EXTENDED_DESCRIPTION": [
       " NL （已消耗 !M! 张牌)"
     ]
