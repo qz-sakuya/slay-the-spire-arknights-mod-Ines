@@ -56,9 +56,9 @@ public class NecessaryCostAction extends AbstractGameAction {
         }
 
         // 弃牌的部分
-        int cardExhaustCount = AbstractDungeon.player.hand.size();
+        int cardCount = AbstractDungeon.player.hand.size();
 
-        for (int i = 0; i < cardExhaustCount; i++) {
+        for (int i = 0; i < cardCount; i++) {
             this.addToTop(new DamageAction(m, new DamageInfo(p, damage, DamageInfo.DamageType.NORMAL), AttackEffect.SLASH_DIAGONAL));
         }
 

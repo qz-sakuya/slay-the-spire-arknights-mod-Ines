@@ -1,5 +1,6 @@
 package InesMod.action;
 
+import InesMod.helpers.LogHelper;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;
@@ -21,6 +22,7 @@ public class RemoveHalfBlockAction extends AbstractGameAction {
     }
 
     public void update() {
+        LogHelper.info("===RemoveHalfBlockAction: update：清除前格挡={}===",this.target.currentBlock);
         if (!this.target.isDying && !this.target.isDead &&
                 this.duration == 0.25F &&
                 this.target.currentBlock > 0) {

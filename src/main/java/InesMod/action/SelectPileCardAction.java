@@ -53,7 +53,7 @@ public class SelectPileCardAction extends AbstractGameAction {
             // 先筛选卡
             ArrayList<AbstractCard> filteredCards = new ArrayList<>();
             for (AbstractCard c : cardList) {
-                if (this.cardFilter.test(c)) {
+                if (this.cardFilter == null || this.cardFilter.test(c)) {
                     filteredCards.add(c);
                 }
             }

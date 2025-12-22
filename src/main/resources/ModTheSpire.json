@@ -3,8 +3,8 @@
   "name": "InesMod（伊内丝）",
   "author_list": ["轻千轻子Sakuya"],
   "description": "伊内丝人物Mod",
-  "version": "0.9.2",
+  "version": "1.0.1",
   "sts_version": "12-22-2020",
   "mts_version": "3.30.3",
-  "dependencies": ["basemod"]
+  "dependencies": ["basemod","stslib"]
 }

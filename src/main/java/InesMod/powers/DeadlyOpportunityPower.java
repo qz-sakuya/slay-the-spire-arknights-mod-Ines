@@ -1,6 +1,7 @@
 package InesMod.powers;
 
 import InesMod.action.ApplyStealsToTargetAction;
+import InesMod.action.DeadlyOpportunityAction;
 import InesMod.action.RemoveHalfBlockAction;
 import InesMod.action.SetBlockAction;
 import InesMod.characters.Ines;
@@ -13,6 +14,7 @@ import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.actions.watcher.PressEndTurnButtonAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
+import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.PowerStrings;
@@ -38,6 +40,9 @@ public class DeadlyOpportunityPower extends AbstractInesPower {
                 PowerType.BUFF,
                 amount);
         this.isUpgrade = isUpgrade;
+
+        // 排在力量后面（参考原版 双倍伤害 power）
+        this.priority = 6;
     }
 
 
@@ -63,20 +68,17 @@ public class DeadlyOpportunityPower extends AbstractInesPower {
     @Override
     public void onAfterUseCard(AbstractCard card, UseCardAction action) {
         if (card.type == AbstractCard.CardType.ATTACK && !card.purgeOnUse) {
-            flash();
-            this.addToBot(new RemoveSpecificPowerAction(this.owner, this.owner, DeadlyOpportunityPower.ID));
 
-            if (!isUpgrade){
-                this.addToBot(new RemoveAllBlockAction(this.owner, this.owner));
-            }
-            else{
-                this.addToBot(new RemoveHalfBlockAction(this.owner, this.owner));
-            }
 
-            // 结束你的回合
-            this.addToBot(new PressEndTurnButtonAction());
+            // 致命契机+手牌有影哨+打出具有弃牌的攻击牌（如必要代价），
+            // 则影哨在afterUseCard前消耗且addToBot(起防Action)，再addToBot(致命契机Action)
+            // 结论是影哨的防御会被清空
 
+            // 掌控全局+手牌有影哨+隐匿+打出攻击牌，
+            // 则影哨在afterUseCard后消耗且addToBot(起防Action)，此时起防Action晚于致命契机Action
+            // 结论是影哨的防御会保留
+            // 因为最多在隐匿下丢弃1张，因此保留作为机制
+            addToBot(new DeadlyOpportunityAction((AbstractPlayer) this.owner, this.isUpgrade));
         }
-
     }
 }

@@ -20,32 +20,34 @@ import com.badlogic.gdx.graphics.Color;
 /**
  *  给 renderPowerIcons 方法进行patch
  *  使其绘制第二个数字
+ *  已弃用，改为直接重载renderAmount
  */
 public class renderPowerSecondAmountPatch {
 
-    @SpirePatch(clz = AbstractCreature.class, method = "renderPowerIcons")
-    public static class Fun {
-        @SpirePostfixPatch
-        public static void Postfix(AbstractCreature __instance, SpriteBatch sb, float x, float y) {
-            Color hbTextColor = ReflectionHacks.getPrivate(__instance, AbstractCreature.class, "hbTextColor");
-            float POWER_ICON_PADDING_X = ReflectionHacks.getPrivate(__instance, AbstractCreature.class, "POWER_ICON_PADDING_X");
 
-            float offset = 0.0F * Settings.scale;
-
-            for (AbstractPower p : __instance.powers) {
-                if (p instanceof AbstractInesPower){
-                    if (Settings.isMobile) {
-                        ((AbstractInesPower) p).renderSecondAmount(sb, x + offset + 32.0F * Settings.scale, y - 60.0F * Settings.scale, hbTextColor);
-                    } else {
-                        ((AbstractInesPower) p).renderSecondAmount(sb, x + offset + 32.0F * Settings.scale, y - 51.0F * Settings.scale, hbTextColor);
-                    }
-                    offset += POWER_ICON_PADDING_X;
-                }
-            }
-        }
-
-
-    }
+//    @SpirePatch(clz = AbstractCreature.class, method = "renderPowerIcons")
+//    public static class Fun {
+//        @SpirePostfixPatch
+//        public static void Postfix(AbstractCreature __instance, SpriteBatch sb, float x, float y) {
+//            Color hbTextColor = ReflectionHacks.getPrivate(__instance, AbstractCreature.class, "hbTextColor");
+//            float POWER_ICON_PADDING_X = ReflectionHacks.getPrivate(__instance, AbstractCreature.class, "POWER_ICON_PADDING_X");
+//
+//            float offset = 0.0F * Settings.scale;
+//
+//            for (AbstractPower p : __instance.powers) {
+//                if (p instanceof AbstractInesPower){
+//                    if (Settings.isMobile) {
+//                        ((AbstractInesPower) p).renderSecondAmount(sb, x + offset + 32.0F * Settings.scale, y - 60.0F * Settings.scale, hbTextColor);
+//                    } else {
+//                        ((AbstractInesPower) p).renderSecondAmount(sb, x + offset + 32.0F * Settings.scale, y - 51.0F * Settings.scale, hbTextColor);
+//                    }
+//                    offset += POWER_ICON_PADDING_X;
+//                }
+//            }
+//        }
+//
+//
+//    }
 
     /*
      原版坐标：

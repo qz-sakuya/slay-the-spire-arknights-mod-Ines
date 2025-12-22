@@ -178,5 +178,18 @@
     "DESCRIPTIONS": [
       "每消耗 #b1 张 #y影哨 ，获得 #b%d 点 #y格挡 。"
     ]
+  },
+  "InesMod:InformantPower": {
+    "NAME": "线人",
+    "DESCRIPTIONS": [
+      "下回合开始时 #y检索 ： %s  NL 并加入手牌。"
+    ]
+  },
+  "InesMod:ShadowDominancePower": {
+    "NAME": "暗影主宰",
+    "DESCRIPTIONS": [
+      "手牌中每有 #b1 张 #y影哨 ，使攻击伤害 #b+%d 。",
+      " NL （伤害 #b+%d ）"
+    ]
   }
 }

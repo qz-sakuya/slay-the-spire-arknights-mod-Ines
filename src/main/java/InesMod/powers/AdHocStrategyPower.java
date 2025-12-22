@@ -3,6 +3,7 @@ package InesMod.powers;
 import InesMod.action.AdHocStrategyAction;
 import InesMod.action.AdHocSupplyAction;
 import InesMod.characters.Ines;
+import InesMod.helpers.LogHelper;
 import InesMod.helpers.PathHelper;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
@@ -42,12 +43,14 @@ public class AdHocStrategyPower extends AbstractInesPower {
     @Override
     public void onCardMove(AbstractCard c, CardGroup.CardGroupType groupType) {
         if (!this.inEndTurnPeriod) {
+            LogHelper.info("===AdHocStrategyPower：onCardMove：尝试触发===");
             addToBot(new AdHocStrategyAction(owner, amount));
         }
     }
 
     @Override
     public void atStartOfTurn() {
+        LogHelper.info("===AdHocStrategyPower：atStartOfTurn===");
         this.inEndTurnPeriod = false;
 
         addToBot(new AdHocStrategyAction(owner, amount));
@@ -55,6 +58,7 @@ public class AdHocStrategyPower extends AbstractInesPower {
 
     @Override
     public void atEndOfTurn(boolean isPlayer) {
+        LogHelper.info("===AdHocStrategyPower：atEndOfTurn===");
         if(isPlayer) {
             this.inEndTurnPeriod = true;
         }

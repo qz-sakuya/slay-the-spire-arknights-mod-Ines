@@ -23,7 +23,7 @@ public class LayeredShadows extends AbstractInesCard {
         super(ID,
                 false,
                 cardStrings,
-                0,
+                1,
                 CardType.SKILL,
                 CardRarity.COMMON,
                 CardTarget.SELF,
@@ -41,7 +41,13 @@ public class LayeredShadows extends AbstractInesCard {
                 cnt++;
             }
         }
-        this.addToBot(new MakeTempCardInHandAction(new ShadowWhistle(), cnt));
+        if (cnt > 0) {
+            this.addToBot(new MakeTempCardInHandAction(new ShadowWhistle(), cnt));
+        }
+        else{
+            this.addToBot(new MakeTempCardInHandAction(new ShadowWhistle(), 1));
+        }
+
     }
 
     @Override

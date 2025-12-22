@@ -12,6 +12,7 @@ import com.megacrit.cardcrawl.localization.PowerStrings;
 
 /**
  * 中文名：影哨回收
+ * 此 power 的效果由 ShadowWhistle 代行
  */
 public class ShadowWhistleRetrievalPower extends AbstractInesPower {
     public static final String ID = PathHelper.nameToId(ShadowWhistleRetrievalPower.class.getSimpleName());
@@ -34,11 +35,11 @@ public class ShadowWhistleRetrievalPower extends AbstractInesPower {
     }
 
 
-    @Override
-    public void onExhaust(AbstractCard card){
-        if (card.cardID.equals(ShadowWhistle.ID)) {
-            flash();
-            this.addToBot(new GainBlockAction(this.owner, this.amount, Settings.FAST_MODE));
-        }
-    }
+//    @Override
+//    public void onExhaust(AbstractCard card){
+//        if (card.cardID.equals(ShadowWhistle.ID)) {
+//            flash();
+//            this.addToBot(new GainBlockAction(this.owner, this.amount, Settings.FAST_MODE));
+//        }
+//    }
 }

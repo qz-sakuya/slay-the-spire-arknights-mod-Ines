@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.core.AbstractCreature;
+import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.localization.PowerStrings;
@@ -91,31 +92,42 @@ public abstract class AbstractInesPower extends AbstractPower {
     public void onManualDiscard(AbstractCard c){}
 
 
-    // 绘制第二个数字
-    public void renderSecondAmount(SpriteBatch sb, float x, float y, Color c) {
-        if (secondAmount == null) {
-            return;
+//    // 绘制第二个数字
+//    public void renderSecondAmount(SpriteBatch sb, float x, float y, Color c) {
+//        if (secondAmount == null) {
+//            return;
+//        }
+//
+//        // LoggerHelper.info("===AbstractInesPower renderSecondAmount：secondAmount层数：{}===",secondAmount);
+//
+//        /*
+//        if (this.secondAmount > 0) {
+//            if (!this.isTurnBased) {
+//                this.greenColor.a = c.a;
+//                c = this.greenColor;
+//            }
+//
+//            FontHelper.renderFontRightTopAligned(sb, FontHelper.powerAmountFont, Integer.toString(this.secondAmount), x, y, this.fontScale, c);
+//        } else if (this.secondAmount < 0) {
+//            this.redColor.a = c.a;
+//            c = this.redColor;
+//            FontHelper.renderFontRightTopAligned(sb, FontHelper.powerAmountFont, Integer.toString(this.secondAmount), x, y, this.fontScale, c);
+//        }
+//         */
+//
+//        // 默认白色
+//        FontHelper.renderFontRightTopAligned(sb, FontHelper.powerAmountFont, Integer.toString(this.secondAmount), x, y, this.fontScale, c);
+//
+//    }
+
+    @Override
+    // 绘制第二个数字 另一种实现（参考stslib）
+    public void renderAmount(SpriteBatch sb, float x, float y, Color c) {
+        super.renderAmount(sb, x, y, c);
+
+        if (secondAmount != null) {
+            // 默认白色
+            FontHelper.renderFontRightTopAligned(sb, FontHelper.powerAmountFont, Integer.toString(this.secondAmount), x, y + 15.0F * Settings.scale, this.fontScale, c);
         }
-
-        // LoggerHelper.info("===AbstractInesPower renderSecondAmount：secondAmount层数：{}===",secondAmount);
-
-        /*
-        if (this.secondAmount > 0) {
-            if (!this.isTurnBased) {
-                this.greenColor.a = c.a;
-                c = this.greenColor;
-            }
-
-            FontHelper.renderFontRightTopAligned(sb, FontHelper.powerAmountFont, Integer.toString(this.secondAmount), x, y, this.fontScale, c);
-        } else if (this.secondAmount < 0) {
-            this.redColor.a = c.a;
-            c = this.redColor;
-            FontHelper.renderFontRightTopAligned(sb, FontHelper.powerAmountFont, Integer.toString(this.secondAmount), x, y, this.fontScale, c);
-        }
-         */
-
-        // 默认白色
-        FontHelper.renderFontRightTopAligned(sb, FontHelper.powerAmountFont, Integer.toString(this.secondAmount), x, y, this.fontScale, c);
-
     }
 }

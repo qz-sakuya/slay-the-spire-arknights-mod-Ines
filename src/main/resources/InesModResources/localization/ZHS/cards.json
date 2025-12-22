@@ -132,7 +132,7 @@
   },
   "InesMod:GuidedThrow": {
     "NAME": "牵引投掷",
-    "DESCRIPTION": "对所有敌人造成 !D! 点伤害。 NL 消耗等同于敌人数量的 ines:偷取 。"
+    "DESCRIPTION": "对所有敌人造成 !D! 点伤害。消耗等同于敌人数量的 ines:偷取 。"
   },
   "InesMod:MasterTheGame": {
     "NAME": "掌控全局",
@@ -164,8 +164,8 @@
   },
   "InesMod:LayeredShadows": {
     "NAME": "叠影",
-    "DESCRIPTION": "将手牌中 *影哨 的数量翻倍。",
-    "UPGRADE_DESCRIPTION":"将手牌中 *影哨 的数量翻倍。 NL  保留 。"
+    "DESCRIPTION": "如果手牌中没有 *影哨 ，加入 1 张 *影哨 。 NL 否则将手牌中 *影哨 的数量翻倍。",
+    "UPGRADE_DESCRIPTION":"如果手牌中没有 *影哨 ，加入 1 张 *影哨 。 NL 否则将手牌中 *影哨 的数量翻倍。 NL  保留 。"
   },
   "InesMod:Sprint": {
     "NAME": "疾跑",
@@ -328,5 +328,25 @@
   "InesMod:BattleMemories": {
     "NAME": "斗争往事",
     "DESCRIPTION": " ines:检索  !M! 张能力牌加入手牌，这些牌在本回合耗能变为0。 NL  消耗 。"
+  },
+  "InesMod:MindProbe": {
+    "NAME": "心灵探查",
+    "DESCRIPTION": "对所有敌人造成 !D! 点伤害。敌方每有一种不同意图，获得 1 点 ines:情报 。",
+    "EXTENDED_DESCRIPTION": [
+      " NL （获得 !M! 点情报)"
+    ]
+  },
+  "InesMod:EmotionalDisturbance": {
+    "NAME": "情绪干扰",
+    "DESCRIPTION": "造成 !D! 点伤害。 NL 如果目标的意图不为攻击，给予 !M! 层 虚弱 和 !M! 层 易伤 。"
+  },
+  "InesMod:Informant": {
+    "NAME": "线人",
+    "DESCRIPTION": "从抽牌堆选择 1 张牌，下回合开始时 ines:检索 这张牌并加入手牌。",
+    "UPGRADE_DESCRIPTION":"从抽牌堆选择 2 张牌，下回合开始时 ines:检索 这些牌并加入手牌。"
+  },
+  "InesMod:ShadowDominance": {
+    "NAME": "暗影主宰",
+    "DESCRIPTION": "手牌中每有 1 张 *影哨 ，使攻击伤害+ !M! 。"
   }
 }

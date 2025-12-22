@@ -1,67 +1,65 @@
 package InesMod.cards.attack;
 
-import InesMod.action.NecessaryCostAction;
+import InesMod.action.EmotionalDisturbanceAction;
 import InesMod.cards.AbstractInesCard;
-import InesMod.cards.status.ShadowWhistle;
 import InesMod.characters.Ines;
-import InesMod.helpers.LogHelper;
 import InesMod.helpers.PathHelper;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
-import com.megacrit.cardcrawl.actions.utility.DiscardToHandAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.cards.DamageInfo;
-import com.megacrit.cardcrawl.cards.DamageInfo.DamageType;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
 
 /**
- * 中文卡名：必要代价
+ * 中文卡名：情绪干扰
  */
-public class NecessaryCost extends AbstractInesCard {
-    public static final String ID = PathHelper.nameToId(NecessaryCost.class.getSimpleName());
+public class EmotionalDisturbance extends AbstractInesCard {
+    public static final String ID = PathHelper.nameToId(EmotionalDisturbance.class.getSimpleName());
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID); // 从游戏系统读取本地化资源
 
-    public NecessaryCost() {
+
+
+    public EmotionalDisturbance() {
         super(ID,
                 false,
                 cardStrings,
-                -1,
+                1,
                 CardType.ATTACK,
-                CardRarity.RARE,
+                CardRarity.COMMON,
                 CardTarget.ENEMY,
                 Ines.Enums.INES_CARD);
         this.damage = this.baseDamage = 6;
-        this.magicNumber = this.baseMagicNumber = 0;
+
+        this.magicNumber = this.baseMagicNumber = 1;
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        addToBot(new NecessaryCostAction(p, m, this.damage, this.freeToPlayOnce, this.energyOnUse));
+        addToBot(new DamageAction(m, new DamageInfo(p, damage, DamageInfo.DamageType.NORMAL), AbstractGameAction.AttackEffect.BLUNT_LIGHT));
+        addToBot(new EmotionalDisturbanceAction(p, m, magicNumber));
     }
 
     @Override
-    public void applyPowers() {
-        super.applyPowers();
-
-        int cardCount = AbstractDungeon.player.hand.size() - 1; // 不包括自己
-        this.baseMagicNumber = EnergyPanel.totalCount + cardCount;
-
-        // 添加额外文本
-        this.rawDescription = cardStrings.DESCRIPTION + cardStrings.EXTENDED_DESCRIPTION[0];
-        initializeDescription();
+    public void triggerOnGlowCheck() {
+        this.glowColor = AbstractCard.BLUE_BORDER_GLOW_COLOR.cpy();
+        for (AbstractMonster m : (AbstractDungeon.getCurrRoom()).monsters.monsters) {
+            if (!m.isDeadOrEscaped() && m.getIntentBaseDmg() < 0) {
+                this.glowColor = AbstractCard.GOLD_BORDER_GLOW_COLOR.cpy();
+                break;
+            }
+        }
     }
 
     @Override
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeDamage(2);
+            this.upgradeDamage(3);
+
         }
     }
 }
