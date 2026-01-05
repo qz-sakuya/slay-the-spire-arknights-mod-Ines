@@ -65,7 +65,7 @@ public class StealsPower extends AbstractInesPower {
 
     @Override
     public void onUseCard(AbstractCard card, UseCardAction action) {
-        LogHelper.info("===StealsPower: onUseCard, 当前卡牌id{}===",card.cardID);
+        // LogHelper.info("===StealsPower: onUseCard, 当前卡牌id{}===",card.cardID);
         consumeNum = 0;
         if (card.type == AbstractCard.CardType.ATTACK) {
             // 获取消耗偷取的层数，如果没有则默认1
@@ -83,7 +83,7 @@ public class StealsPower extends AbstractInesPower {
                 amountBeforeReduce = this.amount;
                 addToTop(new ReduceAndKeepPowerAction(this.owner, this.owner, StealsPower.ID, consumeNum));
             }
-            LogHelper.info("===StealsPower:  onUseCard，设置consumeNum为{}===",consumeNum);
+            // LogHelper.info("===StealsPower:  onUseCard，设置consumeNum为{}===",consumeNum);
         }
     }
 
@@ -91,7 +91,7 @@ public class StealsPower extends AbstractInesPower {
 
     @Override
     public void onAttack(DamageInfo info, int damageAmount, AbstractCreature target) {
-        LogHelper.info("===StealsPower: onAttack===");
+        // LogHelper.info("===StealsPower: onAttack===");
 
         if (consumeNum > 0
                 && !stolenTarget.contains(target)
@@ -105,7 +105,7 @@ public class StealsPower extends AbstractInesPower {
 
     @Override
     public void onAfterUseCard(AbstractCard card, UseCardAction action) {
-        LogHelper.info("===StealsPower: onAfterUseCard,当前卡牌id{}, 当前consumeNum{}===",card.cardID,consumeNum);
+        // LogHelper.info("===StealsPower: onAfterUseCard,当前卡牌id{}, 当前consumeNum{}===",card.cardID,consumeNum);
         if (consumeNum > 0){
             int strengthToApply = consumeNum;
 

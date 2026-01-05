@@ -21,8 +21,9 @@ public class EmotionalDisturbanceAction extends AbstractGameAction {
     }
 
     public void update() {
-        if (this.m != null && this.m.getIntentBaseDmg() < 0) {
+        if (this.m != null && this.m.getIntentBaseDmg() >= 0) {
             addToTop(new ApplyPowerAction(m, p, new WeakPower(this.m, amount, false), amount));
+        }else{
             addToTop(new ApplyPowerAction(m, p, new VulnerablePower(this.m, amount, false), amount));
         }
 

@@ -30,25 +30,6 @@ public abstract class AbstractInesCard extends CustomCard {
         consumeSteals = 1;
     }
 
-    private static String getTmpImgPath(CardType t) {
-        String type;
-        switch (t) {
-            case ATTACK:
-                type = "attack";
-                break;
-            case POWER:
-                type = "power";
-                break;
-            case STATUS:
-            case CURSE:
-            case SKILL:
-                type = "skill";
-                break;
-            default:
-                throw new IllegalStateException("Unexpected value: " + t);
-        }
-        return String.format("InesModResources/img/cards/test/test_%s.png", type);
-    }
 
     private static String getImgPath(CardType t, String id) {
         String type;
@@ -73,6 +54,28 @@ public abstract class AbstractInesCard extends CustomCard {
         }
         return String.format("InesModResources/img/cards/%s/%s_%s.png", type, PathHelper.idToName(id), type);
     }
+
+    private static String getTmpImgPath(CardType t) {
+        String type;
+        switch (t) {
+            case ATTACK:
+                type = "attack";
+                break;
+            case POWER:
+                type = "power";
+                break;
+            case STATUS:
+            case CURSE:
+            case SKILL:
+                type = "skill";
+                break;
+            default:
+                throw new IllegalStateException("Unexpected value: " + t);
+        }
+        return String.format("InesModResources/img/cards/test/test_%s.png", type);
+    }
+
+
 
     // 触发自动打出时调用
     public void autoUse(){};
