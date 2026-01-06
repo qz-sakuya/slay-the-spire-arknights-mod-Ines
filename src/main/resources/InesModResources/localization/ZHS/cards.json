@@ -55,7 +55,7 @@
   },
   "InesMod:ContingencyPlan": {
     "NAME": "总有后手",
-    "DESCRIPTION": "只有当这张牌是手牌中唯一名称的攻击牌时才可以被打出。 NL 造成 !D! 点伤害。",
+    "DESCRIPTION": "只有当手牌中没有其他名称的攻击牌时才可以被打出。 NL 造成 !D! 点伤害。",
     "EXTENDED_DESCRIPTION": [
       "手牌中还有其它 NL 攻击牌……"
     ]
