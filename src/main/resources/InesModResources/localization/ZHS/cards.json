@@ -297,7 +297,7 @@
     "DESCRIPTION": "获得 1  ines:情报 、 1  ines:隐匿 、 1  ines:偷取 和 1  *影哨 。 NL 本次战斗每消耗 3 张牌，此牌耗能-1。",
     "UPGRADE_DESCRIPTION": "获得 1  ines:情报 、 1  ines:隐匿 、 1  ines:偷取 和 1  *影哨 。 NL 本次战斗每消耗 2 张牌，此牌耗能-1。",
     "EXTENDED_DESCRIPTION": [
-      " NL （已消耗 !M! 张牌)"
+      " NL （已消耗 !M! 张牌）"
     ]
   },
   "InesMod:PhotographicMemory": {
@@ -318,7 +318,7 @@
     "DESCRIPTION": "造成 !D! 点伤害。 NL 每打出或丢弃1张非攻击牌，此牌伤害+2。打出攻击牌后重置。",
     "UPGRADE_DESCRIPTION":"造成 !D! 点伤害。 NL 每打出或丢弃1张非攻击牌，此牌伤害+3。打出攻击牌后重置。",
     "EXTENDED_DESCRIPTION": [
-      " NL （已增加 !M! 伤害)"
+      " NL （已增加 !M! 伤害）"
     ]
   },
   "InesMod:OneByOne": {
@@ -333,7 +333,7 @@
     "NAME": "心灵探查",
     "DESCRIPTION": "对所有敌人造成 !D! 点伤害。敌方每有一种不同意图，获得 1 点 ines:情报 。",
     "EXTENDED_DESCRIPTION": [
-      " NL （获得 !M! 点情报)"
+      " NL （获得 !M! 点情报）"
     ]
   },
   "InesMod:EmotionalDisturbance": {
@@ -361,6 +361,46 @@
     "EXTENDED_DESCRIPTION": [
       " ines:检索 ",
       "被 *加密 的牌"
+    ]
+  },
+  "InesMod:InterpretReturn": {
+    "NAME": "返回",
+    "DESCRIPTION": "返回。"
+  },
+  "InesMod:InterpretColorlessCard": {
+    "NAME": "无色牌",
+    "DESCRIPTION": "消耗 !M! 点 *真相 。 NL 从三张随机 *无色牌 中选择一张获得。",
+    "EXTENDED_DESCRIPTION": [
+      " NL （真相不足）"
+    ]
+  },
+  "InesMod:InterpretRareCard": {
+    "NAME": "稀有牌",
+    "DESCRIPTION": "消耗 !M! 点 *真相 。 NL 从三张随机 *稀有牌 中选择一张获得。",
+    "EXTENDED_DESCRIPTION": [
+      " NL （真相不足）"
+    ]
+  },
+  "InesMod:InterpretRelic": {
+    "NAME": "遗物",
+    "DESCRIPTION": "消耗 !M! 点 *真相 。 NL 从三个随机 *遗物 中选择一个获得。",
+    "EXTENDED_DESCRIPTION": [
+      " NL （真相不足）"
+    ]
+  },
+  "InesMod:InterpretSecret": {
+    "NAME": "或者……",
+    "DESCRIPTION": "消耗 !M! 点 *真相 。 NL 获得一个特殊的 *遗物 。使故事走向不同的 *结局 。",
+    "EXTENDED_DESCRIPTION": [
+      " NL （真相不足）"
+    ]
+  },
+  "InesMod:RelicPreviewCard": {
+    "NAME": "遗物名",
+    "DESCRIPTION": "遗物描述",
+    "EXTENDED_DESCRIPTION":[
+      "该遗物的效果",
+      "该遗物的注脚"
     ]
   }
 }

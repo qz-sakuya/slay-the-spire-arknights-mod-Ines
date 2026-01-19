@@ -3,7 +3,7 @@ package InesMod.helpers;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.UIStrings;
 
-public class TextHelper {
+public class UNUSEDTextHelper {
     private static final UIStrings selectHandCardStrings = CardCrawlGame.languagePack.getUIString(PathHelper.nameToId("UNUSEDSelectHandCard"));
 
     // 工具方法

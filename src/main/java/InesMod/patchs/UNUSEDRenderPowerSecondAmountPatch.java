@@ -22,7 +22,7 @@ import com.badlogic.gdx.graphics.Color;
  *  使其绘制第二个数字
  *  已弃用，改为直接重载renderAmount
  */
-public class renderPowerSecondAmountPatch {
+public class UNUSEDRenderPowerSecondAmountPatch {
 
 
 //    @SpirePatch(clz = AbstractCreature.class, method = "renderPowerIcons")

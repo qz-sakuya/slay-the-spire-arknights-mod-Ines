@@ -1,7 +1,6 @@
 package InesMod.action;
 
-import InesMod.characters.Ines;
-import InesMod.patchs.moveToExhaustPilePatch;
+import InesMod.patchs.MoveToExhaustPilePatch;
 import basemod.ReflectionHacks;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -54,7 +53,7 @@ public class SimpleExhaustAction extends AbstractGameAction {
             this.targetCard.freeToPlayOnce = false;
 
             // 触发自定义回调
-            moveToExhaustPilePatch.Work(targetCard);
+            MoveToExhaustPilePatch.Work(targetCard);
         }
 
         this.isDone = true;

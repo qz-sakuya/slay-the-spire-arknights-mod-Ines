@@ -2,24 +2,17 @@ package InesMod.patchs;
 
 import InesMod.cards.AbstractInesCard;
 import InesMod.characters.Ines;
-import InesMod.enums.InesCardTags;
-import InesMod.helpers.PathHelper;
-import InesMod.powers.AbstractInesPower;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePostfixPatch;
-import com.evacipated.cardcrawl.modthespire.lib.SpirePrefixPatch;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.localization.UIStrings;
-import com.megacrit.cardcrawl.powers.AbstractPower;
 
 /**
  *  给 moveToExhaustPile 方法进行patch
  *  触发自定义回调
  */
-public class moveToExhaustPilePatch {
+public class MoveToExhaustPilePatch {
 
     @SpirePatch(clz = CardGroup.class, method = "moveToExhaustPile")
     public static class Fun {

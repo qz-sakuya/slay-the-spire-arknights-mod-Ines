@@ -4,14 +4,17 @@ import InesMod.characters.Ines;
 
 
 import InesMod.helpers.LogHelper;
+import InesMod.interpret.InterpretOption;
 import basemod.BaseMod;
 import basemod.ReflectionHacks;
 import basemod.TopPanelGroup;
 import basemod.TopPanelItem;
 import basemod.patches.com.megacrit.cardcrawl.helpers.TopPanel.TopPanelHelper;
+import com.evacipated.cardcrawl.modthespire.lib.SpireField;
 import com.evacipated.cardcrawl.modthespire.lib.SpireInsertPatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.rooms.CampfireUI;
 import com.megacrit.cardcrawl.ui.campfire.AbstractCampfireOption;
 
@@ -47,6 +50,9 @@ public class TruthManager {
     public static void applyVirtual(){
         LogHelper.info("===TruthManager:convertAllVirtual:应用虚值{}===",virtualAmount);
         amount += virtualAmount;
+        if (amount < 0){
+            amount = 0;
+        }
         virtualAmount = 0;
     }
 
@@ -81,7 +87,13 @@ public class TruthManager {
             boolean valid = false;
             if(TruthManager.getTotalAmount() >=8)
                 valid = true;
-            // buttons.add(new RebuildOption(valid));
+            buttons.add(new InterpretOption(valid));
         }
+    }
+
+
+    @SpirePatch(clz = AbstractRelic.class, method = SpirePatch.CLASS)
+    public static class RelicField {
+        public static SpireField<Boolean> unRefractor = new SpireField<Boolean>(() -> false);
     }
 }

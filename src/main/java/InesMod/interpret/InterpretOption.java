@@ -1,16 +1,20 @@
-package InesMod.truth;
+package InesMod.interpret;
 
+
+import InesMod.helpers.PathHelper;
+import InesMod.truth.TruthManager;
 import com.badlogic.gdx.Gdx;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.localization.UIStrings;
 import com.megacrit.cardcrawl.ui.campfire.AbstractCampfireOption;
 
-public class RebuildOption extends AbstractCampfireOption {
-    private static final UIStrings uiStrings;
+public class InterpretOption extends AbstractCampfireOption {
+    private static final UIStrings uiStrings = CardCrawlGame.languagePack.getUIString(PathHelper.nameToId("InterpretOption"));
     boolean triggered = false;
 
-    public RebuildOption(boolean active) {
+    public InterpretOption(boolean active) {
         this.label = uiStrings.TEXT[0];
         this.usable = active;
         this.img = ImageMaster.loadImage("InesModResources/img/UI/InterpretButton.png");
@@ -24,7 +28,7 @@ public class RebuildOption extends AbstractCampfireOption {
     @Override
     public void useOption() {
         if(this.usable) {
-            // AbstractDungeon.effectList.add(new RebuildEffect(this));
+            AbstractDungeon.effectList.add(new InterpretEffect(this));
         }
     }
 
@@ -39,9 +43,10 @@ public class RebuildOption extends AbstractCampfireOption {
         super.update();
         timer -= Gdx.graphics.getDeltaTime();
         if(timer<0F){
-            timer = 0.1f;
+            timer = 0.1f; // 每隔 timer 触发一次
+
             boolean valid = false;
-            if(TruthManager.getTotalAmount() >= 8){
+            if(TruthManager.getTotalAmount() > 0){
                 valid = true;
             }
             if(triggered){
@@ -50,9 +55,5 @@ public class RebuildOption extends AbstractCampfireOption {
             this.usable = valid;
             updateUsability(usable);
         }
-    }
-
-    static {
-        uiStrings = CardCrawlGame.languagePack.getUIString("mon3tr:RebuildOption");
     }
 }
