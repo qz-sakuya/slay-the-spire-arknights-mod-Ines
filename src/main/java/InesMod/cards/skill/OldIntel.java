@@ -22,7 +22,7 @@ public class OldIntel extends AbstractInesCard {
 
     public OldIntel() {
         super(ID,
-                true,
+                false,
                 cardStrings,
                 0,
                 CardType.SKILL,

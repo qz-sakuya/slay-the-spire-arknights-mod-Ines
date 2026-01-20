@@ -22,7 +22,7 @@ public class ThrowPebble extends AbstractInesCard {
 
     public ThrowPebble() {
         super(ID,
-                true,
+                false,
                 cardStrings,
                 1,
                 CardType.ATTACK,

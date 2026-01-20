@@ -20,7 +20,7 @@ public class File extends AbstractInesCard {
 
     public File() {
         super(ID,
-                true,
+                false,
                 cardStrings,
                 1,
                 CardType.ATTACK,

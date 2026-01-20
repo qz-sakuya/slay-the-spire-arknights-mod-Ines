@@ -21,7 +21,7 @@ public class EmergencyRetreat extends AbstractInesCard {
 
     public EmergencyRetreat() {
         super(ID,
-                true,
+                false,
                 cardStrings,
                 1,
                 CardType.SKILL,

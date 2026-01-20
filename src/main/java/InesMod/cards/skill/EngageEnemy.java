@@ -22,7 +22,7 @@ public class EngageEnemy extends AbstractInesCard {
 
     public EngageEnemy() {
         super(ID,
-                true,
+                false,
                 cardStrings,
                 1,
                 CardType.SKILL,

@@ -25,7 +25,7 @@ public class IntelTrade extends AbstractInesCard {
 
     public IntelTrade() {
         super(ID,
-                true,
+                false,
                 cardStrings,
                 1,
                 CardType.SKILL,

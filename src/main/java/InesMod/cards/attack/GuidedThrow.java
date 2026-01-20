@@ -19,7 +19,7 @@ public class GuidedThrow extends AbstractInesCard {
 
     public GuidedThrow() {
         super(ID,
-                true,
+                false,
                 cardStrings,
                 1,
                 CardType.ATTACK,

@@ -24,7 +24,7 @@ public class Feint extends AbstractInesCard {
 
     public Feint() {
         super(ID,
-                true,
+                false,
                 cardStrings,
                 0,
                 CardType.ATTACK,
