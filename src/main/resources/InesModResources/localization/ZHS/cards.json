@@ -183,7 +183,7 @@
   },
   "InesMod:Wander": {
     "NAME": "徘徊",
-    "DESCRIPTION": "手牌和抽牌堆中每有 1 张 *影哨 ，获得 !B! 点 格挡  1 次。",
+    "DESCRIPTION": "手牌和抽牌堆中每有 1 张 *影哨 ，就获得 !B! 点 格挡  1 次。 NL  保留 。",
     "EXTENDED_DESCRIPTION": [
       " NL （获得 !M! 次。）"
     ]
@@ -208,7 +208,7 @@
   },
   "InesMod:EngageEnemy": {
     "NAME": "接敌",
-    "DESCRIPTION": "获得 !B! 点 格挡 。 NL 如果手牌中没有 *影哨 ，额外获得 !M! 点 格挡 。"
+    "DESCRIPTION": "获得 !B! 点 格挡 。 NL 如果手牌中没有 *影哨 ，额外获得 1 次 格挡 。"
   },
   "InesMod:SecretHRLetter": {
     "NAME": "人事部密信",

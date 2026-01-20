@@ -28,7 +28,7 @@ public class ShadowWhistleRetrieval extends AbstractInesCard {
                 CardRarity.UNCOMMON,
                 CardTarget.SELF,
                 Ines.Enums.INES_CARD);
-        this.magicNumber = this.baseMagicNumber = 2;
+        this.magicNumber = this.baseMagicNumber = 3;
 
         this.cardsToPreview = new ShadowWhistle();
     }
@@ -42,7 +42,8 @@ public class ShadowWhistleRetrieval extends AbstractInesCard {
     public void upgrade() {
         if (!this.upgraded) {
             upgradeName();
-            upgradeMagicNumber(1);
+            //upgradeMagicNumber(1);
+            upgradeBaseCost(0);
         }
     }
 }

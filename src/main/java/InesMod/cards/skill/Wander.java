@@ -31,6 +31,7 @@ public class Wander extends AbstractInesCard {
                 Ines.Enums.INES_CARD);
         this.block = this.baseBlock = 5;
         this.magicNumber = this.baseMagicNumber = 0;
+        this.selfRetain = true;
 
         this.cardsToPreview = new ShadowWhistle();
     }

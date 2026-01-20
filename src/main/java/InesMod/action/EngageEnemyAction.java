@@ -33,12 +33,17 @@ public class EngageEnemyAction extends AbstractGameAction {
             }
         }
 
-        int tempBlock = block;
+        this.addToTop(new GainBlockAction(source, source, block));
         if (cnt == 0) {
-            tempBlock += magicNumber;
+            this.addToTop(new GainBlockAction(source, source, block));
         }
 
-        this.addToTop(new GainBlockAction(source, source, tempBlock));
+//        int tempBlock = block;
+//        if (cnt == 0) {
+//            tempBlock += magicNumber;
+//        }
+//
+//        this.addToTop(new GainBlockAction(source, source, tempBlock));
 
         this.isDone = true;
     }
