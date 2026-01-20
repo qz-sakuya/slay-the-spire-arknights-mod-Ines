@@ -29,12 +29,12 @@ public class ShadowSlash extends AbstractInesCard {
         super(ID,
                 false,
                 cardStrings,
-                2,
+                1,
                 CardType.ATTACK,
                 CardRarity.RARE,
                 CardTarget.ENEMY,
                 Ines.Enums.INES_CARD);
-        this.damage = this.baseDamage = 12;
+        this.damage = this.baseDamage = 7;
 
         this.consumeSteals = 999;
     }
@@ -62,7 +62,7 @@ public class ShadowSlash extends AbstractInesCard {
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeDamage(6);
+            this.upgradeDamage(3);
         }
     }
 }

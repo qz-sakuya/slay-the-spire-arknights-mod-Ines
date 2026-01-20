@@ -15,7 +15,7 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 /**
- * 中文卡名：打击
+ * 中文卡名：淬影突袭
  */
 public class ShadowAmbush extends AbstractInesCard {
     public static final String ID = PathHelper.nameToId(ShadowAmbush.class.getSimpleName());
