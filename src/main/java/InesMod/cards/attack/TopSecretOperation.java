@@ -57,7 +57,7 @@ public class TopSecretOperation extends AbstractInesCard {
         LogHelper.info("===TopSecretOperation-autoUse===");
 
         // 必须在 action 中判断能量与打出条件
-        addToTop(new AutoUseOrExhaustAction(this));
+        addToBot(new AutoUseOrExhaustAction(this));
     }
 
     @Override

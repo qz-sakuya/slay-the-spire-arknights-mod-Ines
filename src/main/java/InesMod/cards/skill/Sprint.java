@@ -4,6 +4,7 @@ import InesMod.action.AutoUseAction;
 import InesMod.action.AutoUseOrExhaustAction;
 import InesMod.cards.AbstractInesCard;
 import InesMod.characters.Ines;
+import InesMod.helpers.LogHelper;
 import InesMod.helpers.PathHelper;
 import InesMod.modcore.InesModMain;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
@@ -42,7 +43,8 @@ public class Sprint extends AbstractInesCard {
 
     @Override
     public void autoUse() {
-        addToTop(new AutoUseAction(this));
+        LogHelper.info("===Sprint：触发自动打出===");
+        addToBot(new AutoUseAction(this));
     }
 
 

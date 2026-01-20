@@ -30,7 +30,7 @@ public class ShadowBind extends AbstractInesCard {
         super(ID,
                 false,
                 cardStrings,
-                1,
+                2,
                 CardType.ATTACK,
                 CardRarity.UNCOMMON,
                 CardTarget.ENEMY,

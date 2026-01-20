@@ -1,5 +1,6 @@
 package InesMod.action;
 
+import InesMod.helpers.LogHelper;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.ExhaustSpecificCardAction;
 import com.megacrit.cardcrawl.actions.unique.LoseEnergyAction;
@@ -21,12 +22,11 @@ public class AutoUseAction extends AbstractGameAction {
         if (!this.card.hasEnoughEnergy() || !this.card.cardPlayable(null)){
             this.isDone = true;
         }
-        else {
-            // 立即消耗能量打出
-            this.card.applyPowers();
-            addToTop(new NewQueueCardAction(this.card, true, true, true));
-            addToTop(new LoseEnergyAction(this.card.cost));
-        }
+        // 立即消耗能量打出
+        this.card.applyPowers();
+        LogHelper.info("===AutoUseAction：自动打出：===",this.card.name);
+        addToTop(new NewQueueCardAction(this.card, true, true, true));
+        addToTop(new LoseEnergyAction(this.card.cost));
         this.isDone = true;
     }
 }

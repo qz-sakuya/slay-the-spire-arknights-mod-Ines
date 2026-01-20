@@ -12,7 +12,7 @@ import com.megacrit.cardcrawl.relics.*;
 public class RelicPatch {
 
 
-    // 禁用药丸，树枝
+    // 禁用药丸，树枝，手里剑，苦无
     @SpirePatch(clz = AbstractDungeon.class,method = "initializeRelicList")
     public static class RelicListPatch{
         @SpirePostfixPatch
@@ -20,6 +20,8 @@ public class RelicPatch {
             if(AbstractDungeon.player instanceof Ines){
                 AbstractDungeon.shopRelicPool.remove(OrangePellets.ID);
                 AbstractDungeon.rareRelicPool.remove(DeadBranch.ID);
+                AbstractDungeon.uncommonRelicPool.remove(Shuriken.ID);
+                AbstractDungeon.uncommonRelicPool.remove(Kunai.ID);
             }
         }
     }

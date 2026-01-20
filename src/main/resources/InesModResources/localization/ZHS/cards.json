@@ -351,8 +351,8 @@
   },
   "InesMod:Encryption": {
     "NAME": "加密",
-    "DESCRIPTION": "选择 1 张手牌，将其放入抽牌堆顶，将一张对应的 *解密 放入手牌。 NL  消耗 。",
-    "UPGRADE_DESCRIPTION":"选择 1 张手牌，将其放入抽牌堆顶，将一张对应的 *解密+ 放入手牌。 NL  消耗 。"
+    "DESCRIPTION": "选择 1 张手牌放入抽牌堆顶，将一张对应的 *解密 放入手牌。 NL  消耗 。",
+    "UPGRADE_DESCRIPTION":"选择 1 张手牌放入抽牌堆顶，将一张对应的 *解密+ 放入手牌。 NL  消耗 。"
   },
   "InesMod:Decryption": {
     "NAME": "解密",
