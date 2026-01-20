@@ -7,6 +7,7 @@ import InesMod.enums.InesCardTags;
 import InesMod.helpers.ConfigHelper;
 import InesMod.helpers.LogHelper;
 import InesMod.helpers.PathHelper;
+import InesMod.relics.RustedNeedle;
 import InesMod.truth.TruthManager;
 import InesMod.truth.TruthReward;
 import InesMod.enums.OtherEnum;
@@ -25,6 +26,7 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.*;
 import com.badlogic.gdx.graphics.Color;
+import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.rewards.RewardItem;
 import com.megacrit.cardcrawl.rewards.RewardSave;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
@@ -33,6 +35,7 @@ import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 
+import static InesMod.characters.Ines.Enums.INES_CARD;
 import static com.megacrit.cardcrawl.core.Settings.language;
 
 
@@ -88,7 +91,7 @@ public class InesModMain implements
 
     public InesModMain() {
         BaseMod.subscribe(this);
-        BaseMod.addColor(Ines.Enums.INES_CARD, MY_COLOR, MY_COLOR, MY_COLOR,
+        BaseMod.addColor(INES_CARD, MY_COLOR, MY_COLOR, MY_COLOR,
                 MY_COLOR, MY_COLOR, MY_COLOR, MY_COLOR,
                 BG_ATTACK_512, BG_SKILL_512, BG_POWER_512, ENERGY_ORB, BG_ATTACK_1024,
                 BG_SKILL_1024, BG_POWER_1024, BIG_ORB, SMALL_ORB
@@ -124,7 +127,7 @@ public class InesModMain implements
                 if (info.seen) {
                     UnlockTracker.unlockCard(card.cardID);
                 }
-                UnlockTracker.unlockCard(card.cardID); // TODO：暂时全解锁
+                UnlockTracker.unlockCard(card.cardID); // 暂时全解锁
             }
         });
         LogHelper.info("===卡牌情报已收集===");
@@ -166,7 +169,10 @@ public class InesModMain implements
     public void receiveEditRelics() {
         LogHelper.info("===正在回忆遗物===");
         // 注册遗物
-        BaseMod.addRelic(new UnassumingNeedle(), RelicType.SHARED);
+        // BaseMod.addRelic(new UnassumingNeedle(), RelicType.SHARED);
+        BaseMod.addRelicToCustomPool(new UnassumingNeedle(), INES_CARD);
+        BaseMod.addRelicToCustomPool(new RustedNeedle(), INES_CARD);
+
 
         LogHelper.info("===遗物情报已收集===");
     }

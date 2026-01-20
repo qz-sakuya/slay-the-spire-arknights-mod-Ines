@@ -18,8 +18,8 @@ public class RelicPatch {
         @SpirePostfixPatch
         public static void Postfix(AbstractDungeon _inst){
             if(AbstractDungeon.player instanceof Ines){
-                AbstractDungeon.uncommonRelicPool.remove(OrangePellets.ID);
-                AbstractDungeon.uncommonRelicPool.remove(DeadBranch.ID);
+                AbstractDungeon.shopRelicPool.remove(OrangePellets.ID);
+                AbstractDungeon.rareRelicPool.remove(DeadBranch.ID);
             }
         }
     }
