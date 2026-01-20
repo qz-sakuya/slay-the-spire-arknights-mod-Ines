@@ -39,7 +39,8 @@ public class SilhouetteAction extends AbstractGameAction {
             }
         }
 
-        // 抽等量牌
+        // 抽等量+1牌
+        cnt += 1;
         this.addToBot(new DrawCardAction(source, cnt));
 
         this.isDone = true;

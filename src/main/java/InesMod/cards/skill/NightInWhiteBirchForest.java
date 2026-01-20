@@ -39,6 +39,8 @@ public class NightInWhiteBirchForest extends AbstractInesCard {
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
+        LogHelper.info("===NightInWhiteBirchForest om use: magicNumber={}===",this.magicNumber);
+        LogHelper.info("===NightInWhiteBirchForest om use: misc修改前={}===",this.misc);
         addToBot(new HealAction(p, p, magicNumber));
 
         this.misc += this.updateAmount;
@@ -49,21 +51,23 @@ public class NightInWhiteBirchForest extends AbstractInesCard {
         this.baseMagicNumber = this.misc;
         this.magicNumber = this.baseMagicNumber;
         this.upgradedMagicNumber = true;
+        LogHelper.info("===NightInWhiteBirchForest om use: misc修改后={}===",this.misc);
 
 
         for (AbstractCard c : AbstractDungeon.player.masterDeck.group) {
             if (!c.uuid.equals(this.uuid))
                 continue;
 
-            // LogHelper.info("===NightInWhiteBirchForest in masterDeck: misc修改前={}===",c.misc);
+            LogHelper.info("===NightInWhiteBirchForest in masterDeck: misc修改前={}===",c.misc);
             c.misc += this.updateAmount;
             if (c.misc < 0) {
                 c.misc = 0;
             }
             c.applyPowers();
             c.baseMagicNumber = c.misc;
+            c.magicNumber = c.baseMagicNumber;
             c.isMagicNumberModified = false;
-            // LogHelper.info("===NightInWhiteBirchForest in masterDeck: misc修改后={}===",c.misc);
+            LogHelper.info("===NightInWhiteBirchForest in masterDeck: misc修改后={}===",c.misc);
         }
     }
 
@@ -72,7 +76,13 @@ public class NightInWhiteBirchForest extends AbstractInesCard {
         NightInWhiteBirchForest card = (NightInWhiteBirchForest) super.makeStatEquivalentCopy();
 
         // 深拷贝该值
+        LogHelper.info("===NightInWhiteBirchForest makeStatEquivalentCopy: 拷贝后misc={}===",card.misc);
         card.updateAmount = this.updateAmount;
+
+        // 确保magicNumber正确
+        card.baseMagicNumber = card.misc;
+        card.magicNumber = card.baseMagicNumber;
+
         return card;
     }
 

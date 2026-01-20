@@ -194,8 +194,8 @@
   },
   "InesMod:Silhouette": {
     "NAME": "背影",
-    "DESCRIPTION": "将手牌中所有 *影哨 移入抽牌堆，然后抽相应数量的牌。 NL  消耗 。",
-    "UPGRADE_DESCRIPTION":"将手牌中所有 *影哨 移入抽牌堆，然后抽相应数量的牌。"
+    "DESCRIPTION": "将手牌中所有 *影哨 移入抽牌堆，然后抽相应数量+1的牌。 NL  消耗 。",
+    "UPGRADE_DESCRIPTION":"将手牌中所有 *影哨 移入抽牌堆，然后抽相应数量+1的牌。"
   },
   "InesMod:DeadlyOpportunity": {
     "NAME": "致命契机",

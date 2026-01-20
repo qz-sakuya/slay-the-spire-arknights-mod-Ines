@@ -41,6 +41,7 @@ public class ShadowWhistle extends AbstractInesCard {
     // 不建议使用OnMoveToDiscard
     public void onCardMove(AbstractCard c, CardGroup.CardGroupType groupType) {
         if (c == this && groupType == CardGroup.CardGroupType.DISCARD_PILE){
+            this.applyPowers();
             addToBot(new GainBlockAction(AbstractDungeon.player, AbstractDungeon.player, this.block));
 
             // 如果有 影哨回收 额外获得格挡
