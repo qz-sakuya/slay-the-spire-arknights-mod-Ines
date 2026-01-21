@@ -315,8 +315,8 @@
   },
   "InesMod:OnTheBrink": {
     "NAME": "一触即发",
-    "DESCRIPTION": "造成 !D! 点伤害。 NL 每打出或丢弃1张非攻击牌，此牌伤害+2。打出攻击牌后重置。",
-    "UPGRADE_DESCRIPTION":"造成 !D! 点伤害。 NL 每打出或丢弃1张非攻击牌，此牌伤害+3。打出攻击牌后重置。",
+    "DESCRIPTION": "造成 !D! 点伤害。 NL 每打出或丢弃1张非攻击牌，此牌伤害+2。打出此牌后重置。",
+    "UPGRADE_DESCRIPTION":"造成 !D! 点伤害。 NL 每打出或丢弃1张非攻击牌，此牌伤害+3。打出此牌后重置。",
     "EXTENDED_DESCRIPTION": [
       " NL （已增加 !M! 伤害）"
     ]

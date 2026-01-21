@@ -310,15 +310,15 @@
   },
   "InesMod:NightInWhiteBirchForest": {
     "NAME": "Night in White Birch Forest",
-    "DESCRIPTION": "Heal !M! 点生命. NL 这张牌每被打出 1 次, 效果永久-2. NL  Exhaust .",
-    "UPGRADE_DESCRIPTION": "Heal !M! 点生命. NL 这张牌每被打出 1 次, 效果永久-1. NL  Exhaust ."
+    "DESCRIPTION": "Heal !M! HP. NL Each time this card is played, its heal permanently decreases by 2. NL  Exhaust .",
+    "UPGRADE_DESCRIPTION": "Heal !M! HP. NL Each time this card is played, its heal permanently decreases by 1. NL  Exhaust ."
   },
   "InesMod:OnTheBrink": {
     "NAME": "On the Brink",
-    "DESCRIPTION": "Deal !D! damage. NL 每打出或丢弃1张非攻击牌, 此牌damage+2.打出攻击牌后重置.",
-    "UPGRADE_DESCRIPTION": "Deal !D! damage. NL 每打出或丢弃1张非攻击牌, 此牌damage+3.打出攻击牌后重置.",
+    "DESCRIPTION": "Deal !D! damage. NL Whenever play or discard a non-Attack, this damage + 2. Reset after you play this card.",
+    "UPGRADE_DESCRIPTION": "Deal !D! damage. NL Whenever play or discard a non-Attack, this damage + 3. Reset after you play this card.",
     "EXTENDED_DESCRIPTION": [
-      " NL (已增加 !M! damage)"
+      " NL (Damage + !M! )"
     ]
   },
   "InesMod:OneByOne": {

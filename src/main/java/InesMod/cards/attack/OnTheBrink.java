@@ -42,8 +42,10 @@ public class OnTheBrink extends AbstractInesCard {
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        this.addToBot(new VFXAction(new OnTheBrinkEffect(m.hb.cX, m.hb.cY,400f * Settings.scale), 0.4F));
-        this.addToBot(new DamageAction(m, new DamageInfo(p, damage, DamageType.NORMAL), AbstractGameAction.AttackEffect.SLASH_VERTICAL));
+        addToBot(new VFXAction(new OnTheBrinkEffect(m.hb.cX, m.hb.cY,400f * Settings.scale), 0.4F));
+        addToBot(new DamageAction(m, new DamageInfo(p, damage, DamageType.NORMAL), AbstractGameAction.AttackEffect.SLASH_VERTICAL));
+
+        addToBot(new ResetOnTheBrinkAction(this));
     }
 
 
@@ -69,9 +71,9 @@ public class OnTheBrink extends AbstractInesCard {
     public void onReceiveCardUsed(AbstractCard c) {
         tryUpdateDamage(c);
 
-        if (c.type == AbstractCard.CardType.ATTACK) {
-            addToBot(new ResetOnTheBrinkAction(this));
-        }
+//        if (c.type == AbstractCard.CardType.ATTACK) {
+//            addToBot(new ResetOnTheBrinkAction(this));
+//        }
     }
 
     private void tryUpdateDamage(AbstractCard c){
