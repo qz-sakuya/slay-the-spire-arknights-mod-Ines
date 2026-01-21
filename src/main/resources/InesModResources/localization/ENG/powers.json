@@ -1,0 +1,195 @@
+{
+  "InesMod:StealsPower": {
+    "NAME": "Steals",
+    "DESCRIPTIONS": [
+      "Exhaust #b1 #ySteals after Attack , let all hit targets lose #b%d temporary #yStrength , you gains #b%d temporary #yStrength ."
+    ]
+  },
+  "InesMod:StrengthStealPower": {
+    "NAME": "Strength Steal",
+    "DESCRIPTIONS": [
+      "Gain #b%d #yStrength . At the end of this round, lose #b%d #yStrength ."
+    ]
+  },
+  "InesMod:StrengthStolenPower": {
+    "NAME": "Strength Stolen",
+    "DESCRIPTIONS": [
+      "Loss #b%d #yStrength . At the end of this round, gain #b%d #yStrength ."
+    ]
+  },
+  "InesMod:InvisibilityPower": {
+    "NAME": "Invisibility",
+    "DESCRIPTIONS": [
+      "Gain #b25% more #yBlock from cards. ",
+      "Whenever you play a #yAttack card, exhaust #b1 #yShadow #yWhistle.",
+      " NL At the end of turn, loss #b1 #yInvisibility and Gain #b1 #yIllusion .",
+      " NL  NL #yIllusion can prevent one instance of attack damage or convert into [E] at the start of turn."
+    ]
+  },
+  "InesMod:IllusionPower": {
+    "NAME": "Illusion",
+    "DESCRIPTIONS": [
+      "Prevent #b%d instance of attack damage or convert into %s at the start of turn."
+    ]
+  },
+  "InesMod:AgentVanguardPower": {
+    "NAME": "情报官",
+    "DESCRIPTIONS": [
+      "每消耗 #b1 层 #y偷取 , 获得 #b%d 点 #y情报 ."
+    ]
+  },
+  "InesMod:InterPower": {
+    "NAME": "Inter",
+    "DESCRIPTIONS": [
+      "After performing other draws, continue drawing #b%d cards until your hand is full. Unused #yIntel is retained."
+    ]
+  },
+  "InesMod:ThoroughAnalysisPower": {
+    "NAME": "分析透彻",
+    "DESCRIPTIONS": [
+      "拥有 #b%d 层 #y偷取 时,  每消耗 #b1 层 #y偷取 额外使目标获得 #b%d 层 #y易伤 ."
+    ]
+  },
+  "InesMod:NoInvisibilityPower": {
+    "NAME": "不能获得隐匿",
+    "DESCRIPTIONS": [
+      "你不能获得 #b隐匿 .持续 #b%d 回合."
+    ]
+  },
+  "InesMod:InsightPower": {
+    "NAME": "洞悉",
+    "DESCRIPTIONS": [
+      "攻击额外生效 #b%d 层 #y偷取 （不视作消耗）, 战斗结束后获得 #b%d 点 #y真相 .",
+      " NL  NL 消耗偷取 #b%d / #b%d 层：获得 #b1 层 #y洞悉 , 并使所需层数+2."
+    ]
+  },
+  "InesMod:AdHocSupplyPower": {
+    "NAME": "临时补给",
+    "DESCRIPTIONS": [
+      "下一次手牌数不超过 #b1 时, 获得%s."
+    ]
+  },
+  "InesMod:AdHocStrategyPower": {
+    "NAME": "临时战略",
+    "DESCRIPTIONS": [
+      "下一次手牌数不超过 #b1 时, 抽 #b%d 张牌."
+    ]
+  },
+  "InesMod:NoAttackPower": {
+    "NAME": "NoAttack",
+    "DESCRIPTIONS": [
+      "You cannot play #yAttacks this turn."
+    ]
+  },
+  "InesMod:MasterTheGamePower": {
+    "NAME": "掌控全局",
+    "DESCRIPTIONS": [
+      "本回合在 #y隐匿 下打出 #y攻击牌 改为丢弃 #y影哨 ."
+    ]
+  },
+  "InesMod:WeaponStockpilePower": {
+    "NAME": "武器储备",
+    "DESCRIPTIONS": [
+      "回合开始时获得 #b2 张 #y小刀 , 持续 #b%d 回合."
+    ]
+  },
+  "InesMod:DeadlyOpportunityPower": {
+    "NAME": "致命契机",
+    "DESCRIPTIONS": [
+      "下一张打出的 #y攻击牌 造成 #b2 倍伤害, 随后失去 #r所有  #y格挡 并结束你的回合.",
+      "下一张打出的 #y攻击牌 造成 #b2 倍伤害, 随后失去 #r一半  #y格挡 并结束你的回合."
+    ]
+  },
+  "InesMod:EternalMigrationPower": {
+    "NAME": "无尽迁徙",
+    "DESCRIPTIONS": [
+      "在本回合结束后, 额外获得一回合."
+    ]
+  },
+  "InesMod:EndlessNightPower": {
+    "NAME": "漫漫长夜",
+    "DESCRIPTIONS": [
+      "本回合结束时保留所有 #y影哨 ."
+    ]
+  },
+  "InesMod:QuickVictoryPower": {
+    "NAME": "速战速决",
+    "DESCRIPTIONS": [
+      "处于 #y隐匿 时, 攻击造成 #b2 倍伤害. NL 回合结束时, 额外失去 #b1 层 #y隐匿 并获得 #b1 层 #y虚影 ."
+    ]
+  },
+  "InesMod:RapidRedeploymentPower": {
+    "NAME": "快速重部署",
+    "DESCRIPTIONS": [
+      "下回合开始时, 抽 #b%d 张牌且这些牌在一回合内耗能变为 #b0 ."
+    ]
+  },
+  "InesMod:ShadowWeavePower": {
+    "NAME": "影织",
+    "DESCRIPTIONS": [
+      "回合开始时, 向手牌中加入 #b%d 张 #y影哨 ."
+    ]
+  },
+  "InesMod:LoneReturnPower": {
+    "NAME": "独影归途",
+    "DESCRIPTIONS": [
+      "回合开始时, 获得 #b%d 层 #y偷取 ."
+    ]
+  },
+  "InesMod:ShiftFrontlinesPower": {
+    "NAME": "转移阵线",
+    "DESCRIPTIONS": [
+      "本回合内每丢弃 #b1 张牌, 下回合开始时就获得 #b%d 点 #y情报 .",
+      " NL （已丢弃 #b%d 张牌）"
+    ]
+  },
+  "InesMod:ShadowTerritoryPower": {
+    "NAME": "影之疆土",
+    "DESCRIPTIONS": [
+      "回合结束时, 如果处于 #y隐匿 , 获得 #b%d 点 #yStrength ."
+    ]
+  },
+  "InesMod:RouteMappingPower": {
+    "NAME": "路线绘制",
+    "DESCRIPTIONS": [
+      "每有 #b1 张 #y影哨 进入手牌, 获得 #b%d 层 #y偷取 ."
+    ]
+  },
+  "InesMod:MercenaryTacticsPower": {
+    "NAME": "佣兵手段",
+    "DESCRIPTIONS": [
+      " #y偷取 的 #yStrength 效果 #b+%d ."
+    ]
+  },
+  "InesMod:LurkInDeepShadowsPower": {
+    "NAME": "匿于深影",
+    "DESCRIPTIONS": [
+      "回合结束时, 选择任意张 #y影哨 加入抽牌堆. NL 每当抽到 #y影哨 时, 额外抽 #b1 张牌."
+    ]
+  },
+  "InesMod:PhotographicMemoryPower": {
+    "NAME": "过目不忘",
+    "DESCRIPTIONS": [
+      "下 #b%d 次出牌时, 将其一张耗能为 #b%d 的复制品加入抽牌堆."
+    ]
+  },
+  "InesMod:ShadowWhistleRetrievalPower": {
+    "NAME": "影哨回收",
+    "DESCRIPTIONS": [
+      "每消耗 #b1 张 #y影哨 , 获得 #b%d 点 #y格挡 ."
+    ]
+  },
+  "InesMod:InformantPower": {
+    "NAME": "线人",
+    "DESCRIPTIONS": [
+      "下回合开始时 #y检索 ： %s  NL 并加入手牌."
+    ]
+  },
+  "InesMod:ShadowDominancePower": {
+    "NAME": "暗影主宰",
+    "DESCRIPTIONS": [
+      "手牌中每有 #b1 张 #y影哨 , 使攻击伤害 #b+%d .",
+      " NL （伤害 #b+%d ）"
+    ]
+  }
+}

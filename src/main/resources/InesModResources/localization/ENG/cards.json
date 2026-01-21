@@ -1,0 +1,406 @@
+{
+  "InesMod:Strike": {
+    "NAME": "Strike",
+    "DESCRIPTION": "Deal !D! damage."
+  },
+  "InesMod:Defend": {
+    "NAME": "Defend",
+    "DESCRIPTION": "Gain !B! Block ."
+  },
+  "InesMod:StrikeTest": {
+    "NAME": "Strike Test",
+    "DESCRIPTION": "Strike Test. NL Deal !D! damage."
+  },
+  "InesMod:AgentVanguard": {
+    "NAME": "Agent Vanguard",
+    "DESCRIPTION": "Whenever you exhaust 1 ines:Steals , gain 1 ines:Inter .",
+    "UPGRADE_DESCRIPTION": " Innate . NL Whenever you exhaust 1 ines:Steals , gain 1 ines:Inter ."
+  },
+  "InesMod:PlanOfAction": {
+    "NAME": "Plan of Action",
+    "DESCRIPTION": " ines:Search !M! random Attack into your hand. NL gain !M! ines:Steals and [E] ."
+  },
+  "InesMod:ShadowWhistle": {
+    "NAME": "Shadow Whistle",
+    "DESCRIPTION": " Unplayable . NL When this card enters the discard pile, gain !B! Block and Exhaust ."
+  },
+  "InesMod:ShadowAmbush": {
+    "NAME": "Shadow Ambush",
+    "DESCRIPTION": "Deal !D! damage. NL Add !M! *Shadow *Whistle into your hand."
+  },
+  "InesMod:EdgeOfLight": {
+    "NAME": "Edge of Light",
+    "DESCRIPTION": "If not in ines:Invisibility , gain 1 ines:Invisibility . NL Otherwise gain [E]  [E] . NL  Exhaust ."
+  },
+  "InesMod:WeaknessGather": {
+    "NAME": "Weakness Gather",
+    "DESCRIPTION": "Deal !D! damage. NL Set ines:Steals to !M! ."
+  },
+  "InesMod:CloseQuartersCombat": {
+    "NAME": "Close-Quarters Combat",
+    "DESCRIPTION": "Deal !D! damage. NL If you have no Block , deal damage once more."
+  },
+  "InesMod:TrackUnderNight": {
+    "NAME": "Track Under Night",
+    "DESCRIPTION": "{@@}Deal !D! damage. NL Draw 1 card. NL If in ines:Invisibility , draw !M! additional card{!M!|>1=s}."
+  },
+  "InesMod:Feint": {
+    "NAME": "Feint",
+    "DESCRIPTION": "Deal !D! damage. NL Add !M! *Shadow *Whistle into your hand . NL  Exhaust .",
+    "UPGRADE_DESCRIPTION": "Deal !D! damage. NL Add !M! *Shadow *Whistle into your hand ."
+  },
+  "InesMod:ThrowPebble": {
+    "NAME": "Throw Pebble",
+    "DESCRIPTION": "Deal !D! damage !M! times."
+  },
+  "InesMod:ContingencyPlan": {
+    "NAME": "Contingency Plan",
+    "DESCRIPTION": "Can only be played if no other Attack with different names in your hand. NL Deal !D! damage.",
+    "EXTENDED_DESCRIPTION": [
+      "There are other Attack cards in my hand."
+    ]
+  },
+  "InesMod:File": {
+    "NAME": "File",
+    "DESCRIPTION": "Deal !D! damage. Deals !M! -times damage to enemies with Block."
+  },
+  "InesMod:ThoroughAnalysis": {
+    "NAME": "Thorough Analysis",
+    "DESCRIPTION": "While having at least !M! ines:Steals , each ines:Steals exhausted applies 1 Vulnerable to the enemy."
+  },
+  "InesMod:GloomyClouds": {
+    "NAME": "Gloomy Clouds",
+    "DESCRIPTION": "Gain !M! ines:Invisibility . NL  You cannot gain ines:Invisibility for 2 turns."
+  },
+  "InesMod:ShadowSlash": {
+    "NAME": "Shadow Slash",
+    "DESCRIPTION": "Deal !D! damage. NL Exhaust all ines:Steals , then gain an equal amount of ines:Steals ."
+  },
+  "InesMod:ShadowBind": {
+    "NAME": "Shadow Bind",
+    "DESCRIPTION": "Deal !D! damage twice. NL Exhaust all ines:Steals , apply 1 Weak for each stack."
+  },
+  "InesMod:CatchOffGuard": {
+    "NAME": "Catch Off Guard",
+    "DESCRIPTION": "{@@}If you played no cards this turn,  NL deal !D! damage,  NL draw !M! card{!M!|>1=s}. NL  Exhaust ."
+  },
+  "InesMod:ThroatLock": {
+    "NAME": "Throat Lock",
+    "DESCRIPTION": "Deal !D! damage. NL If not in ines:Invisibility ,  Exhaust ."
+  },
+  "InesMod:TimeGap": {
+    "NAME": "Time Gap",
+    "DESCRIPTION": "Gain 1 ines:Invisibility . NL Increase this card's cost by 1 this combat."
+  },
+  "InesMod:PreciseRecon": {
+    "NAME": "Precise Recon",
+    "DESCRIPTION": " ines:Lurk . NL Whenever exhaust ines:Steals in Attack, gain !M! ines:Inter ."
+  },
+  "InesMod:LayTraps": {
+    "NAME": "Lay Traps",
+    "DESCRIPTION": " ines:Lurk . NL Whenever exhaust ines:Steals in Attack, apply !M! Vulnerable ."
+  },
+  "InesMod:Disguise": {
+    "NAME": "Disguise",
+    "DESCRIPTION": "Gain !B! Block. NL Add !M! *Shadow *Whistle into your hand."
+  },
+  "InesMod:Infiltration": {
+    "NAME": "Infiltration",
+    "DESCRIPTION": "Gain !M! ines:Steals . NL Add a copy of this card into your discard pile.",
+    "UPGRADE_DESCRIPTION": "Gain !M! ines:Steals . NL Add a copy of this card into your discard pile."
+  },
+  "InesMod:TopSecretOperation": {
+    "NAME": "Top Secret Operation",
+    "DESCRIPTION": " ines:AutoPlay . Deal !D! damage to ALL enemies twice. NL If unable to ines:AutoPlay , Exhaust ."
+  },
+  "InesMod:AdHocSupply": {
+    "NAME": "Ad Hoc Supply",
+    "DESCRIPTION": "The next time you have 1 or fewer cards in hand, gain [E] .",
+    "UPGRADE_DESCRIPTION": "The next time you have 1 or fewer cards in hand, gain [E]  [E] ."
+  },
+  "InesMod:AdHocStrategy": {
+    "NAME": "Ad Hoc Strategy",
+    "DESCRIPTION": "The next time you have 1 or fewer cards in hand, draw !M! cards."
+  },
+  "InesMod:BreakTheShadow": {
+    "NAME": "Break the Shadow",
+    "DESCRIPTION": "Deal !D! damage. NL Whenever a *Shadow *Whistle is Exhausted, return this from the discard pile to your hand. NL  Retain ."
+  },
+  "InesMod:VeiledInSight": {
+    "NAME": "Veiled in Sight",
+    "DESCRIPTION": "Deal !D! damage to ALL enemies. Gain 1 ines:Invisibility . NL You cannot play Attacks this turn."
+  },
+  "InesMod:GuidedThrow": {
+    "NAME": "Guided Throw",
+    "DESCRIPTION": "Deal !D! damage to ALL enemies. Exhaust 1 ines:Steals for each enemy in combat."
+  },
+  "InesMod:MasterTheGame": {
+    "NAME": "Master the Game",
+    "DESCRIPTION": "Deal !D! damage. NL This turn, Attack in ines:Invisibility is changed to discard *Shadow *Whistle .",
+    "UPGRADE_DESCRIPTION": "Deal !D! damage. NL This turn, Attack in ines:Invisibility is changed to discard *Shadow *Whistle . NL  Retain ."
+  },
+  "InesMod:WeaponStockpile": {
+    "NAME": "Weapon Stockpile",
+    "DESCRIPTION": "Now and at your next !M! turns start, Add 2 *Shivs into your hand. NL  Exhaust .",
+    "UPGRADE_DESCRIPTION": "Now and at your next !M! turns start, Add 2 *Shivs into your hand."
+  },
+  "InesMod:DataOrganization": {
+    "NAME": "Data Organization",
+    "DESCRIPTION": "Gain !B! Block. NL Shuffle any cards into your draw pile, discard all other cards."
+  },
+  "InesMod:OldIntel": {
+    "NAME": "Old Intel",
+    "DESCRIPTION": "{@@}Draw !M! card{!M!|>1=s}. NL Discard 1 card. NL Each time this card enters the discard pile, its draw decreases by 1.",
+    "UPGRADE_DESCRIPTION": "{@@}Draw !M! card{!M!|>1=s}. NL Discard 1 card. NL Each time this card is played, its draw decreases by 1."
+  },
+  "InesMod:ImmediateEffect": {
+    "NAME": "Immediate Effect",
+    "DESCRIPTION": " Ethereal . NL gain !M! ines:Invisibility . NL  Exhaust ."
+  },
+  "InesMod:EmergencyRetreat": {
+    "NAME": "Emergency Retreat",
+    "DESCRIPTION": " Ethereal . NL Discard all card. Add !M! *Shadow *Whistle into your hand. NL  Exhaust .",
+    "UPGRADE_DESCRIPTION": " Ethereal . NL Discard all card. Add !M! *Shadow *Whistle into your hand."
+  },
+  "InesMod:LayeredShadows": {
+    "NAME": "Layered Shadows",
+    "DESCRIPTION": "If no *Shadow *Whistle in your hand , add 1 *Shadow *Whistle . NL Otherwise double the number of *Shadow *Whistles in your hand.",
+    "UPGRADE_DESCRIPTION": "If no *Shadow *Whistle in your hand , add 1 *Shadow *Whistle . NL Otherwise double the number of *Shadow *Whistles in your hand. NL  Retain ."
+  },
+  "InesMod:Sprint": {
+    "NAME": "Sprint",
+    "DESCRIPTION": " ines:AutoPlay . NL The next !M! Attack you play costs 0. NL  Exhaust .",
+    "UPGRADE_DESCRIPTION": " ines:AutoPlay . NL The next !M! Attack you play costs 0."
+  },
+  "InesMod:FadeIntoShadow": {
+    "NAME": "Fade into Shadow",
+    "DESCRIPTION": "Gain 1 ines:Invisibility . NL End your turn."
+  },
+  "InesMod:WinFirst": {
+    "NAME": "Win First",
+    "DESCRIPTION": " Innate . NL Gain [E] equal to the number of enemies.  NL  Exhaust .",
+    "UPGRADE_DESCRIPTION": " Innate . NL Gain [E] equal to the number of enemies + 1. NL  Exhaust ."
+  },
+  "InesMod:Wander": {
+    "NAME": "Wander",
+    "DESCRIPTION": "For each *Shadow *Whistle in your hand and draw pile, Gain !B! Block once. NL  Retain .",
+    "EXTENDED_DESCRIPTION": [
+      "{@@} NL (Gain !M! time{!M!|>1=s}.)"
+    ]
+  },
+  "InesMod:MurkyNight": {
+    "NAME": "Murky Night",
+    "DESCRIPTION": " ines:Lurk . NL Exhaust the card you played, then add !M! *Shadow *Whistle into your hand."
+  },
+  "InesMod:Silhouette": {
+    "NAME": "Silhouette",
+    "DESCRIPTION": "Shuffle all *Shadow *Whistle in your hand into draw pile, then draw that many + 1 of cards. NL  Exhaust .",
+    "UPGRADE_DESCRIPTION": "Shuffle all *Shadow *Whistle in your hand into draw pile, then draw that many + 1 of cards."
+  },
+  "InesMod:DeadlyOpportunity": {
+    "NAME": "Deadly Opportunity",
+    "DESCRIPTION": "The next Attack deals double damage, then loss All your Block and end your turn.",
+    "UPGRADE_DESCRIPTION": "The next Attack deals double damage, then lose Half your Block and end your turn."
+  },
+  "InesMod:IntelNetwork": {
+    "NAME": "Intel Network",
+    "DESCRIPTION": "Gain !M! ines:Inter . NL then draw 1 card."
+  },
+  "InesMod:EngageEnemy": {
+    "NAME": "Engage Enemy",
+    "DESCRIPTION": "Gain !B! Block . NL If no *Shadow *Whistle in your hand , gain Block once more."
+  },
+  "InesMod:SecretHRLetter": {
+    "NAME": "Secret HR Letter",
+    "DESCRIPTION": "All cards in your hand cost 2 less [E] this turn. NL  Exhaust ."
+  },
+  "InesMod:EternalMigration": {
+    "NAME": "Eternal Migration",
+    "DESCRIPTION": "Take an extra turn after this one. NL  Exhaust ."
+  },
+  "InesMod:EndlessNight": {
+    "NAME": "Endless Night",
+    "DESCRIPTION": "Gain !B! Block and [E] . NL Retain all *Shadow *Whistle at the end of this turn."
+  },
+  "InesMod:CriticalInfo": {
+    "NAME": "Critical Info",
+    "DESCRIPTION": "{@@}Select !M! card{!M!|>1=s} ines:RetainInThisTurn , Discard all other cards."
+  },
+  "InesMod:QuickVictory": {
+    "NAME": "Quick Victory",
+    "DESCRIPTION": "Attack deals double damage when you in ines:Invisibility. At the end of turn, loss 1 additional ines:Invisibility and Gain 1 ines:Illusion ."
+  },
+  "InesMod:RapidRedeployment": {
+    "NAME": "Rapid Redeployment",
+    "DESCRIPTION": "At the start of next turn, draw !M! cards and they costs 0 for one turn."
+  },
+  "InesMod:ChaseWithShadow": {
+    "NAME": "Chase with Shadow",
+    "DESCRIPTION": "Deal !D! damage. NL If the last card played this combat was an Attack with different name, return this from the discard pile to your hand.",
+    "UPGRADE_DESCRIPTION": "Deal !D! damage. NL If the last card played this combat was an Attack with different name, return this from the discard pile to your hand. NL  Retain ."
+  },
+  "InesMod:ShadowWeave": {
+    "NAME": "Shadow Weave",
+    "DESCRIPTION": "At the start of your turn, add 1 *Shadow *Whistle into your hand."
+  },
+  "InesMod:LoneReturn": {
+    "NAME": "Lone Return",
+    "DESCRIPTION": "At the start of your turn, gain !M! ines:Steals .",
+    "UPGRADE_DESCRIPTION": " Innate . NL At the start of your turn, gain !M! ines:Steals ."
+  },
+  "InesMod:NecessaryCost": {
+    "NAME": "Necessary Cost",
+    "DESCRIPTION": "Exhaust all [E] and discard all cards, deal !D! damage once for each.",
+    "EXTENDED_DESCRIPTION": [
+      "{@@} NL (Deal !M! time{!M!|>1=s})"
+    ]
+  },
+  "InesMod:IntelTrade": {
+    "NAME": "Intel Trade",
+    "DESCRIPTION": "Exhaust 1 card to add 1 random Power card into your hand. It costs 0 this turn. NL  Exhaust .",
+    "EXTENDED_DESCRIPTION": [
+      "There are no other cards to exhaust."
+    ]
+  },
+  "InesMod:BoiledRations": {
+    "NAME": "Boiled Rations",
+    "DESCRIPTION": "Heal !M! HP. NL Each time this card is drawn, its effect increases by 1. NL  Exhaust ."
+  },
+  "InesMod:ShiftFrontlines": {
+    "NAME": "Shift Frontlines",
+    "DESCRIPTION": "Each time you discard a card this turn, gain 1 ines:Inter at the start of next turn.",
+    "UPGRADE_DESCRIPTION": "Each time you discard a card this turn, gain 1 ines:Inter at the start of next turn. NL  Retain ."
+  },
+  "InesMod:ShadowTerritory": {
+    "NAME": "Shadow Territory",
+    "DESCRIPTION": "If in ines:Invisibility at the end of turn, gain !M! Strength."
+  },
+  "InesMod:RouteMapping": {
+    "NAME": "Route Mapping",
+    "DESCRIPTION": "Whenever a *Shadow Whistle enter your hand, gain !M! ines:Steals ."
+  },
+  "InesMod:MercenaryTactics": {
+    "NAME": "Mercenary Tactics",
+    "DESCRIPTION": "The Strength effect of ines:Steals is increased by 1."
+  },
+  "InesMod:RoyalAllianceTreaty": {
+    "NAME": "Royal Alliance Treaty",
+    "DESCRIPTION": "You and All enemies gain 2 Intangible .",
+    "UPGRADE_DESCRIPTION": "You and All enemies gain 2 Intangible . NL  Retain ."
+  },
+  "InesMod:LurkInDeepShadows": {
+    "NAME": "Lurk in Deep Shadows",
+    "DESCRIPTION": "At the end of your turn, Shuffle any *Shadow *Whistle into draw pile. NL Whenever you draw a *Shadow *Whistle , draw 1 additional card."
+  },
+  "InesMod:ExperienceGain": {
+    "NAME": "Experience Gain",
+    "DESCRIPTION": "Gain 1  ines:Inter , 1  ines:Invisibility , 1  ines:Steals and 1  *Shadow *Whistle . NL For every 3 cards exhausted this combat, this Costs 1 less [E] .",
+    "UPGRADE_DESCRIPTION": "Gain 1  ines:Inter , 1  ines:Invisibility , 1  ines:Steals and 1  *Shadow *Whistle . NL For every 2 cards exhausted this combat, this Costs 1 less [E] ",
+    "EXTENDED_DESCRIPTION": [
+      "{@@} NL ( !M! card{!M!|>1=s} exhausted)"
+    ]
+  },
+  "InesMod:PhotographicMemory": {
+    "NAME": "Photographic Memory",
+    "DESCRIPTION": "On your next card play, add a copy with !M! cost into your draw pile. NL  Exhaust ."
+  },
+  "InesMod:ShadowWhistleRetrieval": {
+    "NAME": "Shadow Whistle Retrieval",
+    "DESCRIPTION": "Whenever a *Shadow *Whistle is Exhausted, gain !M! Block."
+  },
+  "InesMod:NightInWhiteBirchForest": {
+    "NAME": "Night in White Birch Forest",
+    "DESCRIPTION": "Heal !M! 点生命. NL 这张牌每被打出 1 次, 效果永久-2. NL  Exhaust .",
+    "UPGRADE_DESCRIPTION": "Heal !M! 点生命. NL 这张牌每被打出 1 次, 效果永久-1. NL  Exhaust ."
+  },
+  "InesMod:OnTheBrink": {
+    "NAME": "On the Brink",
+    "DESCRIPTION": "Deal !D! damage. NL 每打出或丢弃1张非攻击牌, 此牌damage+2.打出攻击牌后重置.",
+    "UPGRADE_DESCRIPTION": "Deal !D! damage. NL 每打出或丢弃1张非攻击牌, 此牌damage+3.打出攻击牌后重置.",
+    "EXTENDED_DESCRIPTION": [
+      " NL (已增加 !M! damage)"
+    ]
+  },
+  "InesMod:OneByOne": {
+    "NAME": "One by One",
+    "DESCRIPTION": " Ethereal . ines:Lurk . NL 每次打出攻击牌, 手牌中random攻击牌在本回合耗能-1."
+  },
+  "InesMod:BattleMemories": {
+    "NAME": "Battle Memories",
+    "DESCRIPTION": " ines:Search  !M! 张能力牌加入手牌, 这些牌在本回合耗能变为0. NL  Exhaust ."
+  },
+  "InesMod:MindProbe": {
+    "NAME": "Mind Probe",
+    "DESCRIPTION": "对所有敌人造成 !D! 点damage.敌方每有一种不同意图, gain 1 点 ines:Inter .",
+    "EXTENDED_DESCRIPTION": [
+      " NL (gain !M! 点Inter)"
+    ]
+  },
+  "InesMod:EmotionalDisturbance": {
+    "NAME": "Emotional Disturbance",
+    "DESCRIPTION": "Deal !D! 点damage. NL 如果目标的意图不为攻击, 给予 !M! 层 Vulnerable , 否则给予 !M! 层 Weak ."
+  },
+  "InesMod:Informant": {
+    "NAME": "Informant",
+    "DESCRIPTION": "从drawpile选择 1 张牌, 下回合开始时 ines:Search 这张牌并加入手牌.",
+    "UPGRADE_DESCRIPTION": "从drawpile选择 2 张牌, 下回合开始时 ines:Search 这些牌并加入手牌."
+  },
+  "InesMod:ShadowDominance": {
+    "NAME": "Shadow Dominance",
+    "DESCRIPTION": "手牌中每有 1 张 *Shadow Whistle , 使攻击damage+ !M! ."
+  },
+  "InesMod:Encryption": {
+    "NAME": "Encryption",
+    "DESCRIPTION": "选择 1 张手牌放入drawpile顶, 将一张对应的 *解密 放入手牌. NL  Exhaust .",
+    "UPGRADE_DESCRIPTION": "选择 1 张手牌放入drawpile顶, 将一张对应的 *解密+ 放入手牌. NL  Exhaust ."
+  },
+  "InesMod:Decryption": {
+    "NAME": "Decryption",
+    "DESCRIPTION": ", 将其加入手牌.",
+    "UPGRADE_DESCRIPTION": ", 将其加入手牌. NL  Retain .",
+    "EXTENDED_DESCRIPTION": [
+      " ines:Search ",
+      "被 *加密 的牌"
+    ]
+  },
+  "InesMod:InterpretReturn": {
+    "NAME": "Return",
+    "DESCRIPTION": "返回."
+  },
+  "InesMod:InterpretColorlessCard": {
+    "NAME": "Colorless Card",
+    "DESCRIPTION": "Exhaust !M! 点 *真相 . NL 从三张random *无色牌 中选择一张获得.",
+    "EXTENDED_DESCRIPTION": [
+      " NL (真相不足)"
+    ]
+  },
+  "InesMod:InterpretRareCard": {
+    "NAME": "Rare Card",
+    "DESCRIPTION": "Exhaust !M! 点 *真相 . NL 从三张random *稀有牌 中选择一张获得.",
+    "EXTENDED_DESCRIPTION": [
+      " NL (真相不足)"
+    ]
+  },
+  "InesMod:InterpretRelic": {
+    "NAME": "Relic",
+    "DESCRIPTION": "Exhaust !M! 点 *真相 . NL 从三个random *遗物 中选择一个获得.",
+    "EXTENDED_DESCRIPTION": [
+      " NL (真相不足)"
+    ]
+  },
+  "InesMod:InterpretSecret": {
+    "NAME": "Or.",
+    "DESCRIPTION": "Exhaust !M! 点 *真相 . NL 获得一个特殊的 *遗物 .使故事走向不同的 *结局 .",
+    "EXTENDED_DESCRIPTION": [
+      " NL (真相不足)"
+    ]
+  },
+  "InesMod:RelicPreviewCard": {
+    "NAME": "Relic Name",
+    "DESCRIPTION": "Relic Description",
+    "EXTENDED_DESCRIPTION": [
+      "The effect of the relic",
+      "The footnote of the relic"
+    ]
+  }
+}

@@ -13,6 +13,8 @@ import com.megacrit.cardcrawl.localization.UIStrings;
 import java.io.IOException;
 import java.util.Properties;
 
+import static InesMod.helpers.LogHelper.FORCE_ENABLE_INFO;
+
 public class ConfigHelper {
     // ---可调整的config---
     public static boolean banExtraEnding = false;
@@ -74,20 +76,23 @@ public class ConfigHelper {
                 LogHelper.info("===save config credit failed{}===",e.getLocalizedMessage());
             }
         });
+        settingsPanel.addUIElement(btn1);
 
         // 设置2按钮
-        ModLabeledToggleButton btn2 = new ModLabeledToggleButton(uis.TEXT[2], 350.0F, 300.0F, Settings.CREAM_COLOR, FontHelper.charDescFont, banExtraEnding, settingsPanel, modLabel -> {
-        }, modToggleButton -> {
-            dontShowLoggerInfo = modToggleButton.enabled;
-            config.setBool(PathHelper.nameToId("DONT_SHOW_LOGGER_INFO"), dontShowLoggerInfo);
-            try {
-                config.save();
-            } catch (IOException e) {
-                LogHelper.info("===save config credit failed{}===",e.getLocalizedMessage());
-            }
-        });
+        if(!FORCE_ENABLE_INFO){
+            ModLabeledToggleButton btn2 = new ModLabeledToggleButton(uis.TEXT[2], 350.0F, 300.0F, Settings.CREAM_COLOR, FontHelper.charDescFont, banExtraEnding, settingsPanel, modLabel -> {
+            }, modToggleButton -> {
+                dontShowLoggerInfo = modToggleButton.enabled;
+                config.setBool(PathHelper.nameToId("DONT_SHOW_LOGGER_INFO"), dontShowLoggerInfo);
+                try {
+                    config.save();
+                } catch (IOException e) {
+                    LogHelper.info("===save config credit failed{}===",e.getLocalizedMessage());
+                }
+            });
+            settingsPanel.addUIElement(btn2);
+        }
 
-        settingsPanel.addUIElement(btn1);
-        settingsPanel.addUIElement(btn2);
+
     }
 }

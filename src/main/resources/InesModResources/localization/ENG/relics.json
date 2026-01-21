@@ -1,0 +1,16 @@
+{
+  "InesMod:UnassumingNeedle": {
+    "NAME": "无锋绣针",
+    "FLAVOR": "犹如她那不断打磨的双角。",
+    "DESCRIPTIONS": [
+      "回合开始时，获得 #b3 层 #yines:偷取 ，然后使本层数-1。 NL 战斗开始时重置。"
+    ]
+  },
+  "InesMod:RustedNeedle": {
+    "NAME": "破败绣针",
+    "FLAVOR": "更如她那不断掩埋的往事。",
+    "DESCRIPTIONS": [
+      "替换 #y无锋绣针 。回合开始时，获得 #b2 层 #yines:偷取 。"
+    ]
+  }
+}
