@@ -27,7 +27,7 @@ public class WinFirst extends AbstractInesCard {
                 cardStrings,
                 0,
                 CardType.SKILL,
-                CardRarity.COMMON,
+                CardRarity.UNCOMMON,
                 CardTarget.ALL, // 自身与所有敌人
                 Ines.Enums.INES_CARD);
         this.exhaust = true;

@@ -47,7 +47,7 @@ public class DataOrganization extends AbstractInesCard {
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            upgradeBlock(2);
+            upgradeBlock(3);
         }
     }
 }

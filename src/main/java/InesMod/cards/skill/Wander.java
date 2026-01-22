@@ -29,7 +29,7 @@ public class Wander extends AbstractInesCard {
                 CardRarity.UNCOMMON,
                 CardTarget.SELF,
                 Ines.Enums.INES_CARD);
-        this.block = this.baseBlock = 5;
+        this.block = this.baseBlock = 6;
         this.magicNumber = this.baseMagicNumber = 0;
         this.selfRetain = true;
 

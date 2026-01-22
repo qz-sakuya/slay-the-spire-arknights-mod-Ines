@@ -29,7 +29,7 @@ public class CriticalInfo extends AbstractInesCard {
                 CardRarity.UNCOMMON,
                 CardTarget.SELF,
                 Ines.Enums.INES_CARD);
-        this.magicNumber = this.baseMagicNumber = 1;
+        this.magicNumber = this.baseMagicNumber = 2;
 
     }
  
