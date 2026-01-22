@@ -338,7 +338,7 @@
   },
   "InesMod:EmotionalDisturbance": {
     "NAME": "情绪干扰",
-    "DESCRIPTION": "造成 !D! 点伤害。 NL 如果目标的意图不为攻击，给予 !M! 层 易伤 ，否则给予 !M! 层 虚弱 。"
+    "DESCRIPTION": "造成 !D! 点伤害。 NL 如果目标的意图是攻击，给予 !M! 层 虚弱 ，否则给予 !M! 层 易伤 。"
   },
   "InesMod:Informant": {
     "NAME": "线人",
