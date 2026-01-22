@@ -315,35 +315,35 @@
   },
   "InesMod:OnTheBrink": {
     "NAME": "On the Brink",
-    "DESCRIPTION": "Deal !D! damage. NL Whenever play or discard a non-Attack, this damage + 2. Reset after you play this card.",
-    "UPGRADE_DESCRIPTION": "Deal !D! damage. NL Whenever play or discard a non-Attack, this damage + 3. Reset after you play this card.",
+    "DESCRIPTION": "Deal !D! damage. NL Whenever play or discard a non-Attack, this damage + 2. Reset after play this card.",
+    "UPGRADE_DESCRIPTION": "Deal !D! damage. NL Whenever play or discard a non-Attack, this damage + 3. Reset after play this card.",
     "EXTENDED_DESCRIPTION": [
       " NL (Damage + !M! )"
     ]
   },
   "InesMod:OneByOne": {
     "NAME": "One by One",
-    "DESCRIPTION": " Ethereal . ines:Lurk . NL 每次打出攻击牌, 手牌中random攻击牌在本回合耗能-1."
+    "DESCRIPTION": " Ethereal . ines:Lurk . NL Whenever you play an Attack,  a random Attack in your hand costs 1 less [E] this turn."
   },
   "InesMod:BattleMemories": {
     "NAME": "Battle Memories",
-    "DESCRIPTION": " ines:Search  !M! 张能力牌加入手牌, 这些牌在本回合耗能变为0. NL  Exhaust ."
+    "DESCRIPTION": "{@@} ines:Search  !M! Power card{!M!|>1=s} into your hand, they costs 0 for one turn. NL  Exhaust ."
   },
   "InesMod:MindProbe": {
     "NAME": "Mind Probe",
-    "DESCRIPTION": "对所有敌人造成 !D! 点damage.敌方每有一种不同意图, gain 1 点 ines:Inter .",
+    "DESCRIPTION": "Deal !D! damage to ALL enemies. For each unique intent among enemies, gain 1 ines:Inter .",
     "EXTENDED_DESCRIPTION": [
-      " NL (gain !M! 点Inter)"
+      " NL (Gain !M! Inter)"
     ]
   },
   "InesMod:EmotionalDisturbance": {
     "NAME": "Emotional Disturbance",
-    "DESCRIPTION": "Deal !D! 点damage. NL 如果目标的意图不为攻击, 给予 !M! 层 Vulnerable , 否则给予 !M! 层 Weak ."
+    "DESCRIPTION": "Deal !D! damage. NL If the enemy intends to attack, apply !M! Weak , otherwise apply !M! Vulnerable ."
   },
   "InesMod:Informant": {
     "NAME": "Informant",
-    "DESCRIPTION": "从drawpile选择 1 张牌, 下回合开始时 ines:Search 这张牌并加入手牌.",
-    "UPGRADE_DESCRIPTION": "从drawpile选择 2 张牌, 下回合开始时 ines:Search 这些牌并加入手牌."
+    "DESCRIPTION": "Select 1 card from your draw pile. At the start of next turn, ines:Search this card and add it to your hand.",
+    "UPGRADE_DESCRIPTION": "Select 2 cards from your draw pile. At the start of next turn, ines:Search these cards and add them to your hand."
   },
   "InesMod:ShadowDominance": {
     "NAME": "Shadow Dominance",
