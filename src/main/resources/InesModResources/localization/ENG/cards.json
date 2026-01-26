@@ -224,7 +224,7 @@
   },
   "InesMod:CriticalInfo": {
     "NAME": "Critical Info",
-    "DESCRIPTION": "{@@}Select !M! card{!M!|>1=s} ines:RetainInThisTurn , Discard all other cards."
+    "DESCRIPTION": "{@@}Select !M! card{!M!|>1=s} ines:RetainForThisTurn , Discard all other cards."
   },
   "InesMod:QuickVictory": {
     "NAME": "Quick Victory",
@@ -306,7 +306,7 @@
   },
   "InesMod:ShadowWhistleRetrieval": {
     "NAME": "Shadow Whistle Retrieval",
-    "DESCRIPTION": "Whenever a *Shadow *Whistle is Exhausted, gain !M! Block."
+    "DESCRIPTION": "Whenever a *Shadow *Whistle is Exhausted , gain !M! Block ."
   },
   "InesMod:NightInWhiteBirchForest": {
     "NAME": "Night in White Birch Forest",
@@ -347,52 +347,52 @@
   },
   "InesMod:ShadowDominance": {
     "NAME": "Shadow Dominance",
-    "DESCRIPTION": "手牌中每有 1 张 *Shadow Whistle , 使攻击damage+ !M! ."
+    "DESCRIPTION": "For each *Shadow *Whistle in your hand, your Attack Damage is increased by !M! ."
   },
   "InesMod:Encryption": {
     "NAME": "Encryption",
-    "DESCRIPTION": "选择 1 张手牌放入drawpile顶, 将一张对应的 *解密 放入手牌. NL  Exhaust .",
-    "UPGRADE_DESCRIPTION": "选择 1 张手牌放入drawpile顶, 将一张对应的 *解密+ 放入手牌. NL  Exhaust ."
+    "DESCRIPTION": "Put a card from your hand on top of your draw pile, add a corresponding *Decryption into your hand. NL  Exhaust .",
+    "UPGRADE_DESCRIPTION": "Put a card from your hand on top of your draw pile, add a corresponding *Decryption+ into your hand. NL  Exhaust ."
   },
   "InesMod:Decryption": {
     "NAME": "Decryption",
-    "DESCRIPTION": ", 将其加入手牌.",
-    "UPGRADE_DESCRIPTION": ", 将其加入手牌. NL  Retain .",
+    "DESCRIPTION": ", add it into your hand.",
+    "UPGRADE_DESCRIPTION": ", add it into your hand. NL  Retain .",
     "EXTENDED_DESCRIPTION": [
       " ines:Search ",
-      "被 *加密 的牌"
+      "for *encrypted *cards"
     ]
   },
   "InesMod:InterpretReturn": {
     "NAME": "Return",
-    "DESCRIPTION": "返回."
+    "DESCRIPTION": "Return."
   },
   "InesMod:InterpretColorlessCard": {
     "NAME": "Colorless Card",
-    "DESCRIPTION": "Exhaust !M! 点 *真相 . NL 从三张random *无色牌 中选择一张获得.",
+    "DESCRIPTION": "Exhaust !M! *Truth . NL Gain 1 of 3 random *Colorless *cards.",
     "EXTENDED_DESCRIPTION": [
-      " NL (真相不足)"
+      " NL (Insufficient Truth)"
     ]
   },
   "InesMod:InterpretRareCard": {
     "NAME": "Rare Card",
-    "DESCRIPTION": "Exhaust !M! 点 *真相 . NL 从三张random *稀有牌 中选择一张获得.",
+    "DESCRIPTION": "Exhaust !M! *Truth . NL Gain 1 of 3 random *Rare *cards.",
     "EXTENDED_DESCRIPTION": [
-      " NL (真相不足)"
+      " NL (Insufficient Truth)"
     ]
   },
   "InesMod:InterpretRelic": {
     "NAME": "Relic",
-    "DESCRIPTION": "Exhaust !M! 点 *真相 . NL 从三个random *遗物 中选择一个获得.",
+    "DESCRIPTION": "Exhaust !M! *Truth . NL Gain 1 of 3 random *Relics.",
     "EXTENDED_DESCRIPTION": [
-      " NL (真相不足)"
+      " NL (Insufficient Truth)"
     ]
   },
   "InesMod:InterpretSecret": {
-    "NAME": "Or.",
-    "DESCRIPTION": "Exhaust !M! 点 *真相 . NL 获得一个特殊的 *遗物 .使故事走向不同的 *结局 .",
+    "NAME": "Or...",
+    "DESCRIPTION": "Exhaust !M! *Truth . NL Gain a unique *Relic. 使故事走向不同的 *结局 .",
     "EXTENDED_DESCRIPTION": [
-      " NL (真相不足)"
+      " NL (Insufficient Truth)"
     ]
   },
   "InesMod:RelicPreviewCard": {

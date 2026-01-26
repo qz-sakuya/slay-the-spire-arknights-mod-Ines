@@ -28,7 +28,12 @@ public class NoInvisibilityPower extends AbstractInesPower {
 
     @Override
     public void updateDescription() {
-        this.description = String.format(descriptions[0], this.amount);
+        if (this.amount <= 1){
+            this.description = String.format(descriptions[0], this.amount);
+        }
+        else {
+            this.description = String.format(descriptions[1], this.amount); // 复数
+        }
     }
 
 

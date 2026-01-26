@@ -34,7 +34,12 @@ public class PhotographicMemoryPower extends AbstractInesPower {
 
     @Override
     public void updateDescription() {
-        this.description = String.format(descriptions[0], this.amount, this.secondAmount);
+        if (this.amount <= 1){
+            this.description = String.format(descriptions[0], this.amount, this.secondAmount);
+        }
+        else {
+            this.description = String.format(descriptions[1], this.amount, this.secondAmount);
+        }
     }
 
 

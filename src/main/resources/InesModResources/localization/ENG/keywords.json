@@ -37,7 +37,7 @@
   },
   {
     "NAMES": [
-      "RetainInThisTurn"
+      "RetainForThisTurn"
     ],
     "DESCRIPTION": "Retained cards are not discarded at the end of turn."
   },

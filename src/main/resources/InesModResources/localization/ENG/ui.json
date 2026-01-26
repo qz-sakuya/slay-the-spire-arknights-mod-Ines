@@ -1,21 +1,21 @@
 {
   "InesMod:ApplyPowerActionPatch": {
     "TEXT": [
-      "现在不能获得 NL 隐匿……"
+      "Cannot gain NL Invisibility now."
     ]
   },
   "InesMod:Config": {
     "TEXT": [
-      "模组设置",
-      "禁用额外结局（目前没有实际功能）",
-      "关闭日志打印（少许提升性能）"
+      "Mod Config",
+      "Disable Additional Endings (No actual function at present)",
+      "Disable Log Printing (Slight performance improvement)"
     ]
   },
   "InesMod:Tips": {
     "TEXT": [
-      "洞悉",
-      "一次战斗中累计消耗 #b12 层 #y偷取 ，即可获得 #b1 层 #y洞悉 。",
-      "每有 #b1 层 #y洞悉 ，攻击额外生效 #b1 层 #y偷取 （不视作消耗），战斗结束后获得 #b1 点 #y真相 。"
+      "Insight",
+      "Whenever you exhaust #b12 #ySteals in one combat, gain #b1 #yInsight .",
+      "For each stack of #yInsight , apply #b1 additional #ySteals after Attack (not counted as exhaust) and gain #b1 #yTruth after combat."
     ]
   },
   "InesMod:UNUSEDSelectHandCard": {
@@ -28,46 +28,46 @@
   },
   "InesMod:MoveCardsToDeckAction": {
     "TEXT": [
-      "加入抽牌堆。"
+      "shuffle into draw pile."
     ]
   },
   "InesMod:RetainCardsThisTurnAction": {
     "TEXT": [
-      "在本回合保留。",
-      " NL  ines:在本回合保留 。"
+      "retain for this turn.",
+      " NL  ines:RetainForThisTurn ."
     ]
   },
   "InesMod:CardTags": {
     "TEXT": [
-      " NL  ines:在本回合保留 。"
+      " NL  ines:RetainForThisTurn ."
     ]
   },
   "InesMod:TruthTopItem": {
     "TEXT": [
-      "真相",
-      "从战斗中收集的所有 #y真相 。 NL 可在 #y休息处 解析为 #y奖励 。",
-      "从战斗中收集的所有 #y真相 。 NL 可在 #y休息处 解析为 #y奖励 ，或从中触及 #b高塔的秘密 ……"
+      "Truth",
+      "All #yTruth collected from combat. NL It can be interpreted into #yRewards at #yRest #ySites.",
+      "All #yTruth collected from combat. NL It can be interpreted into #yRewards at #yRest #ySites, or used to uncover #bthe #bSecrets #bof #bthe #bSpire ..."
     ]
   },
   "InesMod:TruthReward": {
     "TEXT": [
-      "点真相",
-      "（洞悉）"
+      "Truth",
+      "(Insight)"
     ]
   },
   "InesMod:InterpretOption": {
     "TEXT": [
-      "解析真相",
-      "[快速行动]将真相解析为奖励",
-      "当前真相不足"
+      "Interpret Truth",
+      "[Quick Action] Interpret Truth into Rewards",
+      "Insufficient Truth"
     ]
   },
   "InesMod:InterpretEffect": {
     "TEXT": [
-      "将真相解析为奖励",
-      "选择一张无色牌",
-      "选择一张稀有牌",
-      "选择一件遗物"
+      "Interpret Truth into Rewards",
+      "Choose a Colorless card",
+      "Choose a Rare card",
+      "Choose a Relic"
     ]
   }
 }

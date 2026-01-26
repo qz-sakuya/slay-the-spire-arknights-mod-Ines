@@ -53,6 +53,7 @@
   "InesMod:NoInvisibilityPower": {
     "NAME": "不能获得隐匿",
     "DESCRIPTIONS": [
+      "你不能获得 #b隐匿 。持续 #b%d 回合。",
       "你不能获得 #b隐匿 。持续 #b%d 回合。"
     ]
   },
@@ -72,6 +73,7 @@
   "InesMod:AdHocStrategyPower": {
     "NAME": "临时战略",
     "DESCRIPTIONS": [
+      "下一次手牌数不超过 #b1 时，抽 #b%d 张牌。",
       "下一次手牌数不超过 #b1 时，抽 #b%d 张牌。"
     ]
   },
@@ -90,6 +92,7 @@
   "InesMod:WeaponStockpilePower": {
     "NAME": "武器储备",
     "DESCRIPTIONS": [
+      "回合开始时获得 #b2 张 #y小刀 ，持续 #b%d 回合。",
       "回合开始时获得 #b2 张 #y小刀 ，持续 #b%d 回合。"
     ]
   },
@@ -109,7 +112,7 @@
   "InesMod:EndlessNightPower": {
     "NAME": "漫漫长夜",
     "DESCRIPTIONS": [
-      "本回合结束时保留所有 #y影哨 。"
+      "本回合结束时#y保留所有 #y影哨 。"
     ]
   },
   "InesMod:QuickVictoryPower": {
@@ -140,6 +143,7 @@
     "NAME": "转移阵线",
     "DESCRIPTIONS": [
       "本回合内每丢弃 #b1 张牌，下回合开始时就获得 #b%d 点 #y情报 。",
+      " NL （已丢弃 #b%d 张牌）",
       " NL （已丢弃 #b%d 张牌）"
     ]
   },
@@ -176,7 +180,7 @@
   "InesMod:ShadowWhistleRetrievalPower": {
     "NAME": "影哨回收",
     "DESCRIPTIONS": [
-      "每消耗 #b1 张 #y影哨 ，获得 #b%d 点 #y格挡 。"
+      "每 #y消耗  #b1 张 #y影哨 ，获得 #b%d 点 #y格挡 。"
     ]
   },
   "InesMod:InformantPower": {

@@ -32,8 +32,14 @@ public class ShiftFrontlinesPower extends AbstractInesPower {
 
     @Override
     public void updateDescription() {
-        this.description = String.format(descriptions[0], this.amount)
-                + String.format(descriptions[1], this.secondAmount);
+        if (this.amount <= 1){
+            this.description = String.format(descriptions[0], this.amount)
+                    + String.format(descriptions[1], this.secondAmount);
+        }
+        else {
+            this.description = String.format(descriptions[0], this.amount)
+                    + String.format(descriptions[2], this.secondAmount);; // 复数
+        }
     }
 
     @Override
