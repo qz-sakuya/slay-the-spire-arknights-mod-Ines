@@ -35,7 +35,7 @@ public class Encryption extends AbstractInesCard {
                 0,
                 CardType.SKILL,
                 CardRarity.UNCOMMON,
-                CardTarget.SELF,
+                CardTarget.NONE,
                 Ines.Enums.INES_CARD);
         this.magicNumber = this.baseMagicNumber = 1;
         this.exhaust = true;

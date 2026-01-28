@@ -30,7 +30,7 @@ public class IntelTrade extends AbstractInesCard {
                 1,
                 CardType.SKILL,
                 CardRarity.COMMON,
-                CardTarget.SELF,
+                CardTarget.NONE,
                 Ines.Enums.INES_CARD);
 
         this.exhaust = true;

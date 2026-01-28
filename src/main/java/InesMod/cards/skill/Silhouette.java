@@ -26,7 +26,7 @@ public class Silhouette extends AbstractInesCard {
                 0,
                 CardType.SKILL,
                 CardRarity.UNCOMMON,
-                CardTarget.SELF,
+                CardTarget.NONE,
                 Ines.Enums.INES_CARD);
 
         this.exhaust = true;

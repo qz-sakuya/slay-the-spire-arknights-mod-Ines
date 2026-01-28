@@ -31,7 +31,7 @@ public class BattleMemories extends AbstractInesCard {
                 3,
                 CardType.SKILL,
                 CardRarity.RARE,
-                CardTarget.SELF,
+                CardTarget.NONE,
                 Ines.Enums.INES_CARD);
         this.magicNumber = this.baseMagicNumber = 2;
 

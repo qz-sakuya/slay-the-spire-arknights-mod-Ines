@@ -32,7 +32,7 @@ public class MurkyNight extends AbstractInesCard {
                 2,
                 CardType.SKILL,
                 CardRarity.UNCOMMON,
-                CardTarget.SELF,
+                CardTarget.NONE,
                 Ines.Enums.INES_CARD);
         this.magicNumber = this.baseMagicNumber = 1;
 

@@ -27,7 +27,7 @@ public class SecretHRLetter extends AbstractInesCard {
                 3,
                 CardType.SKILL,
                 CardRarity.RARE,
-                CardTarget.SELF,
+                CardTarget.NONE,
                 Ines.Enums.INES_CARD);
 
         this.exhaust = true;

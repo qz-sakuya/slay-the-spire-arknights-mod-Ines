@@ -33,7 +33,7 @@ public class Informant extends AbstractInesCard {
                 0,
                 CardType.SKILL,
                 CardRarity.COMMON,
-                CardTarget.SELF,
+                CardTarget.NONE,
                 Ines.Enums.INES_CARD);
         this.magicNumber = this.baseMagicNumber = 1;
 
