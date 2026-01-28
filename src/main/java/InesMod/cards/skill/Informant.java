@@ -1,14 +1,11 @@
 package InesMod.cards.skill;
 
 import InesMod.action.ApplyNonStackPowerAction;
-import InesMod.action.CriticalInfoAction;
 import InesMod.action.SelectPileCardAction;
 import InesMod.cards.AbstractInesCard;
 import InesMod.characters.Ines;
 import InesMod.helpers.PathHelper;
-import InesMod.powers.InformantPower;
-import InesMod.powers.MercenaryTacticsPower;
-import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
+import InesMod.powers.player.InformantPower;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;

@@ -55,7 +55,7 @@ public class CardGroupAddPatch {
 
     }
 
-    public static void Work(CardGroup __instance, AbstractCard c) {
+    private static void Work(CardGroup __instance, AbstractCard c) {
         LogHelper.info("===CardGroupAddPatch：被加入的卡牌ID={}，牌被加入的位置={}===", c.cardID, __instance.type);
 
         // 触发自动打出

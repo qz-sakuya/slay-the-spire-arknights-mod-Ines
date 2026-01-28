@@ -1,18 +1,10 @@
 package InesMod.action;
 
-import InesMod.modcore.InesModMain;
-import InesMod.powers.AdHocStrategyPower;
-import InesMod.powers.AdHocSupplyPower;
-import InesMod.powers.AgentVanguardPower;
-import InesMod.powers.InterPower;
+import InesMod.powers.player.AdHocSupplyPower;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.*;
-import com.megacrit.cardcrawl.actions.unique.LoseEnergyAction;
-import com.megacrit.cardcrawl.actions.utility.NewQueueCardAction;
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 
 /**

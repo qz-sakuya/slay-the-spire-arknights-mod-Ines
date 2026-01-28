@@ -1,11 +1,9 @@
 package InesMod.cards.skill;
 
-import InesMod.action.SilhouetteAction;
 import InesMod.cards.AbstractInesCard;
-import InesMod.cards.status.ShadowWhistle;
 import InesMod.characters.Ines;
 import InesMod.helpers.PathHelper;
-import InesMod.powers.InterPower;
+import InesMod.powers.player.InterPower;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.DrawCardAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;

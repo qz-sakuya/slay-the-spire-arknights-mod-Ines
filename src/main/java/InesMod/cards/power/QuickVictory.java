@@ -4,14 +4,11 @@ import InesMod.action.ApplyNonStackPowerAction;
 import InesMod.cards.AbstractInesCard;
 import InesMod.characters.Ines;
 import InesMod.helpers.PathHelper;
-import InesMod.powers.AgentVanguardPower;
-import InesMod.powers.QuickVictoryPower;
-import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
+import InesMod.powers.player.QuickVictoryPower;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.AbstractPower;
 
 /**
  * 中文卡名：速战速决

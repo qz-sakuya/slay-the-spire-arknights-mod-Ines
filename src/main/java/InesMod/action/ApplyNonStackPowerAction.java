@@ -1,14 +1,13 @@
 package InesMod.action;
 
-import InesMod.powers.QuickVictoryPower;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 
 /**
- * 获得 不可叠加power 的 action
+ * 添加 不可叠加power 的 action
+ * 仅当目标没有该 power 时才添加
  */
 public class ApplyNonStackPowerAction extends AbstractGameAction {
     AbstractPower powerToApply;

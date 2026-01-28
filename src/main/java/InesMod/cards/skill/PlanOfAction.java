@@ -1,13 +1,11 @@
 package InesMod.cards.skill;
 
 import InesMod.action.RandomSearchCardAction;
-import InesMod.action.SelectPileCardAction;
 import InesMod.cards.AbstractInesCard;
 import InesMod.characters.Ines;
 import InesMod.helpers.PathHelper;
-import InesMod.powers.StealsPower;
+import InesMod.powers.player.StealsPower;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
-import com.megacrit.cardcrawl.actions.common.DrawCardAction;
 import com.megacrit.cardcrawl.actions.common.GainEnergyAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;

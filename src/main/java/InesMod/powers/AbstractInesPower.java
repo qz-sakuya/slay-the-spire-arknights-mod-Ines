@@ -12,6 +12,7 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.localization.PowerStrings;
+import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 
 import java.util.HashMap;
@@ -85,12 +86,16 @@ public abstract class AbstractInesPower extends AbstractPower {
     }
 
 
-    // 自定义回调
+    // ===自定义回调===
     public void onCardMove(AbstractCard c, CardGroup.CardGroupType groupType) {}
 
     // 补充一个手动弃牌时的回调，与遗物的同名
     public void onManualDiscard(AbstractCard c){}
 
+    // 战斗中有新的怪物生成
+    public void onSpawnMonster(AbstractMonster monster) {}
+
+    // ===自定义回调end===
 
 //    // 绘制第二个数字
 //    public void renderSecondAmount(SpriteBatch sb, float x, float y, Color c) {

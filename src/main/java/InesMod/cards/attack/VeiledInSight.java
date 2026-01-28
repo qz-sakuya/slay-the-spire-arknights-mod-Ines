@@ -2,11 +2,10 @@ package InesMod.cards.attack;
 
 import InesMod.action.ApplyNonStackPowerAction;
 import InesMod.cards.AbstractInesCard;
-import InesMod.cards.status.ShadowWhistle;
 import InesMod.characters.Ines;
 import InesMod.helpers.PathHelper;
-import InesMod.powers.InvisibilityPower;
-import InesMod.powers.NoAttackPower;
+import InesMod.powers.player.InvisibilityPower;
+import InesMod.powers.player.NoAttackPower;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.DamageAllEnemiesAction;

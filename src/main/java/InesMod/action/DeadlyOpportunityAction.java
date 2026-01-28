@@ -1,9 +1,6 @@
 package InesMod.action;
 
-import InesMod.helpers.LogHelper;
-import InesMod.powers.DeadlyOpportunityPower;
-import InesMod.powers.InterPower;
-import InesMod.powers.ShadowWhistleRetrievalPower;
+import InesMod.powers.player.DeadlyOpportunityPower;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.*;
 import com.megacrit.cardcrawl.actions.watcher.PressEndTurnButtonAction;

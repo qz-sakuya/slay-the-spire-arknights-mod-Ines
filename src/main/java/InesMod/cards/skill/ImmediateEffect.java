@@ -1,15 +1,10 @@
 package InesMod.cards.skill;
 
 import InesMod.cards.AbstractInesCard;
-import InesMod.cards.status.ShadowWhistle;
 import InesMod.characters.Ines;
 import InesMod.helpers.PathHelper;
-import InesMod.modcore.InesModMain;
-import InesMod.powers.InvisibilityPower;
+import InesMod.powers.player.InvisibilityPower;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
-import com.megacrit.cardcrawl.actions.common.DiscardAction;
-import com.megacrit.cardcrawl.actions.common.DrawCardAction;
-import com.megacrit.cardcrawl.actions.common.MakeTempCardInHandAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;

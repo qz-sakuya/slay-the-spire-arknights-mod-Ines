@@ -1,24 +1,14 @@
 package InesMod.cards.skill;
 
 import InesMod.cards.AbstractInesCard;
-import InesMod.cards.status.ShadowWhistle;
 import InesMod.characters.Ines;
 import InesMod.helpers.PathHelper;
-import InesMod.powers.DeadlyOpportunityPower;
-import InesMod.powers.EternalMigrationPower;
-import com.badlogic.gdx.graphics.Color;
-import com.megacrit.cardcrawl.actions.animations.VFXAction;
+import InesMod.powers.player.EternalMigrationPower;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
-import com.megacrit.cardcrawl.actions.watcher.SkipEnemiesTurnAction;
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
-import com.megacrit.cardcrawl.vfx.combat.WhirlwindEffect;
-
 
 
 /**

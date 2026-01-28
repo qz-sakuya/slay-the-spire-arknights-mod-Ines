@@ -1,0 +1,46 @@
+package InesMod.powers.monster;
+
+import InesMod.helpers.PathHelper;
+import InesMod.powers.AbstractInesPower;
+import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
+import com.megacrit.cardcrawl.actions.common.ReducePowerAction;
+import com.megacrit.cardcrawl.cards.DamageInfo;
+import com.megacrit.cardcrawl.core.AbstractCreature;
+import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.localization.PowerStrings;
+import com.megacrit.cardcrawl.powers.AbstractPower;
+import com.megacrit.cardcrawl.powers.StrengthPower;
+
+/**
+ * 中文名：弹射
+ * 敌方power
+ */
+public class TSPower extends AbstractInesPower {
+    public static final String ID = PathHelper.nameToId(TSPower.class.getSimpleName());
+    private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(ID); // 从游戏系统读取本地化资源
+
+    public TSPower(AbstractCreature owner, int amount, boolean spawnElite) {
+        super(ID,
+                true,
+                powerStrings,
+                owner,
+                PowerType.BUFF,
+                amount); // 不可叠加
+    }
+
+    @Override
+    public float atDamageGive(float damage, DamageInfo.DamageType type) {
+        float newDamage = damage;
+        if (AbstractDungeon.player.currentBlock > 0) {
+            newDamage *= 2;
+        }
+        return newDamage;
+    }
+
+    @Override
+    public void updateDescription() {
+        this.description = String.format(descriptions[0]);
+    }
+}
+

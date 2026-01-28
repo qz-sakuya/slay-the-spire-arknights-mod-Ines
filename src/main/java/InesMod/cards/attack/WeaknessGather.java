@@ -2,10 +2,9 @@ package InesMod.cards.attack;
 
 import InesMod.action.SetPowerAction;
 import InesMod.cards.AbstractInesCard;
-import InesMod.cards.status.ShadowWhistle;
 import InesMod.characters.Ines;
 import InesMod.helpers.PathHelper;
-import InesMod.powers.StealsPower;
+import InesMod.powers.player.StealsPower;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;

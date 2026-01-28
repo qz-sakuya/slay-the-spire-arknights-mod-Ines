@@ -2,6 +2,7 @@ package InesMod.monsters;
 
 import InesMod.cards.attack.BreakTheShadow;
 import InesMod.helpers.PathHelper;
+import InesMod.powers.monster.HTCFPower;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.*;
 import com.megacrit.cardcrawl.actions.utility.WaitAction;
@@ -16,34 +17,28 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 
+/**
+ * 怪物中文名：萨卡兹子裔战士
+ */
 public class SKZ_XY_ZS extends AbstractInesMonster {
     public static final String ID = PathHelper.nameToId(SKZ_XY_ZS.class.getSimpleName());
     private static final MonsterStrings monsterStrings = CardCrawlGame.languagePack.getMonsterStrings(ID); // 从游戏系统读取本地化资源
 
-    private static final AbstractMonster.EnemyType TYPE = EnemyType.NORMAL;
-    private static final String MID_PATH = "CPS/enemy_1345_tplamb"; // TODO
-    private static final String ATTACK_NAME = "Attack";
-    private static final String IDLE_NAME = "Idle";
-    private static final String DIE_NAME = "Die";
-
     int attack;
     int defend;
 
-
-    int white = 1;
-    int strength = 2;
     float waitTime = 0.45F;
 
     public SKZ_XY_ZS(float x, float y) {
-        super(monsterStrings.NAME, "eyjafjalla:CPS", TYPE, 96, 240.0F, 230.0F, x, y);
-        setSpine("CPS/enemy_1345_tplamb", 1.6F);// TODO
+        super(ID, monsterStrings, EnemyType.NORMAL, 96, 240.0F, 230.0F, x, y);
+        setSpine(ID,"enemy_1345_tplamb", 1.6F);// TODO
         setFastMode();
         this.state.setAnimation(0, "Idle", true);
 
         if (AbstractDungeon.ascensionLevel >= 7) {
-            setHp(84);
+            setHp(49);
         } else {
-            setHp(72);
+            setHp(42);
         }
 
         if (AbstractDungeon.ascensionLevel >= 2) {
@@ -53,10 +48,9 @@ public class SKZ_XY_ZS extends AbstractInesMonster {
         }
 
         if (AbstractDungeon.ascensionLevel >= 17) {
-            this.defend = 21;
-            this.white = 2;
+            this.defend = 17;
         } else {
-            this.defend = 18;
+            this.defend = 15;
         }
 
         this.damage.add(new DamageInfo(this, this.attack, DamageInfo.DamageType.NORMAL));
@@ -74,13 +68,15 @@ public class SKZ_XY_ZS extends AbstractInesMonster {
 
     public void usePreBattleAction() {
         super.usePreBattleAction();
+
+        addToBot(new ApplyPowerAction(this, this, new HTCFPower(this, -1,false), -1));
     }
 
     protected void getMove(int i) {
         if ((i < 70 && !lastTwoMoves((byte)1)) || lastMove((byte)2)) {
-            setMove((byte)1, AbstractMonster.Intent.ATTACK_DEBUFF, this.damage.get(0).base);
+            setMove((byte)1, AbstractMonster.Intent.ATTACK, this.damage.get(0).base);
         } else {
-            setMove((byte)2, AbstractMonster.Intent.DEFEND_BUFF);
+            setMove((byte)2, AbstractMonster.Intent.DEFEND);
         }
     }
 
@@ -91,11 +87,10 @@ public class SKZ_XY_ZS extends AbstractInesMonster {
                 addToBot(new ChangeStateAction(this, "ATTACK"));
                 addToBot(new WaitAction(this.waitTime));
                 addToBot(new DamageAction(AbstractDungeon.player, this.damage.get(0), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
-                //addToBot(new ApplyPowerAction((AbstractCreature)AbstractDungeon.player, (AbstractCreature)AbstractDungeon.player, new WhiteCloudPower((AbstractCreature)AbstractDungeon.player, this.white), this.white));
                 break;
             case 2:
                 addToBot(new GainBlockAction(this, this.defend));
-                addToBot(new ApplyPowerAction(this, this, new StrengthPower(this, this.strength), this.strength));
+
                 break;
         }
 

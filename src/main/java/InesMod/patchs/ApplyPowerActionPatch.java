@@ -2,8 +2,8 @@ package InesMod.patchs;
 
 import InesMod.helpers.LogHelper;
 import InesMod.helpers.PathHelper;
-import InesMod.powers.InvisibilityPower;
-import InesMod.powers.NoInvisibilityPower;
+import InesMod.powers.player.InvisibilityPower;
+import InesMod.powers.player.NoInvisibilityPower;
 import basemod.ReflectionHacks;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePrefixPatch;

@@ -1,6 +1,6 @@
 package InesMod.action;
 
-import InesMod.powers.InterPower;
+import InesMod.powers.player.InterPower;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;

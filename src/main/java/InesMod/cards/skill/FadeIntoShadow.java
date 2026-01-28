@@ -1,18 +1,15 @@
 package InesMod.cards.skill;
 
-import InesMod.action.AutoUseAction;
 import InesMod.cards.AbstractInesCard;
 import InesMod.characters.Ines;
 import InesMod.helpers.PathHelper;
-import InesMod.modcore.InesModMain;
-import InesMod.powers.InvisibilityPower;
+import InesMod.powers.player.InvisibilityPower;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.watcher.PressEndTurnButtonAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.watcher.FreeAttackPower;
 
 /**
  * 中文卡名：遁入影中

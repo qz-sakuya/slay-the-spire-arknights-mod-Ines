@@ -20,7 +20,11 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 /**
+ * 额外层级
+ * 对应主线第13章
  *
+ * 还没开发到这里
+ * 记得注释
  */
 public class Chapter13 extends AbstractDungeon {
     private static final Logger logger = LogManager.getLogger(Chapter13.class.getName());

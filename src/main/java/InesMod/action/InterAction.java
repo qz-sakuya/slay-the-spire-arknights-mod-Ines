@@ -1,7 +1,7 @@
 package InesMod.action;
 
 import InesMod.helpers.LogHelper;
-import InesMod.powers.InterPower;
+import InesMod.powers.player.InterPower;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DrawCardAction;
 import com.megacrit.cardcrawl.actions.common.ReducePowerAction;

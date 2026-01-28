@@ -1,20 +1,14 @@
 package InesMod.cards.skill;
 
-import InesMod.action.AutoUseAction;
 import InesMod.action.SetPowerAction;
 import InesMod.action.SetPowerSecondAmountAction;
 import InesMod.cards.AbstractInesCard;
 import InesMod.characters.Ines;
 import InesMod.helpers.PathHelper;
 import InesMod.powers.AbstractInesPower;
-import InesMod.powers.PhotographicMemoryPower;
-import InesMod.powers.ThoroughAnalysisPower;
-import com.megacrit.cardcrawl.actions.common.ExhaustAction;
-import com.megacrit.cardcrawl.actions.common.MakeTempCardInHandAction;
-import com.megacrit.cardcrawl.cards.AbstractCard;
+import InesMod.powers.player.PhotographicMemoryPower;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;

@@ -1,7 +1,7 @@
 package InesMod.relics;
 
 import InesMod.action.UpgradeRelicCounterAction;
-import InesMod.powers.StealsPower;
+import InesMod.powers.player.StealsPower;
 import basemod.abstracts.CustomRelic;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;

@@ -4,9 +4,9 @@ import InesMod.cards.AbstractInesCard;
 import InesMod.cards.status.ShadowWhistle;
 import InesMod.characters.Ines;
 import InesMod.helpers.PathHelper;
-import InesMod.powers.InterPower;
-import InesMod.powers.InvisibilityPower;
-import InesMod.powers.StealsPower;
+import InesMod.powers.player.InterPower;
+import InesMod.powers.player.InvisibilityPower;
+import InesMod.powers.player.StealsPower;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.MakeTempCardInHandAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -15,8 +15,6 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-
-import java.util.ArrayList;
 
 /**
  * 中文卡名：经验积累

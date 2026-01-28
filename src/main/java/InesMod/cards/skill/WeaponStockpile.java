@@ -3,7 +3,7 @@ package InesMod.cards.skill;
 import InesMod.cards.AbstractInesCard;
 import InesMod.characters.Ines;
 import InesMod.helpers.PathHelper;
-import InesMod.powers.WeaponStockpilePower;
+import InesMod.powers.player.WeaponStockpilePower;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.MakeTempCardInHandAction;
 import com.megacrit.cardcrawl.cards.tempCards.Shiv;

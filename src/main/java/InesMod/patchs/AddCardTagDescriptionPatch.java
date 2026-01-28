@@ -2,19 +2,11 @@ package InesMod.patchs;
 
 import InesMod.enums.InesCardTags;
 import InesMod.helpers.PathHelper;
-import InesMod.modcore.InesModMain;
-import InesMod.powers.InvisibilityPower;
-import InesMod.powers.NoInvisibilityPower;
-import basemod.ReflectionHacks;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePrefixPatch;
-import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.UIStrings;
-import com.megacrit.cardcrawl.powers.AbstractPower;
-import com.megacrit.cardcrawl.vfx.ThoughtBubble;
 
 /**
  *  给 initializeDescription 方法进行patch
