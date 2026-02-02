@@ -104,8 +104,8 @@ public class Ines extends CustomPlayer
 
         // 设置动画
         LogHelper.info("InesMod：开始导入模型");
-        loadAnimation("InesModResources/model/char_4087_ines.atlas",
-                "InesModResources/model/char_4087_ines.json",
+        loadAnimation("InesModResources/model/char/basic/char_4087_ines.atlas",
+                "InesModResources/model/char/basic/char_4087_ines.json",
                         1.6F);
 
         AnimationState.TrackEntry e = this.state.setAnimation(0, "Idle", true);

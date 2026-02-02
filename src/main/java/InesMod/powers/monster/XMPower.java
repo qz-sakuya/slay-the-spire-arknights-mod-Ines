@@ -1,25 +1,15 @@
 package InesMod.powers.monster;
 
 import InesMod.helpers.PathHelper;
-import InesMod.monsters.SKZ_XY_ZS;
+import InesMod.monsters.SKZ_ZS;
 import InesMod.powers.AbstractInesPower;
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
-import com.megacrit.cardcrawl.actions.common.DamageAction;
-import com.megacrit.cardcrawl.actions.common.DamageAllEnemiesAction;
-import com.megacrit.cardcrawl.actions.common.ReducePowerAction;
-import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
-
-import java.util.ArrayList;
-import java.util.Arrays;
 
 /**
  * 中文名：血脉
@@ -78,7 +68,7 @@ public class XMPower extends AbstractInesPower {
     }
 
     private boolean isTargetMon(AbstractMonster mon) {
-        return (mon instanceof SKZ_XY_ZS); // TODO：改为2个正确ID
+        return (mon instanceof SKZ_ZS); // TODO：改为2个正确ID
     }
 
 

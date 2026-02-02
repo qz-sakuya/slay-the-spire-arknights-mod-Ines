@@ -14,6 +14,7 @@ import com.megacrit.cardcrawl.localization.MonsterStrings;
 
 /**
  * 怪物中文名：大重生子裔
+ *
  */
 public class DCSZY extends AbstractInesMonster {
     public static final String ID = PathHelper.nameToId(DCSZY.class.getSimpleName());
@@ -27,7 +28,7 @@ public class DCSZY extends AbstractInesMonster {
 
     public DCSZY(float x, float y) {
         super(ID, monsterStrings, EnemyType.NORMAL, 96, 240.0F, 230.0F, x, y);
-        setSpine(ID,"enemy_1345_tplamb", 1.6F);// TODO
+        //setSpine(ID,"enemy_1345_tplamb", 1.6F);// TODO
         setFastMode();
         this.state.setAnimation(0, "Idle", true);
 
@@ -48,6 +49,7 @@ public class DCSZY extends AbstractInesMonster {
         this.damage.add(new DamageInfo(this, this.attack, DamageInfo.DamageType.NORMAL));
     }
 
+    // 众所周知，武陵有三种产线，经典
     public void setFastMode() {
         if (Settings.FAST_MODE) {
             this.state.setTimeScale(2.0F);

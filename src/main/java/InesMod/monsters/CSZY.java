@@ -26,7 +26,7 @@ public class CSZY extends AbstractInesMonster {
 
     public CSZY(float x, float y) {
         super(ID, monsterStrings, EnemyType.NORMAL, 96, 240.0F, 230.0F, x, y);
-        setSpine(ID,"enemy_1345_tplamb", 1.6F);// TODO
+        //setSpine(ID,"enemy_1345_tplamb", 1.6F);// TODO
         setFastMode();
         this.state.setAnimation(0, "Idle", true);
 

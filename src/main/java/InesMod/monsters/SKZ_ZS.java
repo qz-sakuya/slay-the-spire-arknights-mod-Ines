@@ -1,27 +1,22 @@
 package InesMod.monsters;
 
-import InesMod.cards.attack.BreakTheShadow;
 import InesMod.helpers.PathHelper;
 import InesMod.powers.monster.HTCFPower;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.*;
 import com.megacrit.cardcrawl.actions.utility.WaitAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
-import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.AbstractPower;
-import com.megacrit.cardcrawl.powers.StrengthPower;
 
 /**
  * 怪物中文名：萨卡兹子裔战士
  */
-public class SKZ_XY_ZS extends AbstractInesMonster {
-    public static final String ID = PathHelper.nameToId(SKZ_XY_ZS.class.getSimpleName());
+public class SKZ_ZS extends AbstractInesMonster {
+    public static final String ID = PathHelper.nameToId(SKZ_ZS.class.getSimpleName());
     private static final MonsterStrings monsterStrings = CardCrawlGame.languagePack.getMonsterStrings(ID); // 从游戏系统读取本地化资源
 
     int attack;
@@ -29,9 +24,9 @@ public class SKZ_XY_ZS extends AbstractInesMonster {
 
     float waitTime = 0.45F;
 
-    public SKZ_XY_ZS(float x, float y) {
+    public SKZ_ZS(float x, float y) {
         super(ID, monsterStrings, EnemyType.NORMAL, 96, 240.0F, 230.0F, x, y);
-        setSpine(ID,"enemy_1345_tplamb", 1.6F);// TODO
+        //setSpine(ID,"enemy_1345_tplamb", 1.6F);// TODO
         setFastMode();
         this.state.setAnimation(0, "Idle", true);
 

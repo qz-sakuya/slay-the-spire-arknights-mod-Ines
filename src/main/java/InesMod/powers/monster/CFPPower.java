@@ -21,7 +21,7 @@ public class CFPPower extends AbstractInesPower {
     public static final String ID = PathHelper.nameToId(CFPPower.class.getSimpleName());
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(ID); // 从游戏系统读取本地化资源
 
-    final int damage;
+    public final int damage;
 
     public CFPPower(AbstractCreature owner, int amount, int secondAmount, int damage) {
         super(ID,

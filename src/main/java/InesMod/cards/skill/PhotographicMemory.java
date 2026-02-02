@@ -24,7 +24,7 @@ public class PhotographicMemory extends AbstractInesCard {
         super(ID,
                 false,
                 cardStrings,
-                2,
+                1,
                 CardType.SKILL,
                 CardRarity.RARE,
                 CardTarget.SELF,
