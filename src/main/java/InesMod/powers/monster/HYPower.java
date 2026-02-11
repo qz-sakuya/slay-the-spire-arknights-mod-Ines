@@ -12,14 +12,14 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 
 /**
- * 中文名：血脉
+ * 中文名：恨意
  * 敌方power
  */
-public class XMPower extends AbstractInesPower {
-    public static final String ID = PathHelper.nameToId(XMPower.class.getSimpleName());
+public class HYPower extends AbstractInesPower {
+    public static final String ID = PathHelper.nameToId(HYPower.class.getSimpleName());
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(ID); // 从游戏系统读取本地化资源
 
-    public XMPower(AbstractCreature owner, int amount) {
+    public HYPower(AbstractCreature owner, int amount) {
         super(ID,
                 true,
                 powerStrings,
@@ -49,6 +49,7 @@ public class XMPower extends AbstractInesPower {
 
 
     private void Work() {
+        // 统计新的目标怪物数量
         int monCount = 0;
         for (AbstractMonster mon : (AbstractDungeon.getMonsters()).monsters) {
             if (mon == this.owner) {
@@ -68,7 +69,7 @@ public class XMPower extends AbstractInesPower {
     }
 
     private boolean isTargetMon(AbstractMonster mon) {
-        return (mon instanceof SKZ_ZS); // TODO：改为2个正确ID
+        return (mon instanceof SKZ_ZS); // TODO：改为大小造物的正确ID。
     }
 
 

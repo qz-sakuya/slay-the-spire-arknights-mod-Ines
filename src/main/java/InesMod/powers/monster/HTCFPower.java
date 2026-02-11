@@ -41,7 +41,7 @@ public class HTCFPower extends AbstractInesPower {
         if (this.owner.isDying){
             LogHelper.info("===XXJHPower: onDeath===");
             // 先等待死亡动画播放完，再在怪物列表对应位置中加入新怪
-            // 可能要选择其它xy成员变量
+            // 可能要选择其它xy坐标成员变量
             AbstractMonster newMonster;
             if(!spawnElite){
                 newMonster = new CSZY(this.owner.hb_x + this.owner.hb_y, MathUtils.random(-5.0F, 25.0F));

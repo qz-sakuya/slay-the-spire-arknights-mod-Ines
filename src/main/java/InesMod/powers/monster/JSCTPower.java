@@ -29,20 +29,27 @@ public class JSCTPower extends AbstractInesPower {
     public static final String ID = PathHelper.nameToId(JSCTPower.class.getSimpleName());
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(ID); // 从游戏系统读取本地化资源
 
+    boolean isThisTurnInvalid = false;
     int invalidTurn = 0;
+    int toInvalidTurn;
 
-    public JSCTPower(AbstractCreature owner, int amount) {
+    public JSCTPower(AbstractCreature owner, int amount, int toInvalidTurn) {
         super(ID,
                 true,
                 powerStrings,
                 owner,
                 PowerType.BUFF,
-                amount);
+                amount); // 此power不可叠加
+        this.toInvalidTurn = toInvalidTurn;
     }
 
 
     @Override
     public float atDamageFinalReceive(float damage, DamageInfo.DamageType type) {
+        if (invalidTurn > 0) {
+            return damage;
+        }
+
         float newDamage = (float) (damage * 0.4);
         int damageChange = MathUtils.floor(damage - newDamage);
         if (damageChange < 1) {
@@ -50,8 +57,9 @@ public class JSCTPower extends AbstractInesPower {
         }
 
         // 生成一张 再战
+        int damageForCard = damageChange; // 向下取整
         FightAgain fightAgain = new FightAgain();
-        fightAgain.baseDamage = damageChange;
+        fightAgain.baseDamage = damageForCard;
         fightAgain.damage = fightAgain.baseDamage;
         addToBot(new MakeTempCardInDrawPileAction(fightAgain,1,true,true));
 
@@ -60,7 +68,13 @@ public class JSCTPower extends AbstractInesPower {
 
     @Override
     public void atEndOfRound() {
-        invalidTurn -= 1;
+        if (isThisTurnInvalid) {
+            isThisTurnInvalid = false; // 刚被失效的回合（受到城防炮的回合）结束，不会使invalidTurn-1
+        }
+        else{
+            invalidTurn -= 1;
+        }
+
         if (invalidTurn <= 0) {
             invalidTurn = 0;
         }
@@ -71,7 +85,7 @@ public class JSCTPower extends AbstractInesPower {
     @Override
     public void updateDescription() {
         if (invalidTurn == 0) {
-            this.description = String.format(descriptions[0] + descriptions[1]);
+            this.description = String.format(descriptions[0] + descriptions[1], this.toInvalidTurn);
         }
         else {
             this.description = String.format(descriptions[0] + descriptions[2], this.invalidTurn);

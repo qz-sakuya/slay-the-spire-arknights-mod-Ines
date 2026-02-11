@@ -52,12 +52,15 @@ public class FirePower extends AbstractInesPower {
 
     @Override
     public void atStartOfTurn() {
-        // 哪怕怪不是第一个位置，也应该在回合开始，攻击前先触发
+        // 哪怕怪不是第一个位置，也应该在回合开始，攻击前先触发这个炮击（可能需要改钩子时点）
+        // 动画期间最好使怪的攻击动作延后（考虑参考爆炸机的动画）
         Work();
     }
 
     private void Work() {
         //爆炸特效 // TODO
+
+        // 使曼弗雷德军事传统power失效 // TODO
 
         // 对所有敌方造成伤害（固定伤害，参考爆炸机）
         ArrayList<AbstractMonster> m = AbstractDungeon.getCurrRoom().monsters.monsters;

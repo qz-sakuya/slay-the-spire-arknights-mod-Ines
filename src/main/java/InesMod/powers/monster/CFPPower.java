@@ -39,8 +39,6 @@ public class CFPPower extends AbstractInesPower {
 
     @Override
     public void atStartOfTurn() { // can only monster?
-        // 哪怕怪不是第一个位置，也应该在回合开始，攻击前先触发
-
         // 回合开始时才归零
         if (amount >= 4) {
             addToBot(new SetPowerAction(owner, owner, this,0));

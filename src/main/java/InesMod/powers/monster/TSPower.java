@@ -15,6 +15,7 @@ import com.megacrit.cardcrawl.powers.StrengthPower;
 /**
  * 中文名：弹射
  * 敌方power
+ * 如果目标具有格挡，造成双倍伤害
  */
 public class TSPower extends AbstractInesPower {
     public static final String ID = PathHelper.nameToId(TSPower.class.getSimpleName());
