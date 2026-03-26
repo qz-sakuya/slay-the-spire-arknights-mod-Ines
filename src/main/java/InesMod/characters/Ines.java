@@ -290,12 +290,16 @@ public class Ines extends CustomPlayer
 
 
     public static class Enums {
+        // 向原版enum中插入新常量
         @SpireEnum
         public static AbstractPlayer.PlayerClass INES; // 表示玩家当前选择的角色
+
         @SpireEnum(name = "INES_DARKRED")
         public static AbstractCard.CardColor INES_CARD;
+
         @SpireEnum(name = "INES_DARKRED")
         public static CardLibrary.LibraryType INES_LIBRARY;
+
         @SpireEnum
         public static AbstractCard.CardTags PACKAGE;
     }

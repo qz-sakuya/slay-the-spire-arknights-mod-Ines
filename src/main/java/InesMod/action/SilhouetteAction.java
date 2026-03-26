@@ -22,7 +22,7 @@ public class SilhouetteAction extends AbstractGameAction {
 
     @Override
     public void update() {
-        LogHelper.info("===SilhouetteAction：start===");
+        // LogHelper.info("===SilhouetteAction：start===");
         int cnt = 0;
 
 

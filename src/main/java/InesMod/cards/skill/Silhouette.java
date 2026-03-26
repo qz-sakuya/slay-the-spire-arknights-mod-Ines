@@ -5,6 +5,7 @@ import InesMod.action.SilhouetteAction;
 import InesMod.cards.AbstractInesCard;
 import InesMod.cards.status.ShadowWhistle;
 import InesMod.characters.Ines;
+import InesMod.helpers.LogHelper;
 import InesMod.helpers.PathHelper;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -35,6 +36,7 @@ public class Silhouette extends AbstractInesCard {
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
+        // LogHelper.info("===InesMod：Silhouette：Use===");
         addToBot(new SilhouetteAction(p));
     }
 
@@ -49,4 +51,13 @@ public class Silhouette extends AbstractInesCard {
             this.initializeDescription();
         }
     }
+
+
+
+
+
+
+
+
+
 }

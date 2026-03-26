@@ -150,8 +150,7 @@
   },
   "InesMod:OldIntel": {
     "NAME": "Old Intel",
-    "DESCRIPTION": "{@@}Draw !M! card{!M!|>1=s}. NL Discard 1 card. NL Each time this card enters the discard pile, its draw decreases by 1.",
-    "UPGRADE_DESCRIPTION": "{@@}Draw !M! card{!M!|>1=s}. NL Discard 1 card. NL Each time this card is played, its draw decreases by 1."
+    "DESCRIPTION": "{@@}Draw !M! card{!M!|>1=s}. NL Discard 1 card. NL Each time this card enters the discard pile, its draw decreases by 1."
   },
   "InesMod:ImmediateEffect": {
     "NAME": "Immediate Effect",

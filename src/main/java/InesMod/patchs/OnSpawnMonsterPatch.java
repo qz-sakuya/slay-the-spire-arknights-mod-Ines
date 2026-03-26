@@ -39,7 +39,7 @@ public class OnSpawnMonsterPatch {
         }
     }
 
-    @SpirePatch(clz = SummonGremlinAction.class, method = "SummonGremlinAction")
+    @SpirePatch(clz = SummonGremlinAction.class, method = SpirePatch.CONSTRUCTOR) // 拦截构造过程
     public static class Fun2 {
         @SpirePostfixPatch
         public static void Postfix(SummonGremlinAction __instance, AbstractMonster[] gremlins) {

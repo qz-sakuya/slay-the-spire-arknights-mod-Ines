@@ -1,5 +1,6 @@
 package InesMod.powers.player;
 
+import InesMod.helpers.LogHelper;
 import InesMod.helpers.PathHelper;
 import InesMod.powers.AbstractInesPower;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
@@ -43,14 +44,23 @@ public class ShiftFrontlinesPower extends AbstractInesPower {
     public void onManualDiscard(AbstractCard c) {
         this.secondAmount += 1;
         this.updateDescription();
+
+        LogHelper.info("===ShiftFrontlinesPower: onManualDiscard后, secondAmount:{}===",this.secondAmount);
     }
 
     @Override
     public void atStartOfTurn() {
+
+        LogHelper.info("===ShiftFrontlinesPower: atStartOfTurn, this.amount={}，this.secondAmount={}===",this.amount,this.secondAmount);
+
         flash();
         addToBot(new ReducePowerAction(this.owner, this.owner, ShiftFrontlinesPower.ID, this.amount));
 
         int count = this.amount * this.secondAmount;
-        addToBot(new ApplyPowerAction(owner, owner, new InterPower(owner, count), count));
+        if (count > 0){
+            addToBot(new ApplyPowerAction(owner, owner, new InterPower(owner, count), count));
+
+            LogHelper.info("===ShiftFrontlinesPower: 获得情报，层数：{}===",count);
+        }
     }
 }

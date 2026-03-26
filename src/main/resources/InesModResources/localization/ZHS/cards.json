@@ -150,8 +150,7 @@
   },
   "InesMod:OldIntel": {
     "NAME": "旧情报",
-    "DESCRIPTION": "抽 !M! 张牌。 NL 丢弃 1 张牌。 NL 此牌每进入弃牌堆一次，抽牌数-1。",
-    "UPGRADE_DESCRIPTION": "抽 !M! 张牌。 NL 丢弃 1 张牌。 NL 此牌每被打出一次， NL 抽牌数-1。"
+    "DESCRIPTION": "抽 !M! 张牌。 NL 丢弃 1 张牌。 NL 此牌每进入弃牌堆一次，其抽牌数-1。"
   },
   "InesMod:ImmediateEffect": {
     "NAME": "立竿见影",

@@ -38,31 +38,37 @@ public class OldIntel extends AbstractInesCard {
         addToBot(new DrawCardAction(p, this.magicNumber));
         addToBot(new DiscardAction(p, p, 1, false));
 
-        if(this.upgraded){
-
-            this.upgradeMagicNumber(-1);
-
-            if (this.baseMagicNumber < 0) {
-                this.baseMagicNumber = 0;
-            }
-            LogHelper.info("===OldIntel：use：baseMagicNumber-1,当前值:：{}===",this.baseMagicNumber);
-        }
+//        if(this.upgraded){
+//
+//            this.upgradeMagicNumber(-1);
+//
+//            if (this.baseMagicNumber < 0) {
+//                this.baseMagicNumber = 0;
+//            }
+//            LogHelper.info("===OldIntel：use：baseMagicNumber-1,当前值:：{}===",this.baseMagicNumber);
+//        }
     }
 
-    // 有bug一回合触发两次onMoveToDiscard，但是bug又不能稳定复现，后面再出现再修吧
+    // 有bug一回合触发两次onMoveToDiscard
     // 不能使用onMoveToDiscard否则看弃牌堆就计数
     @Override
     public void onCardMove(AbstractCard c, CardGroup.CardGroupType groupType) {
         // LogHelper.info("===OldIntel：onCardMove：begin");
         if (c == this && groupType == CardGroup.CardGroupType.DISCARD_PILE){
-            if(!this.upgraded){
-                // LogHelper.info("===OldIntel：onCardMove进入弃牌堆：baseMagicNumber：{}===",this.baseMagicNumber);
-                this.upgradeMagicNumber(-1);
+//            if(!this.upgraded){
+//                // LogHelper.info("===OldIntel：onCardMove进入弃牌堆：baseMagicNumber：{}===",this.baseMagicNumber);
+//                this.upgradeMagicNumber(-1);
+//
+//                if (this.baseMagicNumber < 0) {
+//                    this.baseMagicNumber = 0;
+//                }
+//                // LogHelper.info("===OldIntel：onCardMove进入弃牌堆：baseMagicNumber-1,当前值:：{}===",this.baseMagicNumber);
+//            }
 
-                if (this.baseMagicNumber < 0) {
-                    this.baseMagicNumber = 0;
-                }
-                // LogHelper.info("===OldIntel：onCardMove进入弃牌堆：baseMagicNumber-1,当前值:：{}===",this.baseMagicNumber);
+            this.upgradeMagicNumber(-1);
+
+            if (this.baseMagicNumber < 0) {
+                this.baseMagicNumber = 0;
             }
         }
     }
@@ -72,9 +78,10 @@ public class OldIntel extends AbstractInesCard {
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
+            this.upgradeMagicNumber(1);
 
-            this.rawDescription = cardStrings.UPGRADE_DESCRIPTION;
-            this.initializeDescription();
+//            this.rawDescription = cardStrings.UPGRADE_DESCRIPTION;
+//            this.initializeDescription();
         }
     }
 }

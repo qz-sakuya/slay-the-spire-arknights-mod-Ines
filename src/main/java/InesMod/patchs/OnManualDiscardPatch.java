@@ -21,46 +21,49 @@ public class OnManualDiscardPatch {
     public static class Fun {
         @SpirePostfixPatch
         public static void Postfix(boolean endOfTurn) { // 原方法是static，不用加instance参数
-            // 获取弃掉的牌的信息（比较取巧，没有大量测试会不会有bug）
-            ArrayList<AbstractCard> group =  AbstractDungeon.player.discardPile.group;
-            AbstractCard c = group.get(group.size() - 1);
-            LogHelper.info("===InesMod: 上一张手动弃的牌是: id={}===",c.cardID);
-
+            // 非回合结束时弃牌
             if (!AbstractDungeon.actionManager.turnHasEnded && !endOfTurn) {
+                // 获取弃掉的牌的信息（比较取巧，没有大量测试会不会有bug）
+                ArrayList<AbstractCard> group =  AbstractDungeon.player.discardPile.group;
+                AbstractCard c = group.get(group.size() - 1);
+                LogHelper.info("===InesMod: OnManualDiscardPatch: 上一张弃的牌是: id={}===",c.cardID);
+
                 for (AbstractPower p : AbstractDungeon.player.powers) {
                     if (p instanceof AbstractInesPower) {
                         ((AbstractInesPower)p).onManualDiscard(c);
                     }
                 }
-            }
 
-            for (AbstractCard cardToCall : AbstractDungeon.player.hand.group) {
-                if (cardToCall instanceof AbstractInesCard){
-                    AbstractInesCard inesCard = (AbstractInesCard)cardToCall;
-                    inesCard.onManualDiscard(c);
+                for (AbstractCard cardToCall : AbstractDungeon.player.hand.group) {
+                    if (cardToCall instanceof AbstractInesCard){
+                        AbstractInesCard inesCard = (AbstractInesCard)cardToCall;
+                        inesCard.onManualDiscard(c);
+                    }
+                }
+
+                for (AbstractCard cardToCall : AbstractDungeon.player.discardPile.group) {
+                    if (cardToCall instanceof AbstractInesCard){
+                        AbstractInesCard inesCard = (AbstractInesCard)cardToCall;
+                        inesCard.onManualDiscard(c);
+                    }
+                }
+
+                for (AbstractCard cardToCall : AbstractDungeon.player.drawPile.group) {
+                    if (cardToCall instanceof AbstractInesCard){
+                        AbstractInesCard inesCard = (AbstractInesCard)cardToCall;
+                        inesCard.onManualDiscard(c);
+                    }
+                }
+
+                for (AbstractCard cardToCall : AbstractDungeon.player.exhaustPile.group) {
+                    if (cardToCall instanceof AbstractInesCard){
+                        AbstractInesCard inesCard = (AbstractInesCard)cardToCall;
+                        inesCard.onManualDiscard(c);
+                    }
                 }
             }
 
-            for (AbstractCard cardToCall : AbstractDungeon.player.discardPile.group) {
-                if (cardToCall instanceof AbstractInesCard){
-                    AbstractInesCard inesCard = (AbstractInesCard)cardToCall;
-                    inesCard.onManualDiscard(c);
-                }
-            }
 
-            for (AbstractCard cardToCall : AbstractDungeon.player.drawPile.group) {
-                if (cardToCall instanceof AbstractInesCard){
-                    AbstractInesCard inesCard = (AbstractInesCard)cardToCall;
-                    inesCard.onManualDiscard(c);
-                }
-            }
-
-            for (AbstractCard cardToCall : AbstractDungeon.player.exhaustPile.group) {
-                if (cardToCall instanceof AbstractInesCard){
-                    AbstractInesCard inesCard = (AbstractInesCard)cardToCall;
-                    inesCard.onManualDiscard(c);
-                }
-            }
         }
     }
 }

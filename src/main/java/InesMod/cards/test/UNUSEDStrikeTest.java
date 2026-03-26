@@ -78,6 +78,10 @@ public class UNUSEDStrikeTest extends AbstractInesCard {
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
+
+        // 测试切换卡背
+        this.color = AbstractCard.CardColor.COLORLESS;
+
         // 获取当前特效
         AbstractGameAction.AttackEffect effect = EFFECTS[testEffectNum];
 
@@ -86,6 +90,11 @@ public class UNUSEDStrikeTest extends AbstractInesCard {
         this.baseDamage+= 2; // 测试use时（后）修改值 // 结论：似乎和通过action修改（玻璃刀刃）没有区别，但还是建议使用action
 
         testEffectNum = (testEffectNum + 1) % EFFECTS.length;
+
+
+
+
+
     }
 
     @Override

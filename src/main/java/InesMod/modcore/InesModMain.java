@@ -82,7 +82,7 @@ public class InesModMain implements
     private static final String BIG_ORB = "InesModResources/img/char/card_orb.png";
     // 小尺寸的能量图标（战斗中，牌堆预览）
     private static final String ENERGY_ORB = "InesModResources/img/char/cost_orb.png";
-    // 主题色(116,48,50)
+    // 主题色：暗红色(116,48,50)
     public static final Color MY_COLOR = new Color(116F / 255.0F, 48F / 255.0F, 50F / 255.0F, 1.0F);
 
     public static final Color MY_COLOR_DARK = new Color(97F / 255.0F, 41F / 255.0F, 43F / 255.0F, 1.0F);
@@ -91,10 +91,24 @@ public class InesModMain implements
 
     public InesModMain() {
         BaseMod.subscribe(this);
-        BaseMod.addColor(INES_CARD, MY_COLOR, MY_COLOR, MY_COLOR,
-                MY_COLOR, MY_COLOR, MY_COLOR, MY_COLOR,
-                BG_ATTACK_512, BG_SKILL_512, BG_POWER_512, ENERGY_ORB, BG_ATTACK_1024,
-                BG_SKILL_1024, BG_POWER_1024, BIG_ORB, SMALL_ORB
+        BaseMod.addColor(
+                INES_CARD,          // color: 卡牌颜色ID (AbstractCard.CardColor 枚举值)
+                MY_COLOR,           // bgColor: 卡牌背景主色调
+                MY_COLOR,           // backColor: 卡牌背面颜色
+                MY_COLOR,           // frameColor: 卡牌边框颜色
+                MY_COLOR,           // frameOutlineColor: 卡牌边框描边/轮廓颜色
+                MY_COLOR,           // descBoxColor: 卡牌描述文本框的背景颜色
+                MY_COLOR,           // trailVfxColor: 抽牌/弃牌时的拖尾特效颜色
+                MY_COLOR,           // glowColor: 卡牌高亮/发光颜色
+                BG_ATTACK_512,      // attackBg: 攻击卡背景贴图路径 (512x512 分辨率)
+                BG_SKILL_512,       // skillBg: 技能卡背景贴图路径 (512x512 分辨率)
+                BG_POWER_512,       // powerBg: 能力卡背景贴图路径 (512x512 分辨率)
+                ENERGY_ORB,         // energyOrb: 小尺寸的能量图标（战斗中，牌堆预览）
+                BG_ATTACK_1024,     // attackBgPortrait: 攻击卡背景贴图路径 (1024x1024 高分辨率)
+                BG_SKILL_1024,      // skillBgPortrait: 技能卡背景贴图路径 (1024x1024 高分辨率)
+                BG_POWER_1024,      // powerBgPortrait: 能力卡背景贴图路径 (1024x1024 高分辨率)
+                BIG_ORB,            // energyOrbPortrait: 在卡牌预览界面的能量图标
+                SMALL_ORB           // cardEnergyOrb: 在卡牌和遗物描述中的能量图标
         );
         LogHelper.info("===正在回忆设置项===");
         ConfigHelper.initModSettings();
