@@ -1,39 +1,30 @@
 package InesMod.powers.monster;
 
 import InesMod.cards.special.FightAgain;
-import InesMod.cards.status.ShadowWhistle;
-import InesMod.helpers.LogHelper;
 import InesMod.helpers.PathHelper;
 import InesMod.powers.AbstractInesPower;
 import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.actions.common.MakeTempCardInDrawPileAction;
-import com.megacrit.cardcrawl.actions.common.MakeTempCardInHandAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 
-import static java.lang.Math.floor;
-
 /**
- * 中文名：军事传统
+ * 中文名：军事训练
+ * 英文名：Military Training
  * 敌方power
- * 图标
- *
- * 受到攻击时闪避，减免60%伤害，将
- * 降低最大amount点伤害
- *
  * 暂时失效的效果由 炮击！power 代行
  */
-public class JSCTPower extends AbstractInesPower {
-    public static final String ID = PathHelper.nameToId(JSCTPower.class.getSimpleName());
+public class MilitaryTrainingPower extends AbstractInesPower {
+    public static final String ID = PathHelper.nameToId(MilitaryTrainingPower.class.getSimpleName());
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(ID); // 从游戏系统读取本地化资源
 
     boolean isThisTurnInvalid = false;
     int invalidTurn = 0;
     int toInvalidTurn;
 
-    public JSCTPower(AbstractCreature owner, int amount, int toInvalidTurn) {
+    public MilitaryTrainingPower(AbstractCreature owner, int amount, int toInvalidTurn) {
         super(ID,
                 true,
                 powerStrings,
@@ -75,22 +66,32 @@ public class JSCTPower extends AbstractInesPower {
             invalidTurn -= 1;
         }
 
-        if (invalidTurn <= 0) {
+        if (invalidTurn < 0) {
             invalidTurn = 0;
         }
         updateDescription();
     }
 
 
+    public void invalid() {
+        this.isThisTurnInvalid = true;
+        this.invalidTurn += this.toInvalidTurn;
+        updateDescription();
+    }
+
+    public void setToInvalidTurn(int amt) {
+        this.toInvalidTurn = amt;
+        updateDescription();
+    }
+
     @Override
     public void updateDescription() {
         if (invalidTurn == 0) {
-            this.description = String.format(descriptions[0] + descriptions[1], this.toInvalidTurn);
+            this.description = descriptions[0] + String.format(descriptions[1], this.toInvalidTurn);
         }
         else {
-            this.description = String.format(descriptions[0] + descriptions[2], this.invalidTurn);
+            this.description = descriptions[0] + String.format(descriptions[0] + descriptions[2], this.invalidTurn);
         }
-
     }
 }
 

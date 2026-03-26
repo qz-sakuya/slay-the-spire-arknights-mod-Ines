@@ -1,6 +1,6 @@
 package InesMod.action;
 
-import InesMod.powers.monster.CFPPower;
+import InesMod.powers.monster.DefenseArtilleryMeterPower;
 import InesMod.powers.monster.FirePower;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.core.AbstractCreature;
@@ -18,9 +18,9 @@ public class TryAddFirePowerAction extends AbstractGameAction {
     }
 
     public void update() {
-        AbstractPower powerToGet = target.getPower(CFPPower.ID);
-        if (powerToGet instanceof CFPPower) {
-            if (powerToGet.amount == ((CFPPower) powerToGet).secondAmount) {
+        AbstractPower powerToGet = target.getPower(DefenseArtilleryMeterPower.ID);
+        if (powerToGet instanceof DefenseArtilleryMeterPower) {
+            if (powerToGet.amount == ((DefenseArtilleryMeterPower) powerToGet).secondAmount) {
                 addToBot(new ApplyNonStackPowerAction(target, source, new FirePower(target, addAmount)));
             }
         }

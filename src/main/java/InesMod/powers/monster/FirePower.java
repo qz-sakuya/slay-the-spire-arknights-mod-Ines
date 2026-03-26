@@ -3,7 +3,9 @@ package InesMod.powers.monster;
 import InesMod.action.TryAddFirePowerAction;
 import InesMod.helpers.LogHelper;
 import InesMod.helpers.PathHelper;
+import InesMod.monsters.Chapter10.Manfred;
 import InesMod.powers.AbstractInesPower;
+import InesMod.powers.player.InsightPower;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
@@ -15,12 +17,14 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.AbstractPower;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 
 /**
  * 中文名：炮击！
+ * 英文名：Fire!
  * 敌方power
  * 图标：参考爆炸机
  * 改成玩家回合结束时造成伤害
@@ -60,10 +64,19 @@ public class FirePower extends AbstractInesPower {
     private void Work() {
         //爆炸特效 // TODO
 
-        // 使曼弗雷德军事传统power失效 // TODO
+        // 使曼弗雷德军事训练power失效
+        ArrayList<AbstractMonster> m = AbstractDungeon.getCurrRoom().monsters.monsters;
+        for (AbstractMonster mo : m) {
+            if (mo instanceof Manfred) {
+                AbstractPower powerToGet = mo.getPower(MilitaryTrainingPower.ID);
+                if (powerToGet != null) {
+                    ((MilitaryTrainingPower)powerToGet).invalid();
+                }
+            }
+        }
+
 
         // 对所有敌方造成伤害（固定伤害，参考爆炸机）
-        ArrayList<AbstractMonster> m = AbstractDungeon.getCurrRoom().monsters.monsters;
         int[] tmp = new int[m.size()];
         Arrays.fill(tmp, this.amount);
         addToBot(new DamageAllEnemiesAction(this.owner, tmp, DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.FIRE));

@@ -1,0 +1,76 @@
+
+enemy_1220_dzoms.png
+size: 170,485
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+222
+  rotate: false
+  xy: 2, 115
+  size: 158, 109
+  orig: 158, 109
+  offset: 0, 0
+  index: -1
+cs1
+  rotate: false
+  xy: 38, 400
+  size: 59, 56
+  orig: 59, 56
+  offset: 0, 0
+  index: -1
+cs2
+  rotate: false
+  xy: 2, 227
+  size: 72, 94
+  orig: 72, 94
+  offset: 0, 0
+  index: -1
+cs3
+  rotate: false
+  xy: 2, 335
+  size: 53, 63
+  orig: 53, 63
+  offset: 0, 0
+  index: -1
+cs4
+  rotate: false
+  xy: 2, 406
+  size: 34, 50
+  orig: 34, 50
+  offset: 0, 0
+  index: -1
+cs5
+  rotate: false
+  xy: 57, 323
+  size: 95, 74
+  orig: 95, 74
+  offset: 0, 0
+  index: -1
+cs6
+  rotate: false
+  xy: 2, 458
+  size: 166, 25
+  orig: 166, 25
+  offset: 0, 0
+  index: -1
+cs7
+  rotate: false
+  xy: 99, 399
+  size: 38, 57
+  orig: 38, 57
+  offset: 0, 0
+  index: -1
+cs8
+  rotate: false
+  xy: 76, 226
+  size: 92, 95
+  orig: 92, 95
+  offset: 0, 0
+  index: -1
+cs9
+  rotate: false
+  xy: 2, 2
+  size: 142, 111
+  orig: 142, 111
+  offset: 0, 0
+  index: -1

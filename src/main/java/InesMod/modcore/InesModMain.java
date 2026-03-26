@@ -157,11 +157,13 @@ public class InesModMain implements
         BaseMod.loadCustomStringsFile(CardStrings.class, "InesModResources/localization/" + lang + "/cards.json");
         // 加载角色文本
         BaseMod.loadCustomStringsFile(CharacterStrings.class, "InesModResources/localization/" + lang + "/characters.json");
-        // 添加遗物文本
+        // 加载怪物文本
+        BaseMod.loadCustomStringsFile(MonsterStrings.class, "InesModResources/localization/" + lang + "/monsters.json");
+        // 加载遗物文本
         BaseMod.loadCustomStringsFile(RelicStrings.class, "InesModResources/localization/" + lang + "/relics.json");
-        // 添加能力文本
+        // 加载能力文本
         BaseMod.loadCustomStringsFile(PowerStrings.class, "InesModResources/localization/" + lang + "/powers.json");
-        // 添加UI文本
+        // 加载UI文本
         BaseMod.loadCustomStringsFile(UIStrings.class, "InesModResources/localization/" + lang + "/ui.json");
     }
 

@@ -1,7 +1,8 @@
-package InesMod.monsters;
+package InesMod.monsters.Chapter10;
 
 import InesMod.helpers.PathHelper;
-import InesMod.powers.monster.CFPPower;
+import InesMod.monsters.AbstractInesMonster;
+import InesMod.powers.monster.LivingBlessingPower;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.*;
 import com.megacrit.cardcrawl.actions.utility.WaitAction;
@@ -10,33 +11,30 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
-import com.megacrit.cardcrawl.powers.AbstractPower;
 
 /**
- * 怪物中文名：萨卡兹城防炮手
+ * 怪物中文名：萨卡兹子裔链术师
+ * 怪物英文名：Sarkaz Heirbearer Chain Caster
  */
-public class SKZ_CFPS extends AbstractInesMonster {
-    public static final String ID = PathHelper.nameToId(SKZ_CFPS.class.getSimpleName());
+public class SarkazHeirbearerChainCaster extends AbstractInesMonster {
+    public static final String ID = PathHelper.nameToId(SarkazHeirbearerChainCaster.class.getSimpleName());
     private static final MonsterStrings monsterStrings = CardCrawlGame.languagePack.getMonsterStrings(ID); // 从游戏系统读取本地化资源
 
     int attack;
     int defend;
 
-
-    int white = 1;
-    int strength = 2;
     float waitTime = 0.45F;
 
-    public SKZ_CFPS(float x, float y) {
+    public SarkazHeirbearerChainCaster(float x, float y) {
         super(ID, monsterStrings, EnemyType.NORMAL, 96, 240.0F, 230.0F, x, y);
         //setSpine(ID,"enemy_1345_tplamb", 1.6F);// TODO
         setFastMode();
         this.state.setAnimation(0, "Idle", true);
 
         if (AbstractDungeon.ascensionLevel >= 7) {
-            setHp(84);
+            setHp(49);
         } else {
-            setHp(72);
+            setHp(42);
         }
 
         if (AbstractDungeon.ascensionLevel >= 2) {
@@ -46,10 +44,9 @@ public class SKZ_CFPS extends AbstractInesMonster {
         }
 
         if (AbstractDungeon.ascensionLevel >= 17) {
-            this.defend = 21;
-            this.white = 2;
+            this.defend = 17;
         } else {
-            this.defend = 18;
+            this.defend = 15;
         }
 
         this.damage.add(new DamageInfo(this, this.attack, DamageInfo.DamageType.NORMAL));
@@ -67,19 +64,11 @@ public class SKZ_CFPS extends AbstractInesMonster {
 
     public void usePreBattleAction() {
         super.usePreBattleAction();
+
+        addToBot(new ApplyPowerAction(this, this, new LivingBlessingPower(this, -1,false), -1));
     }
 
     protected void getMove(int i) {
-        if(moveHistory.isEmpty() || checkSpecificMove(4,(byte)3)){
-            setMove((byte)3, Intent.BUFF);
-        }
-
-        // 炮击前起防
-        AbstractPower powerToGet = this.getPower(CFPPower.ID);
-        if (AbstractDungeon.ascensionLevel >= 17 && powerToGet instanceof CFPPower && powerToGet.amount == 3) {
-            setMove((byte)2, Intent.DEFEND);
-        }
-
         if ((i < 70 && !lastTwoMoves((byte)1)) || lastMove((byte)2)) {
             setMove((byte)1, Intent.ATTACK, this.damage.get(0).base);
         } else {
@@ -94,16 +83,10 @@ public class SKZ_CFPS extends AbstractInesMonster {
                 addToBot(new ChangeStateAction(this, "ATTACK"));
                 addToBot(new WaitAction(this.waitTime));
                 addToBot(new DamageAction(AbstractDungeon.player, this.damage.get(0), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
-               break;
+                break;
             case 2:
                 addToBot(new GainBlockAction(this, this.defend));
-              break;
-            case 3:
-                // 需要显示“城防炮充能......”
-                AbstractPower powerToGet = this.getPower(CFPPower.ID);
-                if (powerToGet instanceof CFPPower && powerToGet.amount < ((CFPPower) powerToGet).secondAmount) {
-                    addToBot(new ApplyPowerAction(this, this, new CFPPower(this, 1,((CFPPower) powerToGet).secondAmount,((CFPPower) powerToGet).damage), 1));
-                }
+
                 break;
         }
 

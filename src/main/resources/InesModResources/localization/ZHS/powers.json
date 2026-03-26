@@ -196,18 +196,31 @@
       " NL （伤害 #b+%d ）"
     ]
   },
-  "InesMod:CFPPower": {
+  "InesMod:DefenseArtilleryMeterPower": {
     "NAME": "城防炮充能",
     "DESCRIPTIONS": [
       "回合结束时，获得 #b1 点 #y城防炮充能 。达到 #b%d 点时，清除所有 #y充能 并准备释放 #y炮击！  NL （当前充能 #b%d ）"
     ]
   },
-  "InesMod:JSCTPower": {
-    "NAME": "军事传统",
+  "InesMod:MilitaryTrainingPower": {
+    "NAME": "军事训练",
     "DESCRIPTIONS": [
-      "受到攻击时闪避，减免 #b60% 伤害，将一张 #y回击 加入你的抽牌堆， #y回击 的伤害等同于此次减免的伤害。",
+      "受到攻击时闪避，减免 #b60% 伤害，将一张 #y回击 加入你的抽牌堆， #y回击 的伤害等同于减免的伤害值。",
       " NL 受到 #y城防炮炮击 时，失效 #b%d 回合。",
       " NL （失效中，持续 #b%d 回合）"
+    ]
+  },
+  "InesMod:RebornCreationPower": {
+    "NAME": "重生造物",
+    "DESCRIPTIONS": [
+      "受到的 #y攻击 伤害减少 #b50% 。"
+    ]
+  },
+  "InesMod:LivingBlessingPower": {
+    "NAME": "活体赐福",
+    "DESCRIPTIONS": [
+      "死亡时，重生为 #y大君之触 。",
+      "死亡时，重生为 #y大君之赐 。"
     ]
   }
 }

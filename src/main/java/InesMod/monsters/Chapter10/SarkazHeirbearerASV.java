@@ -1,8 +1,8 @@
-package InesMod.monsters;
+package InesMod.monsters.Chapter10;
 
 import InesMod.helpers.PathHelper;
-import InesMod.powers.monster.CSZWPower;
-import InesMod.powers.monster.HTCFPower;
+import InesMod.monsters.AbstractInesMonster;
+import InesMod.powers.monster.LivingBlessingPower;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.*;
 import com.megacrit.cardcrawl.actions.utility.WaitAction;
@@ -13,10 +13,11 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
 
 /**
- * 怪物中文名：重生子裔（小虫）
+ * 怪物中文名：萨卡兹子裔补给车
+ * 怪物英文名：Sarkaz Heirbearer ASV
  */
-public class CSZY extends AbstractInesMonster {
-    public static final String ID = PathHelper.nameToId(CSZY.class.getSimpleName());
+public class SarkazHeirbearerASV extends AbstractInesMonster {
+    public static final String ID = PathHelper.nameToId(SarkazHeirbearerASV.class.getSimpleName());
     private static final MonsterStrings monsterStrings = CardCrawlGame.languagePack.getMonsterStrings(ID); // 从游戏系统读取本地化资源
 
     int attack;
@@ -24,25 +25,29 @@ public class CSZY extends AbstractInesMonster {
 
     float waitTime = 0.45F;
 
-    public CSZY(float x, float y) {
+    public SarkazHeirbearerASV(float x, float y) {
         super(ID, monsterStrings, EnemyType.NORMAL, 96, 240.0F, 230.0F, x, y);
         //setSpine(ID,"enemy_1345_tplamb", 1.6F);// TODO
         setFastMode();
         this.state.setAnimation(0, "Idle", true);
 
         if (AbstractDungeon.ascensionLevel >= 7) {
-            setHp(20);
+            setHp(49);
         } else {
-            setHp(24);
+            setHp(42);
         }
 
         if (AbstractDungeon.ascensionLevel >= 2) {
-            this.attack = 11;
+            this.attack = 21;
         } else {
-            this.attack = 9;
+            this.attack = 18;
         }
 
-        this.defend = 0;
+        if (AbstractDungeon.ascensionLevel >= 17) {
+            this.defend = 17;
+        } else {
+            this.defend = 15;
+        }
 
         this.damage.add(new DamageInfo(this, this.attack, DamageInfo.DamageType.NORMAL));
     }
@@ -60,11 +65,15 @@ public class CSZY extends AbstractInesMonster {
     public void usePreBattleAction() {
         super.usePreBattleAction();
 
-        addToBot(new ApplyPowerAction(this, this, new CSZWPower(this, -1), -1));
+        addToBot(new ApplyPowerAction(this, this, new LivingBlessingPower(this, -1,false), -1));
     }
 
     protected void getMove(int i) {
-        setMove((byte)1, Intent.ATTACK, this.damage.get(0).base);
+        if ((i < 70 && !lastTwoMoves((byte)1)) || lastMove((byte)2)) {
+            setMove((byte)1, Intent.ATTACK, this.damage.get(0).base);
+        } else {
+            setMove((byte)2, Intent.DEFEND);
+        }
     }
 
     public void takeTurn() {
@@ -74,6 +83,10 @@ public class CSZY extends AbstractInesMonster {
                 addToBot(new ChangeStateAction(this, "ATTACK"));
                 addToBot(new WaitAction(this.waitTime));
                 addToBot(new DamageAction(AbstractDungeon.player, this.damage.get(0), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
+                break;
+            case 2:
+                addToBot(new GainBlockAction(this, this.defend));
+
                 break;
         }
 

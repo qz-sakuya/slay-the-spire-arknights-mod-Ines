@@ -1,7 +1,7 @@
 package InesMod.powers.monster;
 
 import InesMod.helpers.PathHelper;
-import InesMod.monsters.SKZ_ZS;
+import InesMod.monsters.Chapter10.SarkazHeirbearerWarrior;
 import InesMod.powers.AbstractInesPower;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.core.AbstractCreature;
@@ -13,13 +13,14 @@ import com.megacrit.cardcrawl.powers.StrengthPower;
 
 /**
  * 中文名：恨意
+ * 英文名：Hatred
  * 敌方power
  */
-public class HYPower extends AbstractInesPower {
-    public static final String ID = PathHelper.nameToId(HYPower.class.getSimpleName());
+public class HatredPower extends AbstractInesPower {
+    public static final String ID = PathHelper.nameToId(HatredPower.class.getSimpleName());
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(ID); // 从游戏系统读取本地化资源
 
-    public HYPower(AbstractCreature owner, int amount) {
+    public HatredPower(AbstractCreature owner, int amount) {
         super(ID,
                 true,
                 powerStrings,
@@ -69,7 +70,7 @@ public class HYPower extends AbstractInesPower {
     }
 
     private boolean isTargetMon(AbstractMonster mon) {
-        return (mon instanceof SKZ_ZS); // TODO：改为大小造物的正确ID。
+        return (mon instanceof SarkazHeirbearerWarrior); // TODO：改为大小造物的正确ID。
     }
 
 

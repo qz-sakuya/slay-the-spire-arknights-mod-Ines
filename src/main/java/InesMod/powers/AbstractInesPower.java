@@ -132,7 +132,13 @@ public abstract class AbstractInesPower extends AbstractPower {
 
         if (secondAmount != null) {
             // 默认白色
-            FontHelper.renderFontRightTopAligned(sb, FontHelper.powerAmountFont, Integer.toString(this.secondAmount), x, y + 15.0F * Settings.scale, this.fontScale, c);
+            FontHelper.renderFontRightTopAligned(sb,
+                    FontHelper.powerAmountFont,
+                    Integer.toString(this.secondAmount),
+                    x,
+                    y + 15.0F * Settings.scale,
+                    this.fontScale,
+                    c);
         }
     }
 }

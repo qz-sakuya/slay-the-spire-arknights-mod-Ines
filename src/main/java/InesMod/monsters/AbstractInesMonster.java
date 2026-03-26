@@ -1,6 +1,7 @@
 package InesMod.monsters;
 
 
+import InesMod.helpers.LogHelper;
 import InesMod.helpers.PathHelper;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -21,10 +22,14 @@ public abstract class AbstractInesMonster extends AbstractMonster {
         loadAnimation("InesModResources/model/monster/test/enemy_1345_tplamb.atlas",
                 "InesModResources/model/monster/test/enemy_1345_tplamb.json",
                 1.6F);
+
+        this.flipHorizontal = true;  // 动画轴对称
     }
 
     public void setSpine(String ID, String fileName, float divScale) {
-        String monsterName = PathHelper.idToName(id);
+        String monsterName = PathHelper.idToName(ID);
+        LogHelper.info("===InesMod:AbstractInesMonster:setSpine, 怪物名称：{}===",monsterName);
+
         loadAnimation("InesModResources/model/monster/" + monsterName + '/' + fileName + ".atlas",
                 "InesModResources/model/monster/" + monsterName + '/' + fileName + ".json",
                 divScale);

@@ -1,0 +1,49 @@
+{
+  "InesMod:SarkazHeirbearerWarrior": {
+    "NAME": "萨卡兹子裔战士",
+    "MOVES": [],
+    "DIALOG": []
+  },
+  "InesMod:GiftOfSanguinarch": {
+    "NAME": "大君之赐",
+    "MOVES": [],
+    "DIALOG": []
+  },
+  "InesMod:Manfred": {
+    "NAME": "曼弗雷德",
+    "MOVES": [],
+    "DIALOG": []
+  },
+  "InesMod:SarkazHeirbearerArtificer": {
+    "NAME": "萨卡兹子裔工匠",
+    "MOVES": [],
+    "DIALOG": []
+  },
+  "InesMod:SarkazHeirbearerASV": {
+    "NAME": "萨卡兹子裔补给车",
+    "MOVES": [],
+    "DIALOG": []
+  },
+  "InesMod:SarkazHeirbearerChainCaster": {
+    "NAME": "萨卡兹子裔链术师",
+    "MOVES": [],
+    "DIALOG": []
+  },
+  "InesMod:TouchOfSanguinarch": {
+    "NAME": "大君之触",
+    "MOVES": [],
+    "DIALOG": []
+  },
+  "InesMod:SarkazHeirbearerHatedrinker": {
+    "NAME": "萨卡兹子裔集恨者",
+    "MOVES": [],
+    "DIALOG": []
+  },
+  "InesMod:Teekazwurtzen": {
+    "NAME": "提卡兹之根",
+    "MOVES": [],
+    "DIALOG": []
+  }
+
+
+}

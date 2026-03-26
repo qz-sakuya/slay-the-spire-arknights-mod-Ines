@@ -14,16 +14,17 @@ import com.megacrit.cardcrawl.localization.PowerStrings;
 
 /**
  * 中文名：城防炮充能
+ * 英文名：Defense Artillery Meter
  * 敌方power
  * 图标：透视准心+斜向下箭头
  */
-public class CFPPower extends AbstractInesPower {
-    public static final String ID = PathHelper.nameToId(CFPPower.class.getSimpleName());
+public class DefenseArtilleryMeterPower extends AbstractInesPower {
+    public static final String ID = PathHelper.nameToId(DefenseArtilleryMeterPower.class.getSimpleName());
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(ID); // 从游戏系统读取本地化资源
 
     public final int damage;
 
-    public CFPPower(AbstractCreature owner, int amount, int secondAmount, int damage) {
+    public DefenseArtilleryMeterPower(AbstractCreature owner, int amount, int secondAmount, int damage) {
         super(ID,
                 true,
                 powerStrings,

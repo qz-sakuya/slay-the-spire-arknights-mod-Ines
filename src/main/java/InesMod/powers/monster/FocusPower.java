@@ -1,14 +1,9 @@
 package InesMod.powers.monster;
 
-import InesMod.helpers.LogHelper;
 import InesMod.helpers.PathHelper;
 import InesMod.powers.AbstractInesPower;
-import InesMod.powers.player.InsightPower;
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
-import com.megacrit.cardcrawl.actions.common.MakeTempCardInDiscardAction;
 import com.megacrit.cardcrawl.actions.common.ReducePowerAction;
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -18,14 +13,15 @@ import com.megacrit.cardcrawl.powers.StrengthPower;
 
 /**
  * 中文名：专注
+ * 英文名：Focus
  * 敌方power
  * 图标
  */
-public class ZZPower extends AbstractInesPower {
-    public static final String ID = PathHelper.nameToId(ZZPower.class.getSimpleName());
+public class FocusPower extends AbstractInesPower {
+    public static final String ID = PathHelper.nameToId(FocusPower.class.getSimpleName());
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(ID); // 从游戏系统读取本地化资源
 
-    public ZZPower(AbstractCreature owner, int amount, boolean spawnElite) {
+    public FocusPower(AbstractCreature owner, int amount, boolean spawnElite) {
         super(ID,
                 true,
                 powerStrings,

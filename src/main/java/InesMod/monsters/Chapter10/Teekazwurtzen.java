@@ -1,7 +1,8 @@
-package InesMod.monsters;
+package InesMod.monsters.Chapter10;
 
 import InesMod.helpers.PathHelper;
-import InesMod.powers.monster.HTCFPower;
+import InesMod.monsters.AbstractInesMonster;
+import InesMod.powers.monster.LivingBlessingPower;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.*;
 import com.megacrit.cardcrawl.actions.utility.WaitAction;
@@ -10,13 +11,13 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
-import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 /**
- * 怪物中文名：萨卡兹子裔战士
+ * 怪物中文名：提卡兹之根
+ * 怪物英文名：Teekazwurtzen
  */
-public class SKZ_ZS extends AbstractInesMonster {
-    public static final String ID = PathHelper.nameToId(SKZ_ZS.class.getSimpleName());
+public class Teekazwurtzen extends AbstractInesMonster {
+    public static final String ID = PathHelper.nameToId(Teekazwurtzen.class.getSimpleName());
     private static final MonsterStrings monsterStrings = CardCrawlGame.languagePack.getMonsterStrings(ID); // 从游戏系统读取本地化资源
 
     int attack;
@@ -24,7 +25,7 @@ public class SKZ_ZS extends AbstractInesMonster {
 
     float waitTime = 0.45F;
 
-    public SKZ_ZS(float x, float y) {
+    public Teekazwurtzen(float x, float y) {
         super(ID, monsterStrings, EnemyType.NORMAL, 96, 240.0F, 230.0F, x, y);
         //setSpine(ID,"enemy_1345_tplamb", 1.6F);// TODO
         setFastMode();
@@ -64,14 +65,14 @@ public class SKZ_ZS extends AbstractInesMonster {
     public void usePreBattleAction() {
         super.usePreBattleAction();
 
-        addToBot(new ApplyPowerAction(this, this, new HTCFPower(this, -1,false), -1));
+        addToBot(new ApplyPowerAction(this, this, new LivingBlessingPower(this, -1,false), -1));
     }
 
     protected void getMove(int i) {
         if ((i < 70 && !lastTwoMoves((byte)1)) || lastMove((byte)2)) {
-            setMove((byte)1, AbstractMonster.Intent.ATTACK, this.damage.get(0).base);
+            setMove((byte)1, Intent.ATTACK, this.damage.get(0).base);
         } else {
-            setMove((byte)2, AbstractMonster.Intent.DEFEND);
+            setMove((byte)2, Intent.DEFEND);
         }
     }
 

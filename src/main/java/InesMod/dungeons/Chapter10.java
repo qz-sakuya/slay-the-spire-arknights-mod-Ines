@@ -30,17 +30,18 @@ import org.apache.logging.log4j.Logger;
  * 额外层级
  * 对应主线第10章
  *
- * E：战士、城防炮手、萨卡兹车、凋亡术士（低攻。弹射：轮到自己攻击时，玩家有格挡则额外造成一次伤害）、大刀哥
- * 衍生：血裔
+ * 小怪：战士、城防炮手、萨卡兹车
+ * 精英：凋亡术士（低攻。弹射：轮到自己攻击时，玩家有格挡则额外造成一次伤害）、大刀哥
+ * 衍生：造物，大造物
  * boss：曼弗雷德
  *
  *
  *
  * group：
- * W：2血裔+萨卡兹车、2战士、战士+萨卡兹车
- * S：3战士、战士+炮手、2战士+萨卡兹车、术士
- * E：2战士+大刀哥、2术士
- * B：2战士+曼弗雷德，二阶段还有2战士
+ * Weak：2小造物+萨卡兹车、2战士、战士+萨卡兹车
+ * Strong：3战士、战士+炮手、2战士+萨卡兹车、2炮手
+ * Elite：2战士+大刀哥、2术士
+ * Boss：2战士+曼弗雷德，二阶段还有2战士
  */
 public class Chapter10 extends AbstractDungeon {
     private static final Logger logger = LogManager.getLogger(Chapter10.class.getName());
