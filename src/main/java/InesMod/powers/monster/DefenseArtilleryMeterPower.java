@@ -16,7 +16,8 @@ import com.megacrit.cardcrawl.localization.PowerStrings;
  * 中文名：城防炮充能
  * 英文名：Defense Artillery Meter
  * 敌方power
- * 图标：透视准心+斜向下箭头
+ * 图标：透视准心+斜向下箭头（划掉）
+ * 图标：原版进度条黄色三角
  */
 public class DefenseArtilleryMeterPower extends AbstractInesPower {
     public static final String ID = PathHelper.nameToId(DefenseArtilleryMeterPower.class.getSimpleName());
@@ -39,7 +40,7 @@ public class DefenseArtilleryMeterPower extends AbstractInesPower {
 
 
     @Override
-    public void atStartOfTurn() { // can only monster?
+    public void atStartOfTurn() {
         // 回合开始时才归零
         if (amount >= 4) {
             addToBot(new SetPowerAction(owner, owner, this,0));
@@ -47,7 +48,7 @@ public class DefenseArtilleryMeterPower extends AbstractInesPower {
     }
 
     @Override
-    public void atEndOfTurn(boolean isPlayer) { // can only monster?
+    public void atEndOfTurn(boolean isPlayer) {
         addToBot(new ApplyPowerAction(owner, owner, this,1));
         addToBot(new TryAddFirePowerAction(owner, owner, damage));
     }

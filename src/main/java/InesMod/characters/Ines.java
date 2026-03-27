@@ -4,12 +4,9 @@ package InesMod.characters;
 // TODO：加入游戏结束时的neow文本（心脏，与考虑额外结局），参考萃香mod
 // TODO：卡牌百科中显示部分卡图来源
 
-import InesMod.cards.attack.OnTheBrink;
 import InesMod.cards.attack.ShadowAmbush;
 import InesMod.cards.attack.Strike;
-import InesMod.cards.skill.BattleMemories;
 import InesMod.cards.skill.Defend;
-import InesMod.cards.skill.EdgeOfLight;
 import InesMod.cards.skill.PlanOfAction;
 import InesMod.helpers.LogHelper;
 import InesMod.modcore.InesModMain;
@@ -21,12 +18,14 @@ import com.badlogic.gdx.math.MathUtils;
 import com.esotericsoftware.spine.AnimationState;
 import com.evacipated.cardcrawl.modthespire.lib.SpireEnum;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.utility.WaitAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.EnergyManager;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.cutscenes.CutscenePanel;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.events.city.Vampires;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.helpers.FontHelper;
@@ -150,11 +149,14 @@ public class Ines extends CustomPlayer
     }
 
     public CharSelectInfo getLoadout() {
+        int hp = 70;
+        hp += 1000; // TODO：调试用
+
         return new CharSelectInfo(
                 characterStrings.NAMES[0], // 人物名字
                 characterStrings.TEXT[0], // 人物介绍
-                70, // 当前血量
-                70, // 最大血量
+                hp, // 当前血量
+                hp, // 最大血量
                 0, // 初始充能球栏位
                 99, // 初始携带金币
                 5, // 每回合抽牌数量
@@ -165,13 +167,59 @@ public class Ines extends CustomPlayer
         );
     }
 
+
     @Override
     public void useFastAttackAnimation() {
-        LogHelper.info("===Ines人物：useFastAttackAnimation===");
-        this.state.setAnimation(0, "Attack", false);
+        playAttackAnimation(0);
+    }
+
+
+
+
+    public void playAttackAnimation(int type) {
+        LogHelper.info("===Ines:playAttackAnimation：type={}===",type);
+        switch (type) {
+            case 1: // 小刀戳刺
+                this.state.setAnimation(0, "Combat", false);
+                break;
+            case 2: // 挥剑
+                this.state.setAnimation(0, "Skill_2_Begin", false);
+                this.state.addAnimation(0, "Skill_2_Attack", false, 0.0F);
+                this.state.addAnimation(0, "Skill_2_End", false, 0.0F);
+                break;
+            case 3: // 剑戳刺
+                this.state.setAnimation(0, "Skill_2_Begin", false);
+                this.state.addAnimation(0, "Skill_2_Combat", false, 0.0F);
+                this.state.addAnimation(0, "Skill_2_End", false, 0.0F);
+                break;
+            case 0: // 小刀投掷
+            default:
+                this.state.setAnimation(0, "Attack", false);
+        }
+
         this.state.addAnimation(0, "Idle", true, 0.0F);
         this.state.getCurrent(0).setTimeScale(1.2F);
     }
+
+    public float getAttackAnimationDelay(int type) {
+        switch (type) {
+            case 1: // 小刀戳刺
+                return 0.2F;
+            case 2: // 挥剑
+                return 0.4F;
+            case 3: // 剑戳刺
+                return 0.4F;
+            case 0: // 小刀投掷
+            default:
+                return 0.0F;
+        }
+    }
+
+
+
+
+
+
 
 
     @Override

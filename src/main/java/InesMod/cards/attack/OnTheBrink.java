@@ -4,6 +4,7 @@ import InesMod.action.ResetOnTheBrinkAction;
 import InesMod.cards.AbstractInesCard;
 import InesMod.characters.Ines;
 import InesMod.helpers.PathHelper;
+import InesMod.vfx.InesAttackEffect;
 import InesMod.vfx.OnTheBrinkEffect;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;

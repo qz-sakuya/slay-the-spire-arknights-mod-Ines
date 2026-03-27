@@ -5,6 +5,7 @@ import InesMod.cards.AbstractInesCard;
 import InesMod.cards.status.ShadowWhistle;
 import InesMod.characters.Ines;
 import InesMod.helpers.PathHelper;
+import InesMod.vfx.InesAttackEffect;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -35,6 +36,7 @@ public class File extends AbstractInesCard {
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
+        this.addToBot(new InesAttackEffect(p, 1));
         this.addToBot(new FileAction(m, new DamageInfo(p, this.damage, this.damageTypeForTurn), this.magicNumber));
     }
 

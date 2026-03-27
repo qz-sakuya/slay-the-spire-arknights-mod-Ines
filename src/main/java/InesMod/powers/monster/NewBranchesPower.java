@@ -27,7 +27,8 @@ public class NewBranchesPower extends AbstractInesPower {
                 powerStrings,
                 owner,
                 PowerType.BUFF,
-                amount);
+                amount // 不可叠加
+        );
     }
 
     @Override // 成功造成伤害时

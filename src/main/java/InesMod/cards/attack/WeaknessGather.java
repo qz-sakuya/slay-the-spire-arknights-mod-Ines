@@ -5,6 +5,7 @@ import InesMod.cards.AbstractInesCard;
 import InesMod.characters.Ines;
 import InesMod.helpers.PathHelper;
 import InesMod.powers.player.StealsPower;
+import InesMod.vfx.InesAttackEffect;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
@@ -39,7 +40,7 @@ public class WeaknessGather extends AbstractInesCard {
     public void use(AbstractPlayer p, AbstractMonster m) {
         this.addToBot(new DamageAction(m, new DamageInfo(p, damage, DamageType.NORMAL), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
 
-        addToBot(new SetPowerAction(p, p, new StealsPower(p, magicNumber), magicNumber));
+        this.addToBot(new SetPowerAction(p, p, new StealsPower(p, magicNumber), magicNumber));
     }
 
     @Override

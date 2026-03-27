@@ -1,5 +1,7 @@
 package InesMod.action;
 
+import InesMod.helpers.LogHelper;
+import InesMod.vfx.InesAttackEffect;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
@@ -20,8 +22,10 @@ public class CloseQuartersCombatAction extends AbstractGameAction {
     }
 
     public void update() {
+        LogHelper.info("===Ines:CloseQuartersCombatAction：Start===");
         if(source.currentBlock == 0){
             this.addToTop(new DamageAction(target, new DamageInfo(source, damage, DamageInfo.DamageType.NORMAL), AbstractGameAction.AttackEffect.BLUNT_LIGHT));
+            this.addToTop(new InesAttackEffect(source,1));
         }
         this.addToTop(new DamageAction(target, new DamageInfo(source, damage, DamageInfo.DamageType.NORMAL), AbstractGameAction.AttackEffect.BLUNT_LIGHT));
 

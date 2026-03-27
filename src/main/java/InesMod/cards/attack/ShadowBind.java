@@ -6,6 +6,7 @@ import InesMod.characters.Ines;
 import InesMod.helpers.PathHelper;
 import InesMod.modcore.InesModMain;
 import InesMod.powers.player.StealsPower;
+import InesMod.vfx.InesAttackEffect;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
@@ -46,12 +47,14 @@ public class ShadowBind extends AbstractInesCard {
         this.addToBot(new SFXAction("ATTACK_FAST", 0.2F));
         this.addToBot(new ColouredSlashEffect(m,135.0F, 3.0F,InesModMain.MY_COLOR_DARK,InesModMain.MY_COLOR));
 
+
         this.addToBot(new DamageAction(m, new DamageInfo(p, damage, DamageType.NORMAL), AbstractGameAction.AttackEffect.NONE));
 
 
         this.addToBot(new SFXAction("ATTACK_WHIFF_1", 0.2F));
         this.addToBot(new SFXAction("ATTACK_FAST", 0.2F));
         this.addToBot(new ColouredSlashEffect(m,45.0F, 3.0F,InesModMain.MY_COLOR_DARK,InesModMain.MY_COLOR));
+
 
         this.addToBot(new DamageAction(m, new DamageInfo(p, damage, DamageType.NORMAL), AbstractGameAction.AttackEffect.NONE));
 

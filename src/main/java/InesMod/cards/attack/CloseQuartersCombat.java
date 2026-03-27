@@ -4,6 +4,7 @@ import InesMod.action.CloseQuartersCombatAction;
 import InesMod.cards.AbstractInesCard;
 import InesMod.characters.Ines;
 import InesMod.helpers.PathHelper;
+import InesMod.vfx.InesAttackEffect;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -37,6 +38,9 @@ public class CloseQuartersCombat extends AbstractInesCard {
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
+        // 必须把两次攻击特效一个写里面一个写外面，不能都在action里addToTop，否则会有人物消失bug，原因未知
+        addToBot(new InesAttackEffect(p,1));
+
         addToBot(new CloseQuartersCombatAction(p, m, damage, magicNumber));
     }
 

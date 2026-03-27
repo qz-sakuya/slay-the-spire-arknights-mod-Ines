@@ -3,6 +3,7 @@ package InesMod.cards.attack;
 import InesMod.cards.AbstractInesCard;
 import InesMod.characters.Ines;
 import InesMod.helpers.PathHelper;
+import InesMod.vfx.InesAttackEffect;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.actions.common.DrawCardAction;
@@ -45,6 +46,7 @@ public class CatchOffGuard extends AbstractInesCard {
         // 刚打出去，所以列表中有自己
         if (AbstractDungeon.actionManager.cardsPlayedThisTurn.size() == 1 && AbstractDungeon.actionManager.cardsPlayedThisTurn.get(0) == this) {
             this.consumeSteals = 1;
+            this.addToBot(new InesAttackEffect(p, 3));
             this.addToBot(new DamageAction(m, new DamageInfo(p, damage, DamageType.NORMAL), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
             this.addToBot(new DrawCardAction(p, this.magicNumber));
         }

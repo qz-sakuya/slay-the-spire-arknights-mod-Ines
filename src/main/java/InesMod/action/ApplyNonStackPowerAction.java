@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 /**
  * 添加 不可叠加power 的 action
  * 仅当目标没有该 power 时才添加
+ * powerToApply 仍允许有层数
  */
 public class ApplyNonStackPowerAction extends AbstractGameAction {
     AbstractPower powerToApply;

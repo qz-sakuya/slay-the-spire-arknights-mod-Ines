@@ -15,6 +15,17 @@ import com.megacrit.cardcrawl.localization.MonsterStrings;
 /**
  * 怪物中文名：曼弗雷德
  * 怪物英文名：Manfred
+ *
+ *
+ *
+ *
+ *
+ * 2轻1重为1组，顺序随机，但一定都会打。都是单击。
+ * 重后面必定跟1防御
+ *
+ * 2阶段防御替换为召唤，如果已经召唤，打轻
+ * 2阶段所有攻击都是2连击
+ *
  */
 public class Manfred extends AbstractInesMonster {
     public static final String ID = PathHelper.nameToId(Manfred.class.getSimpleName());

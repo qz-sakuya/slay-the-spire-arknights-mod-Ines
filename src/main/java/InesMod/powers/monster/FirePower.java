@@ -4,6 +4,7 @@ import InesMod.action.TryAddFirePowerAction;
 import InesMod.helpers.LogHelper;
 import InesMod.helpers.PathHelper;
 import InesMod.monsters.Chapter10.Manfred;
+import InesMod.monsters.Chapter10.Teekazwurtzen;
 import InesMod.powers.AbstractInesPower;
 import InesMod.powers.player.InsightPower;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
@@ -26,12 +27,14 @@ import java.util.Arrays;
  * 中文名：炮击！
  * 英文名：Fire!
  * 敌方power
- * 图标：参考爆炸机
- * 改成玩家回合结束时造成伤害
+ * 图标：原版进度条红色三角
+ * 敌方回合结束时造成伤害
  */
 public class FirePower extends AbstractInesPower {
     public static final String ID = PathHelper.nameToId(FirePower.class.getSimpleName());
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(ID); // 从游戏系统读取本地化资源
+
+    boolean isThisTurnApply = false;
 
     public FirePower(AbstractCreature owner, int amount) {
         super(ID,
@@ -42,6 +45,8 @@ public class FirePower extends AbstractInesPower {
                 amount); // 一般为40伤
 
         this.priority = 0; // 倒数第二左，排在 城防炮充能 右侧
+
+        isThisTurnApply = true;
     }
 
 
@@ -55,9 +60,12 @@ public class FirePower extends AbstractInesPower {
 
 
     @Override
-    public void atStartOfTurn() {
-        // 哪怕怪不是第一个位置，也应该在回合开始，攻击前先触发这个炮击（可能需要改钩子时点）
-        // 动画期间最好使怪的攻击动作延后（考虑参考爆炸机的动画）
+    public void atEndOfRound(){
+        if (isThisTurnApply) {
+            isThisTurnApply = false;
+            return;
+        }
+
         Work();
     }
 
@@ -65,8 +73,8 @@ public class FirePower extends AbstractInesPower {
         //爆炸特效 // TODO
 
         // 使曼弗雷德军事训练power失效
-        ArrayList<AbstractMonster> m = AbstractDungeon.getCurrRoom().monsters.monsters;
-        for (AbstractMonster mo : m) {
+        ArrayList<AbstractMonster> monsterArrayList = AbstractDungeon.getCurrRoom().monsters.monsters;
+        for (AbstractMonster mo : monsterArrayList) {
             if (mo instanceof Manfred) {
                 AbstractPower powerToGet = mo.getPower(MilitaryTrainingPower.ID);
                 if (powerToGet != null) {
@@ -77,8 +85,15 @@ public class FirePower extends AbstractInesPower {
 
 
         // 对所有敌方造成伤害（固定伤害，参考爆炸机）
-        int[] tmp = new int[m.size()];
-        Arrays.fill(tmp, this.amount);
+        int[] tmp = new int[monsterArrayList.size()];
+        for (int i = 0; i < tmp.length; i++) {
+            if (monsterArrayList.get(i) instanceof Teekazwurtzen) {
+                tmp[i] = 0; // 不对提卡兹之根造成伤害
+            }
+            else{
+                tmp[i] = this.amount;
+            }
+        }
         addToBot(new DamageAllEnemiesAction(this.owner, tmp, DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.FIRE));
 
         // 对玩家造成伤害

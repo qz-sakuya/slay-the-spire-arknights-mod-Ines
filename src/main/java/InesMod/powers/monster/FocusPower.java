@@ -27,19 +27,20 @@ public class FocusPower extends AbstractInesPower {
                 powerStrings,
                 owner,
                 PowerType.BUFF,
-                amount);
+                amount
+                );
     }
 
     @Override // 成功造成伤害时
     public void onInflictDamage(DamageInfo info, int damageAmount, AbstractCreature target) {
         if (damageAmount > 0 && info.type != DamageInfo.DamageType.THORNS) {
-            addToBot(new ApplyPowerAction(owner, owner, new StrengthPower(owner, amount), amount));
+            addToBot(new ApplyPowerAction(owner, owner, new StrengthPower(owner, this.amount), this.amount));
         } else {
             AbstractPower strengthPower = owner.getPower(StrengthPower.POWER_ID);
             if (strengthPower != null && strengthPower.amount > 0) {
                 int amountToLoss = strengthPower.amount;
-                if (amountToLoss > 2) {
-                    amountToLoss = 2;
+                if (amountToLoss > this.amount) {
+                    amountToLoss = this.amount;
                 }
                 addToBot(new ReducePowerAction(owner, owner, StrengthPower.POWER_ID, amountToLoss));
             }
@@ -48,7 +49,7 @@ public class FocusPower extends AbstractInesPower {
 
     @Override
     public void updateDescription() {
-        this.description = String.format(descriptions[0]);
+        this.description = String.format(descriptions[0], amount);
     }
 }
 
