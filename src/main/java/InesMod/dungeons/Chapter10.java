@@ -38,16 +38,16 @@ import org.apache.logging.log4j.Logger;
  *
  *
  * group：
- * Weak：2小造物+补给车、2战士、战士+补给车
- * Strong：3战士、战士+工匠、2战士+补给车、3小造物+工匠
- * Elite：2战士+大刀哥、2术士
+ * Weak：2战士、2小造物+补给车、战士+补给车  （2、3不会连续出现，但因为只生成一个弱怪，不用去重了）
+ * Strong：3战士、2战士+补给车、战士+工匠、3小造物+工匠     （3、4不会连续出现）
+ * Elite：2术士、大刀哥+术士、2战士+大刀哥、3小造物+大刀哥  （3、4不会连续出现）
  * Boss：2战士+曼弗雷德，二阶段还有2战士
  */
 public class Chapter10 extends AbstractDungeon {
     private static final Logger logger = LogManager.getLogger(Chapter10.class.getName());
 
     public Chapter10(AbstractPlayer p, ArrayList<String> theList) {
-        super(NAME, "eyjafjalla:TheSiesta", p, theList);
+        super(NAME, "InesMod:Chapter10", p, theList);
         if (scene != null) {
             scene.dispose();
         }
@@ -82,17 +82,19 @@ public class Chapter10 extends AbstractDungeon {
 
     private void generateSpecialMap() {
         MapRoomNode node0 = DungeonHelper.createNode(3, 0, new RestRoom());
-        MapRoomNode node1 = DungeonHelper.createNode(3, 1, new MonsterRoomElite());
+        MapRoomNode node1 = DungeonHelper.createNode(3, 1, new MonsterRoom());
         MapRoomNode node2 = DungeonHelper.createNode(2, 2, new MonsterRoom());
-        MapRoomNode node3 = DungeonHelper.createNode(2, 3, new EventRoom());
-        MapRoomNode node4 = DungeonHelper.createNode(3, 4, new RestRoom());
-        MapRoomNode node5 = DungeonHelper.createNode(4, 5, new TreasureRoom());
-        MapRoomNode node6 = DungeonHelper.createNode(4, 6, new ShopRoom());
-        MapRoomNode node7 = DungeonHelper.createNode(3, 7, new EventRoom());
+        MapRoomNode node3 = DungeonHelper.createNode(2, 3, new MonsterRoomElite());
+        MapRoomNode node4 = DungeonHelper.createNode(3, 4, new TreasureRoom());
+        MapRoomNode node5 = DungeonHelper.createNode(4, 5, new ShopRoom());
+        MapRoomNode node6 = DungeonHelper.createNode(4, 6, new MonsterRoom());
+        MapRoomNode node7 = DungeonHelper.createNode(3, 7, new MonsterRoomElite());
         MapRoomNode node8 = DungeonHelper.createNode(3, 8, new MonsterRoomBoss());
         MapRoomNode node9 = DungeonHelper.createNode(3, 9, new TrueVictoryRoom());
 
-        map = DungeonHelper.createMap(node0,node2,node3,node4,node5,node6,node7,node8,node9);
+
+
+        map = DungeonHelper.createMap(node0,node1,node2,node3,node4,node5,node6,node7,node8,node9);
 
         DungeonHelper.connectNode(node0, node1);
         DungeonHelper.connectNode(node1, node2);
@@ -130,14 +132,15 @@ public class Chapter10 extends AbstractDungeon {
 
     protected void generateMonsters() {
         generateWeakEnemies(1);
-        generateStrongEnemies(12);
+        generateStrongEnemies(10);
         generateElites(10);
     }
 
     protected void generateWeakEnemies(int i) {
         ArrayList<MonsterInfo> monsters = new ArrayList<>();
-        monsters.add(new MonsterInfo("N_E_TQB", 1.0F));
-        monsters.add(new MonsterInfo("N_E_CPS_CPS", 1.0F));
+        monsters.add(new MonsterInfo("C10_W1_2ZS", 1.0F));
+        monsters.add(new MonsterInfo("C10_W2_2XZW_1BJC", 1.0F));
+        monsters.add(new MonsterInfo("C10_W3_1ZS_1BJC", 1.0F));
 
         MonsterInfo.normalizeWeights(monsters);
         populateMonsterList(monsters, i, false);
@@ -145,10 +148,15 @@ public class Chapter10 extends AbstractDungeon {
 
     protected void generateStrongEnemies(int i) {
         ArrayList<MonsterInfo> monsters = new ArrayList<>();
-        monsters.add(new MonsterInfo("H_E_TQB_LTTQB", 1.0F));
-        monsters.add(new MonsterInfo("H_E_CPS_LTTQB", 1.0F));
-        monsters.add(new MonsterInfo("H_E_TQB_LTTQB", 1.0F));
-        monsters.add(new MonsterInfo("H_E_CPS_LTTQB", 1.0F));
+        monsters.add(new MonsterInfo("C10_S1_3ZS", 1.0F));
+        monsters.add(new MonsterInfo("C10_S2_2ZS_1BJC", 1.0F));
+
+        // 可平替的怪物
+        ArrayList<MonsterInfo> monsterOption1 = new ArrayList<>();
+        monsterOption1.add(new MonsterInfo("C10_S3_1ZS_1GJ", 1.0F));
+        monsterOption1.add(new MonsterInfo("C10_S4_3XZW_1GJ", 1.0F));
+        monsters.add(monsterOption1.get(monsterRng.random(monsterOption1.size()))); // 从以上随机选一个
+
 
         MonsterInfo.normalizeWeights(monsters);
         populateFirstStrongEnemy(monsters, generateExclusions());
@@ -157,23 +165,41 @@ public class Chapter10 extends AbstractDungeon {
 
     protected void generateElites(int i) {
         ArrayList<MonsterInfo> elitemonsters = new ArrayList<>();
-        elitemonsters.add(new MonsterInfo("Shield and Spear", 3.0F));
-        elitemonsters.add(new MonsterInfo("E_E_JMCPS_MTFKY", 3.0F));
-        elitemonsters.add(new MonsterInfo("E_E_JMCPS_MTFKY", 3.0F));
+        elitemonsters.add(new MonsterInfo("C10_E1_2SS", 3.0F));
+        elitemonsters.add(new MonsterInfo("C10_E2_1DDG_1SS", 3.0F));
+
+        // 可平替的怪物
+        ArrayList<MonsterInfo> monsterOption1 = new ArrayList<>();
+        monsterOption1.add(new MonsterInfo("C10_E3_2ZS_1DDG", 1.0F));
+        monsterOption1.add(new MonsterInfo("C10_E4_3XZW_1DDG", 1.0F));
+        elitemonsters.add(monsterOption1.get(monsterRng.random(monsterOption1.size()))); // 从以上随机选一个
+
 
         MonsterInfo.normalizeWeights(elitemonsters);
         populateMonsterList(elitemonsters, i, true);
     }
 
     protected ArrayList<String> generateExclusions() {
-        return new ArrayList<>();
+        ArrayList<String> retVal = new ArrayList<>();
+        switch (monsterList.get(monsterList.size() - 1)) { // 上一个已选定的怪物（弱怪）
+            case "C10_W1_2ZS":
+                retVal.add("C10_S1_3ZS");
+                break;
+            case "C10_W2_2XZW_1BJC":
+                retVal.add("C10_S2_2ZS_1BJC");
+                break;
+            case "C10_W3_1ZS_1BJC":
+                retVal.add("C10_S2_2ZS_1BJC");
+                break;
+        }
+        return retVal;
     }
 
     protected void initializeBoss() {
         bossList = new ArrayList();
-        bossList.add("eyjafjalla:Dolly");
-        bossList.add("eyjafjalla:Dolly");
-        bossList.add("eyjafjalla:Dolly");
+        bossList.add("C10_B1_MFLD");
+        bossList.add("C10_B1_MFLD");
+        bossList.add("C10_B1_MFLD");
     }
 
     protected void initializeEventList() {}

@@ -1,5 +1,6 @@
 package InesMod.monsters.Chapter10;
 
+import InesMod.action.ApplyNonStackPowerAction;
 import InesMod.helpers.LogHelper;
 import InesMod.helpers.PathHelper;
 import InesMod.monsters.AbstractInesMonster;
@@ -12,6 +13,7 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
+import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 /**
  * 怪物中文名：大君之触
@@ -27,6 +29,7 @@ public class TouchOfSanguinarch extends AbstractInesMonster {
     int defend;
 
     float waitTime = 0.45F;
+
 
     public TouchOfSanguinarch(float x, float y) {
         super(ID, monsterStrings, EnemyType.NORMAL, 96, 240.0F, 230.0F, x, y);
@@ -51,6 +54,8 @@ public class TouchOfSanguinarch extends AbstractInesMonster {
         this.defend = 0;
 
         this.damage.add(new DamageInfo(this, this.attack, DamageInfo.DamageType.NORMAL));
+        this.damage.add(new DamageInfo(this, this.attack/2+1, DamageInfo.DamageType.NORMAL));
+
     }
 
     public void setFastMode() {
@@ -66,11 +71,17 @@ public class TouchOfSanguinarch extends AbstractInesMonster {
     public void usePreBattleAction() {
         super.usePreBattleAction();
 
-        addToBot(new ApplyPowerAction(this, this, new RebornCreationPower(this, -1), -1));
+
+        addToBot(new ApplyNonStackPowerAction(this, this, new RebornCreationPower(this, -1)));
     }
 
     protected void getMove(int i) {
-        setMove((byte)1, Intent.ATTACK, this.damage.get(0).base);
+        if (i < 70) {
+            setMove((byte)1, AbstractMonster.Intent.ATTACK, this.damage.get(0).base);
+        } else {
+            // 二连击
+            setMove((byte)2, AbstractMonster.Intent.ATTACK, this.damage.get(1).base, 2, true);
+        }
     }
 
     public void takeTurn() {
@@ -81,6 +92,12 @@ public class TouchOfSanguinarch extends AbstractInesMonster {
                 addToBot(new WaitAction(this.waitTime));
                 addToBot(new DamageAction(AbstractDungeon.player, this.damage.get(0), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
                 break;
+            case 2:
+                addToBot(new ChangeStateAction(this, "ATTACK"));
+                addToBot(new WaitAction(this.waitTime));
+                addToBot(new DamageAction(AbstractDungeon.player, this.damage.get(1), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
+                addToBot(new DamageAction(AbstractDungeon.player, this.damage.get(1), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
+                break;
         }
 
         addToBot(new RollMoveAction(this));
@@ -88,6 +105,10 @@ public class TouchOfSanguinarch extends AbstractInesMonster {
 
     public void changeState(String stateName) {
         switch (stateName) {
+            case "START":
+                this.state.setAnimation(0, "Start", false);
+                this.state.addAnimation(0, "Idle", true, 0.0F);
+                break;
             case "ATTACK":
                 this.state.setAnimation(0, "Attack", false);
                 this.state.addAnimation(0, "Idle", true, 0.0F);

@@ -58,7 +58,7 @@ public class OnSpawnMonsterPatch {
         }
     }
 
-    private static void Work(AbstractMonster m){
+    public static void Work(AbstractMonster m){
         LogHelper.info("===OnSpawnMonsterPatch Work：监测到怪物生成===");
 
         for (AbstractPower power : AbstractDungeon.player.powers) {

@@ -241,7 +241,7 @@
   "InesMod:FirePower": {
     "NAME": "炮击！",
     "DESCRIPTIONS": [
-      "回合结束时，对场上所有单位造成 #b%d 点伤害。"
+      "回合开始时，对场上所有单位造成 #b%d 点伤害。"
     ]
   },
   "InesMod:FocusPower": {
@@ -261,6 +261,12 @@
     "NAME": "枯木新枝",
     "DESCRIPTIONS": [
       "攻击时，使曼弗雷德获得 #b1 点 #y城防炮充能 。自身不受 #y城防炮伤害 。"
+    ]
+  },
+  "InesMod:SolidPower": {
+    "NAME": "坚固",
+    "DESCRIPTIONS": [
+      "受到的 #y所有 伤害不会超过 #b%d 。"
     ]
   }
 }

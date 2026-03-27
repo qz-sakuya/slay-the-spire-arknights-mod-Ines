@@ -42,14 +42,16 @@ public class DefenseArtilleryMeterPower extends AbstractInesPower {
     @Override
     public void atStartOfTurn() {
         // 回合开始时才归零
-        if (amount >= 4) {
+        if (amount >= secondAmount) {
             addToBot(new SetPowerAction(owner, owner, this,0));
         }
     }
 
     @Override
     public void atEndOfTurn(boolean isPlayer) {
-        addToBot(new ApplyPowerAction(owner, owner, this,1));
+        if (amount < secondAmount) {
+            addToBot(new ApplyPowerAction(owner, owner, this,1));
+        }
         addToBot(new TryAddFirePowerAction(owner, owner, damage));
     }
 
@@ -57,6 +59,8 @@ public class DefenseArtilleryMeterPower extends AbstractInesPower {
 
     @Override // 重载，使得层数为0时也可以绘制数字
     public void renderAmount(SpriteBatch sb, float x, float y, Color c) {
+        super.renderAmount(sb, x, y, c);
+
         if (this.amount >= 0) {
             // 默认白色
             FontHelper.renderFontRightTopAligned(sb, FontHelper.powerAmountFont, Integer.toString(this.amount), x, y, this.fontScale, c);

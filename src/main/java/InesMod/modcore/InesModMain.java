@@ -6,6 +6,7 @@ import InesMod.characters.Ines;
 import InesMod.enums.InesCardTags;
 import InesMod.helpers.ConfigHelper;
 import InesMod.helpers.LogHelper;
+import InesMod.helpers.MonsterHelper;
 import InesMod.helpers.PathHelper;
 import InesMod.relics.RustedNeedle;
 import InesMod.truth.TruthManager;
@@ -214,6 +215,7 @@ public class InesModMain implements
 
     @Override
     public void receivePostInitialize() {
+        MonsterHelper.initializeMonsters();
         ConfigHelper.initModConfigMenu();
 
         BaseMod.registerCustomReward(OtherEnum.INES_TRUTH,

@@ -31,10 +31,6 @@ public class SarkazHeirbearerWarrior extends AbstractInesMonster {
         super(ID, monsterStrings, EnemyType.NORMAL, 96, 240.0F, 230.0F, x, y);
         setSpine(ID,"enemy_1222_dpvt", 1.6F);
 
-
-
-
-
         setFastMode();
         this.state.setAnimation(0, "Idle", true);
 
@@ -76,7 +72,11 @@ public class SarkazHeirbearerWarrior extends AbstractInesMonster {
     }
 
     protected void getMove(int i) {
-        if ((i < 70 && !lastTwoMoves((byte)1)) || lastMove((byte)2)) {
+        // 连续攻击2次则下次必定防御
+        // 防御则下次必定攻击
+        // 否则 70 概率攻击
+        if ((i < 70 && !lastTwoMoves((byte)1))
+                || lastMove((byte)2)) {
             setMove((byte)1, AbstractMonster.Intent.ATTACK, this.damage.get(0).base);
         } else {
             setMove((byte)2, AbstractMonster.Intent.DEFEND);

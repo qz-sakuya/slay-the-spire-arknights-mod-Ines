@@ -1,16 +1,28 @@
 package InesMod.powers.monster;
 
+import InesMod.action.ApplyNonStackPowerAction;
+import InesMod.action.ForceWaitAction;
+import InesMod.action.ShowHealthBarAction;
 import InesMod.helpers.LogHelper;
 import InesMod.helpers.PathHelper;
 import InesMod.monsters.Chapter10.TouchOfSanguinarch;
 import InesMod.monsters.Chapter10.GiftOfSanguinarch;
+import InesMod.patchs.OnSpawnMonsterPatch;
 import InesMod.powers.AbstractInesPower;
 import com.badlogic.gdx.math.MathUtils;
+import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
+import com.megacrit.cardcrawl.actions.common.ChangeStateAction;
 import com.megacrit.cardcrawl.actions.common.SpawnMonsterAction;
+import com.megacrit.cardcrawl.actions.utility.WaitAction;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.helpers.ModHelper;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.SlowPower;
+import com.megacrit.cardcrawl.powers.StrengthPower;
+import com.megacrit.cardcrawl.relics.AbstractRelic;
 
 /**
  * 中文名：活体赐福
@@ -40,16 +52,52 @@ public class LivingBlessingPower extends AbstractInesPower {
     public void onDeath() {
         if (this.owner.isDying){
             LogHelper.info("===LivingBlessingPower: onDeath， spawnElite：{}===",this.spawnElite);
-            // 先等待死亡动画播放完，再在怪物列表对应位置中加入新怪
-            // 可能要选择其它xy坐标成员变量
+            ((AbstractMonster) this.owner).deathTimer -= 0.5F;
+
             AbstractMonster newMonster;
             if(!spawnElite){
-                newMonster = new TouchOfSanguinarch(this.owner.hb_x + this.owner.hb_y, MathUtils.random(-5.0F, 25.0F));
+                newMonster = new TouchOfSanguinarch(0,0);
             }
             else{
-                newMonster = new GiftOfSanguinarch(this.owner.hb_x + this.owner.hb_y, MathUtils.random(-5.0F, 25.0F));
+                newMonster = new GiftOfSanguinarch(0,0);
             }
-            addToBot(new SpawnMonsterAction(newMonster, true));
+
+            // 修正位置
+            newMonster.drawX = this.owner.drawX;
+            newMonster.drawY = this.owner.drawY;
+
+            // ===直接生成===
+            // 参考 SpawnMonsterAction
+            for(AbstractRelic r : AbstractDungeon.player.relics) {
+                r.onSpawnMonster(newMonster);
+            }
+
+            newMonster.init();
+            newMonster.applyPowers();
+            int index = AbstractDungeon.getCurrRoom().monsters.monsters.indexOf((AbstractMonster) this.owner);
+            AbstractDungeon.getCurrRoom().monsters.addMonster(index ,newMonster);
+
+            newMonster.hideHealthBar();
+
+            if (ModHelper.isModEnabled("Lethality")) {
+                this.addToBot(new ApplyPowerAction(newMonster, newMonster, new StrengthPower(newMonster, 3), 3));
+            }
+
+            if (ModHelper.isModEnabled("Time Dilation")) {
+                this.addToBot(new ApplyPowerAction(newMonster, newMonster, new SlowPower(newMonster, 0)));
+            }
+
+            // 通知patch
+            OnSpawnMonsterPatch.Work(newMonster);
+
+            // ===直接生成End===
+
+
+            // 新怪物执行初始化
+            addToBot(new ChangeStateAction(newMonster, "START"));
+            addToBot(new ApplyNonStackPowerAction(newMonster, newMonster, new RebornCreationPower(newMonster, -1)));
+            addToBot(new ForceWaitAction(0.3F));
+            addToBot(new ShowHealthBarAction(newMonster));
         }
     }
 

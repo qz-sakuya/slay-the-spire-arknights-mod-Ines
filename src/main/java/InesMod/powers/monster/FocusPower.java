@@ -21,7 +21,7 @@ public class FocusPower extends AbstractInesPower {
     public static final String ID = PathHelper.nameToId(FocusPower.class.getSimpleName());
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(ID); // 从游戏系统读取本地化资源
 
-    public FocusPower(AbstractCreature owner, int amount, boolean spawnElite) {
+    public FocusPower(AbstractCreature owner, int amount) {
         super(ID,
                 true,
                 powerStrings,
@@ -49,7 +49,7 @@ public class FocusPower extends AbstractInesPower {
 
     @Override
     public void updateDescription() {
-        this.description = String.format(descriptions[0], amount);
+        this.description = String.format(descriptions[0], amount, amount);
     }
 }
 

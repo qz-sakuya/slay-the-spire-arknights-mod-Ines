@@ -66,4 +66,19 @@ public abstract class AbstractInesMonster extends AbstractMonster {
         }
         return true;
     }
+
+    // 检查最近的n个历史移动记录是否含有指定的move
+    // n >= 1
+    protected boolean checkHaveMoves(int n, byte move) {
+        if (n <= 0) {
+            return false;
+        }
+        for (int i = 0; i < n; i++) {
+            int targetIndex = this.moveHistory.size() - 1 - i;
+            if (this.moveHistory.get(targetIndex) == move) {
+                return true;
+            }
+        }
+        return false;
+    }
 }
