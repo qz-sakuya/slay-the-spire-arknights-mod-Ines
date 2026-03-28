@@ -1,5 +1,6 @@
 package InesMod.monsters.Chapter10;
 
+import InesMod.action.ApplyNonStackPowerAction;
 import InesMod.helpers.LogHelper;
 import InesMod.helpers.PathHelper;
 import InesMod.monsters.AbstractInesMonster;
@@ -12,6 +13,7 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
+import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 /**
  * 怪物中文名：大君之赐
@@ -30,16 +32,16 @@ public class GiftOfSanguinarch extends AbstractInesMonster {
 
     public GiftOfSanguinarch(float x, float y) {
         super(ID, monsterStrings, EnemyType.NORMAL, 96, 240.0F, 230.0F, x, y);
-        //setSpine(ID,"enemy_1345_tplamb", 1.6F);// TODO
+        setSpine(ID,"enemy_1221_dzomg", 1.6F);
 
 
         setFastMode();
         this.state.setAnimation(0, "Idle", true);
 
         if (AbstractDungeon.ascensionLevel >= 7) {
-            setHp(40);
-        } else {
             setHp(45);
+        } else {
+            setHp(40);
         }
 
         if (AbstractDungeon.ascensionLevel >= 2) {
@@ -51,27 +53,32 @@ public class GiftOfSanguinarch extends AbstractInesMonster {
         this.defend = 0;
 
         this.damage.add(new DamageInfo(this, this.attack, DamageInfo.DamageType.NORMAL));
+        this.damage.add(new DamageInfo(this, this.attack/2+1, DamageInfo.DamageType.NORMAL));
     }
 
-    // 众所周知，武陵有三种产线，经典
     public void setFastMode() {
+        this.state.setTimeScale(1.0F);
+        this.waitTime = 0.45F;
+
         if (Settings.FAST_MODE) {
             this.state.setTimeScale(2.0F);
-            this.waitTime = 0.225F;
-        } else {
-            this.state.setTimeScale(1.0F);
-            this.waitTime = 0.45F;
+            this.waitTime /= 2;
         }
     }
 
     public void usePreBattleAction() {
         super.usePreBattleAction();
 
-        addToBot(new ApplyPowerAction(this, this, new RebornCreationPower(this, -1), -1));
+        addToBot(new ApplyNonStackPowerAction(this, this, new RebornCreationPower(this, -1)));
     }
 
     protected void getMove(int i) {
-        setMove((byte)1, Intent.ATTACK, this.damage.get(0).base);
+        if (i < 70) {
+            setMove((byte)1, AbstractMonster.Intent.ATTACK, this.damage.get(0).base);
+        } else {
+            // 二连击
+            setMove((byte)2, AbstractMonster.Intent.ATTACK, this.damage.get(1).base, 2, true);
+        }
     }
 
     public void takeTurn() {
@@ -80,7 +87,15 @@ public class GiftOfSanguinarch extends AbstractInesMonster {
             case 1:
                 addToBot(new ChangeStateAction(this, "ATTACK"));
                 addToBot(new WaitAction(this.waitTime));
-                addToBot(new DamageAction(AbstractDungeon.player, this.damage.get(0), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
+                addToBot(new DamageAction(AbstractDungeon.player, this.damage.get(0), AbstractGameAction.AttackEffect.BLUNT_LIGHT));
+               // addToBot(new RemoveSpecificPowerAction(this, this, "Vigor"));
+                break;
+            case 2:
+                addToBot(new ChangeStateAction(this, "ATTACK"));
+                addToBot(new WaitAction(this.waitTime));
+                addToBot(new DamageAction(AbstractDungeon.player, this.damage.get(1), AbstractGameAction.AttackEffect.BLUNT_LIGHT));
+                addToBot(new DamageAction(AbstractDungeon.player, this.damage.get(1), AbstractGameAction.AttackEffect.BLUNT_LIGHT));
+               // addToBot(new RemoveSpecificPowerAction(this, this, "Vigor"));
                 break;
         }
 
@@ -93,6 +108,7 @@ public class GiftOfSanguinarch extends AbstractInesMonster {
                 this.state.setAnimation(0, "Attack", false);
                 this.state.addAnimation(0, "Idle", true, 0.0F);
                 break;
+
         }
     }
 

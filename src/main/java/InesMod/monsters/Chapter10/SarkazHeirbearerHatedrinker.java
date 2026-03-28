@@ -25,8 +25,6 @@ public class SarkazHeirbearerHatedrinker extends AbstractInesMonster {
     int defend;
 
 
-    int white = 1;
-    int strength = 2;
     float waitTime = 0.45F;
 
     public SarkazHeirbearerHatedrinker(float x, float y) {
@@ -49,7 +47,6 @@ public class SarkazHeirbearerHatedrinker extends AbstractInesMonster {
 
         if (AbstractDungeon.ascensionLevel >= 17) {
             this.defend = 21;
-            this.white = 2;
         } else {
             this.defend = 18;
         }

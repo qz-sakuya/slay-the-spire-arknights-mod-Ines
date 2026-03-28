@@ -72,6 +72,7 @@ public class LivingBlessingPower extends AbstractInesPower {
 
             newMonster.init();
             newMonster.applyPowers();
+            newMonster.hideHealthBar(); // 暂时隐藏
 
             // 记录原位置
             int targetIndex = AbstractDungeon.getCurrRoom().monsters.monsters.indexOf((AbstractMonster) this.owner);
@@ -80,10 +81,6 @@ public class LivingBlessingPower extends AbstractInesPower {
             // 避免对群攻事件造成影响
             int sourceIndex = AbstractDungeon.getCurrRoom().monsters.monsters.size();
             AbstractDungeon.getCurrRoom().monsters.addMonster(sourceIndex, newMonster);
-
-
-
-            newMonster.hideHealthBar();
 
             if (ModHelper.isModEnabled("Lethality")) {
                 this.addToBot(new ApplyPowerAction(newMonster, newMonster, new StrengthPower(newMonster, 3), 3));

@@ -226,10 +226,16 @@
       "死亡时，重生为 #y大君之赐 。"
     ]
   },
-  "InesMod:SanguineInfusion": {
+  "InesMod:SanguineInfusionPower": {
     "NAME": "鲜血补给",
     "DESCRIPTIONS": [
-      "每回合结束时，给予所有 #y重生造物  #b%d 点 #y活力 ，本能力数值 #b+%d 。"
+      "每回合结束时，给予所有 #y重生造物  #b%d 点 #y活力。"
+    ]
+  },
+  "InesMod:EnemyVigorPower": {
+    "NAME": "活力",
+    "DESCRIPTIONS": [
+      "下一次攻击造成 #b%d 点额外伤害。"
     ]
   },
   "InesMod:BouncePower": {
@@ -241,7 +247,7 @@
   "InesMod:FirePower": {
     "NAME": "炮击！",
     "DESCRIPTIONS": [
-      "在你的回合结束时，受到 #b%d 点伤害。",
+      "在你的回合结束时，受到 #b%d 点伤害。"
     ]
   },
   "InesMod:FocusPower": {

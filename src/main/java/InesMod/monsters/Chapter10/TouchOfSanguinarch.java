@@ -40,9 +40,9 @@ public class TouchOfSanguinarch extends AbstractInesMonster {
         this.state.setAnimation(0, "Idle", true);
 
         if (AbstractDungeon.ascensionLevel >= 7) {
-            setHp(20);
+            setHp(23);
         } else {
-            setHp(24);
+            setHp(20);
         }
 
         if (AbstractDungeon.ascensionLevel >= 2) {
@@ -91,12 +91,14 @@ public class TouchOfSanguinarch extends AbstractInesMonster {
                 addToBot(new ChangeStateAction(this, "ATTACK"));
                 addToBot(new WaitAction(this.waitTime));
                 addToBot(new DamageAction(AbstractDungeon.player, this.damage.get(0), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
+              //  addToBot(new RemoveSpecificPowerAction(this, this, "Vigor")); // 特判：清除活力
                 break;
             case 2:
                 addToBot(new ChangeStateAction(this, "ATTACK"));
                 addToBot(new WaitAction(this.waitTime));
                 addToBot(new DamageAction(AbstractDungeon.player, this.damage.get(1), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
                 addToBot(new DamageAction(AbstractDungeon.player, this.damage.get(1), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
+            //    addToBot(new RemoveSpecificPowerAction(this, this, "Vigor"));
                 break;
         }
 
