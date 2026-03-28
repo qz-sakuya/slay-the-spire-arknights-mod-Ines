@@ -36,7 +36,7 @@ public class SarkazHeirbearerArtificer extends AbstractInesMonster {
         this.state.setAnimation(0, "Idle", true);
 
         if (AbstractDungeon.ascensionLevel >= 7) {
-            setHp(93);
+            setHp(90);
         } else {
             setHp(78);
         }

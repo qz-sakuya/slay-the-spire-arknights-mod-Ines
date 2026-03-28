@@ -46,9 +46,9 @@ public class SarkazHeirbearerASV extends AbstractInesMonster {
         }
 
         if (AbstractDungeon.ascensionLevel >= 17) {
-            this.defend = 24;
-        } else {
             this.defend = 20;
+        } else {
+            this.defend = 17;
         }
 
         this.damage.add(new DamageInfo(this, this.attack, DamageInfo.DamageType.NORMAL));
