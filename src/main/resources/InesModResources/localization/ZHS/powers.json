@@ -241,7 +241,7 @@
   "InesMod:FirePower": {
     "NAME": "炮击！",
     "DESCRIPTIONS": [
-      "回合开始时，对场上所有单位造成 #b%d 点伤害。"
+      "在你的回合结束时，受到 #b%d 点伤害。",
     ]
   },
   "InesMod:FocusPower": {

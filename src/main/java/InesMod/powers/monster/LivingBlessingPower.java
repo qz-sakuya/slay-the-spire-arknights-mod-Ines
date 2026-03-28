@@ -2,6 +2,7 @@ package InesMod.powers.monster;
 
 import InesMod.action.ApplyNonStackPowerAction;
 import InesMod.action.ForceWaitAction;
+import InesMod.action.MoveMonsterToIndexAction;
 import InesMod.action.ShowHealthBarAction;
 import InesMod.helpers.LogHelper;
 import InesMod.helpers.PathHelper;
@@ -9,11 +10,8 @@ import InesMod.monsters.Chapter10.TouchOfSanguinarch;
 import InesMod.monsters.Chapter10.GiftOfSanguinarch;
 import InesMod.patchs.OnSpawnMonsterPatch;
 import InesMod.powers.AbstractInesPower;
-import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.ChangeStateAction;
-import com.megacrit.cardcrawl.actions.common.SpawnMonsterAction;
-import com.megacrit.cardcrawl.actions.utility.WaitAction;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -39,7 +37,7 @@ public class LivingBlessingPower extends AbstractInesPower {
 
     public LivingBlessingPower(AbstractCreature owner, int amount, boolean spawnElite) {
         super(ID,
-                true,
+                false,
                 powerStrings,
                 owner,
                 PowerType.BUFF,
@@ -74,8 +72,16 @@ public class LivingBlessingPower extends AbstractInesPower {
 
             newMonster.init();
             newMonster.applyPowers();
-            int index = AbstractDungeon.getCurrRoom().monsters.monsters.indexOf((AbstractMonster) this.owner);
-            AbstractDungeon.getCurrRoom().monsters.addMonster(index ,newMonster);
+
+            // 记录原位置
+            int targetIndex = AbstractDungeon.getCurrRoom().monsters.monsters.indexOf((AbstractMonster) this.owner);
+
+            // 先放到列表末尾，后续再修改
+            // 避免对群攻事件造成影响
+            int sourceIndex = AbstractDungeon.getCurrRoom().monsters.monsters.size();
+            AbstractDungeon.getCurrRoom().monsters.addMonster(sourceIndex, newMonster);
+
+
 
             newMonster.hideHealthBar();
 
@@ -98,6 +104,7 @@ public class LivingBlessingPower extends AbstractInesPower {
             addToBot(new ApplyNonStackPowerAction(newMonster, newMonster, new RebornCreationPower(newMonster, -1)));
             addToBot(new ForceWaitAction(0.3F));
             addToBot(new ShowHealthBarAction(newMonster));
+            addToBot(new MoveMonsterToIndexAction(newMonster, targetIndex));
         }
     }
 

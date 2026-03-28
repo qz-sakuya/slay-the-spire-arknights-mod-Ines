@@ -21,7 +21,7 @@ public class RebornCreationPower extends AbstractInesPower {
 
     public RebornCreationPower(AbstractCreature owner, int amount) {
         super(ID,
-                true,
+                false,
                 powerStrings,
                 owner,
                 PowerType.BUFF,

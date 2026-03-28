@@ -1,14 +1,19 @@
 package InesMod.powers.monster;
 
+import InesMod.action.ForceWaitAction;
+import InesMod.action.SetDefenseArtilleryMeterUponAction;
 import InesMod.action.SetPowerAction;
 import InesMod.action.TryAddFirePowerAction;
 import InesMod.helpers.PathHelper;
 import InesMod.powers.AbstractInesPower;
+import InesMod.vfx.DefenseArtilleryMeterUponManager;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
+import com.megacrit.cardcrawl.actions.common.ReducePowerAction;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 
@@ -27,7 +32,7 @@ public class DefenseArtilleryMeterPower extends AbstractInesPower {
 
     public DefenseArtilleryMeterPower(AbstractCreature owner, int amount, int secondAmount, int damage) {
         super(ID,
-                true,
+                false,
                 powerStrings,
                 owner,
                 PowerType.BUFF,
@@ -36,6 +41,8 @@ public class DefenseArtilleryMeterPower extends AbstractInesPower {
         this.damage = damage;
 
         this.priority = 0; // 最左侧
+
+        DefenseArtilleryMeterUponManager.setEffect(amount);
     }
 
 
@@ -43,7 +50,7 @@ public class DefenseArtilleryMeterPower extends AbstractInesPower {
     public void atStartOfTurn() {
         // 回合开始时才归零
         if (amount >= secondAmount) {
-            addToBot(new SetPowerAction(owner, owner, this,0));
+            addToBot(new SetPowerAction(owner, owner, this, 0));
         }
     }
 
@@ -52,7 +59,7 @@ public class DefenseArtilleryMeterPower extends AbstractInesPower {
         if (amount < secondAmount) {
             addToBot(new ApplyPowerAction(owner, owner, this,1));
         }
-        addToBot(new TryAddFirePowerAction(owner, owner, damage));
+        addToBot(new TryAddFirePowerAction(owner, damage));
     }
 
 
@@ -65,6 +72,18 @@ public class DefenseArtilleryMeterPower extends AbstractInesPower {
             // 默认白色
             FontHelper.renderFontRightTopAligned(sb, FontHelper.powerAmountFont, Integer.toString(this.amount), x, y, this.fontScale, c);
         }
+    }
+
+    @Override
+    public void stackPower(int stackAmount) {
+        super.stackPower(stackAmount);
+        addToTop(new SetDefenseArtilleryMeterUponAction(amount));
+    }
+
+    @Override
+    public void reducePower(int reduceAmount) {
+        super.reducePower(reduceAmount);
+        addToTop(new SetDefenseArtilleryMeterUponAction(amount));
     }
 
     @Override

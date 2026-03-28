@@ -1,5 +1,6 @@
 package InesMod.monsters.Chapter10;
 
+import InesMod.action.TryClearDefenseArtilleryMeterUponAction;
 import InesMod.helpers.PathHelper;
 import InesMod.monsters.AbstractInesMonster;
 import InesMod.powers.monster.DefenseArtilleryMeterPower;
@@ -43,16 +44,16 @@ public class SarkazHeirbearerArtificer extends AbstractInesMonster {
         }
 
         if (AbstractDungeon.ascensionLevel >= 2) {
-            this.attack = 21;
-        } else {
             this.attack = 18;
+        } else {
+            this.attack = 15;
         }
 
         if (AbstractDungeon.ascensionLevel >= 17) {
-            this.defend = 21;
+            this.defend = 30;
             this.white = 2;
         } else {
-            this.defend = 18;
+            this.defend = 25;
         }
 
         this.damage.add(new DamageInfo(this, this.attack, DamageInfo.DamageType.NORMAL));
@@ -87,8 +88,8 @@ public class SarkazHeirbearerArtificer extends AbstractInesMonster {
             return;
         }
 
-        // 如果本回合会生成 炮击 ，则下回合起防
-        if (AbstractDungeon.ascensionLevel >= 17 && getChargeRequired() <= 1) {
+        // 如果下回合会生成 炮击 ，则下回合起防
+        if (AbstractDungeon.ascensionLevel >= 17 && getChargeRequired() == 2) {
             setMove((byte)2, Intent.DEFEND);
             return;
         }
@@ -112,7 +113,6 @@ public class SarkazHeirbearerArtificer extends AbstractInesMonster {
                 addToBot(new GainBlockAction(this, this.defend));
               break;
             case 3: // 充能
-                // 需要显示“城防炮充能......”
                 AbstractPower powerToGet = this.getPower(DefenseArtilleryMeterPower.ID);
                 if (powerToGet instanceof DefenseArtilleryMeterPower && getChargeRequired() > 0){
                     addToBot(new ApplyPowerAction(this, this, new DefenseArtilleryMeterPower(this, 1,((DefenseArtilleryMeterPower) powerToGet).secondAmount,((DefenseArtilleryMeterPower) powerToGet).damage), 1));
@@ -146,6 +146,9 @@ public class SarkazHeirbearerArtificer extends AbstractInesMonster {
     public void die() {
         this.state.setTimeScale(1.0F);
         this.state.setAnimation(0, "Die", false);
+
+        addToBot(new TryClearDefenseArtilleryMeterUponAction(this));
+
         super.die();
     }
 
@@ -160,28 +163,6 @@ public class SarkazHeirbearerArtificer extends AbstractInesMonster {
 
 
 
-
-
-    /*
-    一种可能的行动预测（A17）
-
-    回合   实际动作  下回合意图   城防炮充能        回合结束时     备注
-                    充能	      0
-    1        充能	          0->2
-    2 		                  2->3
-    3               防御       3->4            生成炮击
-    4        防御    充能       0->1            炮击！
-    5        充能              1->3
-    6               防御       3->4            生成炮击
-    7        防御              0->1            炮击！
-    8               充能       1->2
-    9        充能    防御       2->4            生成炮击
-    10       防御               0->1            炮击！
-    11                         1->2
-    12                         2->3                    （没有充能价值）
-    12              充能       3->4            生成炮击
-    13      充能               0->2            炮击！
-     */
 
 
 

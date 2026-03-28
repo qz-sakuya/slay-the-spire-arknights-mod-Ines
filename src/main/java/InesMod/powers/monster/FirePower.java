@@ -1,7 +1,9 @@
 package InesMod.powers.monster;
 
+import InesMod.action.ApplyNonStackPowerAction;
 import InesMod.action.ForceWaitAction;
 import InesMod.action.TryAddFirePowerAction;
+import InesMod.action.TryClearDefenseArtilleryMeterUponAction;
 import InesMod.helpers.LogHelper;
 import InesMod.helpers.PathHelper;
 import InesMod.monsters.Chapter10.Manfred;
@@ -9,13 +11,11 @@ import InesMod.monsters.Chapter10.Teekazwurtzen;
 import InesMod.powers.AbstractInesPower;
 import InesMod.powers.player.InsightPower;
 import InesMod.vfx.DefenseArtilleryFireEffect;
+import InesMod.vfx.DefenseArtilleryMeterUponManager;
 import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
-import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
-import com.megacrit.cardcrawl.actions.common.DamageAction;
-import com.megacrit.cardcrawl.actions.common.DamageAllEnemiesAction;
-import com.megacrit.cardcrawl.actions.common.ReducePowerAction;
+import com.megacrit.cardcrawl.actions.common.*;
 import com.megacrit.cardcrawl.actions.utility.SFXAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
@@ -36,43 +36,49 @@ import java.util.Arrays;
 /**
  * 中文名：炮击！
  * 英文名：Fire!
- * 敌方power
+ * 敌人+玩家的power
+ * 仅玩家身上的power处理伤害逻辑，怪物的仅是一个标识
  * 图标：原版进度条红色三角
- * 敌方回合结束时造成伤害
  */
 public class FirePower extends AbstractInesPower {
     public static final String ID = PathHelper.nameToId(FirePower.class.getSimpleName());
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(ID); // 从游戏系统读取本地化资源
 
 
+    public int damage; // 一般为40伤
 
-    public FirePower(AbstractCreature owner, int amount) {
+    public FirePower(AbstractCreature owner, int amount, int damage) {
         super(ID,
-                true,
+                false,
                 powerStrings,
                 owner,
                 PowerType.BUFF,
-                amount); // 一般为40伤
+                amount); // 不可叠加，不显示数字使图标更明显
 
-        this.priority = 0; // 倒数第二左，排在 城防炮充能 右侧
+        this.priority = 9999; // 排在最右侧
 
-
+        this.damage = damage;
+        updateDescription();
     }
 
 
     @Override
+    public void onSpawnMonster(AbstractMonster mon){
+        // 为新怪传播该power
+        addToBot(new ApplyNonStackPowerAction(mon, mon, new FirePower(mon, -1, damage)));
+    }
+
+
+
+    // 在玩家回合结束时，处理伤害逻辑
+    @Override
     public void atEndOfTurn(boolean isPlayer) {
-        LogHelper.info("===FirePower atEndOfTurn：是否玩家回合：{}===",isPlayer);
         if (isPlayer) {
             Work();
         }
     }
 
 
-    @Override
-    public void atStartOfTurn(){
-        Work();
-    }
 
     private void Work() {
         // 使曼弗雷德军事训练power失效
@@ -85,6 +91,16 @@ public class FirePower extends AbstractInesPower {
                 }
             }
         }
+
+        // 删除所有怪物的power
+        for (AbstractMonster mon : (AbstractDungeon.getMonsters()).monsters) {
+            addToBot(new RemoveSpecificPowerAction(mon, mon, FirePower.ID));
+        }
+
+        // 删除玩家的power
+        addToBot(new RemoveSpecificPowerAction(owner, owner, FirePower.ID));
+
+
 
         // 获取中心坐标
         float centerX = (float) Settings.WIDTH / 2.0F;
@@ -108,20 +124,30 @@ public class FirePower extends AbstractInesPower {
                 tmp[i] = 0; // 不对提卡兹之根造成伤害
             }
             else{
-                tmp[i] = this.amount;
+                tmp[i] = this.damage;
             }
         }
         addToBot(new DamageAllEnemiesAction(this.owner, tmp, DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.NONE));
 
         // 对玩家造成伤害
-        addToBot(new DamageAction(AbstractDungeon.player, new DamageInfo(this.owner, this.amount, DamageInfo.DamageType.THORNS), AbstractGameAction.AttackEffect.NONE));
+        addToBot(new DamageAction(AbstractDungeon.player, new DamageInfo(this.owner, this.damage, DamageInfo.DamageType.THORNS), AbstractGameAction.AttackEffect.NONE));
 
 
-        addToBot(new ReducePowerAction(owner, owner, FirePower.ID, amount));
+
+
+
+        addToBot(new TryClearDefenseArtilleryMeterUponAction(this.owner));
     }
 
     @Override
     public void updateDescription() {
-        this.description = String.format(descriptions[0], this.amount);
+        this.description = String.format(descriptions[0], this.damage);
+
+//        if (this.owner == AbstractDungeon.player) {
+//            this.description = String.format(descriptions[0], this.damage);
+//        }
+//        else {
+//            this.description = String.format(descriptions[1], this.damage);
+//        }
     }
 }
