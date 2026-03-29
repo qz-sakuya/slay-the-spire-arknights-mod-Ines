@@ -1,0 +1,237 @@
+
+enemy_1225_dkmage.png
+size: 300,531
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+C_Belt
+  rotate: false
+  xy: 50, 53
+  size: 67, 43
+  orig: 67, 43
+  offset: 0, 0
+  index: -1
+C_Cuirass
+  rotate: false
+  xy: 209, 318
+  size: 66, 64
+  orig: 66, 64
+  offset: 0, 0
+  index: -1
+C_Face
+  rotate: false
+  xy: 234, 384
+  size: 51, 60
+  orig: 51, 60
+  offset: 0, 0
+  index: -1
+C_L_Arm
+  rotate: false
+  xy: 210, 163
+  size: 31, 67
+  orig: 31, 67
+  offset: 0, 0
+  index: -1
+C_L_Armor
+  rotate: false
+  xy: 165, 16
+  size: 32, 53
+  orig: 32, 53
+  offset: 0, 0
+  index: -1
+C_L_Calf
+  rotate: false
+  xy: 172, 71
+  size: 39, 65
+  orig: 39, 65
+  offset: 0, 0
+  index: -1
+C_L_Foot
+  rotate: false
+  xy: 247, 65
+  size: 39, 28
+  orig: 39, 28
+  offset: 0, 0
+  index: -1
+C_L_Forearm
+  rotate: false
+  xy: 75, 8
+  size: 44, 43
+  orig: 44, 43
+  offset: 0, 0
+  index: -1
+C_L_Hair
+  rotate: false
+  xy: 112, 99
+  size: 12, 74
+  orig: 12, 74
+  offset: 0, 0
+  index: -1
+C_L_Hand
+  rotate: false
+  xy: 244, 129
+  size: 35, 38
+  orig: 35, 38
+  offset: 0, 0
+  index: -1
+C_L_Hood
+  rotate: false
+  xy: 209, 232
+  size: 32, 84
+  orig: 32, 84
+  offset: 0, 0
+  index: -1
+C_L_Horn
+  rotate: false
+  xy: 247, 95
+  size: 44, 32
+  orig: 44, 32
+  offset: 0, 0
+  index: -1
+C_L_Leg
+  rotate: false
+  xy: 199, 18
+  size: 32, 51
+  orig: 32, 51
+  offset: 0, 0
+  index: -1
+C_L_Sleeves
+  rotate: false
+  xy: 213, 80
+  size: 32, 36
+  orig: 32, 36
+  offset: 0, 0
+  index: -1
+C_L_TentacleA
+  rotate: false
+  xy: 2, 56
+  size: 46, 81
+  orig: 46, 81
+  offset: 0, 0
+  index: -1
+C_L_TentacleB
+  rotate: false
+  xy: 129, 138
+  size: 69, 39
+  orig: 69, 39
+  offset: 0, 0
+  index: -1
+C_L_TentacleC
+  rotate: false
+  xy: 50, 175
+  size: 77, 80
+  orig: 77, 80
+  offset: 0, 0
+  index: -1
+C_Mask
+  rotate: false
+  xy: 243, 239
+  size: 39, 77
+  orig: 39, 77
+  offset: 0, 0
+  index: -1
+C_R_Armor
+  rotate: false
+  xy: 126, 80
+  size: 44, 56
+  orig: 44, 56
+  offset: 0, 0
+  index: -1
+C_R_Calf
+  rotate: false
+  xy: 243, 169
+  size: 38, 68
+  orig: 38, 68
+  offset: 0, 0
+  index: -1
+C_R_Foot
+  rotate: false
+  xy: 233, 37
+  size: 39, 26
+  orig: 39, 26
+  offset: 0, 0
+  index: -1
+C_R_Forearm
+  rotate: false
+  xy: 121, 12
+  size: 42, 66
+  orig: 42, 66
+  offset: 0, 0
+  index: -1
+C_R_Hair
+  rotate: false
+  xy: 284, 312
+  size: 14, 70
+  orig: 14, 70
+  offset: 0, 0
+  index: -1
+C_R_Hood
+  rotate: false
+  xy: 234, 446
+  size: 55, 83
+  orig: 55, 83
+  offset: 0, 0
+  index: -1
+C_R_Horn
+  rotate: false
+  xy: 2, 2
+  size: 71, 49
+  orig: 71, 49
+  offset: 0, 0
+  index: -1
+C_R_Leg
+  rotate: false
+  xy: 213, 118
+  size: 29, 43
+  orig: 29, 43
+  offset: 0, 0
+  index: -1
+C_R_Sleeves
+  rotate: false
+  xy: 50, 98
+  size: 60, 75
+  orig: 60, 75
+  offset: 0, 0
+  index: -1
+C_R_Sleeves_Back
+  rotate: false
+  xy: 95, 385
+  size: 137, 144
+  orig: 137, 144
+  offset: 0, 0
+  index: -1
+C_R_TentacleA
+  rotate: false
+  xy: 129, 221
+  size: 78, 53
+  orig: 78, 53
+  offset: 0, 0
+  index: -1
+C_R_TentacleB
+  rotate: false
+  xy: 2, 139
+  size: 46, 116
+  orig: 46, 116
+  offset: 0, 0
+  index: -1
+C_Robe
+  rotate: false
+  xy: 95, 276
+  size: 112, 107
+  orig: 112, 107
+  offset: 0, 0
+  index: -1
+C_Robe_Back
+  rotate: false
+  xy: 129, 179
+  size: 79, 40
+  orig: 79, 40
+  offset: 0, 0
+  index: -1
+C_Weapon
+  rotate: false
+  xy: 2, 257
+  size: 91, 272
+  orig: 91, 272
+  offset: 0, 0
+  index: -1
