@@ -135,7 +135,7 @@ public class FirePower extends AbstractInesPower {
 
 
 
-
+        // 尝试清除特效
         addToBot(new TryClearDefenseArtilleryMeterUponAction(this.owner));
     }
 

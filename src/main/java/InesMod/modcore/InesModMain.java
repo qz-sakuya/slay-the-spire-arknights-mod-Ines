@@ -1,5 +1,6 @@
 package InesMod.modcore;
 
+import InesMod.action.TryClearDefenseArtilleryMeterUponAction;
 import InesMod.cards.AbstractInesCard;
 import InesMod.characters.Ines;
 
@@ -13,6 +14,7 @@ import InesMod.truth.TruthManager;
 import InesMod.truth.TruthReward;
 import InesMod.enums.OtherEnum;
 import InesMod.relics.UnassumingNeedle;
+import InesMod.vfx.DefenseArtilleryMeterUponManager;
 import basemod.AutoAdd;
 import basemod.helpers.RelicType;
 import basemod.interfaces.*;
@@ -58,6 +60,7 @@ public class InesModMain implements
         PostPlayerUpdateSubscriber,
         StartGameSubscriber,
         PreStartGameSubscriber,
+        PostBattleSubscriber,
         OnPlayerTurnStartSubscriber
 
 {
@@ -270,6 +273,14 @@ public class InesModMain implements
     }
 
     @Override
+    public void receivePostBattle(AbstractRoom var1){
+        LogHelper.info("===InesModMain: receivePostBattle===");
+
+        // 清空城防炮特效
+        DefenseArtilleryMeterUponManager.clearEffect();
+    }
+
+    @Override
     public void  receiveOnPlayerTurnStart(){
         LogHelper.info("===InesModMain: receiveOnPlayerTurnStart===");
 
@@ -289,6 +300,9 @@ public class InesModMain implements
         for (AbstractCard c : AbstractDungeon.player.exhaustPile.group) {
             resetCardsRetainThisTurn(c);
         }
+
+        // 尝试清除特效
+        TryClearDefenseArtilleryMeterUponAction.Work(null);
     }
 
     @Override

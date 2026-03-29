@@ -227,7 +227,7 @@
   },
   "InesMod:QuickVictory": {
     "NAME": "Quick Victory",
-    "DESCRIPTION": "Attack deals double damage when you in ines:Invisibility. At the end of turn, loss 1 additional ines:Invisibility and Gain 1 ines:Illusion ."
+    "DESCRIPTION": "Attack deals double damage when you in ines:Invisibility ."
   },
   "InesMod:RapidRedeployment": {
     "NAME": "Rapid Redeployment",

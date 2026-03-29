@@ -69,6 +69,8 @@ public class InterpretEffect extends AbstractGameEffect {
             options.add(new InterpretColorlessCard());
             options.add(new InterpretRareCard());
             options.add(new InterpretRelic());
+
+            // 检测玩家是否有结局遗物，如果有则不出现
             // options.add(new InterpretSecret());
 
 

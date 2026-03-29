@@ -227,7 +227,7 @@
   },
   "InesMod:QuickVictory": {
     "NAME": "速战速决",
-    "DESCRIPTION": "处于 ines:隐匿 时，攻击造成 2 倍伤害。回合结束时，额外失去 1 层 ines:隐匿 并获得 1 层 ines:虚影 。"
+    "DESCRIPTION": "处于 ines:隐匿 时，攻击造成 2 倍伤害。"
   },
   "InesMod:RapidRedeployment": {
     "NAME": "快速重部署",
@@ -401,5 +401,9 @@
       "该遗物的效果",
       "该遗物的注脚"
     ]
+  },
+  "InesMod:Counter": {
+    "NAME": "回击",
+    "DESCRIPTION": "造成 !D! 点伤害。 NL  消耗 。"
   }
 }

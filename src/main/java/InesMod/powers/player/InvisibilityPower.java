@@ -69,11 +69,11 @@ public class InvisibilityPower extends AbstractInesPower {
         } else {
             int numToChange = 1;
 
-            // 如果有 速战速决 ，额外转化1层隐匿
-            AbstractPower quickVictoryPower = owner.getPower(QuickVictoryPower.ID);
-            if (quickVictoryPower != null && this.amount >= 2) {
-                numToChange = 2;
-            }
+//            // 如果有 速战速决 ，额外转化1层隐匿
+//            AbstractPower quickVictoryPower = owner.getPower(QuickVictoryPower.ID);
+//            if (quickVictoryPower != null && this.amount >= 2) {
+//                numToChange = 2;
+//            }
 
             addToBot(new ReducePowerAction(this.owner, this.owner, InvisibilityPower.ID, numToChange));
             addToBot(new ApplyPowerAction(this.owner, this.owner, new IllusionPower(this.owner, numToChange)));

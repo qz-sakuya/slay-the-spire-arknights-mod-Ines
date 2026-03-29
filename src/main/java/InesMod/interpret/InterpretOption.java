@@ -28,7 +28,7 @@ public class InterpretOption extends AbstractCampfireOption {
     @Override
     public void useOption() {
         if(this.usable) {
-            AbstractDungeon.effectList.add(new InterpretEffect(this));
+            AbstractDungeon.effectList.add(new InterpretEffect(this));  // 解析的实际逻辑
         }
     }
 

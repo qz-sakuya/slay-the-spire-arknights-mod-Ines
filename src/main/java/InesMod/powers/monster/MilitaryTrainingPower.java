@@ -1,6 +1,6 @@
 package InesMod.powers.monster;
 
-import InesMod.cards.special.FightAgain;
+import InesMod.cards.special.Counter;
 import InesMod.helpers.PathHelper;
 import InesMod.powers.AbstractInesPower;
 import com.badlogic.gdx.math.MathUtils;
@@ -47,12 +47,12 @@ public class MilitaryTrainingPower extends AbstractInesPower {
             damageChange = 1;
         }
 
-        // 生成一张 再战
+        // 生成一张 回击
         int damageForCard = damageChange; // 向下取整
-        FightAgain fightAgain = new FightAgain();
-        fightAgain.baseDamage = damageForCard;
-        fightAgain.damage = fightAgain.baseDamage;
-        addToBot(new MakeTempCardInDrawPileAction(fightAgain,1,true,true));
+        Counter newCard = new Counter();
+        newCard.baseDamage = damageForCard;
+        newCard.damage = newCard.baseDamage;
+        addToBot(new MakeTempCardInDrawPileAction(newCard,1,true,true));
 
         return newDamage;
     }

@@ -118,7 +118,7 @@
   "InesMod:QuickVictoryPower": {
     "NAME": "速战速决",
     "DESCRIPTIONS": [
-      "处于 #y隐匿 时，攻击造成 #b2 倍伤害。 NL 回合结束时，额外失去 #b1 层 #y隐匿 并获得 #b1 层 #y虚影 。"
+      "处于 #y隐匿 时，攻击造成 #b2 倍伤害。"
     ]
   },
   "InesMod:RapidRedeploymentPower": {

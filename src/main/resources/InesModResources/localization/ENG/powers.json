@@ -118,7 +118,7 @@
   "InesMod:QuickVictoryPower": {
     "NAME": "Quick Victory",
     "DESCRIPTIONS": [
-      "Attack deals #ydouble #ydamage when you in #yInvisibility. At the end of turn, loss #b1 additional #yInvisibility and Gain #b1 #yIllusion ."
+      "Attack deals #ydouble #ydamage when you in #yInvisibility ."
     ]
   },
   "InesMod:RapidRedeploymentPower": {

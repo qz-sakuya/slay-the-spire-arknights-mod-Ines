@@ -65,17 +65,18 @@ public class Chapter12 extends AbstractDungeon {
 
     private void generateSpecialMap() {
         MapRoomNode node0 = DungeonHelper.createNode(3, 0, new RestRoom());
-        MapRoomNode node1 = DungeonHelper.createNode(4, 1, new MonsterRoom());
-        MapRoomNode node2 = DungeonHelper.createNode(5, 2, new MonsterRoom());
-        MapRoomNode node3 = DungeonHelper.createNode(4, 3, new MonsterRoomElite());
-        MapRoomNode node4 = DungeonHelper.createNode(3, 4, new TreasureRoom());
-        MapRoomNode node5 = DungeonHelper.createNode(2, 5, new ShopRoom());
-        MapRoomNode node6 = DungeonHelper.createNode(1, 6, new MonsterRoom());
-        MapRoomNode node7 = DungeonHelper.createNode(2, 7, new MonsterRoomElite());
-        MapRoomNode node8 = DungeonHelper.createNode(3, 8, new MonsterRoomBoss());
-        MapRoomNode node9 = DungeonHelper.createNode(3, 9, new TrueVictoryRoom());
+        MapRoomNode node1 = DungeonHelper.createNode(3, 1, new ShopRoom());
+        MapRoomNode node2 = DungeonHelper.createNode(4, 2, new MonsterRoom());
+        MapRoomNode node3 = DungeonHelper.createNode(5, 3, new MonsterRoom());
+        MapRoomNode node4 = DungeonHelper.createNode(4, 4, new MonsterRoomElite());
+        MapRoomNode node5 = DungeonHelper.createNode(3, 5, new TreasureRoom());
+        MapRoomNode node6 = DungeonHelper.createNode(2, 6, new RestRoom());
+        MapRoomNode node7 = DungeonHelper.createNode(1, 7, new MonsterRoom());
+        MapRoomNode node8 = DungeonHelper.createNode(2, 8, new MonsterRoomElite());
+        MapRoomNode node9 = DungeonHelper.createNode(3, 9, new MonsterRoomBoss());
+        MapRoomNode node10 = DungeonHelper.createNode(3, 10, new TrueVictoryRoom());
 
-        map = DungeonHelper.createMap(node0,node1,node2,node3,node4,node5,node6,node7,node8,node9);
+        map = DungeonHelper.createMap(node0,node1,node2,node3,node4,node5,node6,node7,node8,node9,node10);
 
         DungeonHelper.connectNode(node0, node1);
         DungeonHelper.connectNode(node1, node2);
@@ -86,6 +87,7 @@ public class Chapter12 extends AbstractDungeon {
         DungeonHelper.connectNode(node6, node7);
         DungeonHelper.connectNode(node7, node8);
         DungeonHelper.connectNode(node8, node9);
+        DungeonHelper.connectNode(node9, node10);
 
         firstRoomChosen = false;
         fadeIn();

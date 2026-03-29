@@ -22,7 +22,12 @@ public class TryClearDefenseArtilleryMeterUponAction extends AbstractGameAction 
 
     public void update() {
         LogHelper.info("===InesMod：TryClearDefenseArtilleryMeterUponAction：start===");
+        Work(this.source);
 
+        this.isDone = true;
+    }
+
+    public static void Work(AbstractCreature source) {
         // 如果没有其它怪物有 城防炮充能 + 炮击 power，就删除进度条
         boolean stillHavePower = false;
         for (AbstractMonster mon : (AbstractDungeon.getMonsters()).monsters) {
@@ -40,9 +45,5 @@ public class TryClearDefenseArtilleryMeterUponAction extends AbstractGameAction 
 
             LogHelper.info("===InesMod：TryClearDefenseArtilleryMeterUponAction：成功===");
         }
-
-
-
-        this.isDone = true;
     }
 }
