@@ -16,23 +16,27 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.combat.AnimatedSlashEffect;
 
 public class InesAttackEffect extends AbstractGameAction {
-    private final int type;
-    private float delay = 0.0F;
+    public final int type;
+    public float delay = 0.0F;
 
 
-    public InesAttackEffect(AbstractCreature source, int type, float delay) {
+
+    public InesAttackEffect(AbstractCreature source, int type, float delay, float delayTimeScale) {
         this.source = source;
         this.type = type;
-        this.delay = delay;
+        this.delay = delay / delayTimeScale;
+    }
 
+    public InesAttackEffect(AbstractCreature source, int type, float delayTimeScale) {
+        this(source, type, 0, delayTimeScale);
+
+        if (source instanceof Ines) {
+            delay = ((Ines) source).getAttackAnimationDelay(type) / delayTimeScale;
+        }
     }
 
     public InesAttackEffect(AbstractCreature source, int type) {
-        this(source, type, 0);
-
-        if (source instanceof Ines) {
-            delay = ((Ines) source).getAttackAnimationDelay(type);
-        }
+        this(source, type, 1F);
     }
 
 
@@ -43,6 +47,8 @@ public class InesAttackEffect extends AbstractGameAction {
         }
 
         addToTop(new ForceWaitAction(delay));
+
+
 
         LogHelper.info("===Ines:InesAttackEffect：结束：type={}===",type);
         this.isDone = true;

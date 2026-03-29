@@ -28,15 +28,13 @@ public class TouchOfSanguinarch extends AbstractInesMonster {
     int attack;
     int defend;
 
-    float waitTime = 0.45F;
+
 
 
     public TouchOfSanguinarch(float x, float y) {
-        super(ID, monsterStrings, EnemyType.NORMAL, 96, 240.0F, 230.0F, x, y);
-        setSpine(ID,"enemy_1220_dzoms", 1.6F);
-
-
-        setFastMode();
+        super(ID, monsterStrings, EnemyType.NORMAL, 96, 240.0F, 135.0F, x, y);
+        setSpine(ID,"enemy_1220_dzoms", 1.75F);
+        setWaitTime(0.45F);
         this.state.setAnimation(0, "Idle", true);
 
         if (AbstractDungeon.ascensionLevel >= 7) {
@@ -58,15 +56,7 @@ public class TouchOfSanguinarch extends AbstractInesMonster {
 
     }
 
-    public void setFastMode() {
-        this.state.setTimeScale(1.0F);
-        this.waitTime = 0.45F;
 
-        if (Settings.FAST_MODE) {
-            this.state.setTimeScale(2.0F);
-            this.waitTime /= 2;
-        }
-    }
 
     public void usePreBattleAction() {
         super.usePreBattleAction();

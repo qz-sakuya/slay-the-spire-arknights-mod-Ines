@@ -3,10 +3,14 @@ package InesMod.monsters;
 
 import InesMod.helpers.LogHelper;
 import InesMod.helpers.PathHelper;
+import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 public abstract class AbstractInesMonster extends AbstractMonster {
+    public float baseWaitTime;
+    public float waitTime;
+
     public AbstractInesMonster(String ID,
                                MonsterStrings strings,
                                AbstractMonster.EnemyType type,
@@ -23,6 +27,8 @@ public abstract class AbstractInesMonster extends AbstractMonster {
                 "InesModResources/model/monster/test/enemy_1345_tplamb.json",
                 1.6F);
 
+        setWaitTime(0.45F);
+
         this.flipHorizontal = true;  // 动画轴对称
     }
 
@@ -34,6 +40,21 @@ public abstract class AbstractInesMonster extends AbstractMonster {
                 "InesModResources/model/monster/" + monsterName + '/' + fileName + ".json",
                 divScale);
         this.flipHorizontal = true;
+    }
+
+    public void setWaitTime(float time) {
+        this.baseWaitTime = time;
+        this.setFastMode();
+    }
+
+    public void setFastMode() {
+        this.state.setTimeScale(1.0F);
+        this.waitTime = this.baseWaitTime;
+
+        if (Settings.FAST_MODE) {
+            this.state.setTimeScale(2.0F);
+            this.waitTime /= 2;
+        }
     }
 
     // 查找历史记录中往前数第n个移动记录是否与指定move相同

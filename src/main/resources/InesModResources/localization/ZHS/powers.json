@@ -241,7 +241,7 @@
   "InesMod:BouncePower": {
     "NAME": "弹射",
     "DESCRIPTIONS": [
-      "攻击时，如果你拥有 #y格挡 ，对你造成 #b2 倍伤害。"
+      "攻击命中时，如果你拥有 #y格挡 ，对你造成 #b2 倍伤害。"
     ]
   },
   "InesMod:FirePower": {

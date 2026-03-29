@@ -1,5 +1,6 @@
 package InesMod.monsters.Chapter10;
 
+import InesMod.action.ApplyNonStackPowerAction;
 import InesMod.helpers.LogHelper;
 import InesMod.helpers.PathHelper;
 import InesMod.monsters.AbstractInesMonster;
@@ -25,13 +26,12 @@ public class SarkazHeirbearerWarrior extends AbstractInesMonster {
     int attack;
     int defend;
 
-    float waitTime;
+
 
     public SarkazHeirbearerWarrior(float x, float y) {
-        super(ID, monsterStrings, EnemyType.NORMAL, 96, 240.0F, 230.0F, x, y);
+        super(ID, monsterStrings, EnemyType.NORMAL, 96, 240.0F, 270.0F, x, y);
         setSpine(ID,"enemy_1222_dpvt", 1.6F);
-
-        setFastMode();
+        setWaitTime(1.4F);
         this.state.setAnimation(0, "Idle", true);
 
         if (AbstractDungeon.ascensionLevel >= 7) {
@@ -55,20 +55,12 @@ public class SarkazHeirbearerWarrior extends AbstractInesMonster {
         this.damage.add(new DamageInfo(this, this.attack, DamageInfo.DamageType.NORMAL));
     }
 
-    public void setFastMode() {
-        this.state.setTimeScale(1.0F);
-        this.waitTime = 1.4F;
 
-        if (Settings.FAST_MODE) {
-            this.state.setTimeScale(2.0F);
-            this.waitTime /= 2;
-        }
-    }
 
     public void usePreBattleAction() {
         super.usePreBattleAction();
 
-        addToBot(new ApplyPowerAction(this, this, new LivingBlessingPower(this, -1,false), -1));
+        addToBot(new ApplyNonStackPowerAction(this, this, new LivingBlessingPower(this, -1,false)));
     }
 
     protected void getMove(int i) {

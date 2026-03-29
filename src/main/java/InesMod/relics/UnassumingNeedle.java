@@ -12,19 +12,15 @@ import InesMod.helpers.PathHelper;
 /**
  * 中文名：无锋绣针
  */
-public class UnassumingNeedle extends CustomRelic {
+public class UnassumingNeedle extends AbstractInesRelic {
     public static final String ID = PathHelper.nameToId(UnassumingNeedle.class.getSimpleName());
-    private static final String IMG_PATH = "InesModResources/img/relics/UnassumingNeedle.png";
-    private static final RelicTier RELIC_TIER = RelicTier.STARTER; // 遗物类型
-    private static final LandingSound LANDING_SOUND = LandingSound.FLAT; // 点击音效
 
-    public UnassumingNeedle() {
-        super(ID, ImageMaster.loadImage(IMG_PATH), RELIC_TIER, LANDING_SOUND);
-
-        this.counter = 3;
+    public UnassumingNeedle(){
+        super(ID, false, false, RelicTier.STARTER, LandingSound.FLAT);
     }
 
     // 遗物初始描述
+    @Override
     public String getUpdatedDescription() {
         return this.DESCRIPTIONS[0];
     }
@@ -44,7 +40,5 @@ public class UnassumingNeedle extends CustomRelic {
         }
     }
 
-    public AbstractRelic makeCopy() {
-        return new UnassumingNeedle();
-    }
+
 }

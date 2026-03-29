@@ -40,7 +40,7 @@ public class ShadowAmbush extends AbstractInesCard {
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        this.addToBot(new InesAttackEffect(p, 2));
+        this.addToBot(new InesAttackEffect(p, 2, 1.2F));
         // ((Ines) AbstractDungeon.player).playAttackAnimation(2);
 
         this.addToBot(new DamageAction(m, new DamageInfo(p, damage, DamageType.NORMAL), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));

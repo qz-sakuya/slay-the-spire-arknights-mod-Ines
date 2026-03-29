@@ -1,5 +1,6 @@
 package InesMod.powers.monster;
 
+import InesMod.helpers.LogHelper;
 import InesMod.helpers.PathHelper;
 import InesMod.powers.AbstractInesPower;
 import com.megacrit.cardcrawl.cards.DamageInfo;
@@ -18,9 +19,9 @@ public class BouncePower extends AbstractInesPower {
     public static final String ID = PathHelper.nameToId(BouncePower.class.getSimpleName());
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(ID); // 从游戏系统读取本地化资源
 
-    public BouncePower(AbstractCreature owner, int amount, boolean spawnElite) {
+    public BouncePower(AbstractCreature owner, int amount) {
         super(ID,
-                true,
+                false,
                 powerStrings,
                 owner,
                 PowerType.BUFF,
@@ -28,9 +29,10 @@ public class BouncePower extends AbstractInesPower {
     }
 
     @Override
-    public float atDamageGive(float damage, DamageInfo.DamageType type) {
-        float newDamage = damage;
-        if (AbstractDungeon.player.currentBlock > 0) {
+    public int OnAttackBeforeBlock(DamageInfo info, int damageAmount, int currentBlock) {
+        LogHelper.info("===BouncePower: OnAttackBeforeBlock: damageAmount = {},玩家格挡={}===",currentBlock);
+        int newDamage = damageAmount;
+        if (currentBlock > 0) {
             newDamage *= 2;
         }
         return newDamage;

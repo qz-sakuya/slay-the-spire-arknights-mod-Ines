@@ -34,12 +34,12 @@ public class Manfred extends AbstractInesMonster {
     int attack;
     int defend;
 
-    float waitTime = 0.45F;
+
 
     public Manfred(float x, float y) {
         super(ID, monsterStrings, EnemyType.NORMAL, 96, 240.0F, 230.0F, x, y);
         //setSpine(ID,"enemy_1345_tplamb", 1.6F);// TODO
-        setFastMode();
+        // setWaitTime(0.6F);
         this.state.setAnimation(0, "Idle", true);
 
         if (AbstractDungeon.ascensionLevel >= 7) {
@@ -63,15 +63,7 @@ public class Manfred extends AbstractInesMonster {
         this.damage.add(new DamageInfo(this, this.attack, DamageInfo.DamageType.NORMAL));
     }
 
-    public void setFastMode() {
-        if (Settings.FAST_MODE) {
-            this.state.setTimeScale(2.0F);
-            this.waitTime = 0.225F;
-        } else {
-            this.state.setTimeScale(1.0F);
-            this.waitTime = 0.45F;
-        }
-    }
+
 
     public void usePreBattleAction() {
         super.usePreBattleAction();

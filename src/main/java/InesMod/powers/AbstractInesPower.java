@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
+import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.FontHelper;
@@ -69,6 +70,7 @@ public abstract class AbstractInesPower extends AbstractPower {
     public abstract void updateDescription();
 
 
+
     public AbstractInesPower makeCopy() {
         try {
             return getClass().newInstance();
@@ -94,6 +96,10 @@ public abstract class AbstractInesPower extends AbstractPower {
 
     // 战斗中有新的怪物生成
     public void onSpawnMonster(AbstractMonster monster) {}
+
+    // 进入damage()后，decrementBlock()之前
+    public int OnAttackBeforeBlock(DamageInfo info, int damageAmount, int currentBlock) {return damageAmount;}
+    public int OnAttackedBeforeBlock(DamageInfo info, int damageAmount, int currentBlock) {return damageAmount;}
 
     // ===自定义回调end===
 

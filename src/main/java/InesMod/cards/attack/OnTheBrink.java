@@ -9,6 +9,7 @@ import InesMod.vfx.OnTheBrinkEffect;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
+import com.megacrit.cardcrawl.actions.utility.SFXAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.cards.DamageInfo.DamageType;
@@ -44,6 +45,7 @@ public class OnTheBrink extends AbstractInesCard {
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
         addToBot(new VFXAction(new OnTheBrinkEffect(m.hb.cX, m.hb.cY,400f * Settings.scale), 0.4F));
+        addToBot(new SFXAction("ATTACK_HEAVY"));
         addToBot(new DamageAction(m, new DamageInfo(p, damage, DamageType.NORMAL), AbstractGameAction.AttackEffect.SLASH_VERTICAL));
 
         addToBot(new ResetOnTheBrinkAction(this));

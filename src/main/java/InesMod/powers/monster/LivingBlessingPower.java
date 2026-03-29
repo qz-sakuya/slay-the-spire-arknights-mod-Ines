@@ -43,6 +43,8 @@ public class LivingBlessingPower extends AbstractInesPower {
                 PowerType.BUFF,
                 amount); // 不可叠加
         this.spawnElite = spawnElite;
+
+        updateDescription();
     }
 
 

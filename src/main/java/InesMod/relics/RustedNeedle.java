@@ -11,17 +11,16 @@ import com.megacrit.cardcrawl.relics.AbstractRelic;
 /**
  * 中文名：破败绣针
  */
-public class RustedNeedle extends CustomRelic {
+public class RustedNeedle extends AbstractInesRelic {
     public static final String ID = PathHelper.nameToId(RustedNeedle.class.getSimpleName());
-    private static final String IMG_PATH = "InesModResources/img/relics/RustedNeedle.png";
-    private static final RelicTier RELIC_TIER = RelicTier.BOSS;
-    private static final LandingSound LANDING_SOUND = LandingSound.FLAT;
 
     public RustedNeedle() {
-        super(ID, ImageMaster.loadImage(IMG_PATH), RELIC_TIER, LANDING_SOUND);
+        super(ID, false, false, RelicTier.BOSS, LandingSound.FLAT);
     }
 
+
     // 遗物初始描述
+    @Override
     public String getUpdatedDescription() {
         return this.DESCRIPTIONS[0];
     }
@@ -53,7 +52,5 @@ public class RustedNeedle extends CustomRelic {
         return AbstractDungeon.player.hasRelic(PathHelper.nameToId(UnassumingNeedle.class.getSimpleName()));
     }
 
-    public AbstractRelic makeCopy() {
-        return new RustedNeedle();
-    }
+
 }

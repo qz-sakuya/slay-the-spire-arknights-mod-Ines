@@ -21,7 +21,7 @@ public class NewBranchesPower extends AbstractInesPower {
     public static final String ID = PathHelper.nameToId(NewBranchesPower.class.getSimpleName());
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(ID); // 从游戏系统读取本地化资源
 
-    public NewBranchesPower(AbstractCreature owner, int amount, boolean spawnElite) {
+    public NewBranchesPower(AbstractCreature owner, int amount) {
         super(ID,
                 true,
                 powerStrings,

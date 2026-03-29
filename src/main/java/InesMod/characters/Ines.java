@@ -18,14 +18,12 @@ import com.badlogic.gdx.math.MathUtils;
 import com.esotericsoftware.spine.AnimationState;
 import com.evacipated.cardcrawl.modthespire.lib.SpireEnum;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.utility.WaitAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.EnergyManager;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.cutscenes.CutscenePanel;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.events.city.Vampires;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.helpers.FontHelper;
@@ -65,6 +63,7 @@ public class Ines extends CustomPlayer
     private static final float[] LAYER_SPEED = new float[]{-40.0F, -32.0F, 20.0F, -20.0F, 0.0F, -10.0F, -8.0F, 5.0F, -5.0F, 0.0F};
     // 人物的本地化文本，如卡牌的本地化文本一样，如何书写见下
     private static final CharacterStrings characterStrings = CardCrawlGame.languagePack.getCharacterString("InesMod:Ines");
+
 
     // ---自定义全局变量---
 
@@ -174,8 +173,6 @@ public class Ines extends CustomPlayer
     }
 
 
-
-
     public void playAttackAnimation(int type) {
         LogHelper.info("===Ines:playAttackAnimation：type={}===",type);
         switch (type) {
@@ -197,22 +194,30 @@ public class Ines extends CustomPlayer
                 this.state.setAnimation(0, "Attack", false);
         }
 
-        this.state.addAnimation(0, "Idle", true, 0.0F);
         this.state.getCurrent(0).setTimeScale(1.2F);
+        this.state.addAnimation(0, "Idle", true, 0.0F);
     }
 
+
+
     public float getAttackAnimationDelay(int type) {
+        float delay;
         switch (type) {
             case 1: // 小刀戳刺
-                return 0.2F;
+                delay = 0.2F;
+                break;
             case 2: // 挥剑
-                return 0.4F;
+                delay = 0.4F;
+                break;
             case 3: // 剑戳刺
-                return 0.4F;
+                delay = 0.4F;
+                break;
             case 0: // 小刀投掷
             default:
-                return 0.0F;
+                delay = 0.0F;
+                break;
         }
+        return delay;
     }
 
 
