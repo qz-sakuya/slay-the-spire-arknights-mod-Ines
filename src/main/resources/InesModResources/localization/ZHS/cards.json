@@ -404,6 +404,7 @@
   },
   "InesMod:Counter": {
     "NAME": "回击",
-    "DESCRIPTION": "造成 !D! 点伤害。 NL  消耗 。"
+    "DESCRIPTION": "造成 !D! 点伤害。 NL  消耗 。",
+    "UPGRADE_DESCRIPTION":"造成 !D! 点伤害。 NL  保留 。 NL  消耗 。"
   }
 }

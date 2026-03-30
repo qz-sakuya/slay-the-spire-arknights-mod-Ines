@@ -18,6 +18,7 @@ import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.*;
 import com.megacrit.cardcrawl.actions.utility.SFXAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
+import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
@@ -46,6 +47,7 @@ public class FirePower extends AbstractInesPower {
 
 
     public int damage; // 一般为40伤
+    private boolean spreadToNewMonster = true;
 
     public FirePower(AbstractCreature owner, int amount, int damage) {
         super(ID,
@@ -65,7 +67,9 @@ public class FirePower extends AbstractInesPower {
     @Override
     public void onSpawnMonster(AbstractMonster mon){
         // 为新怪传播该power
-        addToBot(new ApplyNonStackPowerAction(mon, mon, new FirePower(mon, -1, damage)));
+        if (spreadToNewMonster && this.owner instanceof AbstractPlayer) {
+            addToBot(new ApplyNonStackPowerAction(mon, mon, new FirePower(mon, -1, damage)));
+        }
     }
 
 
@@ -81,26 +85,9 @@ public class FirePower extends AbstractInesPower {
 
 
     private void Work() {
-        // 使曼弗雷德军事训练power失效
         ArrayList<AbstractMonster> monsterArrayList = AbstractDungeon.getCurrRoom().monsters.monsters;
-        for (AbstractMonster mo : monsterArrayList) {
-            if (mo instanceof Manfred) {
-                AbstractPower powerToGet = mo.getPower(MilitaryTrainingPower.ID);
-                if (powerToGet != null) {
-                    ((MilitaryTrainingPower)powerToGet).invalid();
-                }
-            }
-        }
 
-        // 删除所有怪物的power
-        for (AbstractMonster mon : (AbstractDungeon.getMonsters()).monsters) {
-            addToBot(new RemoveSpecificPowerAction(mon, mon, FirePower.ID));
-        }
-
-        // 删除玩家的power
-        addToBot(new RemoveSpecificPowerAction(owner, owner, FirePower.ID));
-
-
+        this.spreadToNewMonster = false;
 
         // 获取中心坐标
         float centerX = (float) Settings.WIDTH / 2.0F;
@@ -113,7 +100,6 @@ public class FirePower extends AbstractInesPower {
         addToBot(new VFXAction(new BorderFlashEffect(Color.ORANGE)));
         addToBot(new SFXAction("BLUNT_HEAVY", 0.2F));
         addToBot(new SFXAction("ATTACK_FIRE", 0.2F));
-
 
 
 
@@ -131,6 +117,27 @@ public class FirePower extends AbstractInesPower {
 
         // 对玩家造成伤害
         addToBot(new DamageAction(AbstractDungeon.player, new DamageInfo(this.owner, this.damage, DamageInfo.DamageType.THORNS), AbstractGameAction.AttackEffect.NONE));
+
+
+
+        // 使曼弗雷德军事训练power失效
+        for (AbstractMonster mo : monsterArrayList) {
+            if (mo instanceof Manfred) {
+                AbstractPower powerToGet = mo.getPower(MilitaryTrainingPower.ID);
+                if (powerToGet != null) {
+                    ((MilitaryTrainingPower)powerToGet).invalid();
+                }
+            }
+        }
+
+
+        // 删除所有怪物的power
+        for (AbstractMonster mon : (AbstractDungeon.getMonsters()).monsters) {
+            addToBot(new RemoveSpecificPowerAction(mon, mon, FirePower.ID));
+        }
+
+        // 删除玩家的power
+        addToBot(new RemoveSpecificPowerAction(owner, owner, FirePower.ID));
 
 
 
