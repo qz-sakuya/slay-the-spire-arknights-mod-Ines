@@ -78,13 +78,13 @@ public class FirePower extends AbstractInesPower {
     @Override
     public void atEndOfTurn(boolean isPlayer) {
         if (isPlayer) {
-            Work();
+            this.onSpecificTrigger();
         }
     }
 
 
-
-    private void Work() {
+    @Override
+    public void onSpecificTrigger() {
         ArrayList<AbstractMonster> monsterArrayList = AbstractDungeon.getCurrRoom().monsters.monsters;
 
         this.spreadToNewMonster = false;

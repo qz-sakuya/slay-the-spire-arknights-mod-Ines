@@ -1,5 +1,6 @@
 package InesMod.monsters.Chapter10;
 
+import InesMod.action.ForceWaitAction;
 import InesMod.helpers.PathHelper;
 import InesMod.monsters.AbstractInesMonster;
 import InesMod.powers.monster.LivingBlessingPower;
@@ -23,8 +24,10 @@ import com.megacrit.cardcrawl.localization.MonsterStrings;
  * 2轻1重为1组，顺序随机，但一定都会打。都是单击。
  * 重后面必定跟1防御
  *
- * 2阶段防御替换为召唤，如果已经召唤，打轻
- * 2阶段所有攻击都是2连击
+ * 2阶段防御替换为召唤，如果已经召唤，防御
+ * 2阶段所有攻击的连击+1，防御提升
+ *
+ * 记得通知怪物死亡回调
  *
  */
 public class Manfred extends AbstractInesMonster {
@@ -35,26 +38,25 @@ public class Manfred extends AbstractInesMonster {
     int defend;
 
 
-
     public Manfred(float x, float y) {
         super(ID, monsterStrings, EnemyType.NORMAL, 96, 240.0F, 230.0F, x, y);
         //setSpine(ID,"enemy_1345_tplamb", 1.6F);// TODO
         // setWaitTime(0.6F);
         this.state.setAnimation(0, "Idle", true);
 
-        if (AbstractDungeon.ascensionLevel >= 7) {
+        if (ascensionForHp()) {
             setHp(49);
         } else {
             setHp(42);
         }
 
-        if (AbstractDungeon.ascensionLevel >= 2) {
+        if (ascensionForDamage()) {
             this.attack = 21;
         } else {
             this.attack = 18;
         }
 
-        if (AbstractDungeon.ascensionLevel >= 17) {
+        if (ascensionForMove()) {
             this.defend = 17;
         } else {
             this.defend = 15;
@@ -84,7 +86,7 @@ public class Manfred extends AbstractInesMonster {
         switch (this.nextMove) {
             case 1:
                 addToBot(new ChangeStateAction(this, "ATTACK"));
-                addToBot(new WaitAction(this.waitTime));
+                addToBot(new ForceWaitAction(this.waitTime));
                 addToBot(new DamageAction(AbstractDungeon.player, this.damage.get(0), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
                 break;
             case 2:

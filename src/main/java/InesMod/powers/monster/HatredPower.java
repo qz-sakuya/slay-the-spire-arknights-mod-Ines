@@ -1,5 +1,6 @@
 package InesMod.powers.monster;
 
+import InesMod.action.SpecificTriggerPowerAction;
 import InesMod.helpers.PathHelper;
 import InesMod.monsters.Chapter10.GiftOfSanguinarch;
 import InesMod.monsters.Chapter10.SarkazHeirbearerWarrior;
@@ -30,32 +31,40 @@ public class HatredPower extends AbstractInesPower {
                 PowerType.BUFF,
                 amount,
                 0);
+
+        this.onSpecificTrigger();
     }
 
 
     @Override
-    public void onDeath(){
-        Work();
+    public void onAnyMonsterDeath(AbstractMonster mon){
+        if (isTargetMon(mon)){
+            addToBot(new SpecificTriggerPowerAction(this));
+        }
     }
 
     @Override
     public void onSpawnMonster(AbstractMonster mon){
         if (isTargetMon(mon)){
-            Work();
+            addToBot(new SpecificTriggerPowerAction(this));
         }
     }
 
     @Override
     public void atStartOfTurn() {
-        Work();
+        this.onSpecificTrigger();
     }
 
-
-    private void Work() {
+    @Override
+    public void onSpecificTrigger() {
         // 统计新的目标怪物数量
         int monCount = 0;
         for (AbstractMonster mon : (AbstractDungeon.getMonsters()).monsters) {
             if (mon == this.owner) {
+                continue;
+            }
+
+            if (mon.halfDead || mon.isDying || mon.isDead) {
                 continue;
             }
 
@@ -66,12 +75,16 @@ public class HatredPower extends AbstractInesPower {
 
         int newSecondAmount = monCount * amount;
         int strengthToApply = newSecondAmount - secondAmount;
-        addToBot(new ApplyPowerAction(owner, owner, new StrengthPower(owner, strengthToApply), strengthToApply));
+        if (strengthToApply != 0) {
+            addToBot(new ApplyPowerAction(owner, owner, new StrengthPower(owner, strengthToApply), strengthToApply));
+        }
         secondAmount = newSecondAmount;
         updateDescription();
     }
 
     private boolean isTargetMon(AbstractMonster mon) {
+
+
         return (mon instanceof GiftOfSanguinarch) || (mon instanceof TouchOfSanguinarch);
     }
 

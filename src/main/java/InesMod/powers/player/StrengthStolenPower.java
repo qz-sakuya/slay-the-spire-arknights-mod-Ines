@@ -10,7 +10,7 @@ import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 
 /**
- * 中文名：偷取力量
+ * 中文名：被偷取力量
  */
 public class StrengthStolenPower extends AbstractInesPower {
     public static final String ID = PathHelper.nameToId(StrengthStolenPower.class.getSimpleName());

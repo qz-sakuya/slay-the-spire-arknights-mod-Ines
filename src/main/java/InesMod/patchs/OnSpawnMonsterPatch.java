@@ -25,6 +25,7 @@ import java.util.ArrayList;
 /**
  *  为 power 添加和遗物类似的 onSpawnMonster 回调
  *  监测： 战斗中生成怪物
+ *  对哥布林首领和小黑有额外处理
  */
 public class OnSpawnMonsterPatch {
     @SpirePatch(clz = SpawnMonsterAction.class, method = "update")

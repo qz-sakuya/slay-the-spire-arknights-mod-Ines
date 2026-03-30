@@ -1,6 +1,7 @@
 package InesMod.monsters.Chapter10;
 
 import InesMod.action.ApplyNonStackPowerAction;
+import InesMod.action.ForceWaitAction;
 import InesMod.helpers.LogHelper;
 import InesMod.helpers.PathHelper;
 import InesMod.monsters.AbstractInesMonster;
@@ -29,21 +30,19 @@ public class TouchOfSanguinarch extends AbstractInesMonster {
     int defend;
 
 
-
-
     public TouchOfSanguinarch(float x, float y) {
         super(ID, monsterStrings, EnemyType.NORMAL, 96, 240.0F, 135.0F, x, y);
         setSpine(ID,"enemy_1220_dzoms", 1.75F);
         setWaitTime(0.45F);
         this.state.setAnimation(0, "Idle", true);
 
-        if (AbstractDungeon.ascensionLevel >= 7) {
+        if (ascensionForHp()) {
             setHp(23);
         } else {
             setHp(20);
         }
 
-        if (AbstractDungeon.ascensionLevel >= 2) {
+        if (ascensionForDamage()) {
             this.attack = 11;
         } else {
             this.attack = 9;
@@ -79,13 +78,13 @@ public class TouchOfSanguinarch extends AbstractInesMonster {
         switch (this.nextMove) {
             case 1:
                 addToBot(new ChangeStateAction(this, "ATTACK"));
-                addToBot(new WaitAction(this.waitTime));
+                addToBot(new ForceWaitAction(this.waitTime));
                 addToBot(new DamageAction(AbstractDungeon.player, this.damage.get(0), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
               //  addToBot(new RemoveSpecificPowerAction(this, this, "Vigor")); // 特判：清除活力
                 break;
             case 2:
                 addToBot(new ChangeStateAction(this, "ATTACK"));
-                addToBot(new WaitAction(this.waitTime));
+                addToBot(new ForceWaitAction(this.waitTime));
                 addToBot(new DamageAction(AbstractDungeon.player, this.damage.get(1), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
                 addToBot(new DamageAction(AbstractDungeon.player, this.damage.get(1), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
             //    addToBot(new RemoveSpecificPowerAction(this, this, "Vigor"));

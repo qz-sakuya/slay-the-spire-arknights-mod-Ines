@@ -1,17 +1,19 @@
 package InesMod.monsters.Chapter10;
 
+import InesMod.action.ApplyNonStackPowerAction;
+import InesMod.action.ForceWaitAction;
 import InesMod.helpers.PathHelper;
 import InesMod.monsters.AbstractInesMonster;
-import InesMod.powers.monster.DefenseArtilleryMeterPower;
+import InesMod.powers.monster.HatredPower;
+import InesMod.powers.monster.LivingBlessingPower;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.*;
-import com.megacrit.cardcrawl.actions.utility.WaitAction;
+import com.megacrit.cardcrawl.actions.unique.RemoveDebuffsAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
-import com.megacrit.cardcrawl.powers.AbstractPower;
+import com.megacrit.cardcrawl.powers.RegenerateMonsterPower;
 
 /**
  * 怪物中文名：萨卡兹子裔集恨者
@@ -22,79 +24,84 @@ public class SarkazHeirbearerHatedrinker extends AbstractInesMonster {
     private static final MonsterStrings monsterStrings = CardCrawlGame.languagePack.getMonsterStrings(ID); // 从游戏系统读取本地化资源
 
     int attack;
-    int defend;
 
-
-
+    boolean firstTimeBuff = true;
 
     public SarkazHeirbearerHatedrinker(float x, float y) {
-        super(ID, monsterStrings, EnemyType.NORMAL, 96, 240.0F, 230.0F, x, y);
-        //setSpine(ID,"enemy_1345_tplamb", 1.6F);// TODO
-        setWaitTime(1.1F);
+        super(ID, monsterStrings, EnemyType.ELITE, 96, 240.0F, 325.0F, x, y);
+        setSpine(ID,"enemy_1226_dklord", 1.55F);
+        setWaitTime(1.14F);
         this.state.setAnimation(0, "Idle", true);
 
-        if (AbstractDungeon.ascensionLevel >= 7) {
-            setHp(84);
+        if (ascensionForHp()) {
+            setHp(145);
         } else {
-            setHp(72);
+            setHp(134);
         }
 
-        if (AbstractDungeon.ascensionLevel >= 2) {
-            this.attack = 21;
+        if (ascensionForDamage()) {
+            this.attack = 30;
         } else {
-            this.attack = 18;
+            this.attack = 25;
         }
 
-        if (AbstractDungeon.ascensionLevel >= 17) {
-            this.defend = 21;
-        } else {
-            this.defend = 18;
-        }
 
         this.damage.add(new DamageInfo(this, this.attack, DamageInfo.DamageType.NORMAL));
+        this.damage.add(new DamageInfo(this, (int)(this.attack*1.5), DamageInfo.DamageType.NORMAL));
+
+        this.firstTimeBuff = true;
     }
 
 
 
     public void usePreBattleAction() {
         super.usePreBattleAction();
+
+        addToBot(new ApplyNonStackPowerAction(this, this, new HatredPower(this, 5)));
+        addToBot(new ApplyNonStackPowerAction(this, this, new LivingBlessingPower(this, -1,true)));
     }
 
     protected void getMove(int i) {
-        if(moveHistory.isEmpty() || checkSpecificMove(4,(byte)3)){
+        if(moveHistory.isEmpty() || !checkHaveMoves(3,(byte)3)){
             setMove((byte)3, Intent.BUFF);
-        }
-
-        // 炮击前起防
-        AbstractPower powerToGet = this.getPower(DefenseArtilleryMeterPower.ID);
-        if (AbstractDungeon.ascensionLevel >= 17 && powerToGet instanceof DefenseArtilleryMeterPower && powerToGet.amount == 3) {
-            setMove((byte)2, Intent.DEFEND);
+            return;
         }
 
         if ((i < 70 && !lastTwoMoves((byte)1)) || lastMove((byte)2)) {
             setMove((byte)1, Intent.ATTACK, this.damage.get(0).base);
         } else {
-            setMove((byte)2, Intent.DEFEND);
+            setMove((byte)2, Intent.ATTACK, this.damage.get(1).base);
         }
     }
 
     public void takeTurn() {
         setFastMode();
         switch (this.nextMove) {
-            case 1:
+            case 1: // 攻击
                 addToBot(new ChangeStateAction(this, "ATTACK"));
-                addToBot(new WaitAction(this.waitTime));
-                addToBot(new DamageAction(AbstractDungeon.player, this.damage.get(0), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
+                addToBot(new ForceWaitAction(this.waitTime));
+                addToBot(new DamageAction(AbstractDungeon.player, this.damage.get(0), AbstractGameAction.AttackEffect.SLASH_HEAVY));
                break;
-            case 2:
-                addToBot(new GainBlockAction(this, this.defend));
+            case 2: // 重击
+                addToBot(new ChangeStateAction(this, "ATTACK"));
+                addToBot(new ForceWaitAction(this.waitTime));
+                addToBot(new DamageAction(AbstractDungeon.player, this.damage.get(1), AbstractGameAction.AttackEffect.SLASH_HEAVY));
               break;
-            case 3:
-                // 需要显示“城防炮充能......”
-                AbstractPower powerToGet = this.getPower(DefenseArtilleryMeterPower.ID);
-                if (powerToGet instanceof DefenseArtilleryMeterPower && powerToGet.amount < ((DefenseArtilleryMeterPower) powerToGet).secondAmount) {
-                    addToBot(new ApplyPowerAction(this, this, new DefenseArtilleryMeterPower(this, 1,((DefenseArtilleryMeterPower) powerToGet).secondAmount,((DefenseArtilleryMeterPower) powerToGet).damage), 1));
+            case 3: // 强化
+                // 清除所有debuff，获得再生
+                addToBot(new RemoveDebuffsAction(this));
+
+                int reborn = 2;
+                if (firstTimeBuff){
+                    firstTimeBuff = false;
+                    reborn += 2;
+
+                    if (ascensionForMove()){
+                        reborn += 2;
+                    }
                 }
+
+                addToBot(new ApplyPowerAction(this,this,new RegenerateMonsterPower(this,reborn),reborn));
                 break;
         }
 

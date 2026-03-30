@@ -97,6 +97,9 @@ public abstract class AbstractInesPower extends AbstractPower {
     // 战斗中有新的怪物生成
     public void onSpawnMonster(AbstractMonster monster) {}
 
+    // 战斗中有怪物死亡
+    public void onAnyMonsterDeath(AbstractMonster monster) {}
+
     // 进入damage()后，decrementBlock()之前
     public int OnAttackBeforeBlock(DamageInfo info, int damageAmount, int currentBlock) {return damageAmount;}
     public int OnAttackedBeforeBlock(DamageInfo info, int damageAmount, int currentBlock) {return damageAmount;}

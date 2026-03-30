@@ -7,7 +7,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 
 /**
- * 常规自动打出
+ * 修改遗物计数
  */
 public class UpgradeRelicCounterAction extends AbstractGameAction {
     private AbstractRelic relic;

@@ -1,6 +1,7 @@
 package InesMod.monsters.Chapter10;
 
 import InesMod.action.ApplyNonStackPowerAction;
+import InesMod.action.ForceWaitAction;
 import InesMod.helpers.PathHelper;
 import InesMod.monsters.AbstractInesMonster;
 import InesMod.powers.monster.BouncePower;
@@ -27,23 +28,21 @@ public class SarkazHeirbearerChainCaster extends AbstractInesMonster {
     private static final MonsterStrings monsterStrings = CardCrawlGame.languagePack.getMonsterStrings(ID); // 从游戏系统读取本地化资源
 
     int attack;
-    int defend;
-
 
 
     public SarkazHeirbearerChainCaster(float x, float y) {
-        super(ID, monsterStrings, EnemyType.NORMAL, 96, 240.0F, 325.0F, x, y);
+        super(ID, monsterStrings, EnemyType.ELITE, 96, 240.0F, 325.0F, x, y);
         setSpine(ID,"enemy_1225_dkmage", 1.55F);
-        setWaitTime(1.1F);
+        setWaitTime(1.15F);
         this.state.setAnimation(0, "Idle", true);
 
-        if (AbstractDungeon.ascensionLevel >= 7) {
-            setHp(98);
+        if (ascensionForHp()) {
+            setHp(118);
         } else {
-            setHp(92);
+            setHp(108);
         }
 
-        if (AbstractDungeon.ascensionLevel >= 2) {
+        if (ascensionForDamage()) {
             this.attack = 18;
         } else {
             this.attack = 15;
@@ -75,7 +74,7 @@ public class SarkazHeirbearerChainCaster extends AbstractInesMonster {
         switch (this.nextMove) {
             case 1:
                 addToBot(new ChangeStateAction(this, "ATTACK"));
-                addToBot(new WaitAction(this.waitTime));
+                addToBot(new ForceWaitAction(this.waitTime));
 
                 if (MathUtils.randomBoolean()) {
                     AbstractDungeon.actionManager.addToBottom(new SFXAction("GHOST_ORB_IGNITE_1", 0.3F));
@@ -86,11 +85,11 @@ public class SarkazHeirbearerChainCaster extends AbstractInesMonster {
                 break;
             case 2:
                 addToBot(new ChangeStateAction(this, "ATTACK"));
-                addToBot(new WaitAction(this.waitTime));
+                addToBot(new ForceWaitAction(this.waitTime));
                 // 给予1回合脆弱
                 addToBot(new ApplyPowerAction(AbstractDungeon.player,this,new FrailPower(AbstractDungeon.player,1,true),1));
                 // 进阶：额外给予1回合虚弱
-                if(AbstractDungeon.ascensionLevel>=18){
+                if(ascensionForMove()){
                     addToBot(new ApplyPowerAction(AbstractDungeon.player,this,new WeakPower(AbstractDungeon.player,1,true),1));
                 }
                 break;

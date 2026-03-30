@@ -4,6 +4,7 @@ package InesMod.monsters;
 import InesMod.helpers.LogHelper;
 import InesMod.helpers.PathHelper;
 import com.megacrit.cardcrawl.core.Settings;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
@@ -48,12 +49,13 @@ public abstract class AbstractInesMonster extends AbstractMonster {
     }
 
     public void setFastMode() {
-        this.state.setTimeScale(1.0F);
-        this.waitTime = this.baseWaitTime;
-
         if (Settings.FAST_MODE) {
             this.state.setTimeScale(2.0F);
-            this.waitTime /= 2;
+            this.waitTime = this.baseWaitTime / 2;
+        }
+        else {
+            this.state.setTimeScale(1.0F);
+            this.waitTime = this.baseWaitTime;
         }
     }
 
@@ -67,6 +69,7 @@ public abstract class AbstractInesMonster extends AbstractMonster {
             return false;
         }
         int targetIndex = this.moveHistory.size() - n;
+
         return this.moveHistory.get(targetIndex) == move;
     }
 
@@ -96,10 +99,54 @@ public abstract class AbstractInesMonster extends AbstractMonster {
         }
         for (int i = 0; i < n; i++) {
             int targetIndex = this.moveHistory.size() - 1 - i;
+            if (targetIndex < 0){
+                break;
+            }
             if (this.moveHistory.get(targetIndex) == move) {
                 return true;
             }
         }
         return false;
     }
+
+    // 判定是否触发进阶增强
+    public boolean ascensionForDamage() {
+        if (this.type == EnemyType.NORMAL && AbstractDungeon.ascensionLevel >= 2){
+            return true;
+        }
+        else if (this.type == EnemyType.ELITE && AbstractDungeon.ascensionLevel >= 3){
+            return true;
+        }
+        else if (this.type == EnemyType.BOSS && AbstractDungeon.ascensionLevel >= 4){
+            return true;
+        }
+        return false;
+    }
+
+    public boolean ascensionForHp() {
+        if (this.type == EnemyType.NORMAL && AbstractDungeon.ascensionLevel >= 7){
+            return true;
+        }
+        else if (this.type == EnemyType.ELITE && AbstractDungeon.ascensionLevel >= 8){
+            return true;
+        }
+        else if (this.type == EnemyType.BOSS && AbstractDungeon.ascensionLevel >= 9){
+            return true;
+        }
+        return false;
+    }
+
+    public boolean ascensionForMove() {
+        if (this.type == EnemyType.NORMAL && AbstractDungeon.ascensionLevel >= 17){
+            return true;
+        }
+        else if (this.type == EnemyType.ELITE && AbstractDungeon.ascensionLevel >= 18){
+            return true;
+        }
+        else if (this.type == EnemyType.BOSS && AbstractDungeon.ascensionLevel >= 19){
+            return true;
+        }
+        return false;
+    }
+
 }

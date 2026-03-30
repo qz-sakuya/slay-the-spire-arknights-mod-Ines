@@ -1,6 +1,7 @@
 package InesMod.monsters.Chapter10;
 
 import InesMod.action.ApplyNonStackPowerAction;
+import InesMod.action.ForceWaitAction;
 import InesMod.helpers.LogHelper;
 import InesMod.helpers.PathHelper;
 import InesMod.monsters.AbstractInesMonster;
@@ -26,8 +27,6 @@ public class GiftOfSanguinarch extends AbstractInesMonster {
 
 
     int attack;
-    int defend;
-
 
     public GiftOfSanguinarch(float x, float y) {
         super(ID, monsterStrings, EnemyType.NORMAL, 96, 240.0F, 330.0F, x, y);
@@ -35,19 +34,18 @@ public class GiftOfSanguinarch extends AbstractInesMonster {
         setWaitTime(0.45F);
         this.state.setAnimation(0, "Idle", true);
 
-        if (AbstractDungeon.ascensionLevel >= 7) {
+        if (ascensionForHp()) {
             setHp(45);
         } else {
             setHp(40);
         }
 
-        if (AbstractDungeon.ascensionLevel >= 2) {
+        if (ascensionForDamage()) {
             this.attack = 22;
         } else {
             this.attack = 18;
         }
 
-        this.defend = 0;
 
         this.damage.add(new DamageInfo(this, this.attack, DamageInfo.DamageType.NORMAL));
         this.damage.add(new DamageInfo(this, this.attack/2+1, DamageInfo.DamageType.NORMAL));
@@ -75,13 +73,13 @@ public class GiftOfSanguinarch extends AbstractInesMonster {
         switch (this.nextMove) {
             case 1:
                 addToBot(new ChangeStateAction(this, "ATTACK"));
-                addToBot(new WaitAction(this.waitTime));
+                addToBot(new ForceWaitAction(this.waitTime));
                 addToBot(new DamageAction(AbstractDungeon.player, this.damage.get(0), AbstractGameAction.AttackEffect.BLUNT_LIGHT));
                // addToBot(new RemoveSpecificPowerAction(this, this, "Vigor"));
                 break;
             case 2:
                 addToBot(new ChangeStateAction(this, "ATTACK"));
-                addToBot(new WaitAction(this.waitTime));
+                addToBot(new ForceWaitAction(this.waitTime));
                 addToBot(new DamageAction(AbstractDungeon.player, this.damage.get(1), AbstractGameAction.AttackEffect.BLUNT_LIGHT));
                 addToBot(new DamageAction(AbstractDungeon.player, this.damage.get(1), AbstractGameAction.AttackEffect.BLUNT_LIGHT));
                // addToBot(new RemoveSpecificPowerAction(this, this, "Vigor"));

@@ -1,6 +1,7 @@
 package InesMod.monsters.Chapter10;
 
 import InesMod.action.ApplyNonStackPowerAction;
+import InesMod.action.ForceWaitAction;
 import InesMod.helpers.PathHelper;
 import InesMod.monsters.AbstractInesMonster;
 import InesMod.powers.monster.SanguineInfusionPower;
@@ -32,19 +33,19 @@ public class SarkazHeirbearerASV extends AbstractInesMonster {
         setWaitTime(0.45F);
         this.state.setAnimation(0, "Idle", true);
 
-        if (AbstractDungeon.ascensionLevel >= 7) {
+        if (ascensionForHp()) {
             setHp(104);
         } else {
             setHp(95);
         }
 
-        if (AbstractDungeon.ascensionLevel >= 2) {
+        if (ascensionForDamage()) {
             this.attack = 14;
         } else {
             this.attack = 11;
         }
 
-        if (AbstractDungeon.ascensionLevel >= 17) {
+        if (ascensionForMove()) {
             this.defend = 20;
         } else {
             this.defend = 17;
@@ -65,7 +66,7 @@ public class SarkazHeirbearerASV extends AbstractInesMonster {
     // 第1、2回合不会强化
     protected void getMove(int i) {
         // 第三回合必定强化
-        if (AbstractDungeon.ascensionLevel >= 17 && moveHistory.size() == 2){
+        if (ascensionForMove() && moveHistory.size() == 2){
             setMove((byte)3, Intent.BUFF);
             return;
         }
@@ -91,7 +92,7 @@ public class SarkazHeirbearerASV extends AbstractInesMonster {
                 break;
             case 2: // 攻击
                 addToBot(new ChangeStateAction(this, "ATTACK"));
-                addToBot(new WaitAction(this.waitTime));
+                addToBot(new ForceWaitAction(this.waitTime));
                 addToBot(new DamageAction(AbstractDungeon.player, this.damage.get(0), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
                 break;
             case 3: // 强化

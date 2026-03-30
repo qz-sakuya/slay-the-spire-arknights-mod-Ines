@@ -1,6 +1,7 @@
 package InesMod.monsters.Chapter10;
 
 import InesMod.action.ApplyNonStackPowerAction;
+import InesMod.action.ForceWaitAction;
 import InesMod.helpers.LogHelper;
 import InesMod.helpers.PathHelper;
 import InesMod.monsters.AbstractInesMonster;
@@ -27,26 +28,25 @@ public class SarkazHeirbearerWarrior extends AbstractInesMonster {
     int defend;
 
 
-
     public SarkazHeirbearerWarrior(float x, float y) {
         super(ID, monsterStrings, EnemyType.NORMAL, 96, 240.0F, 270.0F, x, y);
         setSpine(ID,"enemy_1222_dpvt", 1.6F);
-        setWaitTime(1.4F);
+        setWaitTime(1.2F);
         this.state.setAnimation(0, "Idle", true);
 
-        if (AbstractDungeon.ascensionLevel >= 7) {
+        if (ascensionForHp()) {
             setHp(57);
         } else {
             setHp(49);
         }
 
-        if (AbstractDungeon.ascensionLevel >= 2) {
+        if (ascensionForDamage()) {
             this.attack = 21;
         } else {
             this.attack = 18;
         }
 
-        if (AbstractDungeon.ascensionLevel >= 17) {
+        if (ascensionForMove()) {
             this.defend = 17;
         } else {
             this.defend = 15;
@@ -80,7 +80,7 @@ public class SarkazHeirbearerWarrior extends AbstractInesMonster {
         switch (this.nextMove) {
             case 1:
                 addToBot(new ChangeStateAction(this, "ATTACK"));
-                addToBot(new WaitAction(this.waitTime));
+                addToBot(new ForceWaitAction(this.waitTime));
                 addToBot(new DamageAction(AbstractDungeon.player, this.damage.get(0), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
                 break;
             case 2:

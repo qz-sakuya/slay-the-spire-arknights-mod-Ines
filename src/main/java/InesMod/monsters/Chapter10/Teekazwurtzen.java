@@ -1,5 +1,6 @@
 package InesMod.monsters.Chapter10;
 
+import InesMod.action.ForceWaitAction;
 import InesMod.helpers.PathHelper;
 import InesMod.monsters.AbstractInesMonster;
 import InesMod.powers.monster.LivingBlessingPower;
@@ -24,20 +25,19 @@ public class Teekazwurtzen extends AbstractInesMonster {
     int defend;
 
 
-
     public Teekazwurtzen(float x, float y) {
         super(ID, monsterStrings, EnemyType.NORMAL, 96, 240.0F, 230.0F, x, y);
         //setSpine(ID,"enemy_1345_tplamb", 1.6F);// TODO
         // setWaitTime(0.6F);
         this.state.setAnimation(0, "Idle", true);
 
-        if (AbstractDungeon.ascensionLevel >= 7) {
+        if (ascensionForHp()) {
             setHp(49);
         } else {
             setHp(42);
         }
 
-        if (AbstractDungeon.ascensionLevel >= 2) {
+        if (ascensionForDamage()) {
             this.attack = 21;
         } else {
             this.attack = 18;
@@ -73,7 +73,7 @@ public class Teekazwurtzen extends AbstractInesMonster {
         switch (this.nextMove) {
             case 1:
                 addToBot(new ChangeStateAction(this, "ATTACK"));
-                addToBot(new WaitAction(this.waitTime));
+                addToBot(new ForceWaitAction(this.waitTime));
                 addToBot(new DamageAction(AbstractDungeon.player, this.damage.get(0), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
                 break;
             case 2:
