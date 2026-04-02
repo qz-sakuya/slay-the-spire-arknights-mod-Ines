@@ -42,6 +42,9 @@ public class DefenseArtilleryMeterPower extends AbstractInesPower {
 
         this.priority = 0; // 最左侧
 
+        this.isTurnBased = true;
+        this.renderAmountZero = true;
+
         DefenseArtilleryMeterUponManager.setEffect(amount);
     }
 
@@ -64,15 +67,15 @@ public class DefenseArtilleryMeterPower extends AbstractInesPower {
 
 
 
-    @Override // 重载，使得层数为0时也可以绘制数字
-    public void renderAmount(SpriteBatch sb, float x, float y, Color c) {
-        super.renderAmount(sb, x, y, c);
-
-        if (this.amount >= 0) {
-            // 默认白色
-            FontHelper.renderFontRightTopAligned(sb, FontHelper.powerAmountFont, Integer.toString(this.amount), x, y, this.fontScale, c);
-        }
-    }
+//    @Override // 重载，使得层数为0时也可以绘制数字
+//    public void renderAmount(SpriteBatch sb, float x, float y, Color c) {
+//        super.renderAmount(sb, x, y, c);
+//
+//        if (this.amount >= 0) {
+//            // 默认白色
+//            FontHelper.renderFontRightTopAligned(sb, FontHelper.powerAmountFont, Integer.toString(this.amount), x, y, this.fontScale, c);
+//        }
+//    }
 
     @Override
     public void stackPower(int stackAmount) {

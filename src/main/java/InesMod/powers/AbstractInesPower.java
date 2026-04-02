@@ -25,6 +25,9 @@ public abstract class AbstractInesPower extends AbstractPower {
     private static final Map<String, TextureAtlas.AtlasRegion> powerImgCache = new HashMap<>();
     public String[] descriptions;
 
+    // 是否绘制0
+    public boolean renderAmountZero;
+
     // 可选的第二个数字
     public Integer secondAmount = null;
     final Color redColor = new Color(1.0F, 0.0F, 0.0F, 1.0F);
@@ -38,6 +41,8 @@ public abstract class AbstractInesPower extends AbstractPower {
         this.amount = amount; // -1为不可叠加
         this.secondAmount = secondAmount;
         this.descriptions = strings.DESCRIPTIONS;
+
+        this.renderAmountZero = false;
 
         if (!powerImgCache.containsKey(ID)) {
             // 如果当前ID对应的图片未被加载，则进行加载并缓存
@@ -135,10 +140,20 @@ public abstract class AbstractInesPower extends AbstractPower {
 //    }
 
     @Override
-    // 绘制第二个数字 另一种实现（参考stslib）
     public void renderAmount(SpriteBatch sb, float x, float y, Color c) {
         super.renderAmount(sb, x, y, c);
 
+        // 使层数可以绘制0
+        if (this.amount == 0 && this.renderAmountZero) {
+            if (!this.isTurnBased) {
+                this.greenColor.a = c.a;
+                c = this.greenColor;
+            }
+
+            FontHelper.renderFontRightTopAligned(sb, FontHelper.powerAmountFont, Integer.toString(this.amount), x, y, this.fontScale, c);
+        }
+
+        // 绘制第二个数字 另一种实现（参考stslib）
         if (secondAmount != null) {
             // 默认白色
             FontHelper.renderFontRightTopAligned(sb,

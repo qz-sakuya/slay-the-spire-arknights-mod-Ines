@@ -2,16 +2,12 @@ package InesMod.powers.monster;
 
 import InesMod.action.ApplyNonStackPowerAction;
 import InesMod.action.ForceWaitAction;
-import InesMod.action.TryAddFirePowerAction;
 import InesMod.action.TryClearDefenseArtilleryMeterUponAction;
-import InesMod.helpers.LogHelper;
 import InesMod.helpers.PathHelper;
 import InesMod.monsters.Chapter10.Manfred;
 import InesMod.monsters.Chapter10.Teekazwurtzen;
 import InesMod.powers.AbstractInesPower;
-import InesMod.powers.player.InsightPower;
 import InesMod.vfx.DefenseArtilleryFireEffect;
-import InesMod.vfx.DefenseArtilleryMeterUponManager;
 import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
@@ -26,13 +22,9 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
-import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import com.megacrit.cardcrawl.vfx.BorderFlashEffect;
-import com.megacrit.cardcrawl.vfx.combat.ExplosionSmallEffect;
-import com.megacrit.cardcrawl.vfx.combat.VerticalImpactEffect;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 /**
  * 中文名：炮击！
@@ -78,13 +70,18 @@ public class FirePower extends AbstractInesPower {
     @Override
     public void atEndOfTurn(boolean isPlayer) {
         if (isPlayer) {
-            this.onSpecificTrigger();
+            damage();
         }
     }
 
+//    @Override
+//    public void onSpecificTrigger() {
+//        damage();
+//    }
 
-    @Override
-    public void onSpecificTrigger() {
+
+
+    public void damage() {
         ArrayList<AbstractMonster> monsterArrayList = AbstractDungeon.getCurrRoom().monsters.monsters;
 
         this.spreadToNewMonster = false;

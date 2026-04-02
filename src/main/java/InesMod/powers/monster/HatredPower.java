@@ -3,7 +3,6 @@ package InesMod.powers.monster;
 import InesMod.action.SpecificTriggerPowerAction;
 import InesMod.helpers.PathHelper;
 import InesMod.monsters.Chapter10.GiftOfSanguinarch;
-import InesMod.monsters.Chapter10.SarkazHeirbearerWarrior;
 import InesMod.monsters.Chapter10.TouchOfSanguinarch;
 import InesMod.powers.AbstractInesPower;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
@@ -32,7 +31,7 @@ public class HatredPower extends AbstractInesPower {
                 amount,
                 0);
 
-        this.onSpecificTrigger();
+        calculateMonCount();
     }
 
 
@@ -52,11 +51,17 @@ public class HatredPower extends AbstractInesPower {
 
     @Override
     public void atStartOfTurn() {
-        this.onSpecificTrigger();
+        calculateMonCount();
     }
 
     @Override
     public void onSpecificTrigger() {
+        calculateMonCount();
+    }
+
+
+
+    public void calculateMonCount() {
         // 统计新的目标怪物数量
         int monCount = 0;
         for (AbstractMonster mon : (AbstractDungeon.getMonsters()).monsters) {
@@ -76,6 +81,7 @@ public class HatredPower extends AbstractInesPower {
         int newSecondAmount = monCount * amount;
         int strengthToApply = newSecondAmount - secondAmount;
         if (strengthToApply != 0) {
+            flash();
             addToBot(new ApplyPowerAction(owner, owner, new StrengthPower(owner, strengthToApply), strengthToApply));
         }
         secondAmount = newSecondAmount;

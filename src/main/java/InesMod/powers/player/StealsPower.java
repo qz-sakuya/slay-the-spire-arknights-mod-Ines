@@ -30,6 +30,8 @@ public class StealsPower extends AbstractInesPower {
     public static final String ID = PathHelper.nameToId(StealsPower.class.getSimpleName());
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(ID); // 从游戏系统读取本地化资源
 
+    private int strengthPerAmount; // 每层偷取的力量效果，默认为1
+
     private int consumeNum; // 一次偷取中，消耗偷取的层数
     private final Set<AbstractCreature> stolenTarget = new HashSet<>(); // 一次偷取中，已经被偷取的怪物id
 
@@ -45,7 +47,13 @@ public class StealsPower extends AbstractInesPower {
         consumeNum = 0;
         amountBeforeReduce = 0;
 
+        strengthPerAmount = 1;
+
+        this.renderAmountZero = true;
+
         this.priority = 3; // 排在 洞悉（优先级5）及大多数power（优先级默认5）前面
+
+        updateStrengthPerAmount();
     }
 
     @Override
@@ -59,8 +67,28 @@ public class StealsPower extends AbstractInesPower {
     }
 
     @Override
+    public void onSpecificTrigger() {
+        updateStrengthPerAmount();
+    }
+
+    public void updateStrengthPerAmount() {
+        int amount = 1;
+
+        // 如果有 佣兵手段 ，提升力量效果
+        AbstractPower mercenaryTacticsPower = owner.getPower(MercenaryTacticsPower.ID);
+        if (mercenaryTacticsPower != null) {
+            amount += mercenaryTacticsPower.amount;
+        }
+
+        this.strengthPerAmount = amount;
+
+        updateDescription();
+    }
+
+
+    @Override
     public void updateDescription() {
-        this.description = String.format(descriptions[0], 1, 1); // TODO：偷取效果提升后改写
+        this.description = String.format(descriptions[0], strengthPerAmount, strengthPerAmount);
     }
 
     @Override
@@ -107,14 +135,8 @@ public class StealsPower extends AbstractInesPower {
     public void onAfterUseCard(AbstractCard card, UseCardAction action) {
         // LogHelper.info("===StealsPower: onAfterUseCard,当前卡牌id{}, 当前consumeNum{}===",card.cardID,consumeNum);
         if (consumeNum > 0){
-            int strengthToApply = consumeNum;
-
-            // 如果有 佣兵手段 ，提升力量效果
-            AbstractPower mercenaryTacticsPower = owner.getPower(MercenaryTacticsPower.ID);
-            if (mercenaryTacticsPower != null) {
-                mercenaryTacticsPower.flash();
-                strengthToApply += (mercenaryTacticsPower.amount * consumeNum);
-            }
+            updateStrengthPerAmount();
+            int strengthToApply = consumeNum * strengthPerAmount;
 
             // 给自己加一次力量
             addToBot(new ApplyPowerAction(owner, owner, new StrengthPower(owner, strengthToApply), strengthToApply));

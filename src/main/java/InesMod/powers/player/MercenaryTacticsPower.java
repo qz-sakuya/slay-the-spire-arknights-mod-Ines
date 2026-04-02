@@ -1,10 +1,13 @@
 package InesMod.powers.player;
 
+import InesMod.action.DelayToAddAction;
+import InesMod.action.SpecificTriggerPowerAction;
 import InesMod.helpers.PathHelper;
 import InesMod.powers.AbstractInesPower;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.PowerStrings;
+import com.megacrit.cardcrawl.powers.AbstractPower;
 
 /**
  * 中文名：佣兵手段
@@ -21,6 +24,12 @@ public class MercenaryTacticsPower extends AbstractInesPower {
                 owner,
                 PowerType.BUFF,
                 amount);
+
+        // 如果有 偷取 ，触发其描述更新
+        AbstractPower powerToGet = owner.getPower(StealsPower.ID);
+        if (powerToGet != null) {
+            addToBot(new DelayToAddAction(new SpecificTriggerPowerAction(powerToGet)));
+        }
     }
 
 
