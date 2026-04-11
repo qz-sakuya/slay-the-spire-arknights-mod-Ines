@@ -5,9 +5,8 @@ import InesMod.cards.AbstractInesCard;
 import InesMod.characters.Ines;
 import InesMod.helpers.LogHelper;
 import InesMod.helpers.PathHelper;
-import InesMod.vfx.InesAttackEffect;
-import InesMod.vfx.TopSecretOperationEffect1;
-import InesMod.vfx.TopSecretOperationEffect2;
+import InesMod.action.TopSecretOperationAnimateAction1;
+import InesMod.action.TopSecretOperationAnimateAction2;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.*;
@@ -42,18 +41,20 @@ public class TopSecretOperation extends AbstractInesCard {
 
         this.baseDamage = 12;
         this.isMultiDamage = true;
+
+        this.dontUseAttackAnimation = true;
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
 
-        addToBot(new TopSecretOperationEffect1(p));
+        addToBot(new TopSecretOperationAnimateAction1(p));
         addToBot(new SFXAction("ATTACK_HEAVY"));
         addToBot(new VFXAction(p, new CleaveEffect(), 0.08F));
         addToBot(new DamageAllEnemiesAction(p, this.multiDamage, this.damageTypeForTurn, AbstractGameAction.AttackEffect.NONE));
 
 
-        addToBot(new TopSecretOperationEffect2(p));
+        addToBot(new TopSecretOperationAnimateAction2(p));
         addToBot(new SFXAction("ATTACK_HEAVY"));
         addToBot(new VFXAction(p, new CleaveEffect(), 0.08F));
         addToBot(new DamageAllEnemiesAction(p, this.multiDamage, this.damageTypeForTurn, AbstractGameAction.AttackEffect.NONE));

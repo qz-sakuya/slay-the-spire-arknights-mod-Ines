@@ -24,7 +24,7 @@ public class HatredPower extends AbstractInesPower {
 
     public HatredPower(AbstractCreature owner, int amount) {
         super(ID,
-                true,
+                false,
                 powerStrings,
                 owner,
                 PowerType.BUFF,

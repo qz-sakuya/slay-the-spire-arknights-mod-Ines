@@ -29,7 +29,7 @@ public class SarkazHeirbearerWarrior extends AbstractInesMonster {
 
 
     public SarkazHeirbearerWarrior(float x, float y) {
-        super(ID, monsterStrings, EnemyType.NORMAL, 96, 240.0F, 270.0F, x, y);
+        super(ID, false, monsterStrings, EnemyType.NORMAL, 96, 240.0F, 270.0F, x, y);
         setSpine(ID,"enemy_1222_dpvt", 1.6F);
         setWaitTime(1.2F);
         this.state.setAnimation(0, "Idle", true);

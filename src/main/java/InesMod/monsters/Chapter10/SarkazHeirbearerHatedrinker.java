@@ -28,7 +28,7 @@ public class SarkazHeirbearerHatedrinker extends AbstractInesMonster {
     boolean firstTimeBuff = true;
 
     public SarkazHeirbearerHatedrinker(float x, float y) {
-        super(ID, monsterStrings, EnemyType.ELITE, 96, 240.0F, 325.0F, x, y);
+        super(ID, false, monsterStrings, EnemyType.ELITE, 96, 240.0F, 325.0F, x, y);
         setSpine(ID,"enemy_1226_dklord", 1.55F);
         setWaitTime(1.14F);
         this.state.setAnimation(0, "Idle", true);

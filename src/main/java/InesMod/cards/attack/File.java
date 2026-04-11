@@ -2,10 +2,9 @@ package InesMod.cards.attack;
 
 import InesMod.action.FileAction;
 import InesMod.cards.AbstractInesCard;
-import InesMod.cards.status.ShadowWhistle;
 import InesMod.characters.Ines;
 import InesMod.helpers.PathHelper;
-import InesMod.vfx.InesAttackEffect;
+import InesMod.action.InesAttackAnimateAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -31,12 +30,13 @@ public class File extends AbstractInesCard {
         this.damage = this.baseDamage = 8;
         this.magicNumber = this.baseMagicNumber = 2;
 
-
+        this.dontUseAttackAnimation = true;
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        this.addToBot(new InesAttackEffect(p, 1));
+
+        this.addToBot(new InesAttackAnimateAction(p, 1));
         this.addToBot(new FileAction(m, new DamageInfo(p, this.damage, this.damageTypeForTurn), this.magicNumber));
     }
 

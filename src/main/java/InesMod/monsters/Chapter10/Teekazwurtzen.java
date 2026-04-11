@@ -26,7 +26,7 @@ public class Teekazwurtzen extends AbstractInesMonster {
 
 
     public Teekazwurtzen(float x, float y) {
-        super(ID, monsterStrings, EnemyType.NORMAL, 96, 240.0F, 230.0F, x, y);
+        super(ID, false, monsterStrings, EnemyType.NORMAL, 96, 240.0F, 230.0F, x, y);
         //setSpine(ID,"enemy_1345_tplamb", 1.6F);// TODO
         // setWaitTime(0.6F);
         this.state.setAnimation(0, "Idle", true);

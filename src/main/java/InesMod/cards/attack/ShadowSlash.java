@@ -6,7 +6,7 @@ import InesMod.characters.Ines;
 import InesMod.helpers.PathHelper;
 import InesMod.modcore.InesModMain;
 import InesMod.powers.player.StealsPower;
-import InesMod.vfx.InesAttackEffect;
+import InesMod.action.InesAttackAnimateAction;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
@@ -38,6 +38,8 @@ public class ShadowSlash extends AbstractInesCard {
         this.damage = this.baseDamage = 7;
 
         this.consumeSteals = 999;
+
+        this.dontUseAttackAnimation = true;
     }
 
     @Override
@@ -45,7 +47,8 @@ public class ShadowSlash extends AbstractInesCard {
         // this.addToBot(new SFXAction("ATTACK_MAGIC_BEAM_SHORT", 0.7F, true));
         // this.addToBot(new SFXAction("ATTACK_IRON_3", 0.2F));
 
-        this.addToBot(new InesAttackEffect(p, 2));
+
+        this.addToBot(new InesAttackAnimateAction(p, 2));
         this.addToBot(new SFXAction("ATTACK_HEAVY", 0.2F));
         this.addToBot(new ColouredSlashEffect(m,45.0F, 4.0F,InesModMain.MY_COLOR_DARK,InesModMain.MY_COLOR));
 

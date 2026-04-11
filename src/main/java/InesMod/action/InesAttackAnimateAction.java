@@ -1,33 +1,24 @@
-package InesMod.vfx;
+package InesMod.action;
 
 
-import InesMod.action.ForceWaitAction;
 import InesMod.characters.Ines;
 import InesMod.helpers.LogHelper;
-import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.animations.VFXAction;
-import com.megacrit.cardcrawl.actions.utility.WaitAction;
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import com.megacrit.cardcrawl.core.Settings;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.vfx.combat.AnimatedSlashEffect;
 
-public class InesAttackEffect extends AbstractGameAction {
+public class InesAttackAnimateAction extends AbstractGameAction {
     public final int type;
     public float delay = 0.0F;
 
 
 
-    public InesAttackEffect(AbstractCreature source, int type, float delay, float delayTimeScale) {
+    public InesAttackAnimateAction(AbstractCreature source, int type, float delay, float delayTimeScale) {
         this.source = source;
         this.type = type;
         this.delay = delay / delayTimeScale;
     }
 
-    public InesAttackEffect(AbstractCreature source, int type, float delayTimeScale) {
+    public InesAttackAnimateAction(AbstractCreature source, int type, float delayTimeScale) {
         this(source, type, 0, delayTimeScale);
 
         if (source instanceof Ines) {
@@ -35,7 +26,7 @@ public class InesAttackEffect extends AbstractGameAction {
         }
     }
 
-    public InesAttackEffect(AbstractCreature source, int type) {
+    public InesAttackAnimateAction(AbstractCreature source, int type) {
         this(source, type, 1F);
     }
 

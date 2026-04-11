@@ -4,6 +4,7 @@ package InesMod.characters;
 // TODO：加入游戏结束时的neow文本（心脏，与考虑额外结局），参考萃香mod
 // TODO：卡牌百科中显示部分卡图来源
 
+import InesMod.cards.AbstractInesCard;
 import InesMod.cards.attack.ShadowAmbush;
 import InesMod.cards.attack.Strike;
 import InesMod.cards.skill.Defend;
@@ -29,9 +30,11 @@ import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.ScreenShake;
 import com.megacrit.cardcrawl.localization.CharacterStrings;
+import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.screens.CharSelectInfo;
+
 import java.util.ArrayList;
 
 
@@ -64,6 +67,8 @@ public class Ines extends CustomPlayer
     // 人物的本地化文本，如卡牌的本地化文本一样，如何书写见下
     private static final CharacterStrings characterStrings = CardCrawlGame.languagePack.getCharacterString("InesMod:Ines");
 
+
+    private boolean dontUseAttackAnimation = false;
 
     // ---自定义全局变量---
 
@@ -167,9 +172,13 @@ public class Ines extends CustomPlayer
     }
 
 
+
     @Override
     public void useFastAttackAnimation() {
-        playAttackAnimation(0);
+        if (!dontUseAttackAnimation){
+            playAttackAnimation(0);
+        }
+        dontUseAttackAnimation = false;
     }
 
 
@@ -358,7 +367,7 @@ public class Ines extends CustomPlayer
     }
 
 
-    // 重载战斗前触发函数，加入重置洞悉条件计数为0的逻辑，以及重置其他统计信息
+    // 重写战斗前触发函数，加入重置洞悉条件计数为0的逻辑，以及重置其他统计信息
     @Override
     public void applyStartOfCombatPreDrawLogic() {
         for (AbstractRelic r : this.relics) {
@@ -373,7 +382,7 @@ public class Ines extends CustomPlayer
         exhaustCount = 0;
     }
 
-    // 重载此函数，以统计回合结束状态
+    // 重写此函数，以统计回合结束状态
     @Override
     public void applyEndOfTurnTriggers() {
         for (AbstractPower p : this.powers) {
@@ -386,7 +395,7 @@ public class Ines extends CustomPlayer
         this.inEndTurnPeriod = true;
     }
 
-    // 重载此函数，以统计回合结束状态
+    // 重写此函数，以统计回合结束状态
     @Override
     public void applyStartOfTurnPowers() {
         for(AbstractPower p : this.powers) {
@@ -401,5 +410,17 @@ public class Ines extends CustomPlayer
     public void onExhaust(AbstractCard c){
         // 统计一次战斗中的消耗数
         exhaustCount += 1;
+    }
+
+
+    // 重写此函数，以支持指定攻击动画
+    @Override
+    public void useCard(AbstractCard c, AbstractMonster monster, int energyOnUse) {
+        if (c.type == AbstractCard.CardType.ATTACK
+                && c instanceof AbstractInesCard) {
+            this.dontUseAttackAnimation = ((AbstractInesCard) c).dontUseAttackAnimation;
+        }
+
+        super.useCard(c, monster, energyOnUse);
     }
 }

@@ -13,6 +13,7 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 
 public abstract class AbstractInesCard extends CustomCard {
     public int consumeSteals; // 此牌消耗偷取的层数
+    public boolean dontUseAttackAnimation; // 禁用自动攻击动画
 
     public CardGroup.CardGroupType lastAddedTo; // 上次加入到的 CardGroup
 
@@ -28,6 +29,7 @@ public abstract class AbstractInesCard extends CustomCard {
                 color, RARITY, TARGET);
 
         consumeSteals = 1;
+        dontUseAttackAnimation = false;
     }
 
 

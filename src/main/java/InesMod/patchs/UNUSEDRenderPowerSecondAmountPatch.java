@@ -20,7 +20,7 @@ import com.badlogic.gdx.graphics.Color;
 /**
  *  给 renderPowerIcons 方法进行patch
  *  使其绘制第二个数字
- *  已弃用，改为直接重载renderAmount
+ *  已弃用，改为直接重写renderAmount
  */
 public class UNUSEDRenderPowerSecondAmountPatch {
 

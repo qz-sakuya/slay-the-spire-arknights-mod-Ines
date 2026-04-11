@@ -30,7 +30,7 @@ public class SarkazHeirbearerArtificer extends AbstractInesMonster {
 
 
     public SarkazHeirbearerArtificer(float x, float y) {
-        super(ID, monsterStrings, EnemyType.NORMAL, 96, 240.0F, 270.0F, x, y);
+        super(ID, false, monsterStrings, EnemyType.NORMAL, 96, 240.0F, 270.0F, x, y);
         setSpine(ID,"enemy_1223_dmech", 1.62F);
         setWaitTime(0.6F);
         this.state.setAnimation(0, "Idle", true);

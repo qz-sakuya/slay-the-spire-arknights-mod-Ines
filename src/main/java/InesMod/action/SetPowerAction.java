@@ -109,7 +109,7 @@ public class SetPowerAction extends AbstractGameAction {
                 for(AbstractPower p : this.target.powers) {
                     if (p.ID.equals(this.powerToApply.ID) && !p.ID.equals("Night Terror")) {
 
-                        // 直接赋值，但保留对于stackPower的调用（便于触发重载的stackPower）
+                        // 直接赋值，但保留对于stackPower的调用（便于触发重写的stackPower）
                         p.amount = this.amount;
                         p.stackPower(0);
 

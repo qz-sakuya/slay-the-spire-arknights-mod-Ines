@@ -1,10 +1,10 @@
 package InesMod.cards.attack;
 
+import InesMod.action.InesAttackAnimateAction;
 import InesMod.action.ResetOnTheBrinkAction;
 import InesMod.cards.AbstractInesCard;
 import InesMod.characters.Ines;
 import InesMod.helpers.PathHelper;
-import InesMod.vfx.InesAttackEffect;
 import InesMod.vfx.OnTheBrinkEffect;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
@@ -40,10 +40,13 @@ public class OnTheBrink extends AbstractInesCard {
                 Ines.Enums.INES_CARD);
         this.damage = this.baseDamage = initDamage;
         this.magicNumber = this.baseMagicNumber = 0;
+
+
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
+
         addToBot(new VFXAction(new OnTheBrinkEffect(m.hb.cX, m.hb.cY,400f * Settings.scale), 0.4F));
         addToBot(new SFXAction("ATTACK_HEAVY"));
         addToBot(new DamageAction(m, new DamageInfo(p, damage, DamageType.NORMAL), AbstractGameAction.AttackEffect.SLASH_VERTICAL));

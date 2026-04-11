@@ -67,7 +67,7 @@ public class DefenseArtilleryMeterPower extends AbstractInesPower {
 
 
 
-//    @Override // 重载，使得层数为0时也可以绘制数字
+//    @Override // 重写，使得层数为0时也可以绘制数字
 //    public void renderAmount(SpriteBatch sb, float x, float y, Color c) {
 //        super.renderAmount(sb, x, y, c);
 //

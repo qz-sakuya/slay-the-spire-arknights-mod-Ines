@@ -5,6 +5,7 @@ import InesMod.helpers.LogHelper;
 import InesMod.helpers.PathHelper;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
@@ -13,6 +14,7 @@ public abstract class AbstractInesMonster extends AbstractMonster {
     public float waitTime;
 
     public AbstractInesMonster(String ID,
+                               boolean useTmpArt,
                                MonsterStrings strings,
                                AbstractMonster.EnemyType type,
                                int health,
@@ -23,15 +25,23 @@ public abstract class AbstractInesMonster extends AbstractMonster {
         super(strings.NAME, ID, health, 0.0F, 0.0F, hb_width, hb_height, null, x, y);
         this.type = type;
 
-        // 设置缺省动画资源
-        loadAnimation("InesModResources/model/monster/test/enemy_1345_tplamb.atlas",
-                "InesModResources/model/monster/test/enemy_1345_tplamb.json",
-                1.6F);
+
+        if (useTmpArt){
+            setTestSpine();
+        }
 
         setWaitTime(0.45F);
-
-        this.flipHorizontal = true;  // 动画轴对称
     }
+
+    public void setImg(String ID, String imgFullName) {
+        String monsterName = PathHelper.idToName(ID);
+        LogHelper.info("===InesMod:AbstractInesMonster:setImg, 怪物名称：{}===",monsterName);
+
+        String imgUrl = "InesModResources/model/monster/" + monsterName + '/' + imgFullName;
+
+        this.img = ImageMaster.loadImage(imgUrl);
+    }
+
 
     public void setSpine(String ID, String fileName, float divScale) {
         String monsterName = PathHelper.idToName(ID);
@@ -43,6 +53,18 @@ public abstract class AbstractInesMonster extends AbstractMonster {
         this.flipHorizontal = true;
     }
 
+
+    // 设置缺省动画资源
+    public void setTestSpine() {
+        loadAnimation("InesModResources/model/monster/test/enemy_1345_tplamb.atlas",
+                "InesModResources/model/monster/test/enemy_1345_tplamb.json",
+                1.6F);
+
+        this.flipHorizontal = true;
+    }
+
+
+
     public void setWaitTime(float time) {
         this.baseWaitTime = time;
         this.setFastMode();
@@ -50,11 +72,15 @@ public abstract class AbstractInesMonster extends AbstractMonster {
 
     public void setFastMode() {
         if (Settings.FAST_MODE) {
-            this.state.setTimeScale(2.0F);
+            if (this.state != null) {
+                this.state.setTimeScale(2.0F);
+            }
             this.waitTime = this.baseWaitTime / 2;
         }
         else {
-            this.state.setTimeScale(1.0F);
+            if (this.state != null) {
+                this.state.setTimeScale(1.0F);
+            }
             this.waitTime = this.baseWaitTime;
         }
     }

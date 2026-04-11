@@ -29,7 +29,7 @@ public class GiftOfSanguinarch extends AbstractInesMonster {
     int attack;
 
     public GiftOfSanguinarch(float x, float y) {
-        super(ID, monsterStrings, EnemyType.NORMAL, 96, 240.0F, 330.0F, x, y);
+        super(ID, false, monsterStrings, EnemyType.NORMAL, 96, 240.0F, 330.0F, x, y);
         setSpine(ID,"enemy_1221_dzomg", 1.8F);
         setWaitTime(0.45F);
         this.state.setAnimation(0, "Idle", true);

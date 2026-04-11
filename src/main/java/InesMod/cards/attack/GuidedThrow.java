@@ -1,6 +1,8 @@
 package InesMod.cards.attack;
 
+import InesMod.action.ForceWaitAction;
 import InesMod.action.GuidedThrowAction;
+import InesMod.action.InesAttackAnimateAction;
 import InesMod.cards.AbstractInesCard;
 import InesMod.characters.Ines;
 import InesMod.helpers.PathHelper;
@@ -28,6 +30,7 @@ public class GuidedThrow extends AbstractInesCard {
                 Ines.Enums.INES_CARD);
         this.baseDamage = 8;
         this.isMultiDamage = true;
+
     }
 
     @Override
@@ -39,7 +42,9 @@ public class GuidedThrow extends AbstractInesCard {
             }
         }
         this.consumeSteals = count;
-        addToBot(new GuidedThrowAction(p, this.multiDamage, this.damageTypeForTurn));
+
+        this.addToBot(new ForceWaitAction(0.2F));
+        this.addToBot(new GuidedThrowAction(p, this.multiDamage, this.damageTypeForTurn));
     }
 
 

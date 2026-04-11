@@ -1,14 +1,12 @@
-package InesMod.vfx;
+package InesMod.action;
 
 
-import InesMod.action.ForceWaitAction;
 import InesMod.characters.Ines;
-import InesMod.helpers.LogHelper;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 
-public class TopSecretOperationEffect2 extends AbstractGameAction {
-    public TopSecretOperationEffect2(AbstractCreature source) {
+public class TopSecretOperationAnimateAction2 extends AbstractGameAction {
+    public TopSecretOperationAnimateAction2(AbstractCreature source) {
         this.source = source;
     }
 

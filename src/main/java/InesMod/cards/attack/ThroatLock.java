@@ -4,7 +4,7 @@ import InesMod.cards.AbstractInesCard;
 import InesMod.characters.Ines;
 import InesMod.helpers.PathHelper;
 import InesMod.powers.player.InvisibilityPower;
-import InesMod.vfx.InesAttackEffect;
+import InesMod.action.InesAttackAnimateAction;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
@@ -34,11 +34,14 @@ public class ThroatLock extends AbstractInesCard {
         this.damage = this.baseDamage = 11;
 
         this.exhaust = false;
+
+        this.dontUseAttackAnimation = true;
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        this.addToBot(new InesAttackEffect(p, 1));
+
+        this.addToBot(new InesAttackAnimateAction(p, 1));
         this.addToBot(new DamageAction(m, new DamageInfo(p, damage, DamageType.NORMAL), AbstractGameAction.AttackEffect.BLUNT_HEAVY));
 
         // 如果不处于隐匿，消耗
