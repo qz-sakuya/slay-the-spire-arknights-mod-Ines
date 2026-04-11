@@ -4,14 +4,23 @@ import InesMod.action.ForceWaitAction;
 import InesMod.helpers.PathHelper;
 import InesMod.monsters.AbstractInesMonster;
 import InesMod.powers.monster.LivingBlessingPower;
+import InesMod.powers.monster.NewBranchesPower;
+import InesMod.vfx.TeekazwurtzenLaserEffect;
+import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.*;
+import com.megacrit.cardcrawl.actions.utility.SFXAction;
 import com.megacrit.cardcrawl.actions.utility.WaitAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
+import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
+import com.megacrit.cardcrawl.vfx.BorderFlashEffect;
+import com.megacrit.cardcrawl.vfx.combat.SmallLaserEffect;
 
 /**
  * 怪物中文名：提卡兹之根
@@ -26,27 +35,21 @@ public class Teekazwurtzen extends AbstractInesMonster {
 
 
     public Teekazwurtzen(float x, float y) {
-        super(ID, false, monsterStrings, EnemyType.NORMAL, 96, 240.0F, 230.0F, x, y);
-        //setSpine(ID,"enemy_1345_tplamb", 1.6F);// TODO
-        // setWaitTime(0.6F);
-        this.state.setAnimation(0, "Idle", true);
+        super(ID, false, monsterStrings, EnemyType.NORMAL, 96, 180.0F, 180.0F, x, y);
+        setImg(ID,"Teekazwurtzen.png");
+        setWaitTime(0.0F);
+
 
         if (ascensionForHp()) {
-            setHp(49);
+            setHp(55);
         } else {
-            setHp(42);
+            setHp(50);
         }
 
         if (ascensionForDamage()) {
-            this.attack = 21;
+            this.attack = 12;
         } else {
-            this.attack = 18;
-        }
-
-        if (AbstractDungeon.ascensionLevel >= 17) {
-            this.defend = 17;
-        } else {
-            this.defend = 15;
+            this.attack = 10;
         }
 
         this.damage.add(new DamageInfo(this, this.attack, DamageInfo.DamageType.NORMAL));
@@ -57,28 +60,28 @@ public class Teekazwurtzen extends AbstractInesMonster {
     public void usePreBattleAction() {
         super.usePreBattleAction();
 
-        addToBot(new ApplyPowerAction(this, this, new LivingBlessingPower(this, -1,false), -1));
+        addToBot(new ApplyPowerAction(this, this, new NewBranchesPower(this, -1), -1));
     }
 
     protected void getMove(int i) {
-        if ((i < 70 && !lastTwoMoves((byte)1)) || lastMove((byte)2)) {
-            setMove((byte)1, Intent.ATTACK, this.damage.get(0).base);
-        } else {
-            setMove((byte)2, Intent.DEFEND);
-        }
+        setMove((byte)1, Intent.ATTACK, this.damage.get(0).base);
     }
 
     public void takeTurn() {
         setFastMode();
         switch (this.nextMove) {
             case 1:
-                addToBot(new ChangeStateAction(this, "ATTACK"));
-                addToBot(new ForceWaitAction(this.waitTime));
-                addToBot(new DamageAction(AbstractDungeon.player, this.damage.get(0), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
-                break;
-            case 2:
-                addToBot(new GainBlockAction(this, this.defend));
-
+                // 参考三柱的动画
+                AbstractDungeon.actionManager.addToBottom(new ChangeStateAction(this, "ATTACK"));
+                AbstractDungeon.actionManager.addToBottom(new SFXAction("ATTACK_FIRE", 0.5F));
+                AbstractDungeon.actionManager.addToBottom(new VFXAction(new BorderFlashEffect(Color.SKY)));
+                if (Settings.FAST_MODE) {
+                    AbstractDungeon.actionManager.addToBottom(new VFXAction(new TeekazwurtzenLaserEffect(AbstractDungeon.player.hb.cX, AbstractDungeon.player.hb.cY, this.hb.cX, this.hb.cY), 0.1F));
+                }
+                else {
+                    AbstractDungeon.actionManager.addToBottom(new VFXAction(new TeekazwurtzenLaserEffect(AbstractDungeon.player.hb.cX, AbstractDungeon.player.hb.cY, this.hb.cX, this.hb.cY), 0.3F));
+                }
+                addToBot(new DamageAction(AbstractDungeon.player, this.damage.get(0), AbstractGameAction.AttackEffect.NONE, Settings.FAST_MODE));
                 break;
         }
 
@@ -86,12 +89,6 @@ public class Teekazwurtzen extends AbstractInesMonster {
     }
 
     public void changeState(String stateName) {
-        switch (stateName) {
-            case "ATTACK":
-                this.state.setAnimation(0, "Attack", false);
-                this.state.addAnimation(0, "Idle", true, 0.0F);
-                break;
-        }
     }
 
     public void die() {

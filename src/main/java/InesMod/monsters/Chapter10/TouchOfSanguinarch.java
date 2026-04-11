@@ -31,7 +31,7 @@ public class TouchOfSanguinarch extends AbstractInesMonster {
 
 
     public TouchOfSanguinarch(float x, float y) {
-        super(ID, false, monsterStrings, EnemyType.NORMAL, 96, 240.0F, 135.0F, x, y);
+        super(ID, false, monsterStrings, EnemyType.NORMAL, 96, 180.0F, 135.0F, x, y);
         setSpine(ID,"enemy_1220_dzoms", 1.75F);
         setWaitTime(0.45F);
         this.state.setAnimation(0, "Idle", true);
