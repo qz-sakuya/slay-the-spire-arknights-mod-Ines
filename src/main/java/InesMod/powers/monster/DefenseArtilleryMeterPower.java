@@ -30,6 +30,8 @@ public class DefenseArtilleryMeterPower extends AbstractInesPower {
 
     public final int damage;
 
+    public boolean notAddThisTurn = false;
+
     public DefenseArtilleryMeterPower(AbstractCreature owner, int amount, int secondAmount, int damage) {
         super(ID,
                 false,
@@ -59,10 +61,12 @@ public class DefenseArtilleryMeterPower extends AbstractInesPower {
 
     @Override
     public void atEndOfTurn(boolean isPlayer) {
-        if (amount < secondAmount) {
+        if (!notAddThisTurn && amount < secondAmount) {
             addToBot(new ApplyPowerAction(owner, owner, this,1));
         }
         addToBot(new TryAddFirePowerAction(owner, damage));
+
+        notAddThisTurn = false;
     }
 
 
@@ -77,6 +81,7 @@ public class DefenseArtilleryMeterPower extends AbstractInesPower {
 //        }
 //    }
 
+    // 重写，以更新动画
     @Override
     public void stackPower(int stackAmount) {
         super.stackPower(stackAmount);

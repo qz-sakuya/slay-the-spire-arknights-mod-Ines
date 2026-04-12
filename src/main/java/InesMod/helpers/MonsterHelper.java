@@ -94,10 +94,15 @@ public class MonsterHelper {
                 }
         );
 
-        BaseMod.addBoss("InesMod:Chapter10",
-                "C10_B1_MFLD",
+        addBossAndEncounter("C10_B1_MFLD", "InesMod:Chapter10",
                 "InesModResources/img/dungeon/chapter10/C10_Boss_Icon.png",
-                "InesModResources/img/dungeon/chapter10/C10_Boss_Icon_O.png");
+                "InesModResources/img/dungeon/chapter10/C10_Boss_Icon_O.png",
+                new AbstractMonster[] {
+                        new SarkazHeirbearerWarrior(-400.0F, 0.0F),
+                        new SarkazHeirbearerWarrior(-150.0F, 0.0F),
+                        new Manfred(150.0F, 0.0F)
+                }
+        );
     }
 
 
@@ -107,12 +112,18 @@ public class MonsterHelper {
 
     private static void addMonsterAndEncounter(String monsterID, String dungeonID, boolean isElite, AbstractMonster[] monsters, float weight) {
         BaseMod.addMonster(monsterID, monsterID, () -> new MonsterGroup(monsters));
+
         if (isElite) {
             BaseMod.addEliteEncounter(dungeonID, new MonsterInfo(monsterID, weight));
         }
         else {
             BaseMod.addMonsterEncounter(dungeonID, new MonsterInfo(monsterID, weight));
         }
+    }
 
+    private static void addBossAndEncounter(String monsterID, String dungeonID, String mapIcon, String mapIconOutline, AbstractMonster[] monsters) {
+        BaseMod.addMonster(monsterID, monsterID, () -> new MonsterGroup(monsters));
+
+        BaseMod.addBoss(dungeonID, monsterID, mapIcon, mapIconOutline);
     }
 }

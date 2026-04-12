@@ -3,11 +3,14 @@ package InesMod.powers.monster;
 import InesMod.cards.special.Counter;
 import InesMod.helpers.PathHelper;
 import InesMod.powers.AbstractInesPower;
+import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.actions.common.MakeTempCardInDrawPileAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 
 /**
@@ -24,38 +27,61 @@ public class MilitaryTrainingPower extends AbstractInesPower {
     int invalidTurn = 0;
     int toInvalidTurn;
 
+    int damageForCard = 1;
+
     public MilitaryTrainingPower(AbstractCreature owner, int amount, int toInvalidTurn) {
         super(ID,
-                true,
+                false,
                 powerStrings,
                 owner,
                 PowerType.BUFF,
                 amount); // 此power不可叠加
         this.toInvalidTurn = toInvalidTurn;
+
+        this.priority = 9000; // 排在易伤等的右侧
+
+        updateDescription();
     }
 
 
     @Override
-    public float atDamageFinalReceive(float damage, DamageInfo.DamageType type) {
+    public float atDamageFinalReceive(float damage, DamageInfo.DamageType type)  {
         if (invalidTurn > 0) {
             return damage;
         }
 
+        // 减免伤害
         float newDamage = (float) (damage * 0.4);
-        int damageChange = MathUtils.floor(damage - newDamage);
+
+        int damageChange = Math.round(damage - newDamage); // 四舍五入
         if (damageChange < 1) {
             damageChange = 1;
         }
-
-        // 生成一张 回击
-        int damageForCard = damageChange; // 向下取整
-        Counter newCard = new Counter();
-        newCard.baseDamage = damageForCard;
-        newCard.damage = newCard.baseDamage;
-        addToBot(new MakeTempCardInDrawPileAction(newCard,1,true,true));
+        this.damageForCard = damageChange;
 
         return newDamage;
     }
+
+
+    // 仅生成 回击
+    @Override
+    public int onAttackedToChangeDamage(DamageInfo info, int damage)  {
+        if (invalidTurn > 0) {
+            return damage;
+        }
+
+
+        // 生成一张 回击
+        Counter newCard = new Counter();
+        newCard.baseDamage =  this.damageForCard;
+        newCard.damage = newCard.baseDamage;
+        addToBot(new MakeTempCardInDrawPileAction(newCard,1,true,true));
+
+        return damage;
+    }
+
+
+
 
     @Override
     public void atEndOfRound() {
@@ -79,10 +105,25 @@ public class MilitaryTrainingPower extends AbstractInesPower {
         updateDescription();
     }
 
+    public void clearInvalidTurn() {
+        invalidTurn = 0;
+    }
+
     public void setToInvalidTurn(int amt) {
         this.toInvalidTurn = amt;
         updateDescription();
     }
+
+    @Override // 重写，使得绘制失效回合数（红色）
+    public void renderAmount(SpriteBatch sb, float x, float y, Color c) {
+        if (this.invalidTurn > 0) {
+            this.redColor.a = c.a;
+            c = this.redColor;
+            FontHelper.renderFontRightTopAligned(sb, FontHelper.powerAmountFont, Integer.toString(this.invalidTurn), x, y, this.fontScale, c);
+        }
+    }
+
+
 
     @Override
     public void updateDescription() {
@@ -90,7 +131,7 @@ public class MilitaryTrainingPower extends AbstractInesPower {
             this.description = descriptions[0] + String.format(descriptions[1], this.toInvalidTurn);
         }
         else {
-            this.description = descriptions[0] + String.format(descriptions[0] + descriptions[2], this.invalidTurn);
+            this.description = descriptions[0] + String.format(descriptions[2], this.invalidTurn);
         }
     }
 }

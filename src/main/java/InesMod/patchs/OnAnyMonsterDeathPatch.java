@@ -17,8 +17,8 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 
 /**
- *  为 power 和遗物添加 OnAnyMonsterDeathPatch 回调
- *  监测： 任何怪物死亡
+ *  为 power 添加 OnAnyMonsterDeathPatch 回调
+ *  使任何单位可以监测任何怪物死亡
  *  对觉醒者和小黑有额外处理
  */
 public class OnAnyMonsterDeathPatch {
@@ -33,7 +33,7 @@ public class OnAnyMonsterDeathPatch {
         }
     }
 
-    @SpirePatch(clz = Darkling.class, method = "damage") // 拦截构造过程
+    @SpirePatch(clz = Darkling.class, method = "damage")
     public static class Fun2 {
         @SpireInsertPatch(rloc = 1)
         public static void Insertfix(Darkling __instance, DamageInfo info) {
@@ -43,7 +43,7 @@ public class OnAnyMonsterDeathPatch {
         }
     }
 
-    @SpirePatch(clz = AwakenedOne.class, method = "damage") // 拦截构造过程
+    @SpirePatch(clz = AwakenedOne.class, method = "damage")
     public static class Fun3 {
         @SpireInsertPatch(rloc = 1)
         public static void Insertfix(AwakenedOne __instance, DamageInfo info) {
@@ -70,10 +70,6 @@ public class OnAnyMonsterDeathPatch {
             }
         }
 
-        for (AbstractRelic r : AbstractDungeon.player.relics) {
-            if (r instanceof AbstractInesRelic){
-                ((AbstractInesRelic) r).onAnyMonsterDeath(m);
-            }
-        }
+
     }
 }

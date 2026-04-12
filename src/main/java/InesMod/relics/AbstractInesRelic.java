@@ -72,7 +72,6 @@ public abstract class AbstractInesRelic extends CustomRelic {
 
     // ===自定义回调===
 
-    public void onAnyMonsterDeath(AbstractMonster monster) {}
 
     // 进入damage()后，decrementBlock()之前
     public int OnAttackBeforeBlock(DamageInfo info, int damageAmount, int currentBlock) {return damageAmount;}

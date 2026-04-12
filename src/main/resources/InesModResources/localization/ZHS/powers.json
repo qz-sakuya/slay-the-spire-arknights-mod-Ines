@@ -250,10 +250,10 @@
       "在你的回合结束时，受到 #b%d 点伤害。"
     ]
   },
-  "InesMod:FocusPower": {
+  "InesMod:ManfredFocusPower": {
     "NAME": "专注",
     "DESCRIPTIONS": [
-      "攻击对你造成伤害时，获得 #b%d 点力量，否则失去 #b%d 点力量（最多降至 #b0 ）。"
+      "攻击如果对你造成伤害，获得 #b%d 点力量，否则失去 #b%d 点力量（最多降至0）。"
     ]
   },
   "InesMod:HatredPower": {
@@ -267,6 +267,12 @@
     "NAME": "枯木新枝",
     "DESCRIPTIONS": [
       "攻击时，使曼弗雷德获得 #b1 点 #y城防炮充能 。自身不会受到 #y城防炮 伤害。"
+    ]
+  },
+  "InesMod:UnyieldingPower": {
+    "NAME": "不屈",
+    "DESCRIPTIONS": [
+      "首次倒下时重生，并立即准备释放 #y炮击！ "
     ]
   },
   "InesMod:SolidPower": {

@@ -17,6 +17,7 @@ public class RelicPatch {
     public static class RelicListPatch{
         @SpirePostfixPatch
         public static void Postfix(AbstractDungeon _inst){
+            // LogHelper.info("===RelicListPatch：Postfix===");
             if(AbstractDungeon.player instanceof Ines){
                 AbstractDungeon.shopRelicPool.remove(OrangePellets.ID);
                 AbstractDungeon.rareRelicPool.remove(DeadBranch.ID);

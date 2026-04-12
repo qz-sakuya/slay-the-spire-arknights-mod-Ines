@@ -1,9 +1,6 @@
 package InesMod.action;
 
-import InesMod.modcore.InesModMain;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.actions.utility.WaitAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -13,15 +10,17 @@ import com.megacrit.cardcrawl.vfx.combat.FlashAtkImgEffect;
 /**
  * 锉刀 的伤害效果
  * 判断目标是否有格挡
+ *
+ * 已弃用
  */
-public class FileAction extends AbstractGameAction {
+public class UNUSEDFileAction extends AbstractGameAction {
     private DamageInfo info;
     private static final float DURATION = 0.01F;
     private static final float POST_ATTACK_WAIT_DUR = 0.1F;
     private AbstractMonster m;
     private int magicNumber;
 
-    public FileAction(AbstractMonster target, DamageInfo info, int magicNumber) {
+    public UNUSEDFileAction(AbstractMonster target, DamageInfo info, int magicNumber) {
         this.info = info;
         setValues(target, info);
         this.m = target;

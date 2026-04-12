@@ -85,6 +85,21 @@ public abstract class AbstractInesMonster extends AbstractMonster {
         }
     }
 
+    public void setFastModeTo(boolean fastMode) {
+        if (fastMode) {
+            if (this.state != null) {
+                this.state.setTimeScale(2.0F);
+            }
+            this.waitTime = this.baseWaitTime / 2;
+        }
+        else {
+            if (this.state != null) {
+                this.state.setTimeScale(1.0F);
+            }
+            this.waitTime = this.baseWaitTime;
+        }
+    }
+
     // 查找历史记录中往前数第n个移动记录是否与指定move相同
     // n >= 1
     protected boolean checkSpecificMove(int n, byte move) {

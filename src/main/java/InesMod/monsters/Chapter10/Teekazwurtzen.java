@@ -35,7 +35,7 @@ public class Teekazwurtzen extends AbstractInesMonster {
 
 
     public Teekazwurtzen(float x, float y) {
-        super(ID, false, monsterStrings, EnemyType.NORMAL, 96, 180.0F, 180.0F, x, y);
+        super(ID, false, monsterStrings, EnemyType.NORMAL, 96, 150.0F, 180.0F, x, y);
         setImg(ID,"Teekazwurtzen.png");
         setWaitTime(0.0F);
 
@@ -89,11 +89,5 @@ public class Teekazwurtzen extends AbstractInesMonster {
     }
 
     public void changeState(String stateName) {
-    }
-
-    public void die() {
-        this.state.setTimeScale(1.0F);
-        this.state.setAnimation(0, "Die", false);
-        super.die();
     }
 }

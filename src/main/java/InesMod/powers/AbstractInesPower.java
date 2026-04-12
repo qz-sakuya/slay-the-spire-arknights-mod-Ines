@@ -30,8 +30,9 @@ public abstract class AbstractInesPower extends AbstractPower {
 
     // 可选的第二个数字
     public Integer secondAmount = null;
-    final Color redColor = new Color(1.0F, 0.0F, 0.0F, 1.0F);
-    final Color greenColor = new Color(0.0F, 1.0F, 0.0F, 1.0F);
+
+    protected final Color redColor = new Color(1.0F, 0.0F, 0.0F, 1.0F);
+    protected final Color greenColor = new Color(0.0F, 1.0F, 0.0F, 1.0F);
 
     public AbstractInesPower(String ID, boolean useTmpArt, PowerStrings strings, AbstractCreature owner, PowerType type, int amount, Integer secondAmount) {
         this.ID = ID;
