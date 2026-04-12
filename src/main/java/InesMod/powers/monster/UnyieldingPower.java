@@ -26,6 +26,8 @@ public class UnyieldingPower extends AbstractInesPower {
                 amount); // 不可叠加
 
         this.loadRegion("unawakened");
+
+        this.priority = 10000; // 最右侧
     }
 
     @Override

@@ -9,6 +9,8 @@ import InesMod.monsters.AbstractInesMonster;
 import InesMod.powers.AbstractInesPower;
 import InesMod.powers.monster.*;
 import InesMod.powers.player.NoInvisibilityPower;
+import InesMod.powers.player.StrengthStealPower;
+import InesMod.powers.player.StrengthStolenPower;
 import InesMod.relics.AbstractInesRelic;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.MathUtils;
@@ -26,6 +28,7 @@ import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.city.BronzeOrb;
 import com.megacrit.cardcrawl.powers.AbstractPower;
+import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 
@@ -107,8 +110,10 @@ public class Manfred extends AbstractInesMonster {
 
         AbstractDungeon.getCurrRoom().cannotLose = true; // 其中一个作用是标记1、2阶段
 
+
         addToBot(new ApplyPowerAction(this, this, new DefenseArtilleryMeterPower(this, 0,4,40), 0));
         addToBot(new ApplyPowerAction(this, this, new ManfredFocusPower(this, 2), 2));
+        addToBot(new ApplyPowerAction(this, this, new UnyieldingPower(this, -1), -1));
 
         if (ascensionForMove()){
             addToBot(new ApplyPowerAction(this, this, new MilitaryTrainingPower(this, -1,1), -1));
@@ -128,6 +133,10 @@ public class Manfred extends AbstractInesMonster {
 
             for (int index = 0; index < checkCount; index++) {
                 AbstractMonster mon = monsterList.get(index);
+                if (mon == this){
+                    continue;
+                }
+
                 if (mon != null && !mon.halfDead && !mon.isDying && !mon.isDead) {
                     haveAliveMonster = true;
                     break;
@@ -371,11 +380,16 @@ public class Manfred extends AbstractInesMonster {
 
             this.addToTop(new ClearCardQueueAction());
 
-            // 清空 debuff 和重生提示
+            // 清空 debuff +所有力量相关+重生提示
             Iterator<AbstractPower> s = this.powers.iterator();
             while(s.hasNext()) {
                 AbstractPower p = (AbstractPower)s.next();
-                if (p.type == AbstractPower.PowerType.DEBUFF || p.ID.equals(UnyieldingPower.ID)) {
+                if (p.type == AbstractPower.PowerType.DEBUFF
+                        || p.ID.equals(StrengthPower.POWER_ID)
+                        || p.ID.equals(StrengthStealPower.ID)
+                        || p.ID.equals(StrengthStolenPower.ID)
+                        || p.ID.equals("Shackled")
+                        || p.ID.equals(UnyieldingPower.ID)) {
                     s.remove();
                 }
             }

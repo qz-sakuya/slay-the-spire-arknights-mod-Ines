@@ -74,7 +74,7 @@ public class Teekazwurtzen extends AbstractInesMonster {
                 // 参考三柱的动画
                 AbstractDungeon.actionManager.addToBottom(new ChangeStateAction(this, "ATTACK"));
                 AbstractDungeon.actionManager.addToBottom(new SFXAction("ATTACK_FIRE", 0.5F));
-                AbstractDungeon.actionManager.addToBottom(new VFXAction(new BorderFlashEffect(Color.SKY)));
+                AbstractDungeon.actionManager.addToBottom(new VFXAction(new BorderFlashEffect(new Color(200, 0, 0,200))));
                 if (Settings.FAST_MODE) {
                     AbstractDungeon.actionManager.addToBottom(new VFXAction(new TeekazwurtzenLaserEffect(AbstractDungeon.player.hb.cX, AbstractDungeon.player.hb.cY, this.hb.cX, this.hb.cY), 0.1F));
                 }
