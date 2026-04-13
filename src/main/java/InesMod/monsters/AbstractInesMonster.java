@@ -3,6 +3,8 @@ package InesMod.monsters;
 
 import InesMod.helpers.LogHelper;
 import InesMod.helpers.PathHelper;
+import com.badlogic.gdx.Gdx;
+import com.evacipated.cardcrawl.modthespire.lib.SpireOverride;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
@@ -59,6 +61,8 @@ public abstract class AbstractInesMonster extends AbstractMonster {
         loadAnimation("InesModResources/model/monster/test/enemy_1345_tplamb.atlas",
                 "InesModResources/model/monster/test/enemy_1345_tplamb.json",
                 1.6F);
+
+        this.skeleton.setFlip(false, false);
 
         this.flipHorizontal = true;
     }
@@ -188,6 +192,32 @@ public abstract class AbstractInesMonster extends AbstractMonster {
             return true;
         }
         return false;
+    }
+
+
+
+    // 重写以下两个函数，使逃跑时仅轴对称一次
+    // 避免和原有 this.flipHorizontal = true 重叠
+    @Override
+    public void escape() {
+        this.flipHorizontal = !this.flipHorizontal;
+        super.escape();
+    }
+
+    @SpireOverride
+    protected void updateEscapeAnimation() {
+        if (this.escapeTimer != 0.0F) {
+            // 不再强制轴对称
+            this.escapeTimer -= Gdx.graphics.getDeltaTime();
+            this.drawX += Gdx.graphics.getDeltaTime() * 400.0F * Settings.scale;
+        }
+        if (this.escapeTimer < 0.0F) {
+            this.escaped = true;
+            if (AbstractDungeon.getMonsters().areMonstersDead() && !(AbstractDungeon.getCurrRoom()).isBattleOver &&
+                    !(AbstractDungeon.getCurrRoom()).cannotLose) {
+                AbstractDungeon.getCurrRoom().endBattle();
+            }
+        }
     }
 
 }

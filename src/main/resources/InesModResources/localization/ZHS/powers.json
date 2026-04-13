@@ -272,7 +272,7 @@
   "InesMod:UnyieldingPower": {
     "NAME": "不屈",
     "DESCRIPTIONS": [
-      "首次倒下时重生，并立即准备释放 #y炮击！ "
+      "首次倒下时重生，并立即准备 #y炮击！ "
     ]
   },
   "InesMod:SolidPower": {

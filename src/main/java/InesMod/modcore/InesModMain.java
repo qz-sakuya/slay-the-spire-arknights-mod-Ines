@@ -10,6 +10,7 @@ import InesMod.helpers.LogHelper;
 import InesMod.helpers.MonsterHelper;
 import InesMod.helpers.PathHelper;
 import InesMod.relics.RustedNeedle;
+import InesMod.relics.ShadowOfLondinium;
 import InesMod.truth.TruthManager;
 import InesMod.truth.TruthReward;
 import InesMod.enums.OtherEnum;
@@ -178,8 +179,8 @@ public class InesModMain implements
     public void receiveAddAudio() {
         LogHelper.info("===正在回忆音频===");
         // 注册音频
-        BaseMod.addAudio("Ines_choose_1", "InesModResources/sound/Ines_choose_1.wav");
-        BaseMod.addAudio("Ines_choose_2", "InesModResources/sound/Ines_choose_2.wav");
+        BaseMod.addAudio("Ines_choose_1", "InesModResources/audio/char/Ines_choose_1.wav");
+        BaseMod.addAudio("Ines_choose_2", "InesModResources/audio/char/Ines_choose_2.wav");
 
         LogHelper.info("===音频情报已收集===");
     }
@@ -192,6 +193,7 @@ public class InesModMain implements
         // BaseMod.addRelic(new UnassumingNeedle(), RelicType.SHARED);
         BaseMod.addRelicToCustomPool(new UnassumingNeedle(), INES_CARD);
         BaseMod.addRelicToCustomPool(new RustedNeedle(), INES_CARD);
+        BaseMod.addRelicToCustomPool(new ShadowOfLondinium(), INES_CARD);
 
 
         LogHelper.info("===遗物情报已收集===");
@@ -237,6 +239,8 @@ public class InesModMain implements
         ArrayList<RewardItem> rewards = AbstractDungeon.getCurrRoom().rewards;
         if (AbstractDungeon.getCurrRoom() instanceof com.megacrit.cardcrawl.rooms.MonsterRoomElite) {
             int truthFromElite = 2;
+            truthFromElite += 10; // TODO：测试用
+
             rewards.add(0, new TruthReward(truthFromElite, false));
         }
         else if (AbstractDungeon.getCurrRoom() instanceof com.megacrit.cardcrawl.rooms.MonsterRoomBoss) {

@@ -3,9 +3,12 @@ package InesMod.interpret;
 
 import InesMod.cards.AbstractInesUICard;
 import InesMod.cards.ui.*;
+import InesMod.helpers.ConfigHelper;
 import InesMod.helpers.LogHelper;
 import InesMod.helpers.PathHelper;
+import InesMod.relics.ShadowOfLondinium;
 import InesMod.truth.TruthManager;
+import InesMod.vfx.SpawnRelicAndObtainEffect;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -70,8 +73,22 @@ public class InterpretEffect extends AbstractGameEffect {
             options.add(new InterpretRareCard());
             options.add(new InterpretRelic());
 
-            // 检测玩家是否有结局遗物，如果有则不出现
-            // options.add(new InterpretSecret());
+            // 未禁用结局，且未拥有结局遗物，才出现结局选项
+            if (!ConfigHelper.banExtraLevel){
+                boolean hasEndingRelic = false;
+                for(AbstractRelic r : AbstractDungeon.player.relics){
+                    if(r.relicId.equals(ShadowOfLondinium.ID)) {
+                        hasEndingRelic = true;
+                        break;
+                    }
+                }
+
+                if(!hasEndingRelic){
+                    options.add(new InterpretSecret());
+                }
+            }
+
+
 
 
             for (AbstractCard c : options) {
@@ -162,6 +179,16 @@ public class InterpretEffect extends AbstractGameEffect {
                         InterpretOption.triggerIt(); // 使该篝火选项失效
                         TruthManager.updateVirtual(-OptionCard.magicNumber); // 扣除对应真相
                         AbstractDungeon.cardRewardScreen.customCombatOpen(options, TEXT[3], true);
+                        this.duration = 0.1F;
+                    }
+                    else if (OptionCard instanceof InterpretSecret) { // 选项：结局
+                        // 生成并获得结局遗物
+                        AbstractRelic r = new ShadowOfLondinium();
+                        AbstractDungeon.topLevelEffectsQueue.add(new SpawnRelicAndObtainEffect(r));
+
+                        currentPhase = InterpretPhase.END;
+                        InterpretOption.triggerIt(); // 使该篝火选项失效
+                        TruthManager.updateVirtual(-OptionCard.magicNumber); // 扣除对应真相
                         this.duration = 0.1F;
                     }
                     else {  //选项：返回

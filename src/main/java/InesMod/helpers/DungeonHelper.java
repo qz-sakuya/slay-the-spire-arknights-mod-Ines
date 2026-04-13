@@ -79,7 +79,7 @@ public class DungeonHelper
             }
         }
 
-        for(int i = 0; i < maxY; i++) {
+        for(int i = 0; i <= maxY; i++) {
             // 生成一个包含 7 个 Node 的空白行
             ArrayList<MapRoomNode> tmpRow = new ArrayList<>();
             for (int j = 0; j < 7; j++) {

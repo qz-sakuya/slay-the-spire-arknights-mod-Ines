@@ -21,21 +21,21 @@ import java.util.Collections;
 
 /**
  * 额外层级
- * 对应主线第11章
+ * 对应主线第13章
  *
  * 还没开发到这里
  * 记得注释
  */
-public class Chapter11 extends AbstractDungeon {
-    private static final Logger logger = LogManager.getLogger(Chapter11.class.getName());
+public class LevelChapter13 extends AbstractDungeon {
+    private static final Logger logger = LogManager.getLogger(LevelChapter13.class.getName());
 
-    public Chapter11(AbstractPlayer p, ArrayList<String> theList) {
-        super(NAME, "eyjafjalla:TheSiesta", p, theList);
+    public LevelChapter13(AbstractPlayer p, ArrayList<String> theList) {
+        super(NAME, "InesMod:Chapter13", p, theList);
         if (scene != null) {
             scene.dispose();
         }
 
-        scene = new Chapter10Scene();
+        scene = new LevelChapter10Scene();
         fadeColor = Color.valueOf("140a1eff");
         sourceFadeColor = Color.valueOf("140a1eff");
         initializeLevelSpecificChances();
@@ -44,14 +44,14 @@ public class Chapter11 extends AbstractDungeon {
         CardCrawlGame.music.changeBGM(id);
     }
 
-    public Chapter11(AbstractPlayer p, SaveFile saveFile) {
+    public LevelChapter13(AbstractPlayer p, SaveFile saveFile) {
         super(NAME, p, saveFile);
         CardCrawlGame.dungeon = this;
         if (scene != null) {
             scene.dispose();
         }
 
-        scene = new Chapter10Scene();
+        scene = new LevelChapter10Scene();
         fadeColor = Color.valueOf("140a1eff");
         sourceFadeColor = Color.valueOf("140a1eff");
         initializeLevelSpecificChances();
@@ -64,19 +64,19 @@ public class Chapter11 extends AbstractDungeon {
     }
 
     private void generateSpecialMap() {
-        MapRoomNode node0 = DungeonHelper.createNode(3, 0, new RestRoom());
-        MapRoomNode node1 = DungeonHelper.createNode(3, 1, new ShopRoom());
-        MapRoomNode node2 = DungeonHelper.createNode(3, 2, new MonsterRoom());
-        MapRoomNode node3 = DungeonHelper.createNode(4, 2, new MonsterRoom());
-        MapRoomNode node4 = DungeonHelper.createNode(4, 3, new MonsterRoomElite());
-        MapRoomNode node5 = DungeonHelper.createNode(3, 3, new TreasureRoom());
-        MapRoomNode node6 = DungeonHelper.createNode(2, 3, new RestRoom());
-        MapRoomNode node7 = DungeonHelper.createNode(2, 4, new MonsterRoom());
-        MapRoomNode node8 = DungeonHelper.createNode(3, 4, new MonsterRoomElite());
-        MapRoomNode node9 = DungeonHelper.createNode(3, 5, new MonsterRoomBoss());
-        MapRoomNode node10 = DungeonHelper.createNode(3, 6, new TrueVictoryRoom());
 
-        map = DungeonHelper.createMap(node0,node1,node2,node3,node4,node5,node6,node7,node8,node9,node10);
+        MapRoomNode node0 = DungeonHelper.createNode(3, 0, new RestRoom());
+        MapRoomNode node1 = DungeonHelper.createNode(4, 1, new ShopRoom());
+        MapRoomNode node2 = DungeonHelper.createNode(5, 2, new MonsterRoom());
+        MapRoomNode node3 = DungeonHelper.createNode(4, 3, new MonsterRoomElite());
+        MapRoomNode node4 = DungeonHelper.createNode(3, 2, new TreasureRoom());
+        MapRoomNode node5 = DungeonHelper.createNode(2, 1, new RestRoom());
+        MapRoomNode node6 = DungeonHelper.createNode(1, 2, new MonsterRoom());
+        MapRoomNode node7 = DungeonHelper.createNode(2, 3, new MonsterRoomElite());
+        MapRoomNode node8 = DungeonHelper.createNode(3, 4, new MonsterRoomBoss());
+        MapRoomNode node9 = DungeonHelper.createNode(3, 5, new TrueVictoryRoom());
+
+        map = DungeonHelper.createMap(node0,node1,node2,node3,node4,node5,node6,node7,node8,node9);
 
         DungeonHelper.connectNode(node0, node1);
         DungeonHelper.connectNode(node1, node2);
@@ -86,8 +86,6 @@ public class Chapter11 extends AbstractDungeon {
         DungeonHelper.connectNode(node5, node6);
         DungeonHelper.connectNode(node6, node7);
         DungeonHelper.connectNode(node7, node8);
-        DungeonHelper.connectNode(node8, node9);
-        DungeonHelper.connectNode(node9, node10);
 
         firstRoomChosen = false;
         fadeIn();

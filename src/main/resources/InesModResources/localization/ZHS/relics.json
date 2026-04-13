@@ -12,5 +12,15 @@
     "DESCRIPTIONS": [
       "替换 #y无锋绣针 。回合开始时，获得 #b2 层 #yines:偷取 。"
     ]
+  },
+  "InesMod:ShadowOfLondinium": {
+    "NAME": "伦蒂尼姆之影",
+    "FLAVOR": "过往如阴影般浮现。",
+    "DESCRIPTIONS": [
+      "结束 #y终幕 后，进入特殊的额外区域。",
+      " NL  NL  #r额外层级已禁用 ",
+      " NL  NL  #yBoss连战 已开启",
+      " NL  NL Boss已固定为 #y曼弗雷德 "
+    ]
   }
 }

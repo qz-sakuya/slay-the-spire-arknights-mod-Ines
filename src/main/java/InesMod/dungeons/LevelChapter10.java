@@ -1,6 +1,8 @@
 package InesMod.dungeons;
 
 import InesMod.helpers.DungeonHelper;
+import InesMod.helpers.PathHelper;
+import InesMod.truth.TruthTopItem;
 import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -11,8 +13,6 @@ import com.megacrit.cardcrawl.localization.UIStrings;
 import com.megacrit.cardcrawl.map.MapRoomNode;
 import com.megacrit.cardcrawl.monsters.MonsterInfo;
 import com.megacrit.cardcrawl.random.Random;
-import com.megacrit.cardcrawl.rooms.AbstractRoom;
-import com.megacrit.cardcrawl.rooms.EventRoom;
 import com.megacrit.cardcrawl.rooms.MonsterRoom;
 import com.megacrit.cardcrawl.rooms.MonsterRoomElite;
 import com.megacrit.cardcrawl.rooms.MonsterRoomBoss;
@@ -22,9 +22,9 @@ import com.megacrit.cardcrawl.rooms.TreasureRoom;
 import com.megacrit.cardcrawl.rooms.TrueVictoryRoom;
 import com.megacrit.cardcrawl.saveAndContinue.SaveFile;
 import java.util.ArrayList;
-import java.util.Collections;
+
 import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+
 
 /**
  * 额外层级
@@ -43,32 +43,41 @@ import org.apache.logging.log4j.Logger;
  * Elite：2术士、大刀哥+术士、2战士+大刀哥、3小造物+大刀哥  （3、4不会连续出现）
  * Boss：2战士+曼弗雷德，二阶段还有2战士
  */
-public class Chapter10 extends AbstractDungeon {
-    private static final Logger logger = LogManager.getLogger(Chapter10.class.getName());
+public class LevelChapter10 extends AbstractDungeon {
+    public static final String ID = PathHelper.nameToId(LevelChapter10.class.getSimpleName());
+    private static final UIStrings uiStrings = CardCrawlGame.languagePack.getUIString(ID);
 
-    public Chapter10(AbstractPlayer p, ArrayList<String> theList) {
-        super(NAME, "InesMod:Chapter10", p, theList);
+    public static final String[] TEXT = uiStrings.TEXT;
+    public static final String NAME = TEXT[0];
+
+
+
+    public LevelChapter10(AbstractPlayer p, ArrayList<String> theList) {
+        super(NAME, ID, p, theList);
         if (scene != null) {
             scene.dispose();
         }
 
-        scene = new Chapter10Scene();
+        scene = new LevelChapter10Scene();
+
+        // 颜色默认就行
         fadeColor = Color.valueOf("140a1eff");
         sourceFadeColor = Color.valueOf("140a1eff");
+
         initializeLevelSpecificChances();
-        mapRng = new Random(Long.valueOf(Settings.seed.longValue() + (AbstractDungeon.actNum * 300)));
+        mapRng = new Random(Settings.seed + (AbstractDungeon.actNum * 400L));
         generateSpecialMap();
         CardCrawlGame.music.changeBGM(id);
     }
 
-    public Chapter10(AbstractPlayer p, SaveFile saveFile) {
+    public LevelChapter10(AbstractPlayer p, SaveFile saveFile) {
         super(NAME, p, saveFile);
         CardCrawlGame.dungeon = this;
         if (scene != null) {
             scene.dispose();
         }
 
-        scene = new Chapter10Scene();
+        scene = new LevelChapter10Scene();
         fadeColor = Color.valueOf("140a1eff");
         sourceFadeColor = Color.valueOf("140a1eff");
         initializeLevelSpecificChances();
@@ -83,19 +92,18 @@ public class Chapter10 extends AbstractDungeon {
     private void generateSpecialMap() {
         MapRoomNode node0 = DungeonHelper.createNode(3, 0, new RestRoom());
         MapRoomNode node1 = DungeonHelper.createNode(3, 1, new ShopRoom());
-        MapRoomNode node2 = DungeonHelper.createNode(3, 2, new MonsterRoom());
-        MapRoomNode node3 = DungeonHelper.createNode(2, 3, new MonsterRoom());
-        MapRoomNode node4 = DungeonHelper.createNode(2, 4, new MonsterRoomElite());
-        MapRoomNode node5 = DungeonHelper.createNode(3, 5, new TreasureRoom());
-        MapRoomNode node6 = DungeonHelper.createNode(4, 6, new RestRoom());
-        MapRoomNode node7 = DungeonHelper.createNode(4, 7, new MonsterRoom());
-        MapRoomNode node8 = DungeonHelper.createNode(3, 8, new MonsterRoomElite());
-        MapRoomNode node9 = DungeonHelper.createNode(3, 9, new MonsterRoomBoss());
-        MapRoomNode node10 = DungeonHelper.createNode(3, 10, new TrueVictoryRoom());
+        MapRoomNode node2 = DungeonHelper.createNode(2, 2, new MonsterRoom());
+        MapRoomNode node3 = DungeonHelper.createNode(2, 3, new MonsterRoomElite());
+        MapRoomNode node4 = DungeonHelper.createNode(3, 4, new TreasureRoom());
+        MapRoomNode node5 = DungeonHelper.createNode(4, 5, new RestRoom());
+        MapRoomNode node6 = DungeonHelper.createNode(4, 6, new MonsterRoom());
+        MapRoomNode node7 = DungeonHelper.createNode(3, 7, new MonsterRoomElite());
+        MapRoomNode node8 = DungeonHelper.createNode(3, 8, new MonsterRoomBoss());
+        MapRoomNode node9 = DungeonHelper.createNode(3, 9, new TrueVictoryRoom());
 
 
 
-        map = DungeonHelper.createMap(node0,node1,node2,node3,node4,node5,node6,node7,node8,node9,node10);
+        map = DungeonHelper.createMap(node0,node1,node2,node3,node4,node5,node6,node7,node8,node9);
 
         DungeonHelper.connectNode(node0, node1);
         DungeonHelper.connectNode(node1, node2);
@@ -105,8 +113,7 @@ public class Chapter10 extends AbstractDungeon {
         DungeonHelper.connectNode(node5, node6);
         DungeonHelper.connectNode(node6, node7);
         DungeonHelper.connectNode(node7, node8);
-        DungeonHelper.connectNode(node8, node9);
-        DungeonHelper.connectNode(node9, node10);
+
 
         firstRoomChosen = false;
         fadeIn();
@@ -157,7 +164,7 @@ public class Chapter10 extends AbstractDungeon {
         ArrayList<MonsterInfo> monsterOption1 = new ArrayList<>();
         monsterOption1.add(new MonsterInfo("C10_S3_1ZS_1GJ", 1.0F));
         monsterOption1.add(new MonsterInfo("C10_S4_3XZW_1GJ", 1.0F));
-        monsters.add(monsterOption1.get(monsterRng.random(monsterOption1.size()))); // 从以上随机选一个
+        monsters.add(monsterOption1.get(monsterRng.random(monsterOption1.size()-1))); // 从以上随机选一个
 
 
         MonsterInfo.normalizeWeights(monsters);
@@ -174,7 +181,7 @@ public class Chapter10 extends AbstractDungeon {
         ArrayList<MonsterInfo> monsterOption1 = new ArrayList<>();
         monsterOption1.add(new MonsterInfo("C10_E3_2ZS_1DDG", 1.0F));
         monsterOption1.add(new MonsterInfo("C10_E4_3XZW_1DDG", 1.0F));
-        elitemonsters.add(monsterOption1.get(monsterRng.random(monsterOption1.size()))); // 从以上随机选一个
+        elitemonsters.add(monsterOption1.get(monsterRng.random(monsterOption1.size()-1))); // 从以上随机选一个
 
 
         MonsterInfo.normalizeWeights(elitemonsters);
@@ -217,8 +224,4 @@ public class Chapter10 extends AbstractDungeon {
 
     protected void initializeShrineList() {}
 
-    private static final UIStrings uiStrings = CardCrawlGame.languagePack.getUIString("eyjafjalla:TheSiesta");
-    public static final String[] TEXT = uiStrings.TEXT;
-    public static final String NAME = TEXT[0];
-    public static final String ID = "eyjafjalla:TheSiesta";
 }

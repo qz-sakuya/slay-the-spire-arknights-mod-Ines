@@ -423,4 +423,6 @@ public class Ines extends CustomPlayer
 
         super.useCard(c, monster, energyOnUse);
     }
+
+
 }

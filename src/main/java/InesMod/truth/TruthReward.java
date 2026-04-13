@@ -10,7 +10,7 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.UIStrings;
 
 public class TruthReward extends CustomReward {
-    public static final String ID = PathHelper.nameToId("TruthReward");
+    public static final String ID = PathHelper.nameToId(TruthReward.class.getSimpleName());
     private static final UIStrings uiStrings = CardCrawlGame.languagePack.getUIString(ID);
 
 

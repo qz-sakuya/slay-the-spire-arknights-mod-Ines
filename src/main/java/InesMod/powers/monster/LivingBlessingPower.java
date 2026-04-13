@@ -18,6 +18,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ModHelper;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.MinionPower;
 import com.megacrit.cardcrawl.powers.SlowPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
@@ -100,7 +101,7 @@ public class LivingBlessingPower extends AbstractInesPower {
 
             // 新怪物执行初始化
             addToBot(new ChangeStateAction(newMonster, "START"));
-            addToBot(new ApplyNonStackPowerAction(newMonster, newMonster, new RebornCreationPower(newMonster, -1)));
+            newMonster.usePreBattleAction();
             addToBot(new ForceWaitAction(0.3F));
             addToBot(new ShowHealthBarAction(newMonster));
             addToBot(new MoveMonsterToIndexAction(newMonster, targetIndex));

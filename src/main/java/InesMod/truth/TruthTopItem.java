@@ -13,7 +13,7 @@ import com.megacrit.cardcrawl.helpers.TipHelper;
 import com.megacrit.cardcrawl.localization.UIStrings;
 
 public class TruthTopItem extends TopPanelItem {
-    public static final String ID = PathHelper.nameToId("TruthTopItem");
+    public static final String ID = PathHelper.nameToId(TruthTopItem.class.getSimpleName());
     private static final UIStrings uiStrings = CardCrawlGame.languagePack.getUIString(ID);
 
 

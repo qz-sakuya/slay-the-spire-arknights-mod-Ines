@@ -6,6 +6,7 @@ import InesMod.action.SetPowerAction;
 import InesMod.action.SummonWarriorAction;
 import InesMod.helpers.PathHelper;
 import InesMod.monsters.AbstractInesMonster;
+import InesMod.patchs.ExtraLevelPatch;
 import InesMod.powers.AbstractInesPower;
 import InesMod.powers.monster.*;
 import InesMod.powers.player.NoInvisibilityPower;
@@ -28,6 +29,7 @@ import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.city.BronzeOrb;
 import com.megacrit.cardcrawl.powers.AbstractPower;
+import com.megacrit.cardcrawl.powers.MinionPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
@@ -106,7 +108,10 @@ public class Manfred extends AbstractInesMonster {
 
 
     public void usePreBattleAction() {
-        super.usePreBattleAction();
+        AbstractDungeon.scene.fadeOutAmbiance();
+        CardCrawlGame.music.unsilenceBGM();
+        ExtraLevelPatch.BOSS_MUSIC_KEY = "C10_Boss_1";
+        AbstractDungeon.getCurrRoom().playBgmInstantly("BOSS_BEYOND");
 
         AbstractDungeon.getCurrRoom().cannotLose = true; // 其中一个作用是标记1、2阶段
 
@@ -121,6 +126,8 @@ public class Manfred extends AbstractInesMonster {
         else {
             addToBot(new ApplyPowerAction(this, this, new MilitaryTrainingPower(this, -1,2), -1));
         }
+
+        super.usePreBattleAction();
     }
 
     protected void getMove(int i) {
@@ -250,7 +257,7 @@ public class Manfred extends AbstractInesMonster {
                 teekazwurtzen.drawY = this.drawY + 150.0F;
 
                 teekazwurtzen.usePreBattleAction();
-                AbstractDungeon.actionManager.addToBottom(new SpawnMonsterAction(teekazwurtzen, true, currentSize));
+                AbstractDungeon.actionManager.addToBottom(new SpawnMonsterAction(teekazwurtzen, false, currentSize));
                 break;
             case 8: // 重生
                 setFastModeTo(false);
@@ -265,7 +272,6 @@ public class Manfred extends AbstractInesMonster {
 
                 AbstractPower militaryTrainingPower = this.getPower(MilitaryTrainingPower.ID);
                 if (militaryTrainingPower instanceof MilitaryTrainingPower) {
-                    militaryTrainingPower.flash();
                     ((MilitaryTrainingPower)militaryTrainingPower).setToInvalidTurn(1);
                     ((MilitaryTrainingPower)militaryTrainingPower).clearInvalidTurn();
                 }
@@ -279,6 +285,10 @@ public class Manfred extends AbstractInesMonster {
                 }
 
                 addToBot(new CanLoseAction());
+
+                CardCrawlGame.music.fadeOutTempBGM();
+                ExtraLevelPatch.BOSS_MUSIC_KEY = "C10_Boss_2";
+                AbstractDungeon.getCurrRoom().playBgmInstantly("BOSS_BEYOND");
 
                 if (MathUtils.random(100) > 50) {
                     int randomIndex = MathUtils.random(1);
@@ -411,6 +421,18 @@ public class Manfred extends AbstractInesMonster {
             this.useFastShakeAnimation(5.0F);
             CardCrawlGame.screenShake.rumble(4.0F);
             (AbstractDungeon.getCurrRoom()).rewardAllowed = false;
+
+            for (AbstractMonster m : (AbstractDungeon.getCurrRoom()).monsters.monsters) {
+                if (!m.isDying) {
+                    if (m instanceof Teekazwurtzen){
+                        addToBot(new SuicideAction(m));
+                    }
+                    else{
+                        addToBot(new EscapeAction(m));
+                    }
+                }
+            }
+
 
             this.state.setTimeScale(1.0F);
             this.state.setAnimation(0, "Die_2", false);
