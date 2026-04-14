@@ -1,0 +1,15 @@
+{
+  "InesMod:TwilightCorridor": {
+    "NAME": "Twilight Corridor",
+    "DESCRIPTIONS": [
+      "For some reason, you find yourself in a ~familiar~ corridor. #rThreads and #pfaint #pphantoms betray traces of your previous visits.",
+      "This is a scene you know well... You must move one step closer to the truth.",
+      "This is a battlefield you recognize... You must leave the enemy nowhere to hide."
+    ],
+    "OPTIONS": [
+      "[Chase] Gain #g8 #gTruth .",
+      "[Retrieve] Obtain #gFeint #gTripwire .",
+      "[Move]"
+    ]
+  }
+}

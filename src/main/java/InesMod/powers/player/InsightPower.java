@@ -4,6 +4,7 @@ import InesMod.action.ApplyStealsToTargetAction;
 import InesMod.characters.Ines;
 import InesMod.helpers.PathHelper;
 import InesMod.powers.AbstractInesPower;
+import InesMod.relics.FeintTripwire;
 import InesMod.truth.TruthReward;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
@@ -14,7 +15,9 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
+import com.megacrit.cardcrawl.powers.DexterityPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
+import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.rewards.RewardItem;
 
 import java.util.ArrayList;
@@ -28,6 +31,8 @@ import java.util.Set;
 public class InsightPower extends AbstractInesPower {
     public static final String ID = PathHelper.nameToId(InsightPower.class.getSimpleName());
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(ID); // 从游戏系统读取本地化资源
+
+    private int strengthPerAmount; // 每层偷取的力量效果，默认为1
 
     private int consumeNum; // 一次偷取中，消耗偷取的层数
     private final Set<AbstractCreature> stolenTarget = new HashSet<>(); // 一次偷取中，已经被偷取的怪物id
@@ -43,6 +48,19 @@ public class InsightPower extends AbstractInesPower {
     }
 
 
+    public void updateStrengthPerAmount() {
+        int amount = 1;
+
+        // 如果有 佣兵手段 ，提升力量效果
+        AbstractPower mercenaryTacticsPower = owner.getPower(MercenaryTacticsPower.ID);
+        if (mercenaryTacticsPower != null) {
+            amount += mercenaryTacticsPower.amount;
+        }
+
+        this.strengthPerAmount = amount;
+
+        updateDescription();
+    }
 
     @Override
     public void updateDescription() {
@@ -65,7 +83,6 @@ public class InsightPower extends AbstractInesPower {
             flash();
             consumeNum = this.amount;
         }
-
     }
 
 
@@ -75,8 +92,10 @@ public class InsightPower extends AbstractInesPower {
         if (consumeNum > 0
                 && !stolenTarget.contains(target)
                 && target != this.owner && info.type == DamageInfo.DamageType.NORMAL) {
+            updateStrengthPerAmount();
+
             // 不参与其他效果
-            addToBot(new ApplyStealsToTargetAction(owner, target, consumeNum, false));
+            addToBot(new ApplyStealsToTargetAction(owner, target, consumeNum, strengthPerAmount,false));
 
             stolenTarget.add(target); // 记录该目标
         }
@@ -86,19 +105,27 @@ public class InsightPower extends AbstractInesPower {
     @Override
     public void onAfterUseCard(AbstractCard card, UseCardAction action) {
         if (consumeNum > 0){
-            int strengthToApply = consumeNum;
+            updateStrengthPerAmount();
+            int strengthToApply = consumeNum * strengthPerAmount;
+            int dexterityToApply = consumeNum;
+            boolean applyDexterity = false;
 
-            // 如果有 佣兵手段 ，提升力量效果
-            AbstractPower mercenaryTacticsPower = owner.getPower(MercenaryTacticsPower.ID);
-            if (mercenaryTacticsPower != null) {
-                mercenaryTacticsPower.flash();
-                strengthToApply += (mercenaryTacticsPower.amount * consumeNum);
+            for (AbstractRelic r : AbstractDungeon.player.relics) {
+                if (r instanceof FeintTripwire){
+                    applyDexterity = true;
+                    break;
+                }
             }
 
             // 给自己加一次力量
             addToBot(new ApplyPowerAction(owner, owner, new StrengthPower(owner, strengthToApply), strengthToApply));
             addToBot(new ApplyPowerAction(owner, owner, new StrengthStealPower(owner, strengthToApply), strengthToApply));
 
+            if (applyDexterity){
+                // 给自己加一次敏捷
+                addToBot(new ApplyPowerAction(owner, owner, new DexterityPower(owner, dexterityToApply), dexterityToApply));
+                addToBot(new ApplyPowerAction(owner, owner, new DexterityStealPower(owner, dexterityToApply), dexterityToApply,true));
+            }
         }
 
 

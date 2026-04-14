@@ -23,7 +23,7 @@ public class Counter extends AbstractInesCard {
 
     public Counter() {
         super(ID,
-                true,
+                false,
                 cardStrings,
                 0,
                 CardType.ATTACK,

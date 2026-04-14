@@ -74,5 +74,11 @@
     "TEXT": [
       "伦蒂尼姆"
     ]
+  },
+  "InesMod:DexterityForMonsterPatch": {
+    "TEXT": [
+      "获得的 #y格挡 增加 #b%d 。",
+      "获得的 #y格挡 减少 #b%d 。"
+    ]
   }
 }

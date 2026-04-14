@@ -17,6 +17,18 @@
       "失去 #b%d 点 #y力量 ，回合结束时，获得 #b%d 点 #y力量 。"
     ]
   },
+  "InesMod:DexterityStealPower": {
+    "NAME": "偷取敏捷",
+    "DESCRIPTIONS": [
+      "获得 #b%d 点 #y敏捷 ，回合结束时，失去 #b%d 点 #y敏捷 。"
+    ]
+  },
+  "InesMod:DexterityStolenPower": {
+    "NAME": "被偷取敏捷",
+    "DESCRIPTIONS": [
+      "失去 #b%d 点 #y敏捷 ，回合结束时，获得 #b%d 点 #y敏捷 。"
+    ]
+  },
   "InesMod:InvisibilityPower": {
     "NAME": "隐匿",
     "DESCRIPTIONS": [
@@ -275,6 +287,7 @@
       "首次倒下时重生，并立即准备 #y炮击！ "
     ]
   },
+
   "InesMod:SolidPower": {
     "NAME": "坚固",
     "DESCRIPTIONS": [

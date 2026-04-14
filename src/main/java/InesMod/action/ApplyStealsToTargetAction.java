@@ -4,38 +4,40 @@ import InesMod.cards.skill.LayTraps;
 import InesMod.cards.skill.PreciseRecon;
 import InesMod.helpers.LogHelper;
 import InesMod.powers.*;
-import InesMod.powers.player.InterPower;
-import InesMod.powers.player.MercenaryTacticsPower;
-import InesMod.powers.player.StrengthStolenPower;
-import InesMod.powers.player.ThoroughAnalysisPower;
+import InesMod.powers.player.*;
+import InesMod.relics.FeintTripwire;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import com.megacrit.cardcrawl.powers.AbstractPower;
-import com.megacrit.cardcrawl.powers.StrengthPower;
-import com.megacrit.cardcrawl.powers.VulnerablePower;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.powers.*;
+import com.megacrit.cardcrawl.relics.AbstractRelic;
 
 /**
  * 向敌方应用偷取 的效果
  * 判断手牌是否未满，然后抽1张牌
  */
 public class ApplyStealsToTargetAction extends AbstractGameAction {
-    int consumeNum;
-    int amountBeforeReduce;
-    boolean triggerOther = true; // 是否触发其他效果
+    public int consumeNum;
+    public int amountBeforeReduce;
+    public boolean triggerOther = true; // 是否触发其他效果
 
-    public ApplyStealsToTargetAction(AbstractCreature source, AbstractCreature target, int consumeNum, boolean triggerOther) {
-        this(source, target, consumeNum, triggerOther, 0);
+    public int strengthPerAmount;
+
+    public ApplyStealsToTargetAction(AbstractCreature source, AbstractCreature target, int consumeNum, int strengthPerAmount, boolean triggerOther) {
+        this(source, target, consumeNum, strengthPerAmount, triggerOther, 0);
     }
 
-    public ApplyStealsToTargetAction(AbstractCreature source, AbstractCreature target, int consumeNum, boolean triggerOther, int amountBeforeReduce) {
+    public ApplyStealsToTargetAction(AbstractCreature source, AbstractCreature target, int consumeNum, int strengthPerAmount, boolean triggerOther, int amountBeforeReduce) {
         this.source = source;
         this.target = target;
         this.consumeNum = consumeNum;
         this.triggerOther = triggerOther;
         this.amountBeforeReduce = amountBeforeReduce;
+
+        this.strengthPerAmount = strengthPerAmount;
     }
 
 
@@ -43,21 +45,46 @@ public class ApplyStealsToTargetAction extends AbstractGameAction {
     public void update() {
         LogHelper.info("===ApplyStealsToTargetAction: start，当前consumeNum:{}===",consumeNum);
 
-        int strengthToApply = consumeNum;
 
-        // 如果有 佣兵手段 ，提升力量效果
-        AbstractPower mercenaryTacticsPower = source.getPower(MercenaryTacticsPower.ID);
-        if (mercenaryTacticsPower != null) {
-            mercenaryTacticsPower.flash();
-            strengthToApply += (mercenaryTacticsPower.amount * consumeNum);
+        int strengthToApply = consumeNum * strengthPerAmount;
+        int dexterityToApply = consumeNum;
+        boolean applyDexterity = false;
+
+        for (AbstractRelic r : AbstractDungeon.player.relics) {
+            if (r instanceof FeintTripwire){
+                applyDexterity = true;
+                break;
+            }
         }
+
+        if (applyDexterity){
+            // 给当前目标减一次敏捷
+            // 如果人工制品>=2层，则不挂“被偷取敏捷”
+            AbstractPower powerToGet = target.getPower(ArtifactPower.POWER_ID);
+            if (powerToGet != null && powerToGet.amount >= 2) {
+                addToTop(new ApplyPowerAction(target, source, new DexterityPower(target, -dexterityToApply), -dexterityToApply));
+            }
+            else{
+                addToTop(new ApplyPowerAction(target, source, new DexterityStolenPower(target, dexterityToApply), dexterityToApply,true));
+                addToTop(new ApplyPowerAction(target, source, new DexterityPower(target, -dexterityToApply), -dexterityToApply));
+            }
+        }
+
 
         // 给当前目标减一次力量
         // 如果有人工制品，则不挂“被偷取力量”
-        if (!target.hasPower("Artifact")) {
-            addToTop(new ApplyPowerAction(target, source, new StrengthStolenPower(target, strengthToApply), strengthToApply,true));
+        if (target.hasPower("Artifact")) {
+            addToTop(new ApplyPowerAction(target, source, new StrengthPower(target, -strengthToApply), -strengthToApply));
         }
-        addToTop(new ApplyPowerAction(target, source, new StrengthPower(target, -strengthToApply), -strengthToApply));
+        else {
+            addToTop(new ApplyPowerAction(target, source, new StrengthStolenPower(target, strengthToApply), strengthToApply,true));
+            addToTop(new ApplyPowerAction(target, source, new StrengthPower(target, -strengthToApply), -strengthToApply));
+        }
+
+
+
+
+
 
 
         if (triggerOther) {

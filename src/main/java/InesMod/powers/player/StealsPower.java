@@ -9,6 +9,7 @@ import InesMod.helpers.ConfigHelper;
 import InesMod.helpers.PathHelper;
 import InesMod.helpers.TutorialHelper;
 import InesMod.powers.AbstractInesPower;
+import InesMod.relics.FeintTripwire;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
@@ -16,9 +17,12 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
+import com.megacrit.cardcrawl.powers.DexterityPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
+import com.megacrit.cardcrawl.relics.AbstractRelic;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -124,7 +128,10 @@ public class StealsPower extends AbstractInesPower {
         if (consumeNum > 0
                 && !stolenTarget.contains(target)
                 && target != this.owner && info.type == DamageInfo.DamageType.NORMAL) {
-            addToBot(new ApplyStealsToTargetAction(owner, target, consumeNum, true, amountBeforeReduce));
+            updateStrengthPerAmount();
+
+            // 给敌人施加偷取效果
+            addToBot(new ApplyStealsToTargetAction(owner, target, consumeNum, strengthPerAmount,true, amountBeforeReduce));
 
             stolenTarget.add(target); // 记录该目标
         }
@@ -137,10 +144,25 @@ public class StealsPower extends AbstractInesPower {
         if (consumeNum > 0){
             updateStrengthPerAmount();
             int strengthToApply = consumeNum * strengthPerAmount;
+            int dexterityToApply = consumeNum;
+            boolean applyDexterity = false;
+
+            for (AbstractRelic r : AbstractDungeon.player.relics) {
+                if (r instanceof FeintTripwire){
+                    applyDexterity = true;
+                    break;
+                }
+            }
 
             // 给自己加一次力量
             addToBot(new ApplyPowerAction(owner, owner, new StrengthPower(owner, strengthToApply), strengthToApply));
             addToBot(new ApplyPowerAction(owner, owner, new StrengthStealPower(owner, strengthToApply), strengthToApply,true));
+
+            if (applyDexterity){
+                // 给自己加一次敏捷
+                addToBot(new ApplyPowerAction(owner, owner, new DexterityPower(owner, dexterityToApply), dexterityToApply));
+                addToBot(new ApplyPowerAction(owner, owner, new DexterityStealPower(owner, dexterityToApply), dexterityToApply,true));
+            }
 
 
             // 处理 洞悉 相关逻辑

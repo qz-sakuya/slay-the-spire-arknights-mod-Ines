@@ -17,6 +17,18 @@
       "Loss #b%d #yStrength . At the end of this round, gain #b%d #yStrength ."
     ]
   },
+  "InesMod:DexterityStealPower": {
+    "NAME": "Dexterity Steal",
+    "DESCRIPTIONS": [
+      "Gain #b%d #yDexterity . At the end of this round, lose #b%d #yDexterity ."
+    ]
+  },
+  "InesMod:DexterityStolenPower": {
+    "NAME": "Dexterity Stolen",
+    "DESCRIPTIONS": [
+      "Loss #b%d #yDexterity . At the end of this round, gain #b%d #yDexterity ."
+    ]
+  },
   "InesMod:InvisibilityPower": {
     "NAME": "Invisibility",
     "DESCRIPTIONS": [

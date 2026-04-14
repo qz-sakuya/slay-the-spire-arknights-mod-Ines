@@ -5,10 +5,8 @@ import InesMod.cards.AbstractInesCard;
 import InesMod.characters.Ines;
 
 import InesMod.enums.InesCardTags;
-import InesMod.helpers.ConfigHelper;
-import InesMod.helpers.LogHelper;
-import InesMod.helpers.MonsterHelper;
-import InesMod.helpers.PathHelper;
+import InesMod.helpers.*;
+import InesMod.relics.FeintTripwire;
 import InesMod.relics.RustedNeedle;
 import InesMod.relics.ShadowOfLondinium;
 import InesMod.truth.TruthManager;
@@ -170,6 +168,8 @@ public class InesModMain implements
         BaseMod.loadCustomStringsFile(PowerStrings.class, "InesModResources/localization/" + lang + "/powers.json");
         // 加载UI文本
         BaseMod.loadCustomStringsFile(UIStrings.class, "InesModResources/localization/" + lang + "/ui.json");
+        // 加载事件文本
+        BaseMod.loadCustomStringsFile(EventStrings.class, "InesModResources/localization/" + lang + "/events.json");
     }
 
 
@@ -194,6 +194,7 @@ public class InesModMain implements
         BaseMod.addRelicToCustomPool(new UnassumingNeedle(), INES_CARD);
         BaseMod.addRelicToCustomPool(new RustedNeedle(), INES_CARD);
         BaseMod.addRelicToCustomPool(new ShadowOfLondinium(), INES_CARD);
+        BaseMod.addRelicToCustomPool(new FeintTripwire(), INES_CARD);
 
 
         LogHelper.info("===遗物情报已收集===");
@@ -221,6 +222,7 @@ public class InesModMain implements
     @Override
     public void receivePostInitialize() {
         MonsterHelper.initializeMonsters();
+        EventHelper.initializeEvents();
         ConfigHelper.initModConfigMenu();
 
         BaseMod.registerCustomReward(OtherEnum.INES_TRUTH,
@@ -239,7 +241,7 @@ public class InesModMain implements
         ArrayList<RewardItem> rewards = AbstractDungeon.getCurrRoom().rewards;
         if (AbstractDungeon.getCurrRoom() instanceof com.megacrit.cardcrawl.rooms.MonsterRoomElite) {
             int truthFromElite = 2;
-            truthFromElite += 10; // TODO：测试用
+
 
             rewards.add(0, new TruthReward(truthFromElite, false));
         }
