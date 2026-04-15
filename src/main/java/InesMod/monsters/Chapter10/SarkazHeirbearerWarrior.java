@@ -30,6 +30,8 @@ public class SarkazHeirbearerWarrior extends AbstractInesMonster {
 
     public SarkazHeirbearerWarrior(float x, float y) {
         super(ID, false, monsterStrings, EnemyType.NORMAL, 96, 200.0F, 270.0F, x, y);
+        //LogHelper.info("===SarkazHeirbearerWarrior：构造函数===");
+
         setSpine(ID,"enemy_1222_dpvt", 1.6F);
         setWaitTime(1.2F);
         this.state.setAnimation(0, "Idle", true);
@@ -53,6 +55,8 @@ public class SarkazHeirbearerWarrior extends AbstractInesMonster {
         }
 
         this.damage.add(new DamageInfo(this, this.attack, DamageInfo.DamageType.NORMAL));
+
+        //LogHelper.info("===SarkazHeirbearerWarrior：构造函数end。生命值={}===",this.currentHealth);
     }
 
 

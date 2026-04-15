@@ -66,8 +66,8 @@ public class Manfred extends AbstractInesMonster {
     int attack;
     int defend;
 
-    ArrayList<Byte> attackMoveList;
-    boolean hasCallWarrior = false;
+    private ArrayList<Byte> attackMoveList;
+    private boolean hasCallWarrior = false;
 
 
     public Manfred(float x, float y) {
@@ -276,13 +276,13 @@ public class Manfred extends AbstractInesMonster {
                     ((MilitaryTrainingPower)militaryTrainingPower).clearInvalidTurn();
                 }
 
-                // 清空城防炮充能
-                AbstractPower tempPower = this.getPower(DefenseArtilleryMeterPower.ID);
-                if (tempPower instanceof DefenseArtilleryMeterPower) {
-                    DefenseArtilleryMeterPower damPower = (DefenseArtilleryMeterPower) tempPower;
-                    addToBot(new SetPowerAction(this, this, new DefenseArtilleryMeterPower(this, 0, damPower.secondAmount, damPower.damage), 0));
-                    damPower.notAddThisTurn = true;
-                }
+//                // 清空城防炮充能
+//                AbstractPower tempPower = this.getPower(DefenseArtilleryMeterPower.ID);
+//                if (tempPower instanceof DefenseArtilleryMeterPower) {
+//                    DefenseArtilleryMeterPower damPower = (DefenseArtilleryMeterPower) tempPower;
+//                    addToBot(new SetPowerAction(this, this, new DefenseArtilleryMeterPower(this, 0, damPower.secondAmount, damPower.damage), 0));
+//                    damPower.notAddThisTurn = true;
+//                }
 
                 addToBot(new CanLoseAction());
 

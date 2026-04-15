@@ -28,6 +28,7 @@ public class MilitaryTrainingPower extends AbstractInesPower {
     int toInvalidTurn;
 
     int damageForCard = 1;
+    boolean createCard = false;
 
     public MilitaryTrainingPower(AbstractCreature owner, int amount, int toInvalidTurn) {
         super(ID,
@@ -50,16 +51,21 @@ public class MilitaryTrainingPower extends AbstractInesPower {
             return damage;
         }
 
-        // 减免伤害
-        float newDamage = (float) (damage * 0.4);
+        if (damage > 0 && type == DamageInfo.DamageType.NORMAL) {
+            // 减免伤害
+            float newDamage = (float) (damage * 0.4);
 
-        int damageChange = Math.round(damage - newDamage); // 四舍五入
-        if (damageChange < 1) {
-            damageChange = 1;
+            int damageChange = Math.round(damage - newDamage); // 四舍五入
+            if (damageChange < 1) {
+                damageChange = 1;
+            }
+            this.damageForCard = damageChange;
+            this.createCard = true;
+
+            return newDamage;
         }
-        this.damageForCard = damageChange;
 
-        return newDamage;
+        return damage;
     }
 
 
@@ -70,12 +76,15 @@ public class MilitaryTrainingPower extends AbstractInesPower {
             return damage;
         }
 
+        if (createCard) {
+            // 生成一张 回击
+            Counter newCard = new Counter();
+            newCard.baseDamage =  this.damageForCard;
+            newCard.damage = newCard.baseDamage;
+            addToBot(new MakeTempCardInDrawPileAction(newCard,1,true,true));
 
-        // 生成一张 回击
-        Counter newCard = new Counter();
-        newCard.baseDamage =  this.damageForCard;
-        newCard.damage = newCard.baseDamage;
-        addToBot(new MakeTempCardInDrawPileAction(newCard,1,true,true));
+            createCard = false;
+        }
 
         return damage;
     }

@@ -1,8 +1,6 @@
 package InesMod.powers.monster;
 
-import InesMod.action.ApplyNonStackPowerAction;
-import InesMod.action.ForceWaitAction;
-import InesMod.action.TryClearDefenseArtilleryMeterUponAction;
+import InesMod.action.*;
 import InesMod.helpers.PathHelper;
 import InesMod.monsters.Chapter10.Manfred;
 import InesMod.monsters.Chapter10.Teekazwurtzen;
@@ -39,7 +37,7 @@ public class FirePower extends AbstractInesPower {
 
 
     public int damage; // 一般为40伤
-    private boolean spreadToNewMonster = true;
+    public boolean spreadToNewMonster = true;
 
     public FirePower(AbstractCreature owner, int amount, int damage) {
         super(ID,
@@ -70,78 +68,14 @@ public class FirePower extends AbstractInesPower {
     @Override
     public void atEndOfTurn(boolean isPlayer) {
         if (isPlayer) {
-            damage();
+            addToBot(new DelayToAddAction(new FireDamageAction(this)));
         }
     }
 
-//    @Override
-//    public void onSpecificTrigger() {
-//        damage();
-//    }
-
-
-
-    public void damage() {
-        ArrayList<AbstractMonster> monsterArrayList = AbstractDungeon.getCurrRoom().monsters.monsters;
-
-        this.spreadToNewMonster = false;
-
-        // 获取中心坐标
-        float centerX = (float) Settings.WIDTH / 2.0F;
-        float centerY = (float) Settings.HEIGHT / 2.0F;
-
-
-        //爆炸特效
-        addToBot(new VFXAction(new DefenseArtilleryFireEffect(centerX * 0.85F, centerY * 0.6F)));
-        addToBot(new ForceWaitAction(0.1F));
-        addToBot(new VFXAction(new BorderFlashEffect(Color.ORANGE)));
-        addToBot(new SFXAction("BLUNT_HEAVY", 0.2F));
-        addToBot(new SFXAction("ATTACK_FIRE", 0.2F));
-
-
-
-        // 对所有敌方造成伤害（固定伤害，参考爆炸机）
-        int[] tmp = new int[monsterArrayList.size()];
-        for (int i = 0; i < tmp.length; i++) {
-            if (monsterArrayList.get(i) instanceof Teekazwurtzen) {
-                tmp[i] = 0; // 不对提卡兹之根造成伤害
-            }
-            else{
-                tmp[i] = this.damage;
-            }
-        }
-        addToBot(new DamageAllEnemiesAction(this.owner, tmp, DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.NONE));
-
-        // 对玩家造成伤害
-        addToBot(new DamageAction(AbstractDungeon.player, new DamageInfo(this.owner, this.damage, DamageInfo.DamageType.THORNS), AbstractGameAction.AttackEffect.NONE));
-
-
-
-        // 使曼弗雷德军事训练power失效
-        for (AbstractMonster mo : monsterArrayList) {
-            if (mo instanceof Manfred) {
-                AbstractPower powerToGet = mo.getPower(MilitaryTrainingPower.ID);
-                if (powerToGet != null) {
-                    ((MilitaryTrainingPower)powerToGet).invalid();
-                }
-            }
-        }
-
-
-        // 删除所有怪物的power
-        for (AbstractMonster mon : (AbstractDungeon.getMonsters()).monsters) {
-            addToBot(new RemoveSpecificPowerAction(mon, mon, FirePower.ID));
-        }
-
-        // 删除玩家的power
-        addToBot(new RemoveSpecificPowerAction(owner, owner, FirePower.ID));
 
 
 
 
-        // 尝试清除特效
-        addToBot(new TryClearDefenseArtilleryMeterUponAction(this.owner));
-    }
 
     @Override
     public void updateDescription() {

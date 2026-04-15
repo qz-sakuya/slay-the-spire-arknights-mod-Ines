@@ -410,5 +410,9 @@
   "InesMod:Sentinel": {
     "NAME": "哨兵",
     "DESCRIPTION": "造成 !D! 点伤害。 NL 丢弃 1 张牌。 NL 如果丢弃了 *影哨 ，将 !M! 张 *影哨 加入抽牌堆。"
+  },
+  "InesMod:ShadowDisperse": {
+    "NAME": "影散",
+    "DESCRIPTION": "每 消耗  1 张 *影哨 ，对所有敌人造成 !M! 点伤害。"
   }
 }

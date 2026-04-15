@@ -43,14 +43,14 @@ public class ShadowWhistle extends AbstractInesCard {
             this.applyPowers();
             addToBot(new GainBlockAction(AbstractDungeon.player, AbstractDungeon.player, this.block));
 
-            // 如果有 影哨回收 额外获得格挡
-            AbstractPower shadowWhistleRetrievalPower = AbstractDungeon.player.getPower(ShadowWhistleRetrievalPower.ID);
-            if (shadowWhistleRetrievalPower != null) {
-                shadowWhistleRetrievalPower.flash();
-                addToBot(new GainBlockAction(AbstractDungeon.player, AbstractDungeon.player, shadowWhistleRetrievalPower.amount));
-            }
+//            // 如果有 影哨回收 额外获得格挡
+//            AbstractPower shadowWhistleRetrievalPower = AbstractDungeon.player.getPower(ShadowWhistleRetrievalPower.ID);
+//            if (shadowWhistleRetrievalPower != null) {
+//                shadowWhistleRetrievalPower.flash();
+//                addToBot(new GainBlockAction(AbstractDungeon.player, AbstractDungeon.player, shadowWhistleRetrievalPower.amount));
+//            }
 
-            addToBot(new SimpleExhaustAction(this, AbstractDungeon.player.discardPile));
+            addToTop(new SimpleExhaustAction(this, AbstractDungeon.player.discardPile));
         }
     }
 

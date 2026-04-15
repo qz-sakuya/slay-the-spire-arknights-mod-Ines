@@ -287,11 +287,16 @@
       "首次倒下时重生，并立即准备 #y炮击！ "
     ]
   },
-
   "InesMod:SolidPower": {
     "NAME": "坚固",
     "DESCRIPTIONS": [
       "受到的 #y所有 伤害不会超过 #b%d 。"
+    ]
+  },
+  "InesMod:ShadowDispersePower": {
+    "NAME": "影散",
+    "DESCRIPTIONS": [
+      "每 #y消耗  #b1 张 #y影哨 ，对所有敌人造成 #b%d 点伤害。"
     ]
   }
 }

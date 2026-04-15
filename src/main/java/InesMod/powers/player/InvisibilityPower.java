@@ -67,16 +67,7 @@ public class InvisibilityPower extends AbstractInesPower {
         if (this.amount == 0) {
             addToBot(new RemoveSpecificPowerAction(this.owner, this.owner, InvisibilityPower.ID));
         } else {
-            int numToChange = 1;
-
-//            // 如果有 速战速决 ，额外转化1层隐匿
-//            AbstractPower quickVictoryPower = owner.getPower(QuickVictoryPower.ID);
-//            if (quickVictoryPower != null && this.amount >= 2) {
-//                numToChange = 2;
-//            }
-
-            addToBot(new ReducePowerAction(this.owner, this.owner, InvisibilityPower.ID, numToChange));
-            addToBot(new ApplyPowerAction(this.owner, this.owner, new IllusionPower(this.owner, numToChange)));
+            addToBot(new ApplyPowerAction(this.owner, this.owner, new IllusionPower(this.owner, 1)));
 
             // 如果有 影之疆土 ，获得力量
             AbstractPower shadowTerritoryPower = owner.getPower(ShadowTerritoryPower.ID);
@@ -86,6 +77,12 @@ public class InvisibilityPower extends AbstractInesPower {
             }
         }
 
+    }
+
+    @Override
+    public void atEndOfRound() {
+        // 延迟消除，使影哨正常享受防御增加效果
+        addToBot(new ReducePowerAction(this.owner, this.owner, InvisibilityPower.ID, 1));
     }
 
 

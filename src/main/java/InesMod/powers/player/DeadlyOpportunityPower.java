@@ -29,7 +29,7 @@ public class DeadlyOpportunityPower extends AbstractInesPower {
                 amount);
         this.isUpgrade = isUpgrade;
 
-        // 排在力量后面（参考原版 双倍伤害 power）
+        // 排在 力量 与常规 power 后面（参考原版 双倍伤害 power）
         this.priority = 6;
     }
 

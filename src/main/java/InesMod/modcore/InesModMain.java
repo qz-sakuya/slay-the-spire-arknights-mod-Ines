@@ -221,6 +221,7 @@ public class InesModMain implements
 
     @Override
     public void receivePostInitialize() {
+        //LogHelper.info("===receivePostInitialize：触发===");
         MonsterHelper.initializeMonsters();
         EventHelper.initializeEvents();
         ConfigHelper.initModConfigMenu();
@@ -256,6 +257,9 @@ public class InesModMain implements
 
     @Override
     public void receiveStartGame() {
+        //LogHelper.info("===receiveStartGame：触发===");
+        MonsterHelper.initializeMonsters(); // 保证sl时正常
+
         TruthManager.setTopPanelItem();
     }
 

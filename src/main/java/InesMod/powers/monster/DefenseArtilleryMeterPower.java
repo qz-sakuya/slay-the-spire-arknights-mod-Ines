@@ -1,10 +1,8 @@
 package InesMod.powers.monster;
 
-import InesMod.action.ForceWaitAction;
-import InesMod.action.SetDefenseArtilleryMeterUponAction;
-import InesMod.action.SetPowerAction;
-import InesMod.action.TryAddFirePowerAction;
+import InesMod.action.*;
 import InesMod.helpers.PathHelper;
+import InesMod.monsters.Chapter10.Manfred;
 import InesMod.powers.AbstractInesPower;
 import InesMod.vfx.DefenseArtilleryMeterUponManager;
 import com.badlogic.gdx.graphics.Color;
@@ -16,6 +14,8 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.localization.PowerStrings;
+import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.AbstractPower;
 
 /**
  * 中文名：城防炮充能
@@ -54,9 +54,7 @@ public class DefenseArtilleryMeterPower extends AbstractInesPower {
     @Override
     public void atStartOfTurn() {
         // 回合开始时才归零
-        if (amount >= secondAmount) {
-            addToBot(new SetPowerAction(owner, owner, this, 0));
-        }
+        addToBot(new TryClearDefenseArtilleryMeterPowerAction(this));
     }
 
     @Override
