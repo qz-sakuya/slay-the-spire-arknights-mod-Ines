@@ -4,6 +4,7 @@ import InesMod.action.ApplyNonStackPowerAction;
 import InesMod.action.ForceWaitAction;
 import InesMod.action.SetPowerAction;
 import InesMod.action.SummonWarriorAction;
+import InesMod.helpers.LogHelper;
 import InesMod.helpers.PathHelper;
 import InesMod.monsters.AbstractInesMonster;
 import InesMod.patchs.ExtraLevelPatch;
@@ -208,6 +209,7 @@ public class Manfred extends AbstractInesMonster {
     }
 
     public void takeTurn() {
+        LogHelper.info("===曼弗雷德：takeTurn，nextMove={}===",this.nextMove);
         setFastMode();
         switch (this.nextMove) {
             case 1: // 一阶段轻击（倍率100%）
@@ -270,19 +272,32 @@ public class Manfred extends AbstractInesMonster {
                 // 强化自身
                 this.defend = (int)(this.defend *1.5);
 
-                AbstractPower militaryTrainingPower = this.getPower(MilitaryTrainingPower.ID);
-                if (militaryTrainingPower instanceof MilitaryTrainingPower) {
-                    ((MilitaryTrainingPower)militaryTrainingPower).setToInvalidTurn(1);
-                    ((MilitaryTrainingPower)militaryTrainingPower).clearInvalidTurn();
+                AbstractPower tmpPower = this.getPower(MilitaryTrainingPower.ID);
+                if (tmpPower instanceof MilitaryTrainingPower) {
+                    MilitaryTrainingPower militaryTrainingPower = (MilitaryTrainingPower) tmpPower;
+                    militaryTrainingPower.setReductionRatio(0.8F,"80%");
+                    militaryTrainingPower.setToInvalidTurn(1);
+                    militaryTrainingPower.clearInvalidTurn();
                 }
 
-//                // 清空城防炮充能
-//                AbstractPower tempPower = this.getPower(DefenseArtilleryMeterPower.ID);
-//                if (tempPower instanceof DefenseArtilleryMeterPower) {
-//                    DefenseArtilleryMeterPower damPower = (DefenseArtilleryMeterPower) tempPower;
-//                    addToBot(new SetPowerAction(this, this, new DefenseArtilleryMeterPower(this, 0, damPower.secondAmount, damPower.damage), 0));
-//                    damPower.notAddThisTurn = true;
-//                }
+
+
+                // 清空城防炮充能
+                // 如果有刚施加的炮击，不清空
+                boolean hasFirePower = false;
+                AbstractPower powerToGet = AbstractDungeon.player.getPower(FirePower.ID);
+                if (powerToGet != null) {
+                    hasFirePower = true;
+                }
+                if (!hasFirePower) {
+                    AbstractPower tempPower = this.getPower(DefenseArtilleryMeterPower.ID);
+                    if (tempPower instanceof DefenseArtilleryMeterPower) {
+                        DefenseArtilleryMeterPower damPower = (DefenseArtilleryMeterPower) tempPower;
+                        addToBot(new SetPowerAction(this, this, new DefenseArtilleryMeterPower(this, 0, damPower.secondAmount, damPower.damage), 0));
+                        damPower.notAddThisTurn = true;
+                    }
+                }
+
 
                 addToBot(new CanLoseAction());
 
@@ -332,6 +347,8 @@ public class Manfred extends AbstractInesMonster {
     public void damage(DamageInfo info) {
         super.damage(info);
         if (this.currentHealth <= 0 && !this.halfDead) {
+            LogHelper.info("===曼弗雷德：damage：死亡===");
+
             if (AbstractDungeon.getCurrRoom().cannotLose) {
                 this.halfDead = true;
 
@@ -390,7 +407,7 @@ public class Manfred extends AbstractInesMonster {
 
             this.addToTop(new ClearCardQueueAction());
 
-            // 清空 debuff +所有力量相关+重生提示
+            // 清空 debuff +所有力量相关+炮击+重生提示
             Iterator<AbstractPower> s = this.powers.iterator();
             while(s.hasNext()) {
                 AbstractPower p = (AbstractPower)s.next();
@@ -399,6 +416,7 @@ public class Manfred extends AbstractInesMonster {
                         || p.ID.equals(StrengthStealPower.ID)
                         || p.ID.equals(StrengthStolenPower.ID)
                         || p.ID.equals("Shackled")
+                        || p.ID.equals(FirePower.ID)
                         || p.ID.equals(UnyieldingPower.ID)) {
                     s.remove();
                 }
@@ -406,7 +424,7 @@ public class Manfred extends AbstractInesMonster {
 
             this.setMove((byte)8, Intent.UNKNOWN);
             this.createIntent();
-            AbstractDungeon.actionManager.addToBottom(new SetMoveAction(this, (byte)8, Intent.UNKNOWN));
+            this.addToBot(new SetMoveAction(this, (byte)8, Intent.UNKNOWN));
 
             this.applyPowers();
         }

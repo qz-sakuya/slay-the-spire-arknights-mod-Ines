@@ -1,6 +1,7 @@
 package InesMod.powers.player;
 
 import InesMod.action.DeadlyOpportunityAction;
+import InesMod.characters.Ines;
 import InesMod.helpers.PathHelper;
 import InesMod.powers.AbstractInesPower;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
@@ -9,7 +10,9 @@ import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
+import com.megacrit.cardcrawl.powers.AbstractPower;
 
 /**
  * 中文名：致命契机
@@ -56,6 +59,22 @@ public class DeadlyOpportunityPower extends AbstractInesPower {
     @Override
     public void onAfterUseCard(AbstractCard card, UseCardAction action) {
         if (card.type == AbstractCard.CardType.ATTACK && !card.purgeOnUse) {
+
+            // 标记回合结束状态
+            // 如果有 临时补给 和 临时战略 ，阻止其触发
+            AbstractPower adHocSupplyPower = owner.getPower(AdHocSupplyPower.ID);
+            if (adHocSupplyPower != null) {
+                ((AdHocSupplyPower)adHocSupplyPower).inEndTurnPeriod = true;
+            }
+
+            AbstractPower adHocStrategyPower = owner.getPower(AdHocStrategyPower.ID);
+            if (adHocStrategyPower != null) {
+                ((AdHocStrategyPower)adHocStrategyPower).inEndTurnPeriod = true;
+            }
+
+            if (AbstractDungeon.player instanceof Ines) {
+                ((Ines) AbstractDungeon.player).inEndTurnPeriod = true;
+            }
 
 
             // 致命契机+手牌有影哨+打出具有弃牌的攻击牌（如必要代价），

@@ -24,13 +24,13 @@ public class EngageEnemy extends AbstractInesCard {
         super(ID,
                 false,
                 cardStrings,
-                1,
+                2,
                 CardType.SKILL,
                 CardRarity.UNCOMMON,
                 CardTarget.SELF,
                 Ines.Enums.INES_CARD);
-        this.block = this.baseBlock = 7;
-        this.baseMagicNumber = this.magicNumber = 7;
+        this.block = this.baseBlock = 13;
+        this.baseMagicNumber = this.magicNumber = 13;
 
         this.cardsToPreview = new ShadowWhistle();
     }
@@ -49,7 +49,7 @@ public class EngageEnemy extends AbstractInesCard {
         for (AbstractCard c : AbstractDungeon.player.hand.group) {
             if (c.cardID.equals(ShadowWhistle.ID)) {
                 cnt++;
-                break; // 可以提前退出循环
+                break;
             }
         }
 

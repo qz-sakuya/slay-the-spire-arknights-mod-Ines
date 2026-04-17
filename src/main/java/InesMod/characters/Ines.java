@@ -154,7 +154,7 @@ public class Ines extends CustomPlayer
 
     public CharSelectInfo getLoadout() {
         int hp = 70;
-        hp += 1000; // TODO：调试用
+//        hp += 1000; // TODO：调试用
 
         return new CharSelectInfo(
                 characterStrings.NAMES[0], // 人物名字

@@ -1,6 +1,7 @@
 package InesMod.powers.monster;
 
 import InesMod.action.*;
+import InesMod.helpers.LogHelper;
 import InesMod.helpers.PathHelper;
 import InesMod.monsters.Chapter10.Manfred;
 import InesMod.monsters.Chapter10.Teekazwurtzen;
@@ -71,8 +72,6 @@ public class FirePower extends AbstractInesPower {
             addToBot(new DelayToAddAction(new FireDamageAction(this)));
         }
     }
-
-
 
 
 

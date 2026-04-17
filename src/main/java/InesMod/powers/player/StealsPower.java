@@ -171,7 +171,7 @@ public class StealsPower extends AbstractInesPower {
                 inesOwner.counterForInsight += consumeNum;
                 while (inesOwner.counterForInsight >= inesOwner.needForInsight) {
                     inesOwner.counterForInsight -= inesOwner.needForInsight;
-                    inesOwner.needForInsight += 2; // 每次获得洞悉，所需层数+2。
+                    inesOwner.needForInsight += 4; // 每次获得洞悉，所需层数增加。
 
                     addToBot(new ApplyPowerAction(owner, owner, new InsightPower(owner, 1), 1));
 

@@ -22,7 +22,7 @@
   },
   "InesMod:ShadowWhistle": {
     "NAME": "影哨",
-    "DESCRIPTION": " 不能被打出 。 NL 进入弃牌堆时，获得 !B! 点格挡并 消耗 。"
+    "DESCRIPTION": " 不能被打出 。 NL 进入弃牌堆时，获得 !B! 点 格挡 并 消耗 。"
   },
   "InesMod:ShadowAmbush": {
     "NAME": "淬影突袭",
@@ -102,12 +102,12 @@
   },
   "InesMod:Disguise": {
     "NAME": "伪装",
-    "DESCRIPTION": "获得 !B! 点格挡。 NL 向手牌中加入 !M! 张 *影哨 。"
+    "DESCRIPTION": "获得 !B! 点 格挡 。 NL 向手牌中加入 !M! 张 *影哨 。"
   },
   "InesMod:Infiltration": {
     "NAME": "渗透",
-    "DESCRIPTION": "获得 !M! 层 ines:偷取 。 NL 在弃牌堆放入一张此牌的复制品。",
-    "UPGRADE_DESCRIPTION": "获得 !M! 层 ines:偷取 。 NL 在弃牌堆放入一张此牌的复制品。"
+    "DESCRIPTION": "获得 !B! 点 格挡 。 NL 获得 !M! 层 ines:偷取 。 NL 在弃牌堆放入一张此牌的复制品。",
+    "UPGRADE_DESCRIPTION": "获得 !B! 点 格挡 。 NL 获得 !M! 层 ines:偷取 。 NL 在弃牌堆放入一张此牌的复制品。"
   },
   "InesMod:TopSecretOperation": {
     "NAME": "绝密行动",
@@ -146,7 +146,7 @@
   },
   "InesMod:DataOrganization": {
     "NAME": "数据整理",
-    "DESCRIPTION": "获得 !B! 点格挡。 NL 选择任意张手牌加入抽牌堆，丢弃其它所有手牌。"
+    "DESCRIPTION": "获得 !B! 点 格挡 。 NL 选择任意张手牌加入抽牌堆，丢弃其它所有手牌。"
   },
   "InesMod:OldIntel": {
     "NAME": "旧情报",
@@ -305,7 +305,7 @@
   },
   "InesMod:ShadowWhistleRetrieval": {
     "NAME": "影哨回收",
-    "DESCRIPTION": "每 消耗  1 张 *影哨 ，获得 !M! 点格挡。"
+    "DESCRIPTION": "每 消耗  1 张 *影哨 ，获得 !M! 点 格挡 。"
   },
   "InesMod:NightInWhiteBirchForest": {
     "NAME": "白桦林的夜晚",

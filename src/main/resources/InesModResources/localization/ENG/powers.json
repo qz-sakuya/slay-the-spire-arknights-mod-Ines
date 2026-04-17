@@ -53,7 +53,7 @@
   "InesMod:InterPower": {
     "NAME": "Inter",
     "DESCRIPTIONS": [
-      "After performing other draws, continue drawing #b%d cards until your hand is full. Unused #yIntel is retained."
+      "After performing other draws, continue drawing #b%d cards until your hand is full. Unused #yIntel is retained. NL Max #b10 #yIntel ."
     ]
   },
   "InesMod:ThoroughAnalysisPower": {
@@ -73,7 +73,7 @@
     "NAME": "Insight",
     "DESCRIPTIONS": [
       "Apply #b%d additional #ySteals after Attack (not counted as exhaust). Gain #b%d #yTruth after combat.",
-      " NL  NL Exhaust Steals #b%d / #b%d: Gain #b1 #yInsight , and increase the required stacks by 2."
+      " NL  NL Exhaust Steals #b%d / #b%d: Gain #b1 #yInsight , and increase the required stacks by 4."
     ]
   },
   "InesMod:AdHocSupplyPower": {

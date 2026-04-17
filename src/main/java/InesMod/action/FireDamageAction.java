@@ -34,8 +34,12 @@ public class FireDamageAction extends AbstractGameAction {
 
 
 
+
+
     @Override
     public void update() {
+        LogHelper.info("===FireDamageAction：触发===");
+
         ArrayList<AbstractMonster> monsterArrayList = AbstractDungeon.getCurrRoom().monsters.monsters;
 
         firePower.spreadToNewMonster = false;

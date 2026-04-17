@@ -5,6 +5,7 @@ import InesMod.characters.Ines;
 import InesMod.helpers.LogHelper;
 import InesMod.helpers.PathHelper;
 import InesMod.powers.AbstractInesPower;
+import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.core.AbstractCreature;
@@ -44,6 +45,14 @@ public class AdHocStrategyPower extends AbstractInesPower {
     public void onCardMove(AbstractCard c, CardGroup.CardGroupType groupType) {
         if (!this.inEndTurnPeriod) {
             LogHelper.info("===AdHocStrategyPower：onCardMove：尝试触发===");
+            addToBot(new AdHocStrategyAction(owner, amount));
+        }
+    }
+
+    @Override
+    public void onAfterUseCard(AbstractCard card, UseCardAction action) {
+        if (!this.inEndTurnPeriod) {
+            LogHelper.info("===AdHocStrategyPower：onAfterUseCard：尝试触发===");
             addToBot(new AdHocStrategyAction(owner, amount));
         }
     }

@@ -62,7 +62,7 @@
   },
   "InesMod:File": {
     "NAME": "File",
-    "DESCRIPTION": "Deal !D! damage. Deals !M! -times damage to enemies with Block."
+    "DESCRIPTION": "Deal !D! damage. Deals !M! -times damage to enemies with Block ."
   },
   "InesMod:ThoroughAnalysis": {
     "NAME": "Thorough Analysis",
@@ -102,12 +102,12 @@
   },
   "InesMod:Disguise": {
     "NAME": "Disguise",
-    "DESCRIPTION": "Gain !B! Block. NL Add !M! *Shadow *Whistle into your hand."
+    "DESCRIPTION": "Gain !B! Block . NL Add !M! *Shadow *Whistle into your hand."
   },
   "InesMod:Infiltration": {
     "NAME": "Infiltration",
-    "DESCRIPTION": "Gain !M! ines:Steals . NL Add a copy of this card into your discard pile.",
-    "UPGRADE_DESCRIPTION": "Gain !M! ines:Steals . NL Add a copy of this card into your discard pile."
+    "DESCRIPTION": "Gain !B! Block . NL Gain !M! ines:Steals . NL Add a copy of this card into your discard pile.",
+    "UPGRADE_DESCRIPTION": "Gain !B! Block . NL Gain !M! ines:Steals . NL Add a copy of this card into your discard pile."
   },
   "InesMod:TopSecretOperation": {
     "NAME": "Top Secret Operation",
@@ -146,7 +146,7 @@
   },
   "InesMod:DataOrganization": {
     "NAME": "Data Organization",
-    "DESCRIPTION": "Gain !B! Block. NL Shuffle any cards into your draw pile, discard all other cards."
+    "DESCRIPTION": "Gain !B! Block . NL Shuffle any cards into your draw pile, discard all other cards."
   },
   "InesMod:OldIntel": {
     "NAME": "Old Intel",

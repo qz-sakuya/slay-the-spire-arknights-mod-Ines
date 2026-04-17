@@ -31,6 +31,14 @@ public class InterPower extends AbstractInesPower {
     }
 
     @Override
+    public void stackPower(int stackAmount) {
+        super.stackPower(stackAmount);
+        if (this.amount > 10) {
+            this.amount = 10;
+        }
+    }
+
+    @Override
     public void updateDescription() {
         this.description = String.format(descriptions[0], this.amount);
     }

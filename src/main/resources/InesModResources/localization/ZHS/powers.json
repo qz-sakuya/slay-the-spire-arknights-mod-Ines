@@ -53,7 +53,7 @@
   "InesMod:InterPower": {
     "NAME": "情报",
     "DESCRIPTIONS": [
-      "进行其它抽牌后，持续抽 #b%d 张牌直到手牌为满，未使用的 #y情报 会保留。"
+      "进行其它抽牌后，持续抽 #b%d 张牌直到手牌为满，未使用的 #y情报 会保留。 NL 最多拥有 #b10 点 #y情报 。"
     ]
   },
   "InesMod:ThoroughAnalysisPower": {
@@ -73,7 +73,7 @@
     "NAME": "洞悉",
     "DESCRIPTIONS": [
       "攻击额外生效 #b%d 层 #y偷取 （不视作消耗），战斗结束后获得 #b%d 点 #y真相 。",
-      " NL  NL 消耗偷取 #b%d / #b%d 层：获得 #b1 层 #y洞悉 ，并使所需层数+2。"
+      " NL  NL 消耗偷取 #b%d / #b%d 层：获得 #b1 层 #y洞悉 ，并使所需层数+4。"
     ]
   },
   "InesMod:AdHocSupplyPower": {
@@ -220,7 +220,7 @@
   "InesMod:MilitaryTrainingPower": {
     "NAME": "军事训练",
     "DESCRIPTIONS": [
-      "被攻击时闪避，减免 #b60% 伤害，将一张 #y回击 加入你的抽牌堆， #y回击 的伤害等于减免的伤害值。",
+      "被攻击时闪避，减免 #b%s 伤害，将一张 #y回击 加入你的弃牌堆， #y回击 的伤害等于减免的伤害值。",
       " NL 受到 #y城防炮 伤害时，失效 #b%d 回合。",
       " NL （失效中，持续 #b%d 回合）"
     ]
@@ -253,7 +253,7 @@
   "InesMod:BouncePower": {
     "NAME": "弹射",
     "DESCRIPTIONS": [
-      "攻击命中时，如果你拥有 #y格挡 ，对你造成 #b2 倍伤害。"
+      "攻击命中时，如果你拥有 #y格挡 ，对你造成 #r2倍伤害 。"
     ]
   },
   "InesMod:FirePower": {

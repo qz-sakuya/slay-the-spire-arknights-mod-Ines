@@ -54,7 +54,7 @@ public class DefenseArtilleryMeterPower extends AbstractInesPower {
     @Override
     public void atStartOfTurn() {
         // 回合开始时才归零
-        addToBot(new TryClearDefenseArtilleryMeterPowerAction(this));
+        addToBot(new DelayToAddAction(new TryClearDefenseArtilleryMeterPowerAction(this)));
     }
 
     @Override

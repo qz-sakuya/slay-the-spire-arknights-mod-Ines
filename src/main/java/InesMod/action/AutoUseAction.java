@@ -21,6 +21,7 @@ public class AutoUseAction extends AbstractGameAction {
     public void update() {
         if (!this.card.hasEnoughEnergy() || !this.card.cardPlayable(null)){
             this.isDone = true;
+            return;
         }
         // 立即消耗能量打出
         this.card.applyPowers();

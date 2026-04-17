@@ -258,9 +258,11 @@ public class InesModMain implements
     @Override
     public void receiveStartGame() {
         //LogHelper.info("===receiveStartGame：触发===");
-        MonsterHelper.initializeMonsters(); // 保证sl时正常
-
         TruthManager.setTopPanelItem();
+
+        if(InesExtraLevelHelper.isInesExtraLevelID(AbstractDungeon.id)){
+            MonsterHelper.initializeMonsters(); // 保证sl时，生成新的怪物
+        }
     }
 
 

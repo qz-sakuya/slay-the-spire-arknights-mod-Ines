@@ -37,9 +37,9 @@ public class SarkazHeirbearerWarrior extends AbstractInesMonster {
         this.state.setAnimation(0, "Idle", true);
 
         if (ascensionForHp()) {
-            setHp(57);
+            setHp(82);
         } else {
-            setHp(49);
+            setHp(70);
         }
 
         if (ascensionForDamage()) {
@@ -80,6 +80,8 @@ public class SarkazHeirbearerWarrior extends AbstractInesMonster {
     }
 
     public void takeTurn() {
+        LogHelper.info("===萨卡兹子裔战士：takeTurn，nextMove={}===",this.nextMove);
+
         setFastMode();
         switch (this.nextMove) {
             case 1:

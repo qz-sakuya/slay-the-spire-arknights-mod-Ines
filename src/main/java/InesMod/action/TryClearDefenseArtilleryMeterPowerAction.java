@@ -20,9 +20,10 @@ public class TryClearDefenseArtilleryMeterPowerAction extends AbstractGameAction
 
     @Override
     public void update() {
-        // 如果有还未触发的炮击，不清空
+        // 如果有本回合未能触发的炮击，不清空
         AbstractPower powerToGet = AbstractDungeon.player.getPower(FirePower.ID);
         if (powerToGet != null) {
+            this.isDone = true;
             return;
         }
 

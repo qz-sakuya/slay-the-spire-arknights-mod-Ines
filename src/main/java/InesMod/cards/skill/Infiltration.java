@@ -5,6 +5,7 @@ import InesMod.characters.Ines;
 import InesMod.helpers.PathHelper;
 import InesMod.powers.player.StealsPower;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
+import com.megacrit.cardcrawl.actions.common.GainBlockAction;
 import com.megacrit.cardcrawl.actions.common.MakeTempCardInDiscardAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -27,25 +28,15 @@ public class Infiltration extends AbstractInesCard {
                 CardRarity.COMMON,
                 CardTarget.ALL,// 自身与所有敌人
                 Ines.Enums.INES_CARD);
-        this.magicNumber = baseMagicNumber = 2;
+        this.block = this.baseBlock = 3;
+        this.magicNumber = baseMagicNumber = 1;
 
     }
  
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        int count = 0;
-//        for (AbstractMonster mon : (AbstractDungeon.getMonsters()).monsters) {
-//            if (!mon.isDeadOrEscaped()) {
-//                count++;
-//            }
-//        }
-//        // 升级额外+1
-//        if (this.upgraded) {
-//            count++;
-//        }
-
-        count = magicNumber;
-        this.addToBot(new ApplyPowerAction(p, p, new StealsPower(p, count), count));
+        this.addToBot(new GainBlockAction(p, p, this.block));
+        this.addToBot(new ApplyPowerAction(p, p, new StealsPower(p, magicNumber), magicNumber));
 
         // this.addToBot(new DrawCardAction(p, this.draw));
         this.addToBot(new MakeTempCardInDiscardAction(makeStatEquivalentCopy(), 1));
@@ -55,7 +46,9 @@ public class Infiltration extends AbstractInesCard {
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
+            this.upgradeBlock(1);
             this.upgradeMagicNumber(1);
+
 
 //            this.rawDescription = cardStrings.UPGRADE_DESCRIPTION;
 //            this.initializeDescription();

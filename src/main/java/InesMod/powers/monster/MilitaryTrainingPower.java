@@ -1,12 +1,15 @@
 package InesMod.powers.monster;
 
 import InesMod.cards.special.Counter;
+import InesMod.helpers.LogHelper;
 import InesMod.helpers.PathHelper;
 import InesMod.powers.AbstractInesPower;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.math.MathUtils;
+import com.megacrit.cardcrawl.actions.common.MakeTempCardInDiscardAction;
 import com.megacrit.cardcrawl.actions.common.MakeTempCardInDrawPileAction;
+import com.megacrit.cardcrawl.actions.utility.UseCardAction;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -23,12 +26,16 @@ public class MilitaryTrainingPower extends AbstractInesPower {
     public static final String ID = PathHelper.nameToId(MilitaryTrainingPower.class.getSimpleName());
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(ID); // 从游戏系统读取本地化资源
 
-    boolean isThisTurnInvalid = false;
-    int invalidTurn = 0;
-    int toInvalidTurn;
+    public boolean isThisTurnInvalid = false;
+    public int invalidTurn = 0;
+    public int toInvalidTurn;
 
-    int damageForCard = 1;
-    boolean createCard = false;
+    public float reductionRatio = 0.6F;
+    public String reductionRatioText = "60%";
+
+    public int damageForCard = 1;
+    public boolean damageForCardLocked = false;
+
 
     public MilitaryTrainingPower(AbstractCreature owner, int amount, int toInvalidTurn) {
         super(ID,
@@ -53,19 +60,30 @@ public class MilitaryTrainingPower extends AbstractInesPower {
 
         if (damage > 0 && type == DamageInfo.DamageType.NORMAL) {
             // 减免伤害
-            float newDamage = (float) (damage * 0.4);
+            float newDamage = damage * (1 - reductionRatio);
 
             int damageChange = Math.round(damage - newDamage); // 四舍五入
             if (damageChange < 1) {
                 damageChange = 1;
             }
-            this.damageForCard = damageChange;
-            this.createCard = true;
+
+            if (!damageForCardLocked){
+                this.damageForCard = damageChange;
+            }
+
+
 
             return newDamage;
         }
 
         return damage;
+    }
+
+
+    @Override
+    public void onUseCard(AbstractCard card, UseCardAction action) {
+        LogHelper.info("===MilitaryTrainingPower: onUseCard,当前卡牌id{}, 当前damageForCard{}===",card.cardID,damageForCard);
+        damageForCardLocked = true;
     }
 
 
@@ -76,18 +94,26 @@ public class MilitaryTrainingPower extends AbstractInesPower {
             return damage;
         }
 
-        if (createCard) {
+        if (info.type == DamageInfo.DamageType.NORMAL) {
+            LogHelper.info("===MilitaryTrainingPower: onAttackedToChangeDamage,生成回击, 当前damageForCard{}===", damageForCard);
+
             // 生成一张 回击
             Counter newCard = new Counter();
             newCard.baseDamage =  this.damageForCard;
             newCard.damage = newCard.baseDamage;
-            addToBot(new MakeTempCardInDrawPileAction(newCard,1,true,true));
-
-            createCard = false;
+            addToBot(new MakeTempCardInDiscardAction(newCard,1));
         }
 
         return damage;
     }
+
+
+    @Override
+    public void onAfterUseCard(AbstractCard card, UseCardAction action) {
+        LogHelper.info("===MilitaryTrainingPower: onAfterUseCard,当前卡牌id{}, 当前damageForCard{}===",card.cardID,damageForCard);
+        damageForCardLocked = false;
+    }
+
 
 
 
@@ -123,6 +149,11 @@ public class MilitaryTrainingPower extends AbstractInesPower {
         updateDescription();
     }
 
+    public void setReductionRatio(float reductionRatio, String reductionRatioText) {
+        this.reductionRatio = reductionRatio;
+        this.reductionRatioText = reductionRatioText;
+    }
+
     @Override // 重写，使得绘制失效回合数（红色）
     public void renderAmount(SpriteBatch sb, float x, float y, Color c) {
         if (this.invalidTurn > 0) {
@@ -137,10 +168,12 @@ public class MilitaryTrainingPower extends AbstractInesPower {
     @Override
     public void updateDescription() {
         if (invalidTurn == 0) {
-            this.description = descriptions[0] + String.format(descriptions[1], this.toInvalidTurn);
+            this.description = String.format(descriptions[0], reductionRatioText)
+                    + String.format(descriptions[1], this.toInvalidTurn);
         }
         else {
-            this.description = descriptions[0] + String.format(descriptions[2], this.invalidTurn);
+            this.description = String.format(descriptions[0], reductionRatioText)
+                    + String.format(descriptions[2], this.invalidTurn);
         }
     }
 }
