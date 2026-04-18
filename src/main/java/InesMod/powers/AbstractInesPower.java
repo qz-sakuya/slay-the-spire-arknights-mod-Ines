@@ -141,29 +141,28 @@ public abstract class AbstractInesPower extends AbstractPower {
 //    }
 
     @Override
-    public void renderAmount(SpriteBatch sb, float x, float y, Color c) {
-        super.renderAmount(sb, x, y, c);
+    public void renderAmount(SpriteBatch sb, float x, float y, Color color) {
+        super.renderAmount(sb, x, y, color);
 
         // 使层数可以绘制0
         if (this.amount == 0 && this.renderAmountZero) {
             if (!this.isTurnBased) {
-                this.greenColor.a = c.a;
-                c = this.greenColor;
+                this.greenColor.a = color.a;
+                color = this.greenColor;
             }
 
-            FontHelper.renderFontRightTopAligned(sb, FontHelper.powerAmountFont, Integer.toString(this.amount), x, y, this.fontScale, c);
+            FontHelper.renderFontRightTopAligned(sb, FontHelper.powerAmountFont, Integer.toString(this.amount), x, y, this.fontScale, color);
         }
 
         // 绘制第二个数字 另一种实现（参考stslib）
         if (secondAmount != null) {
-            // 默认白色
             FontHelper.renderFontRightTopAligned(sb,
                     FontHelper.powerAmountFont,
                     Integer.toString(this.secondAmount),
                     x,
                     y + 15.0F * Settings.scale,
                     this.fontScale,
-                    c);
+                    color);
         }
     }
 }

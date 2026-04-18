@@ -34,9 +34,9 @@ public class SarkazHeirbearerHatedrinker extends AbstractInesMonster {
         this.state.setAnimation(0, "Idle", true);
 
         if (ascensionForHp()) {
-            setHp(145);
+            setHp(155);
         } else {
-            setHp(134);
+            setHp(144);
         }
 
         if (ascensionForDamage()) {

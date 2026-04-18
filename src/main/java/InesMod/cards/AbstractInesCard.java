@@ -16,6 +16,7 @@ public abstract class AbstractInesCard extends CustomCard {
     public boolean dontUseAttackAnimation; // 禁用自动攻击动画
 
     public CardGroup.CardGroupType lastAddedTo; // 上次加入到的 CardGroup
+    public boolean addedFromSameGroup; // 上次移动时，是否在相同 CardGroup 间移动
 
     public AbstractInesCard(String ID,
                             boolean useTmpArt,

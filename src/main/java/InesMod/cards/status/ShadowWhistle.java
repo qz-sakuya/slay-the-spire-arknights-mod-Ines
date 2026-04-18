@@ -39,7 +39,9 @@ public class ShadowWhistle extends AbstractInesCard {
     @Override
     // 不建议使用OnMoveToDiscard
     public void onCardMove(AbstractCard c, CardGroup.CardGroupType groupType) {
-        if (c == this && groupType == CardGroup.CardGroupType.DISCARD_PILE){
+        if (c == this
+                && groupType == CardGroup.CardGroupType.DISCARD_PILE
+                && !this.addedFromSameGroup){
             this.applyPowers();
             addToBot(new GainBlockAction(AbstractDungeon.player, AbstractDungeon.player, this.block));
 

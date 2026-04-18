@@ -6,6 +6,7 @@ import InesMod.cards.status.ShadowWhistle;
 import InesMod.characters.Ines;
 import InesMod.helpers.PathHelper;
 import InesMod.powers.player.RouteMappingPower;
+import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
@@ -34,7 +35,7 @@ public class RouteMapping extends AbstractInesCard {
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        addToBot(new ApplyNonStackPowerAction(p, p, new RouteMappingPower(p, -1)));
+        addToBot(new ApplyPowerAction(p, p, new RouteMappingPower(p, magicNumber),magicNumber));
     }
 
     @Override

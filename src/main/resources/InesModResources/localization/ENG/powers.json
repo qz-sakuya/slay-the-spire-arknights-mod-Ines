@@ -168,7 +168,7 @@
   "InesMod:RouteMappingPower": {
     "NAME": "Route Mapping",
     "DESCRIPTIONS": [
-      "Whenever a #yShadow #yWhistle enter your hand, gain #b%d #ySteals ."
+      "Whenever a #yShadow #yWhistle enters your hand, gain #b%d #ySteals . NL This effect caps #ySteals at #b10 ."
     ]
   },
   "InesMod:MercenaryTacticsPower": {

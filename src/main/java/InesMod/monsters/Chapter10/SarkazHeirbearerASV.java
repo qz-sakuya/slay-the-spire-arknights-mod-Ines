@@ -34,9 +34,9 @@ public class SarkazHeirbearerASV extends AbstractInesMonster {
         this.state.setAnimation(0, "Idle", true);
 
         if (ascensionForHp()) {
-            setHp(104);
+            setHp(125);
         } else {
-            setHp(95);
+            setHp(114);
         }
 
         if (ascensionForDamage()) {

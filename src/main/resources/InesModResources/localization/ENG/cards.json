@@ -163,8 +163,8 @@
   },
   "InesMod:LayeredShadows": {
     "NAME": "Layered Shadows",
-    "DESCRIPTION": "If no *Shadow *Whistle in your hand , add 1 *Shadow *Whistle . NL Otherwise double the number of *Shadow *Whistles in your hand.",
-    "UPGRADE_DESCRIPTION": "If no *Shadow *Whistle in your hand , add 1 *Shadow *Whistle . NL Otherwise double the number of *Shadow *Whistles in your hand. NL  Retain ."
+    "DESCRIPTION": "Double the number of *Shadow *Whistles in your hand, then add 1 extra *Shadow *Whistle .",
+    "UPGRADE_DESCRIPTION": "Double the number of *Shadow *Whistles in your hand, then add 1 extra *Shadow *Whistle . NL  Retain ."
   },
   "InesMod:Sprint": {
     "NAME": "Sprint",
@@ -276,7 +276,7 @@
   },
   "InesMod:RouteMapping": {
     "NAME": "Route Mapping",
-    "DESCRIPTION": "Whenever a *Shadow Whistle enter your hand, gain !M! ines:Steals ."
+    "DESCRIPTION": "Whenever a *Shadow Whistle enters your hand, gain !M! ines:Steals . NL This effect caps ines:Steals at 10."
   },
   "InesMod:MercenaryTactics": {
     "NAME": "Mercenary Tactics",

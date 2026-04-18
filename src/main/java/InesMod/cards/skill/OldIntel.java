@@ -54,7 +54,9 @@ public class OldIntel extends AbstractInesCard {
     @Override
     public void onCardMove(AbstractCard c, CardGroup.CardGroupType groupType) {
         // LogHelper.info("===OldIntel：onCardMove：begin");
-        if (c == this && groupType == CardGroup.CardGroupType.DISCARD_PILE){
+        if (c == this
+                && groupType == CardGroup.CardGroupType.DISCARD_PILE
+                && !this.addedFromSameGroup) {
 //            if(!this.upgraded){
 //                // LogHelper.info("===OldIntel：onCardMove进入弃牌堆：baseMagicNumber：{}===",this.baseMagicNumber);
 //                this.upgradeMagicNumber(-1);

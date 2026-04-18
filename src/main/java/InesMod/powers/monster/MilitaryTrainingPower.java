@@ -155,11 +155,11 @@ public class MilitaryTrainingPower extends AbstractInesPower {
     }
 
     @Override // 重写，使得绘制失效回合数（红色）
-    public void renderAmount(SpriteBatch sb, float x, float y, Color c) {
+    public void renderAmount(SpriteBatch sb, float x, float y, Color color) {
         if (this.invalidTurn > 0) {
-            this.redColor.a = c.a;
-            c = this.redColor;
-            FontHelper.renderFontRightTopAligned(sb, FontHelper.powerAmountFont, Integer.toString(this.invalidTurn), x, y, this.fontScale, c);
+            this.redColor.a = color.a;
+            color = this.redColor;
+            FontHelper.renderFontRightTopAligned(sb, FontHelper.powerAmountFont, Integer.toString(this.invalidTurn), x, y, this.fontScale, color);
         }
     }
 

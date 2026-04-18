@@ -36,9 +36,9 @@ public class SarkazHeirbearerArtificer extends AbstractInesMonster {
         this.state.setAnimation(0, "Idle", true);
 
         if (ascensionForHp()) {
-            setHp(90);
+            setHp(99);
         } else {
-            setHp(78);
+            setHp(88);
         }
 
         if (ascensionForDamage()) {
@@ -83,7 +83,7 @@ public class SarkazHeirbearerArtificer extends AbstractInesMonster {
             return;
         }
 
-        if ((i < 70 && !lastTwoMoves((byte)1)) || lastMove((byte)2)) {
+        if ((i < 50 && !lastTwoMoves((byte)1)) || lastMove((byte)2)) {
             setMove((byte)1, Intent.ATTACK, this.damage.get(0).base);
         } else {
             setMove((byte)2, Intent.DEFEND);

@@ -163,8 +163,8 @@
   },
   "InesMod:LayeredShadows": {
     "NAME": "叠影",
-    "DESCRIPTION": "如果手牌中没有 *影哨 ，加入 1 张 *影哨 。 NL 否则将手牌中 *影哨 的数量翻倍。",
-    "UPGRADE_DESCRIPTION":"如果手牌中没有 *影哨 ，加入 1 张 *影哨 。 NL 否则将手牌中 *影哨 的数量翻倍。 NL  保留 。"
+    "DESCRIPTION": "将手牌中 *影哨 的数量翻倍，然后加入 1 张 *影哨 。",
+    "UPGRADE_DESCRIPTION":"将手牌中 *影哨 的数量翻倍，然后加入 1 张 *影哨 。 NL  保留 。"
   },
   "InesMod:Sprint": {
     "NAME": "疾跑",
@@ -276,7 +276,7 @@
   },
   "InesMod:RouteMapping": {
     "NAME": "路线绘制",
-    "DESCRIPTION": "每有 1 张 *影哨 进入手牌，获得 !M! 层 ines:偷取 。"
+    "DESCRIPTION": "每有 1 张 *影哨 进入手牌，获得 !M! 层 ines:偷取 。 NL 此效果最多使 ines:偷取 达到 10 层。"
   },
   "InesMod:MercenaryTactics": {
     "NAME": "佣兵手段",

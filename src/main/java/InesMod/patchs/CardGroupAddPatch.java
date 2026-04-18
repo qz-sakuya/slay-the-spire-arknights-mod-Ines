@@ -58,6 +58,7 @@ public class CardGroupAddPatch {
     private static void Work(CardGroup __instance, AbstractCard c) {
         LogHelper.info("===CardGroupAddPatch：被加入的卡牌ID={}，牌被加入的位置={}===", c.cardID, __instance.type);
 
+
         // 触发自动打出
         if (c instanceof AbstractInesCard ){
             AbstractInesCard tmp = (AbstractInesCard)c;
@@ -75,8 +76,15 @@ public class CardGroupAddPatch {
             }
         }
 
-        // 更新卡牌的位置
-        if (c instanceof AbstractInesCard ){
+        // 更新卡牌的 addedFromSameGroup
+        if (c instanceof AbstractInesCard){
+            AbstractInesCard tmp = (AbstractInesCard)c;
+            tmp.addedFromSameGroup = (tmp.lastAddedTo == __instance.type);
+            LogHelper.info("===CardGroupAddPatch：更新卡牌addedFromSameGroup为: {}===", tmp.addedFromSameGroup);
+        }
+
+        // 更新卡牌的 lastAddedTo
+        if (c instanceof AbstractInesCard){
             AbstractInesCard tmp = (AbstractInesCard)c;
             if (__instance.type == CardGroup.CardGroupType.HAND ||
                     __instance.type == CardGroup.CardGroupType.DRAW_PILE ||

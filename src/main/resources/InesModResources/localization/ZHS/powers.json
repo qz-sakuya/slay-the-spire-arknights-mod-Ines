@@ -59,7 +59,7 @@
   "InesMod:ThoroughAnalysisPower": {
     "NAME": "分析透彻",
     "DESCRIPTIONS": [
-      "拥有 #b%d 层 #y偷取 时， 每消耗 #b1 层 #y偷取 额外使目标获得 #b%d 层 #y易伤 。"
+      "拥有至少 #b%d 层 #y偷取 时， 每消耗 #b1 层 #y偷取 额外使目标获得 #b%d 层 #y易伤 。"
     ]
   },
   "InesMod:NoInvisibilityPower": {
@@ -168,7 +168,7 @@
   "InesMod:RouteMappingPower": {
     "NAME": "路线绘制",
     "DESCRIPTIONS": [
-      "每有 #b1 张 #y影哨 进入手牌，获得 #b%d 层 #y偷取 。"
+      "每有 #b1 张 #y影哨 进入手牌，获得 #b%d 层 #y偷取 。 NL 最多使 #y偷取 达到 #b10 层。"
     ]
   },
   "InesMod:MercenaryTacticsPower": {

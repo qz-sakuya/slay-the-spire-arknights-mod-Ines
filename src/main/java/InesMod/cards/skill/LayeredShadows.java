@@ -44,9 +44,8 @@ public class LayeredShadows extends AbstractInesCard {
         if (cnt > 0) {
             this.addToBot(new MakeTempCardInHandAction(new ShadowWhistle(), cnt));
         }
-        else{
-            this.addToBot(new MakeTempCardInHandAction(new ShadowWhistle(), 1));
-        }
+
+        this.addToBot(new MakeTempCardInHandAction(new ShadowWhistle(), 1));
 
     }
 

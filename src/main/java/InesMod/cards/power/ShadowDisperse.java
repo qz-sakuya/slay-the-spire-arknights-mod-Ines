@@ -42,7 +42,7 @@ public class ShadowDisperse extends AbstractInesCard  {
     public void upgrade() {
         if (!this.upgraded) {
             upgradeName();
-            upgradeBaseCost(1);
+            upgradeBaseCost(0);
         }
     }
 }

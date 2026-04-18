@@ -23,7 +23,7 @@ public class DexterityStolenPower extends AbstractInesPower {
                 false,
                 powerStrings,
                 owner,
-                PowerType.BUFF,
+                PowerType.DEBUFF, // 和原版 镣铐 保持一致
                 amount);
     }
 
