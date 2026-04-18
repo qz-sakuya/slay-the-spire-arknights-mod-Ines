@@ -13,6 +13,7 @@ public class RelicPatch {
 
 
     // 禁用药丸，树枝，手里剑，苦无
+    // 犹豫中：外卡钳
     @SpirePatch(clz = AbstractDungeon.class,method = "initializeRelicList")
     public static class RelicListPatch{
         @SpirePostfixPatch

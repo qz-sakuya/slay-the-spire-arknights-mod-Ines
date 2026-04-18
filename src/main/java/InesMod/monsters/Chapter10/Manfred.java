@@ -1,9 +1,6 @@
 package InesMod.monsters.Chapter10;
 
-import InesMod.action.ApplyNonStackPowerAction;
-import InesMod.action.ForceWaitAction;
-import InesMod.action.SetPowerAction;
-import InesMod.action.SummonWarriorAction;
+import InesMod.action.*;
 import InesMod.helpers.LogHelper;
 import InesMod.helpers.PathHelper;
 import InesMod.monsters.AbstractInesMonster;
@@ -109,6 +106,8 @@ public class Manfred extends AbstractInesMonster {
 
 
     public void usePreBattleAction() {
+        LogHelper.info("===曼弗雷德：usePreBattleAction===");
+
         AbstractDungeon.scene.fadeOutAmbiance();
         CardCrawlGame.music.unsilenceBGM();
         ExtraLevelPatch.BOSS_MUSIC_KEY = "C10_Boss_1";
@@ -280,23 +279,12 @@ public class Manfred extends AbstractInesMonster {
                     militaryTrainingPower.clearInvalidTurn();
                 }
 
-
-
                 // 清空城防炮充能
-                // 如果有刚施加的炮击，不清空
-                boolean hasFirePower = false;
-                AbstractPower powerToGet = AbstractDungeon.player.getPower(FirePower.ID);
-                if (powerToGet != null) {
-                    hasFirePower = true;
+                AbstractPower damPower = this.getPower(DefenseArtilleryMeterPower.ID);
+                if (damPower instanceof DefenseArtilleryMeterPower) {
+                    addToBot(new ManfredClearDefenseArtilleryMeterPowerAction((DefenseArtilleryMeterPower) damPower));
                 }
-                if (!hasFirePower) {
-                    AbstractPower tempPower = this.getPower(DefenseArtilleryMeterPower.ID);
-                    if (tempPower instanceof DefenseArtilleryMeterPower) {
-                        DefenseArtilleryMeterPower damPower = (DefenseArtilleryMeterPower) tempPower;
-                        addToBot(new SetPowerAction(this, this, new DefenseArtilleryMeterPower(this, 0, damPower.secondAmount, damPower.damage), 0));
-                        damPower.notAddThisTurn = true;
-                    }
-                }
+
 
 
                 addToBot(new CanLoseAction());
@@ -360,7 +348,12 @@ public class Manfred extends AbstractInesMonster {
                 AbstractPower tempPower = this.getPower(DefenseArtilleryMeterPower.ID);
                 if (tempPower instanceof DefenseArtilleryMeterPower) {
                     DefenseArtilleryMeterPower damPower = (DefenseArtilleryMeterPower) tempPower;
-                    addToBot(new SetPowerAction(this, this, new DefenseArtilleryMeterPower(this, damPower.secondAmount,damPower.secondAmount,damPower.damage), damPower.secondAmount));
+
+                    // 不能使用applyPower相关Action，因为已经设置了 this.halfDead，导致 applyPower相关Action 内部跳过不生效
+                    damPower.amount = 4;
+                    addToBot(new SetDefenseArtilleryMeterUponAction(4));
+
+
 
                     // 给玩家添加power
                     addToBot(new ApplyNonStackPowerAction(AbstractDungeon.player, this, new FirePower(AbstractDungeon.player, -1, damPower.damage)));

@@ -26,7 +26,7 @@ public class LurkInDeepShadowsPower extends AbstractInesPower {
                 PowerType.BUFF,
                 amount);
 
-        this.priority = 4; // 排在 保留（优先级5）前面
+        this.priority = 4; // 排在 保留（优先级5） 和 漫漫长夜 前面
     }
 
 

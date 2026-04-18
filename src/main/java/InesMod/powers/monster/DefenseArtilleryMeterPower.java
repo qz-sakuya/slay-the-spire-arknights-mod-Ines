@@ -1,6 +1,7 @@
 package InesMod.powers.monster;
 
 import InesMod.action.*;
+import InesMod.helpers.LogHelper;
 import InesMod.helpers.PathHelper;
 import InesMod.monsters.Chapter10.Manfred;
 import InesMod.powers.AbstractInesPower;
@@ -30,7 +31,7 @@ public class DefenseArtilleryMeterPower extends AbstractInesPower {
 
     public final int damage;
 
-    public boolean notAddThisTurn = false;
+    public boolean notAddThisTurn = false; // 本回合结束时不自动叠加
 
     public DefenseArtilleryMeterPower(AbstractCreature owner, int amount, int secondAmount, int damage) {
         super(ID,
@@ -84,12 +85,16 @@ public class DefenseArtilleryMeterPower extends AbstractInesPower {
     public void stackPower(int stackAmount) {
         super.stackPower(stackAmount);
         addToTop(new SetDefenseArtilleryMeterUponAction(amount));
+
+        LogHelper.info("===DefenseArtilleryMeterPower： stackPower: stackAmount={},层数变更为{}===",stackAmount,amount);
     }
 
     @Override
     public void reducePower(int reduceAmount) {
         super.reducePower(reduceAmount);
         addToTop(new SetDefenseArtilleryMeterUponAction(amount));
+
+        LogHelper.info("===DefenseArtilleryMeterPower： reducePower: reduceAmount={},层数变更为{}===",reduceAmount,amount);
     }
 
     @Override

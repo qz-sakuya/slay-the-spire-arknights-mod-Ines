@@ -1,5 +1,6 @@
 package InesMod.action;
 
+import InesMod.helpers.LogHelper;
 import InesMod.powers.monster.DefenseArtilleryMeterPower;
 import InesMod.powers.monster.FirePower;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
@@ -20,6 +21,8 @@ public class TryClearDefenseArtilleryMeterPowerAction extends AbstractGameAction
 
     @Override
     public void update() {
+        LogHelper.info("===TryClearDefenseArtilleryMeterPowerAction：触发===");
+
         // 如果有本回合未能触发的炮击，不清空
         AbstractPower powerToGet = AbstractDungeon.player.getPower(FirePower.ID);
         if (powerToGet != null) {
@@ -31,6 +34,8 @@ public class TryClearDefenseArtilleryMeterPowerAction extends AbstractGameAction
         if (power.amount >= power.secondAmount) {
             addToBot(new SetPowerAction(power.owner,power. owner, power, 0));
         }
+
+        LogHelper.info("===TryClearDefenseArtilleryMeterPowerAction：成功清空充能===");
 
         this.isDone = true;
     }

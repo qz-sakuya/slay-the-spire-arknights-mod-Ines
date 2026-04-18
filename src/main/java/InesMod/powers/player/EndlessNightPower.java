@@ -1,5 +1,6 @@
 package InesMod.powers.player;
 
+import InesMod.action.EndlessNightAction;
 import InesMod.cards.status.ShadowWhistle;
 import InesMod.helpers.PathHelper;
 import InesMod.powers.AbstractInesPower;
@@ -37,17 +38,7 @@ public class EndlessNightPower extends AbstractInesPower {
     @Override
     public void atEndOfTurn(boolean isPlayer) {
         if (isPlayer) {
-            boolean success = false;
-            for (AbstractCard c : AbstractDungeon.player.hand.group) {
-                // 保留所有影哨
-                if (c.cardID.equals(ShadowWhistle.ID)) {
-                    c.retain = true;
-                    success = true;
-                }
-            }
-            if (success) {
-                flash();
-            }
+            addToBot(new EndlessNightAction(this));
             addToBot(new RemoveSpecificPowerAction(this.owner, this.owner, EndlessNightPower.ID));
         }
     }
