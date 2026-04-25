@@ -1,8 +1,10 @@
 package InesMod.action;
 
 import InesMod.monsters.Chapter10.Manfred;
+import InesMod.powers.monster.MilitaryTrainingPower;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.AbstractPower;
 
 
 public class TakeTurnAction extends AbstractGameAction {

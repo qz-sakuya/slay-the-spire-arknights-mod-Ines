@@ -220,9 +220,9 @@
   "InesMod:MilitaryTrainingPower": {
     "NAME": "军事训练",
     "DESCRIPTIONS": [
-      "被攻击时闪避，减免 #b%s 伤害，将一张 #y回击 加入你的弃牌堆， #y回击 的伤害等于减免的伤害值。",
-      " NL 受到 #y城防炮 伤害时，失效 #b%d 回合。",
-      " NL （失效中，持续 #b%d 回合）"
+      "被攻击时闪避，减免 #b%s 伤害，将一张 #y回击 加入你的弃牌堆， #y回击 的伤害等于减免的伤害。 NL 当你打出 #y回击 时，",
+      " #r立即行动一次 。 NL  NL 受到 #y城防炮 伤害时，此能力失效 #b%d 回合。",
+      "立即行动一次。 NL  NL （失效中，持续 #b%d 回合）"
     ]
   },
   "InesMod:RebornCreationPower": {
