@@ -9,6 +9,8 @@ import com.megacrit.cardcrawl.monsters.MonsterInfo;
 
 public class MonsterHelper {
     public static void initializeMonsters() {
+        LogHelper.info("===InesMod: MonsterHelper: initializeMonsters===");
+
         // ===第10章===
         addMonsterAndEncounter("C10_W1_2ZS", LevelChapter10.ID, false,
                 new AbstractMonster[] {
@@ -61,6 +63,13 @@ public class MonsterHelper {
                         new TouchOfSanguinarch(-350.0F, 0.0F),
                         new TouchOfSanguinarch(-100.0F, 0.0F),
                         new SarkazHeirbearerArtificer(150.0F, 0.0F)
+                }
+        );
+
+        addMonsterAndEncounter("C10_S5_1DZW_1GJ", LevelChapter10.ID,false,
+                new AbstractMonster[] {
+                        new GiftOfSanguinarch(-200.0F, 0.0F),
+                        new SarkazHeirbearerArtificer(100.0F, 0.0F)
                 }
         );
 

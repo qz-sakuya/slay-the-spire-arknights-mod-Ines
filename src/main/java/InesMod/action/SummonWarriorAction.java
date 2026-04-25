@@ -60,14 +60,14 @@ public class SummonWarriorAction extends AbstractGameAction {
         // 触发自定义回调
         for (AbstractPower power : AbstractDungeon.player.powers) {
             if (power instanceof AbstractInesPower) {
-                ((AbstractInesPower) power).onAnyMonsterDeath(this.m);
+                ((AbstractInesPower) power).onSpawnMonster(this.m);
             }
         }
 
         for (AbstractMonster mon : (AbstractDungeon.getMonsters()).monsters) {
             for (AbstractPower power : mon.powers) {
                 if (power instanceof AbstractInesPower) {
-                    ((AbstractInesPower) power).onAnyMonsterDeath(this.m);
+                    ((AbstractInesPower) power).onSpawnMonster(this.m);
                 }
             }
         }

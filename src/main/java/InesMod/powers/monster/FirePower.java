@@ -1,29 +1,20 @@
 package InesMod.powers.monster;
 
 import InesMod.action.*;
-import InesMod.helpers.LogHelper;
 import InesMod.helpers.PathHelper;
-import InesMod.monsters.Chapter10.Manfred;
-import InesMod.monsters.Chapter10.Teekazwurtzen;
 import InesMod.powers.AbstractInesPower;
-import InesMod.vfx.DefenseArtilleryFireEffect;
-import com.badlogic.gdx.graphics.Color;
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.animations.VFXAction;
-import com.megacrit.cardcrawl.actions.common.*;
-import com.megacrit.cardcrawl.actions.utility.SFXAction;
-import com.megacrit.cardcrawl.cards.DamageInfo;
+import InesMod.vfx.FireTipEffect;
+import basemod.ReflectionHacks;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.core.Settings;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
-import com.megacrit.cardcrawl.vfx.BorderFlashEffect;
+import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 /**
  * 中文名：炮击！
@@ -52,6 +43,14 @@ public class FirePower extends AbstractInesPower {
 
         this.damage = damage;
         updateDescription();
+
+        addTipEffect();
+    }
+
+    @Override
+    public void stackPower(int stackAmount) {
+        super.stackPower(stackAmount);
+        addTipEffect();
     }
 
 
@@ -69,6 +68,7 @@ public class FirePower extends AbstractInesPower {
     @Override
     public void atEndOfTurn(boolean isPlayer) {
         if (isPlayer) {
+            stopTipEffect();
             addToBot(new DelayToAddAction(new FireDamageAction(this)));
         }
     }
@@ -86,5 +86,43 @@ public class FirePower extends AbstractInesPower {
 //        else {
 //            this.description = String.format(descriptions[1], this.damage);
 //        }
+    }
+
+
+
+
+    private void addTipEffect(){
+        if (!(this.owner instanceof AbstractPlayer)) {
+            return;
+        }
+
+        ArrayList<AbstractGameEffect> effect = ReflectionHacks.getPrivate(this, AbstractPower.class, "effect");
+
+        if (effect != null) {
+            boolean hasSameType = false;
+            for (AbstractGameEffect existingEffect : effect) {
+                if (existingEffect instanceof FireTipEffect) {
+                    hasSameType = true;
+                    break;
+                }
+            }
+
+            if (!hasSameType) {
+                effect.add(new FireTipEffect());
+            }
+        }
+    }
+
+    private void stopTipEffect(){
+        ArrayList<AbstractGameEffect> effect = ReflectionHacks.getPrivate(this, AbstractPower.class, "effect");
+
+        if (effect != null) {
+            for (AbstractGameEffect existingEffect : effect) {
+                if (existingEffect instanceof FireTipEffect) {
+                    ((FireTipEffect) existingEffect).stop = true;
+                    break;
+                }
+            }
+        }
     }
 }

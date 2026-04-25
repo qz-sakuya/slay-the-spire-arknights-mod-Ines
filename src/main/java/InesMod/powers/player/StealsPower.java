@@ -113,6 +113,8 @@ public class StealsPower extends AbstractInesPower {
             if (consumeNum > 0){
                 flash();
                 amountBeforeReduce = this.amount;
+
+                // 延迟消除
                 addToTop(new ReduceAndKeepPowerAction(this.owner, this.owner, StealsPower.ID, consumeNum));
             }
             // LogHelper.info("===StealsPower:  onUseCard，设置consumeNum为{}===",consumeNum);

@@ -113,6 +113,10 @@ public class InesModMain implements
                 BIG_ORB,            // energyOrbPortrait: 在卡牌预览界面的能量图标
                 SMALL_ORB           // cardEnergyOrb: 在卡牌和遗物描述中的能量图标
         );
+        LogHelper.info("===InesMod:版本1.2.2===");
+
+
+
         LogHelper.info("===正在回忆设置项===");
         ConfigHelper.initModSettings();
         LogHelper.info("===设置情报已收集===");
@@ -221,8 +225,8 @@ public class InesModMain implements
 
     @Override
     public void receivePostInitialize() {
-        //LogHelper.info("===receivePostInitialize：触发===");
-        MonsterHelper.initializeMonsters();
+        LogHelper.info("===InesMod:receivePostInitialize：触发===");
+
         EventHelper.initializeEvents();
         ConfigHelper.initModConfigMenu();
 
@@ -231,6 +235,9 @@ public class InesModMain implements
                 customReward -> new RewardSave(customReward.type.toString(),
                         null,
                         ((TruthReward)customReward).amount, 0));
+
+
+//       MonsterHelper.initializeMonsters();
     }
 
     @Override
@@ -257,12 +264,14 @@ public class InesModMain implements
 
     @Override
     public void receiveStartGame() {
-        //LogHelper.info("===receiveStartGame：触发===");
+        LogHelper.info("===InesMod:receiveStartGame：触发===");
         TruthManager.setTopPanelItem();
 
-        if(InesExtraLevelHelper.isInesExtraLevelID(AbstractDungeon.id)){
-            MonsterHelper.initializeMonsters(); // 保证sl时，生成新的怪物
-        }
+//        if(InesExtraLevelHelper.isInesExtraLevelID(AbstractDungeon.id)){
+//            MonsterHelper.initializeMonsters(); // 保证sl时，生成新的怪物
+//        }
+
+        MonsterHelper.initializeMonsters();
     }
 
 
@@ -358,7 +367,8 @@ public class InesModMain implements
         if (language == Settings.GameLanguage.ZHS) {
             lang = "ZHS"; // 如果语言设置为简体中文，则加载ZHS文件夹的资源
         } else {
-            lang = "ENG"; // 如果没有相应语言的版本，默认加载英语
+            lang = "ENG"; // 如果没有相应语言的版本，默认加载英语 // TODO
+            lang = "ZHS"; // 如果语言设置为简体中文，则加载ZHS文件夹的资源
         }
         return lang;
     }

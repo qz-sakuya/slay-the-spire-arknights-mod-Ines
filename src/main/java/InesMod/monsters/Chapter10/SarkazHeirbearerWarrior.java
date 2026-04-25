@@ -37,9 +37,9 @@ public class SarkazHeirbearerWarrior extends AbstractInesMonster {
         this.state.setAnimation(0, "Idle", true);
 
         if (ascensionForHp()) {
-            setHp(82);
+            setHp(122);
         } else {
-            setHp(70);
+            setHp(105);
         }
 
         if (ascensionForDamage()) {
@@ -49,9 +49,9 @@ public class SarkazHeirbearerWarrior extends AbstractInesMonster {
         }
 
         if (ascensionForMove()) {
-            this.defend = 17;
+            this.defend = 20;
         } else {
-            this.defend = 15;
+            this.defend = 17;
         }
 
         this.damage.add(new DamageInfo(this, this.attack, DamageInfo.DamageType.NORMAL));

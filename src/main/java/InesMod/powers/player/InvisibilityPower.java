@@ -1,5 +1,6 @@
 package InesMod.powers.player;
 
+import InesMod.action.ReduceAndKeepPowerAction;
 import InesMod.cards.status.ShadowWhistle;
 import InesMod.helpers.LogHelper;
 import InesMod.helpers.PathHelper;
@@ -9,6 +10,7 @@ import basemod.ReflectionHacks;
 import com.megacrit.cardcrawl.actions.common.*;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -36,8 +38,13 @@ public class InvisibilityPower extends AbstractInesPower {
                 amount);
         this.isTurnBased = true;
 
-        ArrayList<AbstractGameEffect> effect = ReflectionHacks.getPrivate(this, AbstractPower.class, "effect");
-        effect.add(new InvisibilityEffect());
+        this.renderAmountZero = true;
+        this.endOfRoundWhenSkipMonsterTurn = true;
+
+//        ArrayList<AbstractGameEffect> effect = ReflectionHacks.getPrivate(this, AbstractPower.class, "effect");
+//        effect.add(new InvisibilityEffect());
+
+        addEffect();
     }
 
 
@@ -49,6 +56,8 @@ public class InvisibilityPower extends AbstractInesPower {
             this.amount = 999;
         }
         updateDescription();
+
+        addEffect();
     }
 
     @Override
@@ -77,12 +86,18 @@ public class InvisibilityPower extends AbstractInesPower {
             }
         }
 
+        // 延迟消除，使影哨正常享受防御增加效果
+        addToBot(new ReduceAndKeepPowerAction(this.owner, this.owner, InvisibilityPower.ID, 1));
     }
 
     @Override
     public void atEndOfRound() {
-        // 延迟消除，使影哨正常享受防御增加效果
-        addToBot(new ReducePowerAction(this.owner, this.owner, InvisibilityPower.ID, 1));
+        LogHelper.info("===InvisibilityPower：atEndOfRound===");
+
+        // 延迟消除
+        if (this.amount == 0){
+            this.addToBot(new RemoveSpecificPowerAction(this.owner, this.owner, InvisibilityPower.ID));
+        }
     }
 
 
@@ -118,7 +133,29 @@ public class InvisibilityPower extends AbstractInesPower {
                 }
             }
         }
+
+
     }
 
 
+
+    private void addEffect(){
+        if (!(this.owner instanceof AbstractPlayer)) {
+            return;
+        }
+
+        ArrayList<AbstractGameEffect> effect = ReflectionHacks.getPrivate(this, AbstractPower.class, "effect");
+
+        boolean hasSameType = false;
+        for (AbstractGameEffect existingEffect : effect) {
+            if (existingEffect instanceof InvisibilityEffect) {
+                hasSameType = true;
+                break;
+            }
+        }
+
+        if (!hasSameType) {
+            effect.add(new InvisibilityEffect());
+        }
+    }
 }

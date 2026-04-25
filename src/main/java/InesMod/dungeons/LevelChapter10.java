@@ -1,6 +1,7 @@
 package InesMod.dungeons;
 
 import InesMod.helpers.DungeonHelper;
+import InesMod.helpers.MonsterHelper;
 import InesMod.helpers.PathHelper;
 import InesMod.truth.TruthTopItem;
 import com.badlogic.gdx.graphics.Color;
@@ -39,7 +40,7 @@ import org.apache.logging.log4j.LogManager;
  *
  * group：
  * Weak：2战士、2小造物+补给车、战士+补给车  （2、3不会连续出现，但因为只生成一个弱怪，不用去重了）
- * Strong：3战士、2战士+补给车、战士+工匠、3小造物+工匠     （3、4不会连续出现）
+ * Strong：3战士、2战士+补给车、战士+工匠、3小造物+工匠、大造物+工匠   （3、4、5不会连续出现）
  * Elite：2术士、大刀哥+术士、2战士+大刀哥、3小造物+大刀哥  （3、4不会连续出现）
  * Boss：2战士+曼弗雷德，二阶段还有2战士
  */
@@ -68,6 +69,8 @@ public class LevelChapter10 extends AbstractDungeon {
         mapRng = new Random(Settings.seed + (AbstractDungeon.actNum * 400L));
         generateSpecialMap();
         CardCrawlGame.music.changeBGM(id);
+
+
     }
 
     public LevelChapter10(AbstractPlayer p, SaveFile saveFile) {
@@ -164,6 +167,7 @@ public class LevelChapter10 extends AbstractDungeon {
         ArrayList<MonsterInfo> monsterOption1 = new ArrayList<>();
         monsterOption1.add(new MonsterInfo("C10_S3_1ZS_1GJ", 1.0F));
         monsterOption1.add(new MonsterInfo("C10_S4_3XZW_1GJ", 1.0F));
+        monsterOption1.add(new MonsterInfo("C10_S5_1DZW_1GJ", 1.0F));
         monsters.add(monsterOption1.get(monsterRng.random(monsterOption1.size()-1))); // 从以上随机选一个
 
 

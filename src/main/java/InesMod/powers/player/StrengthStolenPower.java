@@ -24,6 +24,8 @@ public class StrengthStolenPower extends AbstractInesPower {
                 owner,
                 PowerType.DEBUFF, // 和原版 镣铐 保持一致
                 amount);
+
+
     }
 
     @Override

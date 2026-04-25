@@ -25,6 +25,7 @@ public class DexterityStealPower extends AbstractInesPower {
                 owner,
                 PowerType.DEBUFF,
                 amount);
+
     }
 
     @Override

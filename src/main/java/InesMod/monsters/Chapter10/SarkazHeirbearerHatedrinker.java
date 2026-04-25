@@ -34,9 +34,9 @@ public class SarkazHeirbearerHatedrinker extends AbstractInesMonster {
         this.state.setAnimation(0, "Idle", true);
 
         if (ascensionForHp()) {
-            setHp(155);
+            setHp(217);
         } else {
-            setHp(144);
+            setHp(202);
         }
 
         if (ascensionForDamage()) {
@@ -94,7 +94,7 @@ public class SarkazHeirbearerHatedrinker extends AbstractInesMonster {
                 int reborn = 2;
                 if (firstTimeBuff){
                     firstTimeBuff = false;
-                    reborn += 2;
+                    reborn += 4;
 
                     if (ascensionForMove()){
                         reborn += 2;

@@ -1,20 +1,25 @@
 package InesMod.vfx;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
+import com.megacrit.cardcrawl.vfx.BorderFlashEffect;
 
 /**
- * 隐匿 的特效触发器
- * 每隔固定时间生成一次 Aura 特效，避免一次性生成过多
+ * 炮击提示 的特效触发器
+ * 每隔固定时间生成一次 红色边框 特效
  */
-public class InvisibilityEffect extends AbstractGameEffect {
+public class FireTipEffect extends AbstractGameEffect {
 
     private float timer; // 计时器，控制特效生成频率
-    private static final float EFFECT_INTERVAL = 0.4f;
+    private final float EFFECT_INTERVAL = 1.0f;
 
-    public InvisibilityEffect() {
+    public boolean stop = false;
+
+    public FireTipEffect() {
         this.timer = EFFECT_INTERVAL; // 初始化计时器
     }
 
@@ -32,10 +37,8 @@ public class InvisibilityEffect extends AbstractGameEffect {
 
 
         // 当计时器小于等于0时，添加特效并重置计时器
-        // LoggerHelper.info("===InvisibilityEffect：timer{}===", timer);
-        if (timer <= 0.0f) {
-            // LoggerHelper.info("===InvisibilityEffect：触发一次特效===");
-            AbstractDungeon.effectsQueue.add(new InvisibilityAuraEffect("Wrath"));
+        if (timer <= 0.0f && !stop) {
+            AbstractDungeon.actionManager.addToBottom(new VFXAction(new BorderBreathingEffect(new Color(200, 0, 0,200))));
             timer = EFFECT_INTERVAL; // 重置为固定间隔
         }
     }

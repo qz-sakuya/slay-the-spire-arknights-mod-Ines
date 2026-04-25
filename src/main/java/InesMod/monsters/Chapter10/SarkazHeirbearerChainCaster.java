@@ -37,9 +37,9 @@ public class SarkazHeirbearerChainCaster extends AbstractInesMonster {
         this.state.setAnimation(0, "Idle", true);
 
         if (ascensionForHp()) {
-            setHp(143);
+            setHp(200);
         } else {
-            setHp(131);
+            setHp(183);
         }
 
         if (ascensionForDamage()) {

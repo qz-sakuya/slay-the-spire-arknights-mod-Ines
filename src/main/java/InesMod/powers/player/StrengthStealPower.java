@@ -24,6 +24,8 @@ public class StrengthStealPower extends AbstractInesPower {
                 owner,
                 PowerType.DEBUFF,
                 amount);
+
+
     }
 
     @Override

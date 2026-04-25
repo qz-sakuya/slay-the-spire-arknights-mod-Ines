@@ -35,9 +35,9 @@ public class GiftOfSanguinarch extends AbstractInesMonster {
         this.state.setAnimation(0, "Idle", true);
 
         if (ascensionForHp()) {
-            setHp(45);
+            setHp(54);
         } else {
-            setHp(40);
+            setHp(48);
         }
 
         if (ascensionForDamage()) {

@@ -37,9 +37,9 @@ public class TouchOfSanguinarch extends AbstractInesMonster {
         this.state.setAnimation(0, "Idle", true);
 
         if (ascensionForHp()) {
-            setHp(23);
+            setHp(28);
         } else {
-            setHp(20);
+            setHp(24);
         }
 
         if (ascensionForDamage()) {

@@ -7,33 +7,26 @@ import InesMod.monsters.AbstractInesMonster;
 import InesMod.patchs.ExtraLevelPatch;
 import InesMod.powers.AbstractInesPower;
 import InesMod.powers.monster.*;
-import InesMod.powers.player.NoInvisibilityPower;
 import InesMod.powers.player.StrengthStealPower;
 import InesMod.powers.player.StrengthStolenPower;
-import InesMod.relics.AbstractInesRelic;
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.ClearCardQueueAction;
-import com.megacrit.cardcrawl.actions.GameActionManager;
 import com.megacrit.cardcrawl.actions.animations.TalkAction;
 import com.megacrit.cardcrawl.actions.common.*;
 import com.megacrit.cardcrawl.actions.unique.CanLoseAction;
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.monsters.city.BronzeOrb;
 import com.megacrit.cardcrawl.powers.AbstractPower;
-import com.megacrit.cardcrawl.powers.MinionPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
-import com.megacrit.cardcrawl.unlock.UnlockTracker;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.Iterator;
 
 /**
@@ -77,21 +70,21 @@ public class Manfred extends AbstractInesMonster {
 
 
         if (ascensionForHp()) {
-            setHp(420);
+            setHp(520);
         } else {
-            setHp(400);
+            setHp(500);
         }
 
         if (ascensionForDamage()) {
-            this.attack = 23;
+            this.attack = 24;
         } else {
-            this.attack = 20;
+            this.attack = 21;
         }
 
         if (ascensionForMove()) {
-            this.defend = 20;
+            this.defend = 24;
         } else {
-            this.defend = 17;
+            this.defend = 20;
         }
 
 
@@ -207,60 +200,58 @@ public class Manfred extends AbstractInesMonster {
 
     }
 
-    public void takeTurn() {
+    public void takeTurn(boolean moveInstantly) {
         LogHelper.info("===曼弗雷德：takeTurn，nextMove={}===",this.nextMove);
         setFastMode();
+
+        ArrayList<AbstractGameAction> actionsToAdd = new ArrayList<>();
         switch (this.nextMove) {
             case 1: // 一阶段轻击（倍率100%）
-                addToBot(new ChangeStateAction(this, "ATTACK_1"));
-                addToBot(new ForceWaitAction(this.waitTime));
-                addToBot(new DamageAction(AbstractDungeon.player, this.damage.get(0), AbstractGameAction.AttackEffect.SLASH_VERTICAL));
+                actionsToAdd.add(new ChangeStateAction(this, "ATTACK_1"));
+                actionsToAdd.add(new ForceWaitAction(this.waitTime));
+                actionsToAdd.add(new DamageAction(AbstractDungeon.player, this.damage.get(0), AbstractGameAction.AttackEffect.SLASH_VERTICAL));
                 break;
             case 2: // 一阶段重击（倍率150%）
-                addToBot(new ChangeStateAction(this, "ATTACK_1"));
-                addToBot(new ForceWaitAction(this.waitTime));
-                addToBot(new DamageAction(AbstractDungeon.player, this.damage.get(1), AbstractGameAction.AttackEffect.SLASH_VERTICAL));
-                addToBot(new DamageAction(AbstractDungeon.player, this.damage.get(1), AbstractGameAction.AttackEffect.SLASH_VERTICAL));
+                actionsToAdd.add(new ChangeStateAction(this, "ATTACK_1"));
+                actionsToAdd.add(new ForceWaitAction(this.waitTime));
+                actionsToAdd.add(new DamageAction(AbstractDungeon.player, this.damage.get(1), AbstractGameAction.AttackEffect.SLASH_VERTICAL));
+                actionsToAdd.add(new DamageAction(AbstractDungeon.player, this.damage.get(1), AbstractGameAction.AttackEffect.SLASH_VERTICAL));
                 break;
             case 3: // 二阶段轻击（倍率200%）
-                addToBot(new ChangeStateAction(this, "ATTACK_2"));
-                addToBot(new ForceWaitAction(this.waitTime));
-                addToBot(new DamageAction(AbstractDungeon.player, this.damage.get(0), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
-                addToBot(new DamageAction(AbstractDungeon.player, this.damage.get(0), AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
+                actionsToAdd.add(new ChangeStateAction(this, "ATTACK_2"));
+                actionsToAdd.add(new ForceWaitAction(this.waitTime));
+                actionsToAdd.add(new DamageAction(AbstractDungeon.player, this.damage.get(0), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
+                actionsToAdd.add(new DamageAction(AbstractDungeon.player, this.damage.get(0), AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
                 break;
             case 4: // 二阶段重击（倍率300%）
-                addToBot(new ChangeStateAction(this, "ATTACK_2"));
-                addToBot(new ForceWaitAction(this.waitTime));
-                addToBot(new DamageAction(AbstractDungeon.player, this.damage.get(0), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
-                addToBot(new DamageAction(AbstractDungeon.player, this.damage.get(0), AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
-                addToBot(new DamageAction(AbstractDungeon.player, this.damage.get(0), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
+                actionsToAdd.add(new ChangeStateAction(this, "ATTACK_2"));
+                actionsToAdd.add(new ForceWaitAction(this.waitTime));
+                actionsToAdd.add(new DamageAction(AbstractDungeon.player, this.damage.get(0), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
+                actionsToAdd.add(new DamageAction(AbstractDungeon.player, this.damage.get(0), AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
+                actionsToAdd.add(new DamageAction(AbstractDungeon.player, this.damage.get(0), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
                 break;
             case 5: // 防御
-                addToBot(new GainBlockAction(this, this.defend));
+                actionsToAdd.add(new GainBlockAction(this, this.defend));
                 break;
             case 6: // 2阶段召唤战士
-                addToBot(new ChangeStateAction(this, "ATTACK_2"));
+                actionsToAdd.add(new ChangeStateAction(this, "ATTACK_2"));
 
                 if (MathUtils.random(100) > 50) {
                     int randomIndex = MathUtils.random(1);
-                    addToBot(new TalkAction(this,monsterStrings.DIALOG[randomIndex]));
+                    actionsToAdd.add(new TalkAction(this,monsterStrings.DIALOG[randomIndex]));
                 }
 
-                addToBot(new SummonWarriorAction(0, WARRIOR_POSX[0], WARRIOR_POSY[0]));
-                addToBot(new SummonWarriorAction(1, WARRIOR_POSX[1], WARRIOR_POSY[1]));
+                actionsToAdd.add(new SummonWarriorAction(0, WARRIOR_POSX[0], WARRIOR_POSY[0]));
+                actionsToAdd.add(new SummonWarriorAction(1, WARRIOR_POSX[1], WARRIOR_POSY[1]));
                 break;
             case 7: // 2阶段召唤提卡兹之根
-                int currentSize = AbstractDungeon.getCurrRoom().monsters.monsters.size();
-                AbstractMonster teekazwurtzen = new Teekazwurtzen(0, 0);
-
-                // 修正位置
-                teekazwurtzen.drawX = this.drawX + 320.0F;
-                teekazwurtzen.drawY = this.drawY + 150.0F;
-
-                teekazwurtzen.usePreBattleAction();
-                AbstractDungeon.actionManager.addToBottom(new SpawnMonsterAction(teekazwurtzen, false, currentSize));
+                addToBot(new SpawnMonsterAtListEndAction(getTeekazwurtzen(), false));
                 break;
             case 8: // 重生
+                if (moveInstantly) {
+                    return;
+                }
+
                 setFastModeTo(false);
                 addToBot(new ChangeStateAction(this,"REBIRTH"));
 
@@ -285,7 +276,10 @@ public class Manfred extends AbstractInesMonster {
                     addToBot(new ManfredClearDefenseArtilleryMeterPowerAction((DefenseArtilleryMeterPower) damPower));
                 }
 
-
+                // 立即召唤提卡兹之根
+                addToBot(new SpawnMonsterAtListEndAction(getTeekazwurtzen(), false));
+                
+                
 
                 addToBot(new CanLoseAction());
 
@@ -303,8 +297,32 @@ public class Manfred extends AbstractInesMonster {
                 break;
         }
 
-        addToBot(new RollMoveAction(this));
+        actionsToAdd.add(new RollMoveAction(this));
+
+        if(moveInstantly){ // 立即执行
+            actionsToAdd.add(new ResetMoveAction(this));
+            actionsToAdd.add(new ForceWaitAction(0.8F));
+            Collections.reverse(actionsToAdd);
+            for(AbstractGameAction action : actionsToAdd){
+                addToTop(action);
+            }
+        }
+        else {
+            for(AbstractGameAction action : actionsToAdd){
+                addToBot(action);
+            }
+        }
     }
+
+
+
+    @Override
+    public void takeTurn() {
+        takeTurn(false);
+    }
+
+
+
 
     public void changeState(String stateName) {
         switch (stateName) {
@@ -451,5 +469,17 @@ public class Manfred extends AbstractInesMonster {
             CardCrawlGame.stopClock = true;
             super.die();
         }
+    }
+    
+    
+    private Teekazwurtzen getTeekazwurtzen() {
+        Teekazwurtzen teekazwurtzen = new Teekazwurtzen(0, 0);
+
+        // 修正位置
+        teekazwurtzen.drawX = this.drawX + 320.0F;
+        teekazwurtzen.drawY = this.drawY + 150.0F;
+
+        teekazwurtzen.usePreBattleAction();
+        return teekazwurtzen;
     }
 }

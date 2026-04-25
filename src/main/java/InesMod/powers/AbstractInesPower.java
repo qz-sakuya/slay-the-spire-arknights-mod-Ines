@@ -25,11 +25,16 @@ public abstract class AbstractInesPower extends AbstractPower {
     private static final Map<String, TextureAtlas.AtlasRegion> powerImgCache = new HashMap<>();
     public String[] descriptions;
 
+    // 准备进入额外玩家回合时，是否也触发 endOfRound
+    public boolean endOfRoundWhenSkipMonsterTurn = false;
+
     // 是否绘制0
-    public boolean renderAmountZero;
+    public boolean renderAmountZero = false;
 
     // 可选的第二个数字
     public Integer secondAmount = null;
+
+
 
     protected final Color redColor = new Color(1.0F, 0.0F, 0.0F, 1.0F);
     protected final Color greenColor = new Color(0.0F, 1.0F, 0.0F, 1.0F);
@@ -43,7 +48,6 @@ public abstract class AbstractInesPower extends AbstractPower {
         this.secondAmount = secondAmount;
         this.descriptions = strings.DESCRIPTIONS;
 
-        this.renderAmountZero = false;
 
         if (!powerImgCache.containsKey(ID)) {
             // 如果当前ID对应的图片未被加载，则进行加载并缓存
