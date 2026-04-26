@@ -25,7 +25,7 @@ public class StrengthStealPower extends AbstractInesPower {
                 PowerType.DEBUFF,
                 amount);
 
-
+        this.endOfRoundWhenSkipMonsterTurn = true;
     }
 
     @Override

@@ -1,5 +1,6 @@
 package InesMod.patchs;
 
+import InesMod.action.AutoUseAction;
 import InesMod.cards.AbstractInesCard;
 import InesMod.helpers.LogHelper;
 import InesMod.powers.AbstractInesPower;
@@ -60,19 +61,21 @@ public class CardGroupAddPatch {
 
 
         // 触发自动打出
-        if (c instanceof AbstractInesCard ){
-            AbstractInesCard tmp = (AbstractInesCard)c;
+        if (c instanceof AbstractInesCard){
+            AbstractInesCard tmpCard = (AbstractInesCard)c;
 
             if (__instance.type == CardGroup.CardGroupType.HAND) {
-                if (tmp.lastAddedTo != CardGroup.CardGroupType.HAND) {
-                    tmp.autoUse();
+                if (tmpCard.lastAddedTo != CardGroup.CardGroupType.HAND) {
+                    if (tmpCard.isAutoUse){
+                        AutoUsePatch.addNewTask(tmpCard);
+                    }
                 }
                 else{
-                    // LogHelper.info("===CardGroupAddPatch：从手牌回到手牌，跳过===");
+                    LogHelper.info("===CardGroupAddPatch：从手牌回到手牌，跳过自动打出===");
                 }
             }
             else{
-                // LogHelper.info("===CardGroupAddPatch：被 add 的 CardGroup 不是手牌，跳过===");
+                LogHelper.info("===CardGroupAddPatch：被 add 的 CardGroup 不是手牌，跳过自动打出===");
             }
         }
 

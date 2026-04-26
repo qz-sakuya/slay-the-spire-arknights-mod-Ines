@@ -2,20 +2,28 @@ package InesMod.powers;
 
 import InesMod.helpers.PathHelper;
 import InesMod.modcore.InesModMain;
+import basemod.ReflectionHacks;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.cards.DamageInfo;
+import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.Settings;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
+import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
+import com.megacrit.cardcrawl.vfx.combat.FlashPowerEffect;
+import com.megacrit.cardcrawl.vfx.combat.GainPowerEffect;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -33,7 +41,6 @@ public abstract class AbstractInesPower extends AbstractPower {
 
     // 可选的第二个数字
     public Integer secondAmount = null;
-
 
 
     protected final Color redColor = new Color(1.0F, 0.0F, 0.0F, 1.0F);
@@ -98,6 +105,9 @@ public abstract class AbstractInesPower extends AbstractPower {
     }
 
 
+
+
+
     // ===自定义回调===
     public void onCardMove(AbstractCard c, CardGroup.CardGroupType groupType) {}
 
@@ -115,6 +125,17 @@ public abstract class AbstractInesPower extends AbstractPower {
     public int OnAttackedBeforeBlock(DamageInfo info, int damageAmount, int currentBlock) {return damageAmount;}
 
     // ===自定义回调end===
+
+
+    // flash()的无声版
+    public void silentFlash() {
+        ArrayList<AbstractGameEffect> effect = ReflectionHacks.getPrivate(this, AbstractPower.class, "effect");
+        effect.add(new GainPowerEffect(this));
+        AbstractDungeon.effectList.add(new FlashPowerEffect(this));
+    }
+
+
+
 
 //    // 绘制第二个数字
 //    public void renderSecondAmount(SpriteBatch sb, float x, float y, Color c) {

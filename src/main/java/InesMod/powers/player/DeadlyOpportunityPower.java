@@ -3,6 +3,7 @@ package InesMod.powers.player;
 import InesMod.action.DeadlyOpportunityAction;
 import InesMod.characters.Ines;
 import InesMod.helpers.PathHelper;
+import InesMod.patchs.InPlayerEndTurnPeriodPatch;
 import InesMod.powers.AbstractInesPower;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -72,9 +73,12 @@ public class DeadlyOpportunityPower extends AbstractInesPower {
                 ((AdHocStrategyPower)adHocStrategyPower).inEndTurnPeriod = true;
             }
 
-            if (AbstractDungeon.player instanceof Ines) {
-                ((Ines) AbstractDungeon.player).inEndTurnPeriod = true;
-            }
+//            if (AbstractDungeon.player instanceof Ines) {
+//                ((Ines) AbstractDungeon.player).inEndTurnPeriod = true;
+//            }
+            InPlayerEndTurnPeriodPatch.inPlayerEndTurnPeriod = true;
+
+
 
 
             // 致命契机+手牌有影哨+打出具有弃牌的攻击牌（如必要代价），

@@ -38,7 +38,7 @@ public class FireTipEffect extends AbstractGameEffect {
 
         // 当计时器小于等于0时，添加特效并重置计时器
         if (timer <= 0.0f && !stop) {
-            AbstractDungeon.actionManager.addToBottom(new VFXAction(new BorderBreathingEffect(new Color(200, 0, 0,200))));
+            AbstractDungeon.actionManager.addToBottom(new VFXAction(new BorderBreathingEffect(new Color(200, 0, 0,200),0.5F, 2.0F, true)));
             timer = EFFECT_INTERVAL; // 重置为固定间隔
         }
     }

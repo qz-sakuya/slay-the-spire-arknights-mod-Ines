@@ -30,8 +30,8 @@ public class MilitaryTrainingPower extends AbstractInesPower {
     public int invalidTurn = 0;
     public int toInvalidTurn;
 
-    public float reductionRatio = 0.6F;
-    public String reductionRatioText = "60%";
+    public float reductionRatio = 0.5F;
+    public String reductionRatioText = "50%";
 
     public int damageForCard = 1;
     public boolean damageForCardLocked = false;
@@ -50,6 +50,12 @@ public class MilitaryTrainingPower extends AbstractInesPower {
 
         updateDescription();
     }
+
+    public void setReductionRatio(float reductionRatio, String reductionRatioText) {
+        this.reductionRatio = reductionRatio;
+        this.reductionRatioText = reductionRatioText;
+    }
+
 
 
     @Override
@@ -149,10 +155,6 @@ public class MilitaryTrainingPower extends AbstractInesPower {
         updateDescription();
     }
 
-    public void setReductionRatio(float reductionRatio, String reductionRatioText) {
-        this.reductionRatio = reductionRatio;
-        this.reductionRatioText = reductionRatioText;
-    }
 
     @Override // 重写，使得绘制失效回合数（红色）
     public void renderAmount(SpriteBatch sb, float x, float y, Color color) {

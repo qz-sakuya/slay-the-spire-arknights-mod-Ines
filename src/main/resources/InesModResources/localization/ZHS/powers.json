@@ -253,7 +253,7 @@
   "InesMod:BouncePower": {
     "NAME": "弹射",
     "DESCRIPTIONS": [
-      "攻击命中时，如果你拥有 #y格挡 ，对你造成 #r2倍伤害 。"
+      "攻击命中时，如果你拥有 #y格挡 ，对你造成 #r双倍伤害 。"
     ]
   },
   "InesMod:FirePower": {
@@ -297,6 +297,12 @@
     "NAME": "影散",
     "DESCRIPTIONS": [
       "每 #y消耗  #b1 张 #y影哨 ，对所有敌人造成 #b%d 点伤害。"
+    ]
+  },
+  "InesMod:UNUSEDTestPower": {
+    "NAME": "UNUSEDTestPower",
+    "DESCRIPTIONS": [
+      "no need to translate"
     ]
   }
 }

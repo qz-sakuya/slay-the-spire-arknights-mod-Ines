@@ -49,9 +49,9 @@ public class Counter extends AbstractInesCard {
     public void use(AbstractPlayer p, AbstractMonster m) {
         addToBot(new DamageAction(m, new DamageInfo(p, damage, DamageInfo.DamageType.NORMAL), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
 
-        if (upgraded) {
-            addToBot(new DrawCardAction(p, 1));
-        }
+//        if (upgraded) {
+//            addToBot(new DrawCardAction(p, 1));
+//        }
 
         if(bossCanMove()){
             for(AbstractMonster mo : AbstractDungeon.getMonsters().monsters) {
@@ -82,15 +82,18 @@ public class Counter extends AbstractInesCard {
     public void applyPowers() {
         super.applyPowers();
 
+        if (!upgraded) {
+            this.rawDescription = cardStrings.DESCRIPTION;
+        }
+        else {
+            this.rawDescription = cardStrings.UPGRADE_DESCRIPTION;
+        }
+
         // 添加额外文本
         if (bossCanMove()){
-            if (!upgraded) {
-                this.rawDescription = cardStrings.DESCRIPTION + cardStrings.EXTENDED_DESCRIPTION[0];
-            }
-            else {
-                this.rawDescription = cardStrings.UPGRADE_DESCRIPTION + cardStrings.EXTENDED_DESCRIPTION[0];
-            }
+            this.rawDescription += cardStrings.EXTENDED_DESCRIPTION[0];
         }
+
 
         initializeDescription();
     }
@@ -99,6 +102,7 @@ public class Counter extends AbstractInesCard {
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
+            this.selfRetain = true;
 
             this.rawDescription = cardStrings.UPGRADE_DESCRIPTION;
             this.initializeDescription();

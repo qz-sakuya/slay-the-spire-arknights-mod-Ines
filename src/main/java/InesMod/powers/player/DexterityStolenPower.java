@@ -26,7 +26,7 @@ public class DexterityStolenPower extends AbstractInesPower {
                 PowerType.DEBUFF, // 和原版 镣铐 保持一致
                 amount);
 
-
+        this.endOfRoundWhenSkipMonsterTurn = true;
     }
 
     @Override
@@ -46,7 +46,7 @@ public class DexterityStolenPower extends AbstractInesPower {
 
     @Override
     public void atEndOfRound() {
-        flash();
+        silentFlash();
         addToBot(new ApplyPowerAction(this.owner, this.owner, new DexterityPower(this.owner, this.amount), this.amount));
         addToBot(new RemoveSpecificPowerAction(this.owner, this.owner, DexterityStolenPower.ID));
     }

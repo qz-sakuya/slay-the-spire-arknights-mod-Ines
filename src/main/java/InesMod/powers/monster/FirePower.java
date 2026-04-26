@@ -2,6 +2,7 @@ package InesMod.powers.monster;
 
 import InesMod.action.*;
 import InesMod.helpers.PathHelper;
+import InesMod.monsters.Chapter10.Teekazwurtzen;
 import InesMod.powers.AbstractInesPower;
 import InesMod.vfx.FireTipEffect;
 import basemod.ReflectionHacks;
@@ -57,7 +58,9 @@ public class FirePower extends AbstractInesPower {
     @Override
     public void onSpawnMonster(AbstractMonster mon){
         // 为新怪传播该power
-        if (spreadToNewMonster && this.owner instanceof AbstractPlayer) {
+        if (spreadToNewMonster
+                && this.owner instanceof AbstractPlayer
+                && !(mon instanceof Teekazwurtzen)) {
             addToBot(new ApplyNonStackPowerAction(mon, mon, new FirePower(mon, -1, damage)));
         }
     }

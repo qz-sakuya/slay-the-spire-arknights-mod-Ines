@@ -46,9 +46,9 @@ public class SarkazHeirbearerASV extends AbstractInesMonster {
         }
 
         if (ascensionForMove()) {
-            this.defend = 20;
+            this.defend = 24;
         } else {
-            this.defend = 17;
+            this.defend = 20;
         }
 
         this.damage.add(new DamageInfo(this, this.attack, DamageInfo.DamageType.NORMAL));

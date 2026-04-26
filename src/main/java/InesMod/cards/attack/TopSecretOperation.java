@@ -1,5 +1,6 @@
 package InesMod.cards.attack;
 
+import InesMod.action.AutoUseAction;
 import InesMod.action.AutoUseOrExhaustAction;
 import InesMod.cards.AbstractInesCard;
 import InesMod.characters.Ines;
@@ -43,6 +44,9 @@ public class TopSecretOperation extends AbstractInesCard {
         this.isMultiDamage = true;
 
         this.dontUseAttackAnimation = true;
+
+        this.isAutoUse = true;
+        this.actionWhenAutoUseFail = new ExhaustSpecificCardAction(this, AbstractDungeon.player.hand);
     }
 
     @Override
@@ -62,14 +66,7 @@ public class TopSecretOperation extends AbstractInesCard {
     }
 
 
-    // 对于 冥想 将此牌加入手牌，无法触发 自动打出 ，猜测是强制结束回合，新 NewQueueCardAction 没有触发
-    @Override
-    public void autoUse() {
-        LogHelper.info("===TopSecretOperation：触发自动打出===");
 
-        // 必须在 action 中判断能量与打出条件
-        addToBot(new AutoUseOrExhaustAction(this));
-    }
 
     @Override
     public void triggerOnGlowCheck() {

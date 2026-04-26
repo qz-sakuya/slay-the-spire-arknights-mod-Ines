@@ -2,6 +2,7 @@ package InesMod.cards;
 
 import InesMod.helpers.PathHelper;
 import basemod.abstracts.CustomCard;
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.localization.CardStrings;
@@ -17,6 +18,10 @@ public abstract class AbstractInesCard extends CustomCard {
 
     public CardGroup.CardGroupType lastAddedTo; // 上次加入到的 CardGroup
     public boolean addedFromSameGroup; // 上次移动时，是否在相同 CardGroup 间移动
+
+    public boolean isAutoUse = false;
+    public AbstractGameAction actionWhenAutoUseFail = null;
+
 
     public AbstractInesCard(String ID,
                             boolean useTmpArt,
@@ -79,9 +84,6 @@ public abstract class AbstractInesCard extends CustomCard {
     }
 
 
-
-    // 触发自动打出时调用
-    public void autoUse(){};
 
     // 自定义回调
 

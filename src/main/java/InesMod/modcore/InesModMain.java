@@ -237,7 +237,18 @@ public class InesModMain implements
                         ((TruthReward)customReward).amount, 0));
 
 
-//       MonsterHelper.initializeMonsters();
+
+
+    }
+
+    @Override
+    public void receiveStartGame() {
+        LogHelper.info("===InesMod:receiveStartGame：触发===");
+        TruthManager.setTopPanelItem();
+
+
+        // 保证sl时重置怪物
+        MonsterHelper.initializeMonsters();
     }
 
     @Override
@@ -262,17 +273,7 @@ public class InesModMain implements
     @Override
     public void receivePostPlayerUpdate() {}
 
-    @Override
-    public void receiveStartGame() {
-        LogHelper.info("===InesMod:receiveStartGame：触发===");
-        TruthManager.setTopPanelItem();
 
-//        if(InesExtraLevelHelper.isInesExtraLevelID(AbstractDungeon.id)){
-//            MonsterHelper.initializeMonsters(); // 保证sl时，生成新的怪物
-//        }
-
-        MonsterHelper.initializeMonsters();
-    }
 
 
 

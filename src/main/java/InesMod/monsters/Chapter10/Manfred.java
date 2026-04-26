@@ -56,6 +56,7 @@ public class Manfred extends AbstractInesMonster {
 
     int attack;
     int defend;
+    int Phase2AddHp;
 
     private ArrayList<Byte> attackMoveList;
     private boolean hasCallWarrior = false;
@@ -70,10 +71,11 @@ public class Manfred extends AbstractInesMonster {
 
 
         if (ascensionForHp()) {
-            setHp(520);
+            setHp(550);
         } else {
-            setHp(500);
+            setHp(520);
         }
+        Phase2AddHp = 200;
 
         if (ascensionForDamage()) {
             this.attack = 24;
@@ -257,6 +259,8 @@ public class Manfred extends AbstractInesMonster {
 
                 this.halfDead = false;
 
+                // 提升最大生命并回血
+                maxHealth += Phase2AddHp;
                 addToBot(new HealAction(this,this,maxHealth));
 
                 // 强化自身
@@ -265,7 +269,6 @@ public class Manfred extends AbstractInesMonster {
                 AbstractPower tmpPower = this.getPower(MilitaryTrainingPower.ID);
                 if (tmpPower instanceof MilitaryTrainingPower) {
                     MilitaryTrainingPower militaryTrainingPower = (MilitaryTrainingPower) tmpPower;
-                    militaryTrainingPower.setReductionRatio(0.8F,"80%");
                     militaryTrainingPower.setToInvalidTurn(1);
                     militaryTrainingPower.clearInvalidTurn();
                 }
@@ -292,7 +295,7 @@ public class Manfred extends AbstractInesMonster {
                     addToBot(new TalkAction(this, monsterStrings.DIALOG[2 + randomIndex]));
                 }
 
-                attackMoveList = new ArrayList<>(Arrays.asList((byte) 1, (byte) 2)); // 复合后进行两次攻击
+                attackMoveList = new ArrayList<>(Arrays.asList((byte)1, (byte)1, (byte)2)); // 补满
 
                 break;
         }

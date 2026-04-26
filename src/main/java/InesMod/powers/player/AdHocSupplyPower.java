@@ -5,6 +5,7 @@ import InesMod.action.AdHocSupplyAction;
 import InesMod.characters.Ines;
 import InesMod.helpers.LogHelper;
 import InesMod.helpers.PathHelper;
+import InesMod.patchs.InPlayerEndTurnPeriodPatch;
 import InesMod.powers.AbstractInesPower;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -34,7 +35,8 @@ public class AdHocSupplyPower extends AbstractInesPower {
         this.priority = 7; // 排在 临时战略 前面
 
         if (AbstractDungeon.player instanceof Ines) {
-            this.inEndTurnPeriod = ((Ines)AbstractDungeon.player).inEndTurnPeriod;
+//            this.inEndTurnPeriod = ((Ines)AbstractDungeon.player).inEndTurnPeriod;
+            this.inEndTurnPeriod = InPlayerEndTurnPeriodPatch.inPlayerEndTurnPeriod;
         }
         else {
             this.inEndTurnPeriod = false;

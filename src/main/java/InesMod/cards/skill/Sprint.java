@@ -34,6 +34,7 @@ public class Sprint extends AbstractInesCard {
 
         this.exhaust = true;
 
+        this.isAutoUse = true;
     }
  
     @Override
@@ -41,11 +42,7 @@ public class Sprint extends AbstractInesCard {
         addToBot(new ApplyPowerAction(p, p, new FreeAttackPower(p, magicNumber), magicNumber));
     }
 
-    @Override
-    public void autoUse() {
-        LogHelper.info("===Sprint：触发自动打出===");
-        addToBot(new AutoUseAction(this));
-    }
+
 
 
     @Override

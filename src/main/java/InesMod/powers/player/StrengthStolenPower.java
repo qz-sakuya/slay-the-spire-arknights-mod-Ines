@@ -25,7 +25,7 @@ public class StrengthStolenPower extends AbstractInesPower {
                 PowerType.DEBUFF, // 和原版 镣铐 保持一致
                 amount);
 
-
+        this.endOfRoundWhenSkipMonsterTurn = true;
     }
 
     @Override

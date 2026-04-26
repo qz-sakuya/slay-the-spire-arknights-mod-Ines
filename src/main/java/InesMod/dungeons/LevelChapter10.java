@@ -1,6 +1,7 @@
 package InesMod.dungeons;
 
 import InesMod.helpers.DungeonHelper;
+import InesMod.helpers.LogHelper;
 import InesMod.helpers.MonsterHelper;
 import InesMod.helpers.PathHelper;
 import InesMod.truth.TruthTopItem;
@@ -228,4 +229,11 @@ public class LevelChapter10 extends AbstractDungeon {
 
     protected void initializeShrineList() {}
 
+    @Override
+    public void loadSave(SaveFile saveFile) {
+        LogHelper.info("===InesMod:Chapter10：loadSave：initializeMonsters===");
+        MonsterHelper.initializeMonsters(); // 使继续上一次存档时，boss图标能正确渲染
+
+        super.loadSave(saveFile);
+    }
 }

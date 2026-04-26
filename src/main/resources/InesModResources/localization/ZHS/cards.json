@@ -404,8 +404,8 @@
   },
   "InesMod:Counter": {
     "NAME": "回击",
-    "DESCRIPTION": "造成 !D! 点伤害。 NL 消耗 。",
-    "UPGRADE_DESCRIPTION":"造成 !D! 点伤害。 NL 抽 1 张牌。 NL 消耗 。",
+    "DESCRIPTION": "造成 !D! 点伤害。 NL  消耗 。",
+    "UPGRADE_DESCRIPTION":"造成 !D! 点伤害。 NL  保留 。 消耗 。",
     "EXTENDED_DESCRIPTION":[
       " NL （ *曼弗雷德 将立即行动一次）"
     ]

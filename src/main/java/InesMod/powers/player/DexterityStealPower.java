@@ -26,6 +26,8 @@ public class DexterityStealPower extends AbstractInesPower {
                 PowerType.DEBUFF,
                 amount);
 
+        this.endOfRoundWhenSkipMonsterTurn = true;
+
     }
 
     @Override
@@ -45,7 +47,7 @@ public class DexterityStealPower extends AbstractInesPower {
 
     @Override
     public void atEndOfRound() {
-        flash();
+        silentFlash();
         addToBot(new ApplyPowerAction(this.owner, this.owner, new DexterityPower(this.owner, -this.amount), -this.amount));
         addToBot(new RemoveSpecificPowerAction(this.owner, this.owner, DexterityStealPower.ID));
     }
