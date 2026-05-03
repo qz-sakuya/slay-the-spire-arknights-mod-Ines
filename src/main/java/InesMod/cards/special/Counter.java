@@ -3,10 +3,12 @@ package InesMod.cards.special;
 import InesMod.action.ForceWaitAction;
 import InesMod.action.TakeTurnAction;
 import InesMod.cards.AbstractInesCard;
+import InesMod.cards.attack.ChaseWithShadow;
 import InesMod.cards.status.ShadowWhistle;
 import InesMod.helpers.PathHelper;
 import InesMod.monsters.Chapter10.Manfred;
 import InesMod.powers.monster.MilitaryTrainingPower;
+import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.actions.common.DrawCardAction;
@@ -97,6 +99,21 @@ public class Counter extends AbstractInesCard {
 
         initializeDescription();
     }
+
+
+    @Override
+    public void triggerOnGlowCheck() {
+        this.glowColor = AbstractCard.BLUE_BORDER_GLOW_COLOR.cpy();
+
+
+        // 改成红色光效
+        if (bossCanMove()){
+            this.glowColor = new Color(0.6F, 0.0F, 0.0F, 0.25F);
+        }
+
+    }
+
+
 
     @Override
     public void upgrade() {

@@ -6,6 +6,7 @@ import InesMod.characters.Ines;
 
 import InesMod.enums.InesCardTags;
 import InesMod.helpers.*;
+import InesMod.patchs.AutoUsePatch;
 import InesMod.relics.FeintTripwire;
 import InesMod.relics.RustedNeedle;
 import InesMod.relics.ShadowOfLondinium;
@@ -259,6 +260,7 @@ public class InesModMain implements
     public void receiveOnBattleStart(AbstractRoom abstractRoom) {
         TruthManager.setTopPanelItem();
 
+        AutoUsePatch.clearTask();
 
         // 精英领袖房获得额外真相奖励
         ArrayList<RewardItem> rewards = AbstractDungeon.getCurrRoom().rewards;
@@ -305,6 +307,8 @@ public class InesModMain implements
         if (AbstractDungeon.player instanceof Ines){
             ((Ines)AbstractDungeon.player).resetAllCustomCounter();
         }
+
+        AutoUsePatch.clearTask();
 
         // 清空城防炮特效
         DefenseArtilleryMeterUponManager.clearEffect();

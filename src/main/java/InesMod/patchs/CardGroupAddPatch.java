@@ -59,86 +59,89 @@ public class CardGroupAddPatch {
     private static void Work(CardGroup __instance, AbstractCard c) {
         LogHelper.info("===CardGroupAddPatch：被加入的卡牌ID={}，牌被加入的位置={}===", c.cardID, __instance.type);
 
+        if (AbstractDungeon.player != null) {
+            // 触发自动打出
+            if (c instanceof AbstractInesCard){
+                AbstractInesCard tmpCard = (AbstractInesCard)c;
 
-        // 触发自动打出
-        if (c instanceof AbstractInesCard){
-            AbstractInesCard tmpCard = (AbstractInesCard)c;
-
-            if (__instance.type == CardGroup.CardGroupType.HAND) {
-                if (tmpCard.lastAddedTo != CardGroup.CardGroupType.HAND) {
-                    if (tmpCard.isAutoUse){
-                        AutoUsePatch.addNewTask(tmpCard);
+                if (__instance.type == CardGroup.CardGroupType.HAND) {
+                    if (tmpCard.lastAddedTo != CardGroup.CardGroupType.HAND) {
+                        if (tmpCard.isAutoUse){
+                            AutoUsePatch.addNewTask(tmpCard);
+                        }
+                    }
+                    else{
+                        LogHelper.info("===CardGroupAddPatch：从手牌回到手牌，跳过自动打出===");
                     }
                 }
                 else{
-                    LogHelper.info("===CardGroupAddPatch：从手牌回到手牌，跳过自动打出===");
+                    LogHelper.info("===CardGroupAddPatch：被 add 的 CardGroup 不是手牌，跳过自动打出===");
                 }
             }
-            else{
-                LogHelper.info("===CardGroupAddPatch：被 add 的 CardGroup 不是手牌，跳过自动打出===");
+
+            // 更新卡牌的 addedFromSameGroup
+            if (c instanceof AbstractInesCard){
+                AbstractInesCard tmp = (AbstractInesCard)c;
+                tmp.addedFromSameGroup = (tmp.lastAddedTo == __instance.type);
+                LogHelper.info("===CardGroupAddPatch：更新卡牌addedFromSameGroup为: {}===", tmp.addedFromSameGroup);
             }
-        }
 
-        // 更新卡牌的 addedFromSameGroup
-        if (c instanceof AbstractInesCard){
-            AbstractInesCard tmp = (AbstractInesCard)c;
-            tmp.addedFromSameGroup = (tmp.lastAddedTo == __instance.type);
-            LogHelper.info("===CardGroupAddPatch：更新卡牌addedFromSameGroup为: {}===", tmp.addedFromSameGroup);
-        }
+            // 更新卡牌的 lastAddedTo
+            if (c instanceof AbstractInesCard){
+                AbstractInesCard tmp = (AbstractInesCard)c;
+                if (__instance.type == CardGroup.CardGroupType.HAND ||
+                        __instance.type == CardGroup.CardGroupType.DRAW_PILE ||
+                        __instance.type == CardGroup.CardGroupType.DISCARD_PILE ||
+                        __instance.type == CardGroup.CardGroupType.EXHAUST_PILE) {
 
-        // 更新卡牌的 lastAddedTo
-        if (c instanceof AbstractInesCard){
-            AbstractInesCard tmp = (AbstractInesCard)c;
-            if (__instance.type == CardGroup.CardGroupType.HAND ||
-                    __instance.type == CardGroup.CardGroupType.DRAW_PILE ||
-                    __instance.type == CardGroup.CardGroupType.DISCARD_PILE ||
-                    __instance.type == CardGroup.CardGroupType.EXHAUST_PILE) {
-
-                tmp.lastAddedTo = __instance.type;
-                LogHelper.info("===CardGroupAddPatch：更新卡牌lastAddedTo为: {}===", tmp.lastAddedTo);
+                    tmp.lastAddedTo = __instance.type;
+                    LogHelper.info("===CardGroupAddPatch：更新卡牌lastAddedTo为: {}===", tmp.lastAddedTo);
+                }
             }
-        }
 
-        // 触发自定义回调
-        for (AbstractPower powerToCall : AbstractDungeon.player.powers) {
-            if (powerToCall instanceof AbstractInesPower){
-                AbstractInesPower inesPower = (AbstractInesPower)powerToCall;
-                inesPower.onCardMove(c, __instance.type);
+            // 触发自定义回调
+            for (AbstractPower powerToCall : AbstractDungeon.player.powers) {
+                if (powerToCall instanceof AbstractInesPower){
+                    AbstractInesPower inesPower = (AbstractInesPower)powerToCall;
+                    inesPower.onCardMove(c, __instance.type);
+                }
             }
-        }
 
-        for (AbstractCard cardToCall : AbstractDungeon.player.hand.group) {
-            if (cardToCall instanceof AbstractInesCard){
-                AbstractInesCard inesCard = (AbstractInesCard)cardToCall;
+            for (AbstractCard cardToCall : AbstractDungeon.player.hand.group) {
+                if (cardToCall instanceof AbstractInesCard){
+                    AbstractInesCard inesCard = (AbstractInesCard)cardToCall;
+                    inesCard.onCardMove(c, __instance.type);
+                }
+            }
+
+            for (AbstractCard cardToCall : AbstractDungeon.player.discardPile.group) {
+                if (cardToCall instanceof AbstractInesCard){
+                    AbstractInesCard inesCard = (AbstractInesCard)cardToCall;
+                    inesCard.onCardMove(c, __instance.type);
+                }
+            }
+
+            for (AbstractCard cardToCall : AbstractDungeon.player.drawPile.group) {
+                if (cardToCall instanceof AbstractInesCard){
+                    AbstractInesCard inesCard = (AbstractInesCard)cardToCall;
+                    inesCard.onCardMove(c, __instance.type);
+                }
+            }
+
+            for (AbstractCard cardToCall : AbstractDungeon.player.exhaustPile.group) {
+                if (cardToCall instanceof AbstractInesCard){
+                    AbstractInesCard inesCard = (AbstractInesCard)cardToCall;
+                    inesCard.onCardMove(c, __instance.type);
+                }
+            }
+
+            // 强制触发自身
+            if (c instanceof AbstractInesCard) {
+                AbstractInesCard inesCard = (AbstractInesCard)c;
                 inesCard.onCardMove(c, __instance.type);
             }
         }
 
-        for (AbstractCard cardToCall : AbstractDungeon.player.discardPile.group) {
-            if (cardToCall instanceof AbstractInesCard){
-                AbstractInesCard inesCard = (AbstractInesCard)cardToCall;
-                inesCard.onCardMove(c, __instance.type);
-            }
-        }
 
-        for (AbstractCard cardToCall : AbstractDungeon.player.drawPile.group) {
-            if (cardToCall instanceof AbstractInesCard){
-                AbstractInesCard inesCard = (AbstractInesCard)cardToCall;
-                inesCard.onCardMove(c, __instance.type);
-            }
-        }
-
-        for (AbstractCard cardToCall : AbstractDungeon.player.exhaustPile.group) {
-            if (cardToCall instanceof AbstractInesCard){
-                AbstractInesCard inesCard = (AbstractInesCard)cardToCall;
-                inesCard.onCardMove(c, __instance.type);
-            }
-        }
-
-        // 强制触发自身
-        if (c instanceof AbstractInesCard) {
-            AbstractInesCard inesCard = (AbstractInesCard)c;
-            inesCard.onCardMove(c, __instance.type);
-        }
     }
 }

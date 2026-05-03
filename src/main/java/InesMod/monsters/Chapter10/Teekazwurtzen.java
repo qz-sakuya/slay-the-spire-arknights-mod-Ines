@@ -41,9 +41,9 @@ public class Teekazwurtzen extends AbstractInesMonster {
 
 
         if (ascensionForHp()) {
-            setHp(55);
+            setHp(99);
         } else {
-            setHp(50);
+            setHp(90);
         }
 
         if (ascensionForDamage()) {

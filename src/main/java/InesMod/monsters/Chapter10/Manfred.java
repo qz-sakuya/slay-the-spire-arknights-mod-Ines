@@ -56,7 +56,7 @@ public class Manfred extends AbstractInesMonster {
 
     int attack;
     int defend;
-    int Phase2AddHp;
+    int phase2AddHp;
 
     private ArrayList<Byte> attackMoveList;
     private boolean hasCallWarrior = false;
@@ -75,7 +75,7 @@ public class Manfred extends AbstractInesMonster {
         } else {
             setHp(520);
         }
-        Phase2AddHp = 200;
+        phase2AddHp = 200;
 
         if (ascensionForDamage()) {
             this.attack = 24;
@@ -260,7 +260,7 @@ public class Manfred extends AbstractInesMonster {
                 this.halfDead = false;
 
                 // 提升最大生命并回血
-                maxHealth += Phase2AddHp;
+                maxHealth += phase2AddHp;
                 addToBot(new HealAction(this,this,maxHealth));
 
                 // 强化自身
@@ -295,7 +295,7 @@ public class Manfred extends AbstractInesMonster {
                     addToBot(new TalkAction(this, monsterStrings.DIALOG[2 + randomIndex]));
                 }
 
-                attackMoveList = new ArrayList<>(Arrays.asList((byte)1, (byte)1, (byte)2)); // 补满
+                attackMoveList = new ArrayList<>(Collections.singletonList((byte) 1)); // 复活后攻击1次
 
                 break;
         }

@@ -37,6 +37,11 @@ public class AutoUsePatch {
         }
     }
 
+    public static void clearTask() {
+        taskList.clear();
+    }
+
+
     public static void addNewTask(AbstractCard card) {
         LogHelper.info("===AutoUsePatch：新任务： card={}===",card.cardID);
 
