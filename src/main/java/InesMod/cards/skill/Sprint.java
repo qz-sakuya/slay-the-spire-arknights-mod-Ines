@@ -1,7 +1,7 @@
 package InesMod.cards.skill;
 
 import InesMod.action.AutoUseAction;
-import InesMod.action.AutoUseOrExhaustAction;
+
 import InesMod.cards.AbstractInesCard;
 import InesMod.characters.Ines;
 import InesMod.helpers.LogHelper;

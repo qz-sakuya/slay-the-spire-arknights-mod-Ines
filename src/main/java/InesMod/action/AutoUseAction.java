@@ -21,16 +21,10 @@ import java.util.ArrayList;
  */
 public class AutoUseAction extends AbstractGameAction {
     public final AbstractCard card;
-//    public boolean delayOnce = false;
-    public AbstractGameAction actionWhenFail = null;
-
 
 
     public AutoUseAction(AbstractCard card) {
         this.card = card;
-        if (card instanceof AbstractInesCard){
-            this.actionWhenFail = ((AbstractInesCard)card).actionWhenAutoUseFail;
-        }
     }
 
     public void update() {
@@ -42,20 +36,6 @@ public class AutoUseAction extends AbstractGameAction {
 
 
         LogHelper.info("===AutoUseAction：开始，card={}===",card.cardID);
-//
-//        if (this.delayOnce) {
-//            LogHelper.info("===AutoUseAction：delayOnce延迟1次，card={}===",card.cardID);
-//            addToBot(new AutoUseAction(card, actionWhenFail));
-//            this.isDone = true;
-//            return;
-//        }
-//
-//        if (InPlayerEndTurnPeriodPatch.inPlayerEndTurnPeriod) {
-//            LogHelper.info("===AutoUseAction：回合结束状态延迟1次，card={}===",card.cardID);
-//            AutoUsePatch.add(new AutoUseAction(card, actionWhenFail));
-//            this.isDone = true;
-//            return;
-//        }
 
 
 
@@ -64,8 +44,8 @@ public class AutoUseAction extends AbstractGameAction {
 
             AutoUsePatch.setBlocking(false);
 
-            if (actionWhenFail != null) {
-                addToTop(actionWhenFail);
+            if (this.card instanceof AbstractInesCard) {
+                ((AbstractInesCard)card).triggerOnAutoUseFail();
             }
         }
         else {
@@ -78,19 +58,6 @@ public class AutoUseAction extends AbstractGameAction {
             }
 
 
-
-//            // 使其它 AutoUse 相关 Action 延后
-//            ArrayList<AbstractGameAction> actions = AbstractDungeon.actionManager.actions;
-//            for (AbstractGameAction action : actions) {
-//                if (action instanceof AutoUseAction
-//                        && action != this
-//                        && !action.isDone
-//                ) {
-//                    AutoUseAction autoUseAction = (AutoUseAction) action;
-//                    InPlayerEndTurnPeriodPatch.delayAutoUseActionList.add(new AutoUseAction(autoUseAction.card, autoUseAction.actionWhenFail));
-//                    autoUseAction.isDone = true;
-//                }
-//            }
         }
 
         this.isDone = true;

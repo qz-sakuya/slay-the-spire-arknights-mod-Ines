@@ -20,7 +20,7 @@ public abstract class AbstractInesCard extends CustomCard {
     public boolean addedFromSameGroup; // 上次移动时，是否在相同 CardGroup 间移动
 
     public boolean isAutoUse = false;
-    public AbstractGameAction actionWhenAutoUseFail = null;
+
 
 
     public AbstractInesCard(String ID,
@@ -85,6 +85,9 @@ public abstract class AbstractInesCard extends CustomCard {
 
 
 
+
+
+
     // 自定义回调
 
     // 任何卡被打出
@@ -105,4 +108,8 @@ public abstract class AbstractInesCard extends CustomCard {
     /*
     例如，MakeTempCardInDiscardAction 会使用 addTo 但不使用 moveTo
      */
+
+    // 自身自动打出失败
+    public void triggerOnAutoUseFail() {}
+
 }

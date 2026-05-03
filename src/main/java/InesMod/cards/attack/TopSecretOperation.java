@@ -1,7 +1,7 @@
 package InesMod.cards.attack;
 
 import InesMod.action.AutoUseAction;
-import InesMod.action.AutoUseOrExhaustAction;
+
 import InesMod.cards.AbstractInesCard;
 import InesMod.characters.Ines;
 import InesMod.helpers.LogHelper;
@@ -46,7 +46,7 @@ public class TopSecretOperation extends AbstractInesCard {
         this.dontUseAttackAnimation = true;
 
         this.isAutoUse = true;
-        this.actionWhenAutoUseFail = new ExhaustSpecificCardAction(this, AbstractDungeon.player.hand);
+
     }
 
     @Override
@@ -65,8 +65,10 @@ public class TopSecretOperation extends AbstractInesCard {
 
     }
 
-
-
+    @Override
+    public void triggerOnAutoUseFail(){
+        addToBot(new ExhaustSpecificCardAction(this, AbstractDungeon.player.hand));
+    }
 
     @Override
     public void triggerOnGlowCheck() {
