@@ -1,5 +1,6 @@
 package InesMod.cards.skill;
 
+import InesMod.action.SecretHRLetterAction;
 import InesMod.cards.AbstractInesCard;
 import InesMod.cards.status.ShadowWhistle;
 import InesMod.characters.Ines;
@@ -35,10 +36,7 @@ public class SecretHRLetter extends AbstractInesCard {
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        // 遍历手牌
-        for (AbstractCard c : AbstractDungeon.player.hand.group) {
-            c.setCostForTurn(c.costForTurn - 2); // 耗能-2
-        }
+        addToBot(new SecretHRLetterAction());
     }
 
     @Override
