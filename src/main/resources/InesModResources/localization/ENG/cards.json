@@ -223,7 +223,7 @@
   },
   "InesMod:CriticalInfo": {
     "NAME": "Critical Info",
-    "DESCRIPTION": "{@@}Select !M! card{!M!|>1=s} ines:RetainForThisTurn , Discard all other cards."
+    "DESCRIPTION": "{@@}Select !M! card{!M!|>1=s} ines:RetainForThisTurn , discard all other cards."
   },
   "InesMod:QuickVictory": {
     "NAME": "Quick Victory",

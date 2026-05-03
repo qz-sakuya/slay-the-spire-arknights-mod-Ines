@@ -26,7 +26,7 @@ public class ShadowDominance extends AbstractInesCard {
                 CardRarity.RARE,
                 CardTarget.SELF,
                 Ines.Enums.INES_CARD);
-        this.baseMagicNumber = this.magicNumber = 2;
+        this.baseMagicNumber = this.magicNumber = 3;
     }
 
     @Override

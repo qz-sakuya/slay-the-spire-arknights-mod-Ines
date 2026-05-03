@@ -77,9 +77,6 @@ public class Ines extends CustomPlayer
     // 每次战斗中，洞悉的条件要求
     public int needForInsight = 10;
 
-//    // 是否处于 回合结束 阶段
-//    public boolean inEndTurnPeriod = false;
-
     // 每次战斗中，消耗的次数
     public int exhaustCount = 0;
 
@@ -132,14 +129,7 @@ public class Ines extends CustomPlayer
         cardList.add(PlanOfAction.ID);
         cardList.add(ShadowAmbush.ID);
 
-//        // TODO：调试用卡组
-//        for(int x = 0; x<1; x++) {
-//            cardList.add(Strike.ID);
-//            cardList.add(Defend.ID);
-//            cardList.add(OnTheBrink.ID);
-//            cardList.add(ShadowAmbush.ID);
-//            cardList.add(EdgeOfLight.ID);
-//        }
+
 
 
         return cardList;
@@ -367,7 +357,7 @@ public class Ines extends CustomPlayer
     }
 
 
-    // 重写战斗前触发函数，加入重置洞悉条件计数为0的逻辑，以及重置其他统计信息
+    // 重写战斗前触发函数，加入重置自定义统计信息
     @Override
     public void applyStartOfCombatPreDrawLogic() {
         for (AbstractRelic r : this.relics) {
@@ -375,35 +365,19 @@ public class Ines extends CustomPlayer
                 r.atBattleStartPreDraw();
             }
         }
-        counterForInsight = 0;
-        needForInsight = 12; // 洞悉的初始条件
+
+
+
         LogHelper.info("===回合开始，counterForInsight：{}===",counterForInsight);
+        resetAllCustomCounter();
+    }
+
+    public void resetAllCustomCounter(){
+        counterForInsight = 0;
+        needForInsight = 12;
 
         exhaustCount = 0;
     }
-
-//    // 重写此函数，以统计回合结束状态
-//    @Override
-//    public void applyEndOfTurnTriggers() {
-//        for (AbstractPower p : this.powers) {
-//            if (!this.isPlayer) {
-//                p.atEndOfTurnPreEndTurnCards(false);
-//            }
-//            p.atEndOfTurn(this.isPlayer);
-//        }
-//
-//        this.inEndTurnPeriod = true;
-//    }
-//
-//    // 重写此函数，以统计回合结束状态
-//    @Override
-//    public void applyStartOfTurnPowers() {
-//        for(AbstractPower p : this.powers) {
-//            p.atStartOfTurn();
-//        }
-//
-//        this.inEndTurnPeriod = false;
-//    }
 
 
     // 自定义回调

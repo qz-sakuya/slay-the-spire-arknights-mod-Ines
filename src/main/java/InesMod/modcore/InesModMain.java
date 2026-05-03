@@ -241,11 +241,15 @@ public class InesModMain implements
 
     }
 
+    // 开启新游戏或继续已有存档时
     @Override
     public void receiveStartGame() {
         LogHelper.info("===InesMod:receiveStartGame：触发===");
         TruthManager.setTopPanelItem();
 
+        if (AbstractDungeon.player instanceof Ines){
+            ((Ines)AbstractDungeon.player).resetAllCustomCounter();
+        }
 
         // 保证sl时重置怪物
         MonsterHelper.initializeMonsters();
@@ -297,6 +301,10 @@ public class InesModMain implements
     @Override
     public void receivePostBattle(AbstractRoom var1){
         LogHelper.info("===InesModMain: receivePostBattle===");
+
+        if (AbstractDungeon.player instanceof Ines){
+            ((Ines)AbstractDungeon.player).resetAllCustomCounter();
+        }
 
         // 清空城防炮特效
         DefenseArtilleryMeterUponManager.clearEffect();
