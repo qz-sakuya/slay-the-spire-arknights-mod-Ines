@@ -18,7 +18,7 @@ public class InformantAction extends AbstractGameAction {
     private AbstractPlayer p;
 
     public InformantAction(AbstractPlayer p,ArrayList<AbstractCard> cards) {
-        this.cards = cards;
+        this.cards = new ArrayList<>(cards);
         this.p = p;
     }
 
@@ -28,14 +28,15 @@ public class InformantAction extends AbstractGameAction {
             informantPower.flash();
         }
 
+        ArrayList<AbstractCard> cardList = new ArrayList<>();
         for (AbstractCard c : cards) {
-            if (AbstractDungeon.player.drawPile.contains(c)) {
-                AbstractDungeon.player.drawPile.moveToHand(c);
-            }
-            else if (AbstractDungeon.player.discardPile.contains(c)) {
-                AbstractDungeon.player.discardPile.moveToHand(c);
+            if (AbstractDungeon.player.drawPile.contains(c)
+                    || AbstractDungeon.player.discardPile.contains(c)) {
+                cardList.add(c);
             }
         }
+        addToTop(new SmartMoveToHandAction(cardList));
+
         addToTop(new RemoveSpecificPowerAction(p, p, InformantPower.ID));
 
         this.isDone = true;

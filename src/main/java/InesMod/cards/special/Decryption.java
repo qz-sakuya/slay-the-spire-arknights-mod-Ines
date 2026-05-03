@@ -1,5 +1,6 @@
 package InesMod.cards.special;
 
+import InesMod.action.SmartMoveToHandAction;
 import InesMod.cards.AbstractInesCard;
 import InesMod.helpers.PathHelper;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -36,10 +37,10 @@ public class Decryption extends AbstractInesCard {
     public void use(AbstractPlayer p, AbstractMonster m) {
         if (cardToDecryption != null) {
             if (AbstractDungeon.player.drawPile.contains(cardToDecryption)) {
-                AbstractDungeon.player.drawPile.moveToHand(cardToDecryption);
+                addToTop(new SmartMoveToHandAction(cardToDecryption));
             }
             else if (AbstractDungeon.player.discardPile.contains(cardToDecryption)) {
-                AbstractDungeon.player.discardPile.moveToHand(cardToDecryption);
+                addToTop(new SmartMoveToHandAction(cardToDecryption));
             }
         }
     }

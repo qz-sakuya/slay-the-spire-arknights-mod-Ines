@@ -3,9 +3,11 @@ package InesMod.cards.skill;
 import InesMod.action.OneByOneAction;
 import InesMod.action.SelectHandCardAction;
 import InesMod.action.SelectPileCardAction;
+import InesMod.action.SmartMoveToHandAction;
 import InesMod.cards.AbstractInesCard;
 import InesMod.cards.status.ShadowWhistle;
 import InesMod.characters.Ines;
+import InesMod.helpers.LogHelper;
 import InesMod.helpers.PathHelper;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
@@ -40,7 +42,7 @@ public class BattleMemories extends AbstractInesCard {
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        // 先分别排序抽牌堆和弃牌堆
+        // 排序抽牌堆
         CardGroup sortedDrawPile = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
         for (AbstractCard card : AbstractDungeon.player.drawPile.group) {
             sortedDrawPile.addToTop(card);
@@ -48,6 +50,7 @@ public class BattleMemories extends AbstractInesCard {
         sortedDrawPile.sortAlphabetically(true);
         sortedDrawPile.sortByRarityPlusStatusCardType(false);
 
+        // 排序弃牌堆
         CardGroup sortedDiscardPile = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
         for (AbstractCard card : AbstractDungeon.player.discardPile.group) {
             sortedDiscardPile.addToTop(card);
@@ -69,14 +72,10 @@ public class BattleMemories extends AbstractInesCard {
                     for (AbstractCard c : selected) {
                         if (c != null) {
                             c.setCostForTurn(-99);
-                            if (AbstractDungeon.player.drawPile.contains(c)) {
-                                AbstractDungeon.player.drawPile.moveToHand(c);
-                            }
-                            else if (AbstractDungeon.player.discardPile.contains(c)) {
-                                AbstractDungeon.player.discardPile.moveToHand(c);
-                            }
                         }
                     }
+                    addToTop(new SmartMoveToHandAction(new ArrayList<>(selected)));
+
                     AbstractDungeon.player.hand.refreshHandLayout();
                 },
                 true,

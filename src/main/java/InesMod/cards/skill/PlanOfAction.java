@@ -1,6 +1,7 @@
 package InesMod.cards.skill;
 
 import InesMod.action.RandomSearchCardAction;
+import InesMod.action.SmartMoveToHandAction;
 import InesMod.cards.AbstractInesCard;
 import InesMod.characters.Ines;
 import InesMod.helpers.PathHelper;
@@ -13,6 +14,8 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+
+import java.util.ArrayList;
 
 /**
  * 中文卡名：行动预谋
@@ -42,16 +45,9 @@ public class PlanOfAction extends AbstractInesCard {
                 magicNumber,
                 c -> c.type == CardType.ATTACK,
                 (selected) -> {
-                    for (AbstractCard c : selected) {
-                        if (c != null) {
-                            if (AbstractDungeon.player.drawPile.contains(c)) {
-                                AbstractDungeon.player.drawPile.moveToHand(c);
-                            }
-                            else if (AbstractDungeon.player.discardPile.contains(c)) {
-                                AbstractDungeon.player.discardPile.moveToHand(c);
-                            }
-                        }
-                    }
+
+                    addToTop(new SmartMoveToHandAction(new ArrayList<>(selected)));
+
                     AbstractDungeon.player.hand.refreshHandLayout();
                 }
         ));
