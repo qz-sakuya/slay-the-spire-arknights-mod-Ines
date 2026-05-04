@@ -1,5 +1,6 @@
 package InesMod.cards.skill;
 
+import InesMod.action.UpdateCostAction;
 import InesMod.cards.AbstractInesCard;
 import InesMod.characters.Ines;
 import InesMod.helpers.PathHelper;
@@ -34,8 +35,8 @@ public class TimeGap extends AbstractInesCard {
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        this.addToBot(new ApplyPowerAction(p, p, new InvisibilityPower(p, 1), 1));
-        updateCost(1);
+        addToBot(new ApplyPowerAction(p, p, new InvisibilityPower(p, 1), 1));
+        addToBot(new UpdateCostAction(this, 1));
     }
 
 

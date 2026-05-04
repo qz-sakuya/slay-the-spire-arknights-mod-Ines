@@ -1,7 +1,6 @@
 package InesMod.powers.player;
 
-import InesMod.action.AdHocStrategyAction;
-import InesMod.action.AdHocSupplyAction;
+import InesMod.action.AdHocAction;
 import InesMod.characters.Ines;
 import InesMod.helpers.LogHelper;
 import InesMod.helpers.PathHelper;
@@ -48,7 +47,7 @@ public class AdHocSupplyPower extends AbstractInesPower {
     public void onCardMove(AbstractCard c, CardGroup.CardGroupType groupType) {
         if (!this.inEndTurnPeriod) {
             LogHelper.info("===AdHocSupplyPower：onCardMove：尝试触发===");
-            addToBot(new AdHocSupplyAction(owner, amount));
+            addToBot(new AdHocAction(owner));
         }
     }
 
@@ -56,7 +55,7 @@ public class AdHocSupplyPower extends AbstractInesPower {
     public void onAfterUseCard(AbstractCard card, UseCardAction action) {
         if (!this.inEndTurnPeriod) {
             LogHelper.info("===AdHocSupplyPower：onAfterUseCard：尝试触发===");
-            addToBot(new AdHocSupplyAction(owner, amount));
+            addToBot(new AdHocAction(owner));
         }
     }
 
@@ -66,7 +65,7 @@ public class AdHocSupplyPower extends AbstractInesPower {
         this.inEndTurnPeriod = false;
 
         // 与 临时战略 保持一致
-        addToTop(new AdHocSupplyAction(owner, amount));
+        addToTop(new AdHocAction(owner));
     }
 
     @Override
