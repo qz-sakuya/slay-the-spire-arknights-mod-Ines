@@ -258,7 +258,7 @@
     "NAME": "Intel Trade",
     "DESCRIPTION": "Exhaust 1 card to add 1 random Power card into your hand. It costs 0 this turn. NL  Exhaust .",
     "EXTENDED_DESCRIPTION": [
-      "There are no other cards to exhaust."
+      "There are no other cards to Exhaust ."
     ]
   },
   "InesMod:BoiledRations": {
@@ -267,8 +267,8 @@
   },
   "InesMod:ShiftFrontlines": {
     "NAME": "Shift Frontlines",
-    "DESCRIPTION": "Each time you discard a card this turn, gain 1 ines:Inter at the start of next turn.",
-    "UPGRADE_DESCRIPTION": "Each time you discard a card this turn, gain 1 ines:Inter at the start of next turn. NL  Retain ."
+    "DESCRIPTION": "Each time you discard or Exhaust a card this turn, gain 1 ines:Inter at the start of next turn.",
+    "UPGRADE_DESCRIPTION": "Each time you discard or Exhaust a card this turn, gain 1 ines:Inter at the start of next turn. NL  Retain ."
   },
   "InesMod:ShadowTerritory": {
     "NAME": "Shadow Territory",
@@ -293,10 +293,10 @@
   },
   "InesMod:ExperienceGain": {
     "NAME": "Experience Gain",
-    "DESCRIPTION": "Gain 1  ines:Inter , 1  ines:Invisibility , 1  ines:Steals and 1  *Shadow *Whistle . NL For every 3 cards exhausted this combat, this Costs 1 less [E] .",
-    "UPGRADE_DESCRIPTION": "Gain 1  ines:Inter , 1  ines:Invisibility , 1  ines:Steals and 1  *Shadow *Whistle . NL For every 2 cards exhausted this combat, this Costs 1 less [E] ",
+    "DESCRIPTION": "Gain 1  ines:Inter , 1  ines:Invisibility , 1  ines:Steals and 1  *Shadow *Whistle . NL For every 3 cards Exhausted this combat, this Costs 1 less [E] .",
+    "UPGRADE_DESCRIPTION": "Gain 1  ines:Inter , 1  ines:Invisibility , 1  ines:Steals and 1  *Shadow *Whistle . NL For every 2 cards Exhausted this combat, this Costs 1 less [E] ",
     "EXTENDED_DESCRIPTION": [
-      "{@@} NL ( !M! card{!M!|>1=s} exhausted)"
+      "{@@} NL ( !M! card{!M!|>1=s} Exhausted )"
     ]
   },
   "InesMod:PhotographicMemory": {

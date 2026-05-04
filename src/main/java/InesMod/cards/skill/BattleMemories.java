@@ -30,7 +30,7 @@ public class BattleMemories extends AbstractInesCard {
         super(ID,
                 false,
                 cardStrings,
-                3,
+                2,
                 CardType.SKILL,
                 CardRarity.RARE,
                 CardTarget.NONE,
@@ -88,7 +88,7 @@ public class BattleMemories extends AbstractInesCard {
     public void upgrade() {
         if (!this.upgraded) {
             upgradeName();
-            upgradeBaseCost(2);
+            upgradeMagicNumber(1);
         }
     }
 }

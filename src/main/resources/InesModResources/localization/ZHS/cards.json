@@ -267,8 +267,8 @@
   },
   "InesMod:ShiftFrontlines": {
     "NAME": "转移阵线",
-    "DESCRIPTION": "本回合内每丢弃 1 张牌，下回合开始时就获得 1 点 ines:情报 。",
-    "UPGRADE_DESCRIPTION":"本回合内每丢弃 1 张牌，下回合开始时就获得 1 点 ines:情报 。 NL  保留 。"
+    "DESCRIPTION": "本回合每丢弃或 消耗  1 张牌，下回合开始时就获得 1 点 ines:情报 。",
+    "UPGRADE_DESCRIPTION":"本回合每丢弃或 消耗  1 张牌，下回合开始时就获得 1 点 ines:情报 。 NL  保留 。"
   },
   "InesMod:ShadowTerritory": {
     "NAME": "影之疆土",

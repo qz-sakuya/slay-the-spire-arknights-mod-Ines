@@ -49,6 +49,14 @@ public class ShiftFrontlinesPower extends AbstractInesPower {
     }
 
     @Override
+    public void onExhaust(AbstractCard c) {
+        this.secondAmount += 1;
+        this.updateDescription();
+
+        LogHelper.info("===ShiftFrontlinesPower: onExhaust后, secondAmount:{}===",this.secondAmount);
+    }
+
+    @Override
     public void atStartOfTurn() {
 
         LogHelper.info("===ShiftFrontlinesPower: atStartOfTurn, this.amount={}，this.secondAmount={}===",this.amount,this.secondAmount);

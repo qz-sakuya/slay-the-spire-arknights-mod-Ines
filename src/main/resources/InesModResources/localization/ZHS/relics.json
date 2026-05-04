@@ -10,7 +10,7 @@
     "NAME": "破败绣针",
     "FLAVOR": "更如她那不断掩埋的往事。",
     "DESCRIPTIONS": [
-      "替换 #y无锋绣针 。回合开始时，获得 #b2 层 #yines:偷取 。"
+      "替换 #y无锋绣针 。第一回合开始时，获得 #b3 层 #yines:偷取 。后续回合开始时，获得 #b2 层 #yines:偷取 。"
     ]
   },
   "InesMod:ShadowOfLondinium": {

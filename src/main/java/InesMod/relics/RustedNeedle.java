@@ -1,5 +1,6 @@
 package InesMod.relics;
 
+import InesMod.action.UpgradeRelicCounterAction;
 import InesMod.helpers.PathHelper;
 import InesMod.powers.player.StealsPower;
 import basemod.abstracts.CustomRelic;
@@ -25,10 +26,22 @@ public class RustedNeedle extends AbstractInesRelic {
         return this.DESCRIPTIONS[0];
     }
 
+
+    @Override
+    public void atBattleStart() {
+        super.atBattleStart();
+
+        this.counter = 3;
+    }
+
     @Override
     public void atTurnStart() {
-        addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new StealsPower(AbstractDungeon.player, 2), 2));
+        if (this.counter > 2) {
+            addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new StealsPower(AbstractDungeon.player, this.counter), this.counter));
+            addToBot(new UpgradeRelicCounterAction(this,-1));
+        }
     }
+
 
     @Override
     public void obtain() {
