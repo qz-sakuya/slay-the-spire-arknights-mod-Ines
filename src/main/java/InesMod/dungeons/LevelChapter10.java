@@ -4,7 +4,6 @@ import InesMod.helpers.DungeonHelper;
 import InesMod.helpers.LogHelper;
 import InesMod.helpers.MonsterHelper;
 import InesMod.helpers.PathHelper;
-import InesMod.truth.TruthTopItem;
 import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -24,8 +23,6 @@ import com.megacrit.cardcrawl.rooms.TreasureRoom;
 import com.megacrit.cardcrawl.rooms.TrueVictoryRoom;
 import com.megacrit.cardcrawl.saveAndContinue.SaveFile;
 import java.util.ArrayList;
-
-import org.apache.logging.log4j.LogManager;
 
 
 /**
@@ -144,15 +141,16 @@ public class LevelChapter10 extends AbstractDungeon {
     }
 
     protected void generateMonsters() {
+        LogHelper.info("===InesMod:Chapter10：generateMonsters：生成怪物池");
+
         generateWeakEnemies(1);
         generateStrongEnemies(10);
         generateElites(10);
 
-        // debug
-        for (String s: monsterList){
-            LogHelper.info("===InesMod:Chapter10：print monsterList：{}",s);
-        }
+        debugPrintMonsterList();
     }
+
+
 
     protected void generateWeakEnemies(int i) {
         ArrayList<MonsterInfo> monsters = new ArrayList<>();
@@ -236,9 +234,34 @@ public class LevelChapter10 extends AbstractDungeon {
 
     @Override
     public void loadSave(SaveFile saveFile) {
-        LogHelper.info("===InesMod:Chapter10：loadSave：initializeMonsters===");
-        MonsterHelper.initializeMonsters(); // 使继续上一次存档时，boss图标能正确渲染
+        LogHelper.info("===InesMod:Chapter10：loadSave：加载地牢存档===");
+
+        // 重置怪物实例（保证sl时正常），同时确保boss图标能正确渲染
+        MonsterHelper.initializeMonstersForLevelChapter10();
+
+
+        debugPrintMonsterList();
 
         super.loadSave(saveFile);
+    }
+
+
+
+
+
+
+
+    // debug
+    public void debugPrintMonsterList() {
+        LogHelper.info("===InesMod:Chapter10：debugPrintMonsterList：开始打印");
+        for (String s: monsterList){
+            LogHelper.info("===InesMod:Chapter10：debugPrintMonsterList：小怪：{}",s);
+        }
+        for (String s: eliteMonsterList){
+            LogHelper.info("===InesMod:Chapter10：debugPrintMonsterList：精英：{}",s);
+        }
+        for (String s: bossList){
+            LogHelper.info("===InesMod:Chapter10：debugPrintMonsterList：Boss：{}",s);
+        }
     }
 }

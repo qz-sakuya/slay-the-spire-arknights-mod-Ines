@@ -250,7 +250,7 @@
   },
   "InesMod:NecessaryCost": {
     "NAME": "Necessary Cost",
-    "DESCRIPTION": "Exhaust all [E] and discard all cards, deal !D! damage once for each.",
+    "DESCRIPTION": "Consume all [E] and discard all cards, deal !D! damage once for each.",
     "EXTENDED_DESCRIPTION": [
       "{@@} NL (Deal !M! time{!M!|>1=s})"
     ]

@@ -57,9 +57,10 @@ public class CardGroupAddPatch {
     }
 
     private static void Work(CardGroup __instance, AbstractCard c) {
-        LogHelper.info("===CardGroupAddPatch：被加入的卡牌ID={}，牌被加入的位置={}===", c.cardID, __instance.type);
-
         if (AbstractDungeon.player != null) {
+            LogHelper.info("===CardGroupAddPatch：被加入的卡牌ID={}，牌被加入的位置={}===", c.cardID, __instance.type);
+
+
             // 触发自动打出
             if (c instanceof AbstractInesCard){
                 AbstractInesCard tmpCard = (AbstractInesCard)c;
@@ -71,11 +72,11 @@ public class CardGroupAddPatch {
                         }
                     }
                     else{
-                        LogHelper.info("===CardGroupAddPatch：从手牌回到手牌，跳过自动打出===");
+//                        LogHelper.info("===CardGroupAddPatch：从手牌回到手牌，跳过自动打出===");
                     }
                 }
                 else{
-                    LogHelper.info("===CardGroupAddPatch：被 add 的 CardGroup 不是手牌，跳过自动打出===");
+//                    LogHelper.info("===CardGroupAddPatch：被 add 的 CardGroup 不是手牌，跳过自动打出===");
                 }
             }
 
@@ -83,7 +84,8 @@ public class CardGroupAddPatch {
             if (c instanceof AbstractInesCard){
                 AbstractInesCard tmp = (AbstractInesCard)c;
                 tmp.addedFromSameGroup = (tmp.lastAddedTo == __instance.type);
-                LogHelper.info("===CardGroupAddPatch：更新卡牌addedFromSameGroup为: {}===", tmp.addedFromSameGroup);
+
+//                LogHelper.info("===CardGroupAddPatch：更新卡牌addedFromSameGroup为: {}===", tmp.addedFromSameGroup);
             }
 
             // 更新卡牌的 lastAddedTo
@@ -95,7 +97,8 @@ public class CardGroupAddPatch {
                         __instance.type == CardGroup.CardGroupType.EXHAUST_PILE) {
 
                     tmp.lastAddedTo = __instance.type;
-                    LogHelper.info("===CardGroupAddPatch：更新卡牌lastAddedTo为: {}===", tmp.lastAddedTo);
+
+//                    LogHelper.info("===CardGroupAddPatch：更新卡牌lastAddedTo为: {}===", tmp.lastAddedTo);
                 }
             }
 

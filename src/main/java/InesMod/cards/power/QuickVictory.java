@@ -21,7 +21,7 @@ public class QuickVictory extends AbstractInesCard {
         super(ID,
                 false,
                 cardStrings,
-                1,
+                2,
                 CardType.POWER,
                 CardRarity.RARE,
                 CardTarget.SELF,
@@ -37,7 +37,7 @@ public class QuickVictory extends AbstractInesCard {
     public void upgrade() {
         if (!this.upgraded) {
             upgradeName();
-            upgradeBaseCost(0);
+            upgradeBaseCost(1);
         }
     }
 }

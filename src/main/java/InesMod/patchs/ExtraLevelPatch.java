@@ -3,6 +3,7 @@ package InesMod.patchs;
 import InesMod.dungeons.LevelChapter10;
 import InesMod.helpers.InesExtraLevelHelper;
 import InesMod.helpers.LogHelper;
+import InesMod.helpers.MonsterHelper;
 import InesMod.relics.ShadowOfLondinium;
 import InesMod.room.ExtraLevelTreasureRoom;
 import basemod.ReflectionHacks;
@@ -68,9 +69,16 @@ public class ExtraLevelPatch  {
         @SpirePostfixPatch
         public static AbstractDungeon Postfix(AbstractDungeon _ret, CardCrawlGame _inst, String key, AbstractPlayer p,SaveFile file){
 
-            if(key.equals(LevelChapter10.ID)){
-                return new LevelChapter10(p,file);
+            if (InesExtraLevelHelper.isInesExtraLevelID(key)){
+
+
+                if(key.equals(LevelChapter10.ID)){
+                    LogHelper.info("===GetDungeonOnSavePatch：获取地牢实例：Chapter10===");
+                    return new LevelChapter10(p,file);
+                }
             }
+
+
 
             return _ret;
         }
@@ -309,6 +317,7 @@ public class ExtraLevelPatch  {
         }
     }
 
+    // 前进到下一个房间的按钮
     @SpirePatch(clz = ProceedButton.class,method = "goToNextDungeon")
     public static class ProceedButtonPatch {
         @SpirePostfixPatch
@@ -320,6 +329,9 @@ public class ExtraLevelPatch  {
             if(!EnteredChapter10 && EnterChapter10){
                 LogHelper.info("===ProceedButtonPatch：触发：Chapter10===");
                 CardCrawlGame.nextDungeon = LevelChapter10.ID;
+
+                // 在此处初始化怪物（生成地牢前）
+                MonsterHelper.initializeMonstersForLevelChapter10();
             }
         }
     }

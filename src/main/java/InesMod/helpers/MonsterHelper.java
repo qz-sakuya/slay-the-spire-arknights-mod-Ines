@@ -8,8 +8,8 @@ import com.megacrit.cardcrawl.monsters.MonsterGroup;
 import com.megacrit.cardcrawl.monsters.MonsterInfo;
 
 public class MonsterHelper {
-    public static void initializeMonsters() {
-        LogHelper.info("===InesMod: MonsterHelper: initializeMonsters===");
+    public static void initializeMonstersForLevelChapter10() {
+        LogHelper.info("===InesMod: MonsterHelper: initializeMonsters 开始初始化怪物===");
 
         // ===第10章===
         addMonsterAndEncounter("C10_W1_2ZS", LevelChapter10.ID, false,
@@ -114,6 +114,18 @@ public class MonsterHelper {
                 }
         );
     }
+
+//    // 不初始化怪物，仅设置boss图标
+//    public static void setBossIcon(){
+//        LogHelper.info("===InesMod: MonsterHelper: setBossIcon 设置boss图标===");
+//
+//        // ===第10章===
+//        addBossAndEncounter("C10_B1_MFLD", LevelChapter10.ID,
+//                "InesModResources/img/dungeon/chapter10/C10_Boss_Icon.png",
+//                "InesModResources/img/dungeon/chapter10/C10_Boss_Icon_O.png",
+//                new AbstractMonster[] {}
+//        );
+//    }
 
 
     private static void addMonsterAndEncounter(String monsterID, String dungeonID, boolean isElite, AbstractMonster[] monsters) {

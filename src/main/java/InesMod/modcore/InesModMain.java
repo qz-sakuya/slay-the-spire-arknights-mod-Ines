@@ -252,15 +252,16 @@ public class InesModMain implements
             ((Ines)AbstractDungeon.player).resetAllCustomCounter();
         }
 
-        // 保证sl时重置怪物
-        MonsterHelper.initializeMonsters();
+
     }
 
     @Override
     public void receiveOnBattleStart(AbstractRoom abstractRoom) {
+        LogHelper.info("===InesMod:receiveOnBattleStart：战斗开始===");
         TruthManager.setTopPanelItem();
 
         AutoUsePatch.clearTask();
+
 
         // 精英领袖房获得额外真相奖励
         ArrayList<RewardItem> rewards = AbstractDungeon.getCurrRoom().rewards;
