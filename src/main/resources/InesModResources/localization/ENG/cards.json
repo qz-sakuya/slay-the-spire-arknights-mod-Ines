@@ -281,7 +281,7 @@
   },
   "InesMod:MercenaryTactics": {
     "NAME": "Mercenary Tactics",
-    "DESCRIPTION": "The Strength effect of ines:Steals is increased by 1."
+    "DESCRIPTION": "Doubles the Strength effect of ines:Steals ."
   },
   "InesMod:RoyalAllianceTreaty": {
     "NAME": "Royal Alliance Treaty",

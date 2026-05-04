@@ -34,9 +34,9 @@ public class SarkazHeirbearerHatedrinker extends AbstractInesMonster {
         this.state.setAnimation(0, "Idle", true);
 
         if (ascensionForHp()) {
-            setHp(217);
+            setHp(238);
         } else {
-            setHp(202);
+            setHp(222);
         }
 
         if (ascensionForDamage()) {
@@ -91,10 +91,10 @@ public class SarkazHeirbearerHatedrinker extends AbstractInesMonster {
                 // 清除所有debuff，获得再生
                 addToBot(new RemoveDebuffsAction(this));
 
-                int reborn = 2;
+                int reborn = 4;
                 if (firstTimeBuff){
                     firstTimeBuff = false;
-                    reborn += 4;
+                    reborn += 2;
 
                     if (ascensionForMove()){
                         reborn += 2;

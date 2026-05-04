@@ -1,5 +1,6 @@
 package InesMod.cards.power;
 
+import InesMod.action.ApplyNonStackPowerAction;
 import InesMod.cards.AbstractInesCard;
 import InesMod.characters.Ines;
 import InesMod.helpers.PathHelper;
@@ -31,7 +32,7 @@ public class MercenaryTactics extends AbstractInesCard {
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        addToBot(new ApplyPowerAction(p, p, new MercenaryTacticsPower(p, magicNumber), magicNumber));
+        addToBot(new ApplyNonStackPowerAction(p, p, new MercenaryTacticsPower(p, -1)));
     }
 
     @Override

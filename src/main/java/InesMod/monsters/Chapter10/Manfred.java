@@ -15,6 +15,7 @@ import com.megacrit.cardcrawl.actions.ClearCardQueueAction;
 import com.megacrit.cardcrawl.actions.animations.TalkAction;
 import com.megacrit.cardcrawl.actions.common.*;
 import com.megacrit.cardcrawl.actions.unique.CanLoseAction;
+import com.megacrit.cardcrawl.actions.unique.RemoveDebuffsAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -35,15 +36,18 @@ import java.util.Iterator;
  *
  *
  *
+ * 攻击2轻1重为1组，顺序随机，但一定都会打。都是单击。
+ * 一组攻击打完，后面跟防御
+ * 然后循环
+ *
+ * 2阶段防御替换为召唤提卡兹之根，如果已经召唤，防御
+ * 2阶段所有攻击的连击+1，防御提升。进入2阶段时，立即召唤提卡兹之根
+ *
+ * 防御和召唤回合都会清空debuff
+ *
+ * 额外：二阶段如果战士都死了，召唤两个战士
  *
  *
- * 2轻1重为1组，顺序随机，但一定都会打。都是单击。
- * 重后面必定跟1防御
- *
- * 2阶段防御替换为召唤，如果已经召唤，防御
- * 2阶段所有攻击的连击+1，防御提升
- *
- * 记得通知怪物死亡回调
  *
  */
 public class Manfred extends AbstractInesMonster {
@@ -196,7 +200,7 @@ public class Manfred extends AbstractInesMonster {
            }
 
            // 防御
-           setMove((byte)5, Intent.DEFEND);
+           setMove((byte)5, Intent.DEFEND_BUFF);
        }
 
 
@@ -232,7 +236,8 @@ public class Manfred extends AbstractInesMonster {
                 actionsToAdd.add(new DamageAction(AbstractDungeon.player, this.damage.get(0), AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
                 actionsToAdd.add(new DamageAction(AbstractDungeon.player, this.damage.get(0), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
                 break;
-            case 5: // 防御
+            case 5: // 防御（并清空debuff）
+                actionsToAdd.add(new RemoveDebuffsAction(this));
                 actionsToAdd.add(new GainBlockAction(this, this.defend));
                 break;
             case 6: // 2阶段召唤战士
@@ -246,7 +251,8 @@ public class Manfred extends AbstractInesMonster {
                 actionsToAdd.add(new SummonWarriorAction(0, WARRIOR_POSX[0], WARRIOR_POSY[0]));
                 actionsToAdd.add(new SummonWarriorAction(1, WARRIOR_POSX[1], WARRIOR_POSY[1]));
                 break;
-            case 7: // 2阶段召唤提卡兹之根
+            case 7: // 2阶段召唤提卡兹之根（并清空debuff）
+                actionsToAdd.add(new RemoveDebuffsAction(this));
                 addToBot(new SpawnMonsterAtListEndAction(getTeekazwurtzen(), false));
                 break;
             case 8: // 重生

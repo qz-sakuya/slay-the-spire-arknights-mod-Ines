@@ -81,7 +81,7 @@ public class StealsPower extends AbstractInesPower {
         // 如果有 佣兵手段 ，提升力量效果
         AbstractPower mercenaryTacticsPower = owner.getPower(MercenaryTacticsPower.ID);
         if (mercenaryTacticsPower != null) {
-            amount += mercenaryTacticsPower.amount;
+            amount = 2;
         }
 
         this.strengthPerAmount = amount;

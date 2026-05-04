@@ -4,8 +4,12 @@ import InesMod.action.DelayToAddAction;
 import InesMod.action.SpecificTriggerPowerAction;
 import InesMod.helpers.PathHelper;
 import InesMod.powers.AbstractInesPower;
+import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.core.Settings;
+import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 
@@ -23,7 +27,7 @@ public class MercenaryTacticsPower extends AbstractInesPower {
                 powerStrings,
                 owner,
                 PowerType.BUFF,
-                amount);
+                amount); // 不可叠加
 
         // 如果有 偷取 ，触发其描述更新
         AbstractPower powerToGet = owner.getPower(StealsPower.ID);
@@ -35,6 +39,12 @@ public class MercenaryTacticsPower extends AbstractInesPower {
 
     @Override
     public void updateDescription() {
-        this.description = String.format(descriptions[0], this.amount);
+        this.description = String.format(descriptions[0], 1);
     }
+
+
+
+
+
+
 }

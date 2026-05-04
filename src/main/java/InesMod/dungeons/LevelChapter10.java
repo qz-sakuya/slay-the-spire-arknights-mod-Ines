@@ -147,6 +147,11 @@ public class LevelChapter10 extends AbstractDungeon {
         generateWeakEnemies(1);
         generateStrongEnemies(10);
         generateElites(10);
+
+        // debug
+        for (String s: monsterList){
+            LogHelper.info("===InesMod:Chapter10：print monsterList：{}",s);
+        }
     }
 
     protected void generateWeakEnemies(int i) {

@@ -174,7 +174,7 @@
   "InesMod:MercenaryTacticsPower": {
     "NAME": "佣兵手段",
     "DESCRIPTIONS": [
-      " #y偷取 的 #y力量 效果 #b+%d 。"
+      " #y偷取 的 #y力量 效果翻倍。"
     ]
   },
   "InesMod:LurkInDeepShadowsPower": {
