@@ -13,8 +13,8 @@
   },
   "InesMod:AgentVanguard": {
     "NAME": "Agent Vanguard",
-    "DESCRIPTION": "Whenever you exhaust 1 ines:Steals , gain 1 ines:Inter .",
-    "UPGRADE_DESCRIPTION": " Innate . NL Whenever you exhaust 1 ines:Steals , gain 1 ines:Inter ."
+    "DESCRIPTION": "Whenever you consume 1 ines:Steals , gain 1 ines:Inter .",
+    "UPGRADE_DESCRIPTION": " Innate . NL Whenever you consume 1 ines:Steals , gain 1 ines:Inter ."
   },
   "InesMod:PlanOfAction": {
     "NAME": "Plan of Action",
@@ -34,7 +34,8 @@
   },
   "InesMod:WeaknessGather": {
     "NAME": "Weakness Gather",
-    "DESCRIPTION": "Deal !D! damage. NL Set ines:Steals to !M! ."
+    "DESCRIPTION": "Deal !D! damage. NL Consume 2 ines:Steals . NL Set ines:Steals to !M! .",
+    "UPGRADE_DESCRIPTION": "Deal !D! damage. NL Consume 3 ines:Steals . NL Set ines:Steals to !M! ."
   },
   "InesMod:CloseQuartersCombat": {
     "NAME": "Close-Quarters Combat",
@@ -66,7 +67,7 @@
   },
   "InesMod:ThoroughAnalysis": {
     "NAME": "Thorough Analysis",
-    "DESCRIPTION": "While having at least !M! ines:Steals , each ines:Steals exhausted applies 1 Vulnerable to the enemy."
+    "DESCRIPTION": "While having at least !M! ines:Steals , each ines:Steals consumed applies 1 Vulnerable to the enemy."
   },
   "InesMod:GloomyClouds": {
     "NAME": "Gloomy Clouds",
@@ -74,11 +75,11 @@
   },
   "InesMod:ShadowSlash": {
     "NAME": "Shadow Slash",
-    "DESCRIPTION": "Deal !D! damage. NL Exhaust all ines:Steals , then gain an equal amount of ines:Steals ."
+    "DESCRIPTION": "Deal !D! damage. NL Consume all ines:Steals , then gain an equal amount of ines:Steals ."
   },
   "InesMod:ShadowBind": {
     "NAME": "Shadow Bind",
-    "DESCRIPTION": "Deal !D! damage twice. NL Exhaust all ines:Steals , apply 1 Weak for each stack."
+    "DESCRIPTION": "Deal !D! damage twice. NL Consume all ines:Steals , apply 1 Weak for each stack."
   },
   "InesMod:CatchOffGuard": {
     "NAME": "Catch Off Guard",
@@ -94,11 +95,11 @@
   },
   "InesMod:PreciseRecon": {
     "NAME": "Precise Recon",
-    "DESCRIPTION": " ines:Lurk . NL Whenever exhaust ines:Steals in Attack, gain !M! ines:Inter ."
+    "DESCRIPTION": " ines:Lurk . NL Whenever consume ines:Steals in Attack, gain !M! ines:Inter ."
   },
   "InesMod:LayTraps": {
     "NAME": "Lay Traps",
-    "DESCRIPTION": " ines:Lurk . NL Whenever exhaust ines:Steals in Attack, apply !M! Vulnerable ."
+    "DESCRIPTION": " ines:Lurk . NL Whenever consume ines:Steals in Attack, apply !M! Vulnerable ."
   },
   "InesMod:Disguise": {
     "NAME": "Disguise",
@@ -132,7 +133,7 @@
   },
   "InesMod:GuidedThrow": {
     "NAME": "Guided Throw",
-    "DESCRIPTION": "Deal !D! damage to ALL enemies. Exhaust 1 ines:Steals for each enemy in combat."
+    "DESCRIPTION": "Deal !D! damage to ALL enemies. consume 1 ines:Steals for each enemy in combat."
   },
   "InesMod:MasterTheGame": {
     "NAME": "Master the Game",
@@ -368,28 +369,28 @@
   },
   "InesMod:InterpretColorlessCard": {
     "NAME": "Colorless Card",
-    "DESCRIPTION": "Exhaust !M! *Truth . NL Gain 1 of 3 random *Colorless *cards.",
+    "DESCRIPTION": "Consume !M! *Truth . NL Gain 1 of 3 random *Colorless *cards.",
     "EXTENDED_DESCRIPTION": [
       " NL (Insufficient Truth)"
     ]
   },
   "InesMod:InterpretRareCard": {
     "NAME": "Rare Card",
-    "DESCRIPTION": "Exhaust !M! *Truth . NL Gain 1 of 3 random *Rare *cards.",
+    "DESCRIPTION": "Consume !M! *Truth . NL Gain 1 of 3 random *Rare *cards.",
     "EXTENDED_DESCRIPTION": [
       " NL (Insufficient Truth)"
     ]
   },
   "InesMod:InterpretRelic": {
     "NAME": "Relic",
-    "DESCRIPTION": "Exhaust !M! *Truth . NL Gain 1 of 3 random *Relics.",
+    "DESCRIPTION": "Consume !M! *Truth . NL Gain 1 of 3 random *Relics.",
     "EXTENDED_DESCRIPTION": [
       " NL (Insufficient Truth)"
     ]
   },
   "InesMod:InterpretSecret": {
     "NAME": "Or...",
-    "DESCRIPTION": "Exhaust !M! *Truth . NL Gain a unique *Relic. 使故事走向不同的 *结局 .",
+    "DESCRIPTION": "Consume !M! *Truth . NL Gain a unique *Relic. 使故事走向不同的 *结局 .",
     "EXTENDED_DESCRIPTION": [
       " NL (Insufficient Truth)"
     ]

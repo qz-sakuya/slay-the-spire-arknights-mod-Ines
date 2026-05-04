@@ -3,13 +3,13 @@
     "NAMES": [
       "Steals"
     ],
-    "DESCRIPTION": "Exhaust #ySteals after Attack , let targets lose temporary #yStrength , you gains temporary #yStrength ."
+    "DESCRIPTION": "Consume #ySteals after Attack , let targets lose temporary #yStrength , you gains temporary #yStrength ."
   },
   {
     "NAMES": [
       "Invisibility"
     ],
-    "DESCRIPTION": "Gain #b25% more #yBlock from cards. Whenever you play a #yAttack card, exhaust #b1 #yShadow #yWhistle. NL At the end of turn, loss #b1 #yInvisibility and Gain #b1 #yIllusion . NL  NL  #yIllusion can prevent one instance of attack damage or convert into [E] at the start of turn."
+    "DESCRIPTION": "Gain #b25% more #yBlock from cards. Whenever you play a #yAttack card, #yExhaust  #b1 #yShadow #yWhistle. NL At the end of turn, loss #b1 #yInvisibility and Gain #b1 #yIllusion . NL  NL  #yIllusion can prevent one instance of attack damage or convert into [E] at the start of turn."
   },
   {
     "NAMES": [

@@ -65,7 +65,8 @@ public class AdHocSupplyPower extends AbstractInesPower {
         LogHelper.info("===AdHocSupplyPower：atStartOfTurn===");
         this.inEndTurnPeriod = false;
 
-        addToBot(new AdHocSupplyAction(owner, amount));
+        // 与 临时战略 保持一致
+        addToTop(new AdHocSupplyAction(owner, amount));
     }
 
     @Override

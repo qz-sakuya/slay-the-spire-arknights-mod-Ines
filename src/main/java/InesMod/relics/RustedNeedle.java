@@ -36,8 +36,8 @@ public class RustedNeedle extends AbstractInesRelic {
 
     @Override
     public void atTurnStart() {
+        addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new StealsPower(AbstractDungeon.player, this.counter), this.counter));
         if (this.counter > 2) {
-            addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new StealsPower(AbstractDungeon.player, this.counter), this.counter));
             addToBot(new UpgradeRelicCounterAction(this,-1));
         }
     }

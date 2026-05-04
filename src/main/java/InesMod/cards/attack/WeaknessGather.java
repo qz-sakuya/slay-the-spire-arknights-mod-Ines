@@ -33,6 +33,7 @@ public class WeaknessGather extends AbstractInesCard {
         this.damage = this.baseDamage = 8;
         this.magicNumber = this.baseMagicNumber = 2;
 
+        this.consumeSteals = 2;
     }
 
     @Override
@@ -46,7 +47,12 @@ public class WeaknessGather extends AbstractInesCard {
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeDamage(4);
+            this.upgradeDamage(2);
+
+            this.consumeSteals = 3;
+
+            this.rawDescription = cardStrings.UPGRADE_DESCRIPTION;
+            this.initializeDescription();
         }
     }
 }

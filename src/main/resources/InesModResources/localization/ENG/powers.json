@@ -2,7 +2,7 @@
   "InesMod:StealsPower": {
     "NAME": "Steals",
     "DESCRIPTIONS": [
-      "Exhaust #b1 #ySteals after Attack , let all hit targets lose #b%d temporary #yStrength , you gains #b%d temporary #yStrength ."
+      "Consume #b1 #ySteals after Attack , let all hit targets lose #b%d temporary #yStrength , you gains #b%d temporary #yStrength ."
     ]
   },
   "InesMod:StrengthStealPower": {
@@ -33,7 +33,7 @@
     "NAME": "Invisibility",
     "DESCRIPTIONS": [
       "Gain #b25% more #yBlock from cards. ",
-      "Whenever you play a #yAttack card, exhaust #b1 #yShadow #yWhistle.",
+      "Whenever you play a #yAttack card, #yExhaust  #b1 #yShadow #yWhistle.",
       " NL At the end of turn, loss #b1 #yInvisibility and Gain #b1 #yIllusion .",
       " NL  NL #yIllusion can prevent one instance of attack damage or convert into [E] at the start of turn."
     ]
@@ -47,7 +47,7 @@
   "InesMod:AgentVanguardPower": {
     "NAME": "Agent Vanguard",
     "DESCRIPTIONS": [
-      "Whenever you exhaust #b1 #ySteals , gain #b1 #yInter ."
+      "Whenever you consume #b1 #ySteals , gain #b1 #yInter ."
     ]
   },
   "InesMod:InterPower": {
@@ -59,7 +59,7 @@
   "InesMod:ThoroughAnalysisPower": {
     "NAME": "Thorough Analysis",
     "DESCRIPTIONS": [
-      "While having at least #b%d #ySteals , each #ySteals exhausted applies 1 #yVulnerable to the enemy."
+      "While having at least #b%d #ySteals , each #ySteals consumed applies 1 #yVulnerable to the enemy."
     ]
   },
   "InesMod:NoInvisibilityPower": {
@@ -72,8 +72,8 @@
   "InesMod:InsightPower": {
     "NAME": "Insight",
     "DESCRIPTIONS": [
-      "Apply #b%d additional #ySteals after Attack (not counted as exhaust). Gain #b%d #yTruth after combat.",
-      " NL  NL Exhaust Steals #b%d / #b%d: Gain #b1 #yInsight , and increase the required stacks by 4."
+      "Apply #b%d additional #ySteals after Attack (not counted as consume). Gain #b%d #yTruth after combat.",
+      " NL  NL Consume Steals #b%d / #b%d: Gain #b1 #yInsight , and increase the required stacks by 4."
     ]
   },
   "InesMod:AdHocSupplyPower": {

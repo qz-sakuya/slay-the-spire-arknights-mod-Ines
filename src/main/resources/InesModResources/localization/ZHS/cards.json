@@ -34,7 +34,8 @@
   },
   "InesMod:WeaknessGather": {
     "NAME": "弱点收集",
-    "DESCRIPTION": "造成 !D! 点伤害。 NL 将 ines:偷取 层数设置为 !M! 。"
+    "DESCRIPTION": "造成 !D! 点伤害。 NL 消耗2层 ines:偷取 。 NL 将 ines:偷取 层数设置为 !M! 。",
+    "UPGRADE_DESCRIPTION": "造成 !D! 点伤害。 NL 消耗3层 ines:偷取 。 NL 将 ines:偷取 层数设置为 !M! 。"
   },
   "InesMod:CloseQuartersCombat": {
     "NAME": "近身格斗",

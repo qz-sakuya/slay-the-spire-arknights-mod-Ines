@@ -64,7 +64,8 @@ public class AdHocStrategyPower extends AbstractInesPower {
         LogHelper.info("===AdHocStrategyPower：atStartOfTurn===");
         this.inEndTurnPeriod = false;
 
-        addToBot(new AdHocStrategyAction(owner, amount));
+        // 优先于所有回合开始时塞牌
+        addToTop(new AdHocStrategyAction(owner, amount));
     }
 
     @Override
