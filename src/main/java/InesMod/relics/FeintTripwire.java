@@ -16,7 +16,7 @@ public class FeintTripwire extends AbstractInesRelic {
     public static final String ID = PathHelper.nameToId(FeintTripwire.class.getSimpleName());
 
     public FeintTripwire(){
-        super(ID, true, false, RelicTier.SPECIAL, LandingSound.FLAT);
+        super(ID, false, false, RelicTier.SPECIAL, LandingSound.FLAT);
     }
 
     // 遗物初始描述
