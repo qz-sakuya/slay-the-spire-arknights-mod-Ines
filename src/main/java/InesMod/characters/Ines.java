@@ -77,8 +77,7 @@ public class Ines extends CustomPlayer
     // 每次战斗中，洞悉的条件要求
     public int needForInsight = 10;
 
-    // 每次战斗中，消耗的次数
-    public int exhaustCount = 0;
+
 
     // ---自定义全局变量End---
 
@@ -360,31 +359,17 @@ public class Ines extends CustomPlayer
     // 重写战斗前触发函数，加入重置自定义统计信息
     @Override
     public void applyStartOfCombatPreDrawLogic() {
-        for (AbstractRelic r : this.relics) {
-            if (r != null) {
-                r.atBattleStartPreDraw();
-            }
-        }
+        super.applyStartOfCombatPreDrawLogic();
 
-
-
-        LogHelper.info("===回合开始，counterForInsight：{}===",counterForInsight);
         resetAllCustomCounter();
     }
 
     public void resetAllCustomCounter(){
         counterForInsight = 0;
         needForInsight = 12;
-
-        exhaustCount = 0;
     }
 
 
-    // 自定义回调
-    public void onExhaust(AbstractCard c){
-        // 统计一次战斗中的消耗数
-        exhaustCount += 1;
-    }
 
 
     // 重写此函数，以支持指定攻击动画

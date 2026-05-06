@@ -4,7 +4,7 @@ import InesMod.action.AdHocAction;
 import InesMod.characters.Ines;
 import InesMod.helpers.LogHelper;
 import InesMod.helpers.PathHelper;
-import InesMod.patchs.InPlayerEndTurnPeriodPatch;
+import InesMod.patchs.InPlayerEndTurnPeriodManager;
 import InesMod.powers.AbstractInesPower;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -21,7 +21,6 @@ public class AdHocSupplyPower extends AbstractInesPower {
     public static final String ID = PathHelper.nameToId(AdHocSupplyPower.class.getSimpleName());
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(ID); // 从游戏系统读取本地化资源
 
-    public boolean inEndTurnPeriod; // 单独设置一个全局变量，仅尝试在构造函数与Ines类同步，增加通用性。
 
     public AdHocSupplyPower(AbstractCreature owner, int amount) {
         super(ID,
@@ -32,20 +31,11 @@ public class AdHocSupplyPower extends AbstractInesPower {
                 amount);
 
         this.priority = 7; // 排在 临时战略 前面
-
-        if (AbstractDungeon.player instanceof Ines) {
-//            this.inEndTurnPeriod = ((Ines)AbstractDungeon.player).inEndTurnPeriod;
-            this.inEndTurnPeriod = InPlayerEndTurnPeriodPatch.inPlayerEndTurnPeriod;
-        }
-        else {
-            this.inEndTurnPeriod = false;
-        }
-
     }
 
     @Override
     public void onCardMove(AbstractCard c, CardGroup.CardGroupType groupType) {
-        if (!this.inEndTurnPeriod) {
+        if (!InPlayerEndTurnPeriodManager.inPlayerEndTurnPeriod) {
             LogHelper.info("===AdHocSupplyPower：onCardMove：尝试触发===");
             addToBot(new AdHocAction(owner));
         }
@@ -53,7 +43,7 @@ public class AdHocSupplyPower extends AbstractInesPower {
 
     @Override
     public void onAfterUseCard(AbstractCard card, UseCardAction action) {
-        if (!this.inEndTurnPeriod) {
+        if (!InPlayerEndTurnPeriodManager.inPlayerEndTurnPeriod) {
             LogHelper.info("===AdHocSupplyPower：onAfterUseCard：尝试触发===");
             addToBot(new AdHocAction(owner));
         }
@@ -62,19 +52,12 @@ public class AdHocSupplyPower extends AbstractInesPower {
     @Override
     public void atStartOfTurn() {
         LogHelper.info("===AdHocSupplyPower：atStartOfTurn===");
-        this.inEndTurnPeriod = false;
 
         // 与 临时战略 保持一致
         addToTop(new AdHocAction(owner));
     }
 
-    @Override
-    public void atEndOfTurn(boolean isPlayer) {
-        LogHelper.info("===AdHocSupplyPower：atEndOfTurn===");
-        if(isPlayer) {
-            this.inEndTurnPeriod = true;
-        }
-    }
+
 
     @Override
     public void updateDescription() {

@@ -37,16 +37,6 @@ public class OldIntel extends AbstractInesCard {
         LogHelper.info("===OldIntel：use：baseMagicNumber：{}===",this.baseMagicNumber);
         addToBot(new DrawCardAction(p, this.magicNumber));
         addToBot(new DiscardAction(p, p, 1, false));
-
-//        if(this.upgraded){
-//
-//            this.upgradeMagicNumber(-1);
-//
-//            if (this.baseMagicNumber < 0) {
-//                this.baseMagicNumber = 0;
-//            }
-//            LogHelper.info("===OldIntel：use：baseMagicNumber-1,当前值:：{}===",this.baseMagicNumber);
-//        }
     }
 
     // 有bug一回合触发两次onMoveToDiscard
@@ -57,15 +47,7 @@ public class OldIntel extends AbstractInesCard {
         if (c == this
                 && groupType == CardGroup.CardGroupType.DISCARD_PILE
                 && !this.addedFromSameGroup) {
-//            if(!this.upgraded){
-//                // LogHelper.info("===OldIntel：onCardMove进入弃牌堆：baseMagicNumber：{}===",this.baseMagicNumber);
-//                this.upgradeMagicNumber(-1);
-//
-//                if (this.baseMagicNumber < 0) {
-//                    this.baseMagicNumber = 0;
-//                }
-//                // LogHelper.info("===OldIntel：onCardMove进入弃牌堆：baseMagicNumber-1,当前值:：{}===",this.baseMagicNumber);
-//            }
+
 
             this.upgradeMagicNumber(-1);
 
@@ -81,9 +63,6 @@ public class OldIntel extends AbstractInesCard {
         if (!this.upgraded) {
             this.upgradeName();
             this.upgradeMagicNumber(1);
-
-//            this.rawDescription = cardStrings.UPGRADE_DESCRIPTION;
-//            this.initializeDescription();
         }
     }
 }

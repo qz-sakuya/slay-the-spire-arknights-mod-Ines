@@ -4,6 +4,7 @@ import InesMod.cards.AbstractInesCard;
 import InesMod.cards.status.ShadowWhistle;
 import InesMod.characters.Ines;
 import InesMod.helpers.PathHelper;
+import InesMod.patchs.ExhaustCountInCombatManager;
 import InesMod.powers.player.InterPower;
 import InesMod.powers.player.InvisibilityPower;
 import InesMod.powers.player.StealsPower;
@@ -12,7 +13,6 @@ import com.megacrit.cardcrawl.actions.common.MakeTempCardInHandAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
@@ -39,13 +39,8 @@ public class ExperienceGain extends AbstractInesCard {
 
         this.cardsToPreview = new ShadowWhistle();
 
-        // 用 baseMagicNumber 储存消耗牌的总数
-        if (AbstractDungeon.player instanceof Ines) {
-            this.baseMagicNumber = ((Ines)AbstractDungeon.player).exhaustCount;
-        }
-        else {
-            this.baseMagicNumber = 0;
-        }
+        // 在这里储存消耗数
+        this.baseMagicNumber = ExhaustCountInCombatManager.exhaustCountInCombat;
     }
  
     @Override
@@ -60,12 +55,7 @@ public class ExperienceGain extends AbstractInesCard {
     public void applyPowers() {
         super.applyPowers();
 
-        if (AbstractDungeon.player instanceof Ines) {
-            Ines ines = (Ines)AbstractDungeon.player;
-            if (this.baseMagicNumber < ines.exhaustCount) {
-                this.baseMagicNumber = ines.exhaustCount;
-            }
-        }
+        this.baseMagicNumber = ExhaustCountInCombatManager.exhaustCountInCombat;
         tryDecreaseCost();
     }
 
@@ -100,10 +90,17 @@ public class ExperienceGain extends AbstractInesCard {
         return card;
     }
 
+    @Override
+    public void atBattleStartPreDraw() {
+        // 重置自定义变量
+        this.costHasDecreased = 0;
+        this.baseMagicNumber = 0;
+    }
+
     // 辅助方法
     public void tryDecreaseCost() {
         int costCanDecrease = baseMagicNumber / exhaustNeed; // 向下取整
-        while(costCanDecrease > costHasDecreased) {
+        while(costCanDecrease > costHasDecreased) { // 之前减过就不会再减
             this.updateCost(-1);
             costHasDecreased++;
         }
@@ -116,7 +113,6 @@ public class ExperienceGain extends AbstractInesCard {
             this.rawDescription = cardStrings.UPGRADE_DESCRIPTION;
         }
         this.rawDescription += cardStrings.EXTENDED_DESCRIPTION[0];
-
         initializeDescription();
     }
 }

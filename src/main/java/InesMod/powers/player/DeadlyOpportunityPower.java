@@ -1,9 +1,8 @@
 package InesMod.powers.player;
 
 import InesMod.action.DeadlyOpportunityAction;
-import InesMod.characters.Ines;
 import InesMod.helpers.PathHelper;
-import InesMod.patchs.InPlayerEndTurnPeriodPatch;
+import InesMod.patchs.InPlayerEndTurnPeriodManager;
 import InesMod.powers.AbstractInesPower;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -11,7 +10,6 @@ import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 
@@ -62,26 +60,12 @@ public class DeadlyOpportunityPower extends AbstractInesPower {
         if (card.type == AbstractCard.CardType.ATTACK && !card.purgeOnUse) {
 
             // 标记回合结束状态
-            // 如果有 临时补给 和 临时战略 ，阻止其触发
-            AbstractPower adHocSupplyPower = owner.getPower(AdHocSupplyPower.ID);
-            if (adHocSupplyPower != null) {
-                ((AdHocSupplyPower)adHocSupplyPower).inEndTurnPeriod = true;
-            }
-
-            AbstractPower adHocStrategyPower = owner.getPower(AdHocStrategyPower.ID);
-            if (adHocStrategyPower != null) {
-                ((AdHocStrategyPower)adHocStrategyPower).inEndTurnPeriod = true;
-            }
-
-//            if (AbstractDungeon.player instanceof Ines) {
-//                ((Ines) AbstractDungeon.player).inEndTurnPeriod = true;
-//            }
-            InPlayerEndTurnPeriodPatch.inPlayerEndTurnPeriod = true;
+            InPlayerEndTurnPeriodManager.inPlayerEndTurnPeriod = true;
 
 
 
 
-            // 致命契机+手牌有影哨+打出具有弃牌的攻击牌（如必要代价），
+            // 致命契机+手牌有影哨+打出具有弃牌动作的攻击牌（如必要代价），
             // 则影哨在afterUseCard前消耗且addToBot(起防Action)，再addToBot(致命契机Action)
             // 结论是影哨的防御会被清空
 

@@ -90,6 +90,9 @@ public abstract class AbstractInesCard extends CustomCard {
 
     // 自定义回调
 
+    // 战斗开始
+    public void atBattleStartPreDraw() {}
+
     // 任何卡被打出
     public void onReceiveCardUsed(AbstractCard c) {}
 

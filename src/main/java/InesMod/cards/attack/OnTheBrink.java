@@ -1,6 +1,5 @@
 package InesMod.cards.attack;
 
-import InesMod.action.InesAttackAnimateAction;
 import InesMod.action.ResetOnTheBrinkAction;
 import InesMod.cards.AbstractInesCard;
 import InesMod.characters.Ines;
@@ -51,38 +50,30 @@ public class OnTheBrink extends AbstractInesCard {
         addToBot(new SFXAction("ATTACK_HEAVY"));
         addToBot(new DamageAction(m, new DamageInfo(p, damage, DamageType.NORMAL), AbstractGameAction.AttackEffect.SLASH_VERTICAL));
 
+        // 重置攻击力
         addToBot(new ResetOnTheBrinkAction(this));
     }
 
 
-//    @Override
-//    public void onCardMove(AbstractCard c, CardGroup.CardGroupType groupType) {
-//        if (c.type != AbstractCard.CardType.ATTACK && groupType == CardGroup.CardGroupType.DISCARD_PILE) {
-//            upgradeDamage(updateAmount);
-//
-//            this.baseMagicNumber += updateAmount;
-//
-//            // 添加额外文本
-//            this.rawDescription = cardStrings.DESCRIPTION + cardStrings.EXTENDED_DESCRIPTION[0];
-//            initializeDescription();
-//        }
-//    }
+    @Override
+    public void atBattleStartPreDraw() {
+        resetDamage();
+    }
+
+
 
     @Override
     public void onManualDiscard(AbstractCard c){
-        tryUpdateDamage(c);
+        tryAddDamage(c);
     }
 
     @Override
     public void onReceiveCardUsed(AbstractCard c) {
-        tryUpdateDamage(c);
-
-//        if (c.type == AbstractCard.CardType.ATTACK) {
-//            addToBot(new ResetOnTheBrinkAction(this));
-//        }
+        tryAddDamage(c);
     }
 
-    private void tryUpdateDamage(AbstractCard c){
+    // 增加一次攻击
+    private void tryAddDamage(AbstractCard c){
         if (c.type != AbstractCard.CardType.ATTACK) {
             upgradeDamage(updateAmount);
 
@@ -94,6 +85,15 @@ public class OnTheBrink extends AbstractInesCard {
         }
     }
 
+    // 重置额外攻击
+    public void resetDamage() {
+        this.damage = this.baseDamage = this.initDamage;
+        this.isDamageModified = false;
+
+        this.baseMagicNumber = 0;
+
+        this.applyPowers();
+    }
 
 
     @Override

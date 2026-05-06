@@ -1,7 +1,6 @@
 package InesMod.patchs;
 
 import InesMod.cards.AbstractInesCard;
-import InesMod.characters.Ines;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePostfixPatch;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -23,11 +22,10 @@ public class MoveToExhaustPilePatch {
     }
 
     public static void Work(AbstractCard c) {
-        // 触发自定义回调
-        if (AbstractDungeon.player instanceof Ines) {
-            ((Ines)AbstractDungeon.player).onExhaust(c);
-        }
+        // 触发自定义计数器
+        ExhaustCountInCombatManager.add(1);
 
+        // 触发自定义回调
         for (AbstractCard cardToCall : AbstractDungeon.player.hand.group) {
             if (cardToCall instanceof AbstractInesCard){
                 AbstractInesCard inesCard = (AbstractInesCard)cardToCall;

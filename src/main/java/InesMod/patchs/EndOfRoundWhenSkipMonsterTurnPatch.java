@@ -2,23 +2,18 @@ package InesMod.patchs;
 
 
 import InesMod.action.EndTurnPatchAction;
-import InesMod.characters.Ines;
-import InesMod.helpers.LogHelper;
-import InesMod.powers.AbstractInesPower;
 import com.evacipated.cardcrawl.modthespire.lib.SpireInsertPatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
-import com.evacipated.cardcrawl.modthespire.lib.SpirePrefixPatch;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.powers.AbstractPower;
-import com.megacrit.cardcrawl.relics.*;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 
 
 /**
- * 如果 power 有 endOfRoundWhenSkipMonsterTurn 则触发
+ * 根据 power 的自定义属性 endOfRoundWhenSkipMonsterTurn，触发一次 atEndOfRound() 回调
+ *
  */
 
-public class EndTurnPatch {
+public class EndOfRoundWhenSkipMonsterTurnPatch {
 
 
 

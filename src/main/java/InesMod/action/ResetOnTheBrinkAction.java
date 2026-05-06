@@ -35,12 +35,7 @@ public class ResetOnTheBrinkAction extends AbstractGameAction {
     @Override
     public void update() {
         if (card instanceof OnTheBrink) {
-            this.card.damage = this.card.baseDamage = ((OnTheBrink) card).initDamage;
-            this.card.isDamageModified = false;
-
-            this.card.baseMagicNumber = 0;
-
-            this.card.applyPowers();
+            ((OnTheBrink) card).resetDamage();
         }
 
         this.isDone = true;

@@ -1,5 +1,6 @@
 package InesMod.action;
 
+import InesMod.patchs.InPlayerEndTurnPeriodManager;
 import InesMod.powers.player.AdHocStrategyPower;
 import InesMod.powers.player.AdHocSupplyPower;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
@@ -23,43 +24,30 @@ public class AdHocAction extends AbstractGameAction {
     }
 
     public void update() {
-        AbstractPower adHocStrategyPower = owner.getPower(AdHocStrategyPower.ID);
-        if (adHocStrategyPower != null
-                && owner instanceof AbstractPlayer
+        if (owner instanceof AbstractPlayer
                 && ((AbstractPlayer)owner).hand.size() <= 1
-                && !((AdHocStrategyPower)adHocStrategyPower).inEndTurnPeriod // 未处于回合结束
+                && !InPlayerEndTurnPeriodManager.inPlayerEndTurnPeriod // 未处于回合结束
         )
         {
-            adHocStrategyPower.flash();
+            AbstractPower adHocStrategyPower = owner.getPower(AdHocStrategyPower.ID);
+            if (adHocStrategyPower != null){
+                adHocStrategyPower.flash();
 
-            // 抽牌
-            addToTop(new DrawCardAction(owner, adHocStrategyPower.amount));
-            addToTop(new ReducePowerAction(owner, owner, AdHocStrategyPower.ID, adHocStrategyPower.amount));
+                // 抽牌
+                addToTop(new DrawCardAction(owner, adHocStrategyPower.amount));
+                addToTop(new ReducePowerAction(owner, owner, AdHocStrategyPower.ID, adHocStrategyPower.amount));
 
+            }
+
+            AbstractPower adHocSupplyPower = owner.getPower(AdHocSupplyPower.ID);
+            if (adHocSupplyPower != null){
+                adHocSupplyPower.flash();
+
+                // 获得能量
+                addToTop(new GainEnergyAction(adHocSupplyPower.amount));
+                addToTop(new ReducePowerAction(owner, owner, AdHocSupplyPower.ID, adHocSupplyPower.amount));
+            }
         }
-
-
-        AbstractPower adHocSupplyPower = owner.getPower(AdHocSupplyPower.ID);
-
-        if (adHocSupplyPower != null
-                && owner instanceof AbstractPlayer
-                && ((AbstractPlayer)owner).hand.size() <= 1
-                && !((AdHocSupplyPower)adHocSupplyPower).inEndTurnPeriod // 未处于回合结束
-        )
-        {
-            adHocSupplyPower.flash();
-
-            // 获得能量
-            addToTop(new GainEnergyAction(adHocSupplyPower.amount));
-            addToTop(new ReducePowerAction(owner, owner, AdHocSupplyPower.ID, adHocSupplyPower.amount));
-        }
-
-
-
-
-
-
-
 
 
 
