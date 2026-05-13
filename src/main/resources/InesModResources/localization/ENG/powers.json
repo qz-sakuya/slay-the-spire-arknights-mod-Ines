@@ -154,9 +154,9 @@
   "InesMod:ShiftFrontlinesPower": {
     "NAME": "Shift Frontlines",
     "DESCRIPTIONS": [
-      "Each time you discard a card this turn, gain #b%d #yInter at the start of next turn.",
-      " NL (#b%d card discarded)",
-      " NL (#b%d cards discarded)"
+      "Each time you discard or #yExhaust a card this turn, gain #b%d #yInter at the start of next turn.",
+      " NL (Total: #b%d card)",
+      " NL (Total: #b%d cards)"
     ]
   },
   "InesMod:ShadowTerritoryPower": {

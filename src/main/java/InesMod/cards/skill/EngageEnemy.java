@@ -29,8 +29,8 @@ public class EngageEnemy extends AbstractInesCard {
                 CardRarity.UNCOMMON,
                 CardTarget.SELF,
                 Ines.Enums.INES_CARD);
-        this.block = this.baseBlock = 13;
-        this.baseMagicNumber = this.magicNumber = 13;
+        this.block = this.baseBlock = 12;
+        this.baseMagicNumber = this.magicNumber = 12;
 
         this.cardsToPreview = new ShadowWhistle();
     }
