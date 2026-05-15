@@ -36,7 +36,7 @@ public class NewBranchesPower extends AbstractInesPower {
         for (AbstractMonster mon : (AbstractDungeon.getMonsters()).monsters) {
             AbstractPower powerToGet = mon.getPower(DefenseArtilleryMeterPower.ID);
             if (powerToGet instanceof DefenseArtilleryMeterPower && powerToGet.amount < ((DefenseArtilleryMeterPower) powerToGet).secondAmount) {
-                addToBot(new ApplyPowerAction(mon, owner, new DefenseArtilleryMeterPower(mon, 1,((DefenseArtilleryMeterPower) powerToGet).secondAmount,((DefenseArtilleryMeterPower) powerToGet).damage), 1));
+                addToTop(new ApplyPowerAction(mon, owner, new DefenseArtilleryMeterPower(mon, 1,((DefenseArtilleryMeterPower) powerToGet).secondAmount,((DefenseArtilleryMeterPower) powerToGet).damage), 1));
             }
         }
     }

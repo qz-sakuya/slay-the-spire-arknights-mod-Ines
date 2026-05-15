@@ -7,13 +7,10 @@ import InesMod.characters.Ines;
 import InesMod.enums.InesCardTags;
 import InesMod.helpers.*;
 import InesMod.patchs.AutoUsePatch;
-import InesMod.relics.FeintTripwire;
-import InesMod.relics.RustedNeedle;
-import InesMod.relics.ShadowOfLondinium;
+import InesMod.relics.*;
 import InesMod.truth.TruthManager;
 import InesMod.truth.TruthReward;
 import InesMod.enums.OtherEnum;
-import InesMod.relics.UnassumingNeedle;
 import InesMod.vfx.DefenseArtilleryMeterUponManager;
 import basemod.AutoAdd;
 import basemod.helpers.RelicType;
@@ -200,6 +197,9 @@ public class InesModMain implements
         BaseMod.addRelicToCustomPool(new RustedNeedle(), INES_CARD);
         BaseMod.addRelicToCustomPool(new ShadowOfLondinium(), INES_CARD);
         BaseMod.addRelicToCustomPool(new FeintTripwire(), INES_CARD);
+        BaseMod.addRelicToCustomPool(new RoastPotato(), INES_CARD);
+        BaseMod.addRelicToCustomPool(new OneEyeMask(), INES_CARD);
+
 
 
         LogHelper.info("===遗物情报已收集===");

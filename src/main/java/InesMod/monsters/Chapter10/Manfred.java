@@ -460,6 +460,7 @@ public class Manfred extends AbstractInesMonster {
             CardCrawlGame.screenShake.rumble(4.0F);
             (AbstractDungeon.getCurrRoom()).rewardAllowed = false;
 
+            // 让小怪逃跑
             for (AbstractMonster m : (AbstractDungeon.getCurrRoom()).monsters.monsters) {
                 if (!m.isDying) {
                     if (m instanceof Teekazwurtzen){
@@ -470,7 +471,6 @@ public class Manfred extends AbstractInesMonster {
                     }
                 }
             }
-
 
             this.state.setTimeScale(1.0F);
             this.state.setAnimation(0, "Die_2", false);

@@ -29,5 +29,19 @@
     "DESCRIPTIONS": [
       "偷取额外使目标失去 #b1 点临时 #y敏捷 ，自身获得 #b1 点临时 #y敏捷 。 NL 回合结束时， #r失去  #b1 层 #yines:偷取 。"
     ]
+  },
+  "InesMod:RoastPotato": {
+    "NAME": "“烤土豆”",
+    "FLAVOR": "你最好不要真的烤了它。",
+    "DESCRIPTIONS": [
+      "回合结束时，对所有敌人造成等同于你手牌数的伤害。"
+    ]
+  },
+  "InesMod:OneEyeMask": {
+    "NAME": "独眼面罩",
+    "FLAVOR": "那是他为了追求尽善尽美所付出的一点微小代价。",
+    "DESCRIPTIONS": [
+      "每次战斗后积累 #b1 点经验。战斗开始时，每有 #b7 点经验就获得 #b1 点 #y力量 。"
+    ]
   }
 }

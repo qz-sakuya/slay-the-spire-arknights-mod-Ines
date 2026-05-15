@@ -36,9 +36,13 @@ public class RustedNeedle extends AbstractInesRelic {
 
     @Override
     public void atTurnStart() {
-        addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new StealsPower(AbstractDungeon.player, this.counter), this.counter));
+        if (this.counter > 0) {
+            flash();
+            addToTop(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new StealsPower(AbstractDungeon.player, this.counter), this.counter));
+        }
+
         if (this.counter > 2) {
-            addToBot(new UpgradeRelicCounterAction(this,-1));
+            addToTop(new UpgradeRelicCounterAction(this,-1));
         }
     }
 
@@ -59,6 +63,7 @@ public class RustedNeedle extends AbstractInesRelic {
             super.obtain();
         }
     }
+
 
     @Override
     public boolean canSpawn() {

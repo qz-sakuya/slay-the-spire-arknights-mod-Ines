@@ -28,19 +28,32 @@ public class TryClearDefenseArtilleryMeterUponAction extends AbstractGameAction 
     }
 
     public static void Work(AbstractCreature source) {
-        // 如果没有其它怪物有 城防炮充能 + 炮击 power，就删除进度条
+        // 如果有其它单位有 城防炮充能 或 炮击 power，跳过
         boolean stillHavePower = false;
         for (AbstractMonster mon : (AbstractDungeon.getMonsters()).monsters) {
             if (mon == source){
                 continue;
             }
 
-            AbstractPower powerToGet = mon.getPower(DefenseArtilleryMeterPower.ID);
-            if (powerToGet instanceof DefenseArtilleryMeterPower || powerToGet instanceof FirePower) {
+            AbstractPower DamPower = mon.getPower(DefenseArtilleryMeterPower.ID);
+            if (DamPower instanceof DefenseArtilleryMeterPower) {
+                stillHavePower = true;
+            }
+
+            AbstractPower firePower = mon.getPower(FirePower.ID);
+            if (firePower instanceof FirePower) {
                 stillHavePower = true;
             }
         }
+
+        AbstractPower powerToGet = AbstractDungeon.player.getPower(FirePower.ID);
+        if (powerToGet != null) {
+            stillHavePower = true;
+        }
+
+
         if (!stillHavePower) {
+            // 删除特效
             DefenseArtilleryMeterUponManager.clearEffect();
 
             LogHelper.info("===InesMod：TryClearDefenseArtilleryMeterUponAction：成功===");

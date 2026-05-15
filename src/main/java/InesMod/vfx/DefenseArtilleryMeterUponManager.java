@@ -38,6 +38,13 @@ public class DefenseArtilleryMeterUponManager {
         if(effect != null){
             effect.duration = 0F;
         }
+        effect = null;
+    }
+
+    public static void initEffect(int type){
+        if(effect == null){
+            setEffect(type);
+        }
     }
 
     public static void setEffect(int type){
