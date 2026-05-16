@@ -88,7 +88,9 @@ public class ConfigHelper {
         UIStrings uis = CardCrawlGame.languagePack.getUIString(PathHelper.nameToId("Config"));
 
         // 设置1按钮
-        ModLabeledToggleButton btn1 = new ModLabeledToggleButton(uis.TEXT[1], 350.0F, 800.0F, Settings.CREAM_COLOR, FontHelper.charDescFont, banExtraLevel, settingsPanel, modLabel -> {
+        ModLabeledToggleButton btn1 = new ModLabeledToggleButton(uis.TEXT[1], 350.0F, 800.0F, Settings.CREAM_COLOR, FontHelper.charDescFont,
+                banExtraLevel,
+                settingsPanel, modLabel -> {
         }, modToggleButton -> {
             banExtraLevel = modToggleButton.enabled; // 获取按钮的勾选状态
             config.setBool(PathHelper.nameToId("BAN_EXTRA_LEVEL"), banExtraLevel);
@@ -102,7 +104,9 @@ public class ConfigHelper {
 
         // 设置2按钮
         if(!FORCE_ENABLE_INFO){
-            ModLabeledToggleButton btn2 = new ModLabeledToggleButton(uis.TEXT[2], 350.0F, 300.0F, Settings.CREAM_COLOR, FontHelper.charDescFont, banExtraLevel, settingsPanel, modLabel -> {
+            ModLabeledToggleButton btn2 = new ModLabeledToggleButton(uis.TEXT[2], 350.0F, 300.0F, Settings.CREAM_COLOR, FontHelper.charDescFont,
+                    dontShowLoggerInfo,
+                    settingsPanel, modLabel -> {
             }, modToggleButton -> {
                 dontShowLoggerInfo = modToggleButton.enabled;
                 config.setBool(PathHelper.nameToId("DONT_SHOW_LOGGER_INFO"), dontShowLoggerInfo);

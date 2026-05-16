@@ -2,7 +2,7 @@ package InesMod.action;
 
 import InesMod.cards.AbstractInesCard;
 import InesMod.helpers.LogHelper;
-import InesMod.patchs.AutoUsePatch;
+import InesMod.patchs.AutoUseManager;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.unique.LoseEnergyAction;
 import com.megacrit.cardcrawl.actions.utility.NewQueueCardAction;
@@ -35,7 +35,7 @@ public class AutoUseAction extends AbstractGameAction {
         if (!this.card.hasEnoughEnergy() || !this.card.cardPlayable(null)){
             LogHelper.info("===AutoUseAction：无法打出，card={}===",card.cardID);
 
-            AutoUsePatch.setBlocking(false);
+            AutoUseManager.setBlocking(false);
 
             if (this.card instanceof AbstractInesCard) {
                 ((AbstractInesCard)card).triggerOnAutoUseFail();

@@ -21,7 +21,7 @@ public class InPlayerEndTurnPeriodManager {
             if (_inst == AbstractDungeon.player) {
                 inPlayerEndTurnPeriod = true;
 
-                AutoUsePatch.setBlocking(true);
+                AutoUseManager.setBlocking(true);
 
                 LogHelper.info("===InPlayerEndTurnPeriodPatch：EndOfTurn：回合结束状态={}===",inPlayerEndTurnPeriod);
             }
@@ -35,7 +35,7 @@ public class InPlayerEndTurnPeriodManager {
             if (_inst == AbstractDungeon.player){
                 inPlayerEndTurnPeriod = false;
 
-                AutoUsePatch.setBlocking(false);
+                AutoUseManager.setBlocking(false);
 
                 LogHelper.info("===InPlayerEndTurnPeriodPatch：StartOfTurn：回合结束状态={}===",inPlayerEndTurnPeriod);
 

@@ -2,7 +2,6 @@ package InesMod.patchs;
 
 
 import InesMod.action.AutoUseAction;
-import InesMod.cards.AbstractInesCard;
 import InesMod.helpers.LogHelper;
 import com.evacipated.cardcrawl.modthespire.lib.SpireInsertPatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
@@ -15,10 +14,10 @@ import java.util.ArrayList;
 
 /**
  * 自动打出 的管理类
- * 回合结束状态一定为阻挡，由 InPlayerEndTurnPeriodPatch 辅助处理
+ * 回合结束状态一定为阻挡，由 InPlayerEndTurnPeriodManager 辅助处理
  * 出完牌，或自动打出 action 中失败，则解除阻挡
  */
-public class AutoUsePatch {
+public class AutoUseManager {
     public static boolean isBlocking = false;
     public static ArrayList<AbstractGameAction> taskList = new ArrayList<AbstractGameAction>();
 
@@ -27,23 +26,24 @@ public class AutoUsePatch {
         if (newBlocking) {
             isBlocking = true;
 
-            LogHelper.info("===AutoUsePatch：setBlocking： true===");
+            LogHelper.info("===AutoUseManager：setBlocking： true===");
         }
         else {
             isBlocking = false;
             doOneAutoUseAction();
 
-            LogHelper.info("===AutoUsePatch：setBlocking： false===");
+            LogHelper.info("===AutoUseManager：setBlocking： false===");
         }
     }
 
     public static void clearTask() {
+        LogHelper.info("===AutoUseManager：清空列表");
         taskList.clear();
     }
 
 
     public static void addNewTask(AbstractCard card) {
-        LogHelper.info("===AutoUsePatch：新任务： card={}===",card.cardID);
+        LogHelper.info("===AutoUseManager：新任务： card={}===",card.cardID);
 
         taskList.add(new AutoUseAction(card));
         doOneAutoUseAction();
@@ -54,7 +54,7 @@ public class AutoUsePatch {
     public static class OnAfterUseCard{
         @SpireInsertPatch(rloc = 1)
         public static void Insert(UseCardAction _inst){
-            AutoUsePatch.setBlocking(false);
+            AutoUseManager.setBlocking(false);
         }
     }
 
@@ -66,7 +66,7 @@ public class AutoUsePatch {
 
         AbstractGameAction action = taskList.remove(0);
         AbstractDungeon.actionManager.addToBottom(action);
-        AutoUsePatch.setBlocking(true);
+        AutoUseManager.setBlocking(true);
 
         if (action instanceof AutoUseAction){
             LogHelper.info("===InPlayerEndTurnPeriodPatch：addDelayAutoUseAction：处理一个：card={}===",((AutoUseAction)action).card.cardID);

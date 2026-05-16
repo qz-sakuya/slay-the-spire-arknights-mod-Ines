@@ -46,6 +46,7 @@ public class Sentinel extends AbstractInesCard {
         this.damage = this.baseDamage = 9;
         this.magicNumber = this.baseMagicNumber = 1;
 
+        this.cardsToPreview = new ShadowWhistle();
     }
 
     @Override

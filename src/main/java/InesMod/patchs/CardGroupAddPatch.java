@@ -1,6 +1,5 @@
 package InesMod.patchs;
 
-import InesMod.action.AutoUseAction;
 import InesMod.cards.AbstractInesCard;
 import InesMod.helpers.LogHelper;
 import InesMod.powers.AbstractInesPower;
@@ -68,7 +67,7 @@ public class CardGroupAddPatch {
                 if (__instance.type == CardGroup.CardGroupType.HAND) {
                     if (tmpCard.lastAddedTo != CardGroup.CardGroupType.HAND) {
                         if (tmpCard.isAutoUse){
-                            AutoUsePatch.addNewTask(tmpCard);
+                            AutoUseManager.addNewTask(tmpCard);
                         }
                     }
                     else{

@@ -6,14 +6,13 @@ import InesMod.characters.Ines;
 
 import InesMod.enums.InesCardTags;
 import InesMod.helpers.*;
-import InesMod.patchs.AutoUsePatch;
+import InesMod.patchs.AutoUseManager;
 import InesMod.relics.*;
 import InesMod.truth.TruthManager;
 import InesMod.truth.TruthReward;
 import InesMod.enums.OtherEnum;
 import InesMod.vfx.DefenseArtilleryMeterUponManager;
 import basemod.AutoAdd;
-import basemod.helpers.RelicType;
 import basemod.interfaces.*;
 import com.badlogic.gdx.Gdx;
 import com.evacipated.cardcrawl.modthespire.lib.SpireInitializer;
@@ -26,7 +25,6 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.*;
 import com.badlogic.gdx.graphics.Color;
-import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.rewards.RewardItem;
 import com.megacrit.cardcrawl.rewards.RewardSave;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
@@ -88,7 +86,7 @@ public class InesModMain implements
 
     public static final Color MY_COLOR_DARK = new Color(97F / 255.0F, 41F / 255.0F, 43F / 255.0F, 1.0F);
 
-    private static UIStrings retainThisTurnStrings = null;
+
 
     public InesModMain() {
         BaseMod.subscribe(this);
@@ -111,7 +109,8 @@ public class InesModMain implements
                 BIG_ORB,            // energyOrbPortrait: 在卡牌预览界面的能量图标
                 SMALL_ORB           // cardEnergyOrb: 在卡牌和遗物描述中的能量图标
         );
-        LogHelper.info("===InesMod:版本1.2.2===");
+
+        LogHelper.info("===InesMod:版本1.2.4==="); // TODO：记得改
 
 
 
@@ -134,6 +133,28 @@ public class InesModMain implements
         BaseMod.addCharacter(new Ines(CardCrawlGame.playerName), MY_CHARACTER_BUTTON, MY_CHARACTER_PORTRAIT, Ines.Enums.INES);
         LogHelper.info("===人物情报已收集===");
     }
+
+
+    @Override
+    public void receiveEditKeywords() {
+        LogHelper.info("===正在回忆关键词===");
+        String lang = selectLanguage();
+
+        Gson gson = new Gson();
+        String json = Gdx.files.internal("InesModResources/localization/" + lang + "/keywords.json")
+                .readString(String.valueOf(StandardCharsets.UTF_8));
+        Keyword[] keywords = gson.fromJson(json, Keyword[].class);
+        if (keywords != null) {
+            for (Keyword keyword : keywords) {
+                // 这个id要全小写
+                BaseMod.addKeyword("ines", keyword.NAMES[0], keyword.NAMES, keyword.DESCRIPTION);
+            }
+        }
+
+
+        LogHelper.info("===关键词情报已收集===");
+    }
+
 
     @Override
     public void receiveEditCards() {
@@ -205,24 +226,7 @@ public class InesModMain implements
         LogHelper.info("===遗物情报已收集===");
     }
 
-    @Override
-    public void receiveEditKeywords() {
-        LogHelper.info("===正在回忆关键词===");
-        String lang = selectLanguage();
 
-        Gson gson = new Gson();
-        String json = Gdx.files.internal("InesModResources/localization/" + lang + "/keywords.json")
-                .readString(String.valueOf(StandardCharsets.UTF_8));
-        Keyword[] keywords = gson.fromJson(json, Keyword[].class);
-        if (keywords != null) {
-            for (Keyword keyword : keywords) {
-                // 这个id要全小写
-                BaseMod.addKeyword("ines", keyword.NAMES[0], keyword.NAMES, keyword.DESCRIPTION);
-            }
-        }
-
-        LogHelper.info("===关键词情报已收集===");
-    }
 
     @Override
     public void receivePostInitialize() {
@@ -257,13 +261,9 @@ public class InesModMain implements
 
     @Override
     public void receiveOnBattleStart(AbstractRoom abstractRoom) {
-        LogHelper.info("===InesMod:receiveOnBattleStart：战斗开始===");
         TruthManager.setTopPanelItem();
 
-        AutoUsePatch.clearTask();
-
-
-        // 精英领袖房获得额外真相奖励
+        // 精英、领袖房获得额外真相奖励
         ArrayList<RewardItem> rewards = AbstractDungeon.getCurrRoom().rewards;
         if (AbstractDungeon.getCurrRoom() instanceof com.megacrit.cardcrawl.rooms.MonsterRoomElite) {
             int truthFromElite = 2;
@@ -278,10 +278,9 @@ public class InesModMain implements
     }
 
     @Override
-    public void receivePostPlayerUpdate() {}
-
-
-
+    public void receivePostPlayerUpdate() {
+        // 暂时没用到
+    }
 
 
     @Override
@@ -303,41 +302,12 @@ public class InesModMain implements
 
     @Override
     public void receivePostBattle(AbstractRoom var1){
-        LogHelper.info("===InesModMain: receivePostBattle===");
-
-        if (AbstractDungeon.player instanceof Ines){
-            ((Ines)AbstractDungeon.player).resetAllCustomCounter();
-        }
-
-        AutoUsePatch.clearTask();
-
-        // 清空城防炮特效
-        DefenseArtilleryMeterUponManager.clearEffect();
+        // 弃用此接口，改为patch
     }
 
     @Override
     public void  receiveOnPlayerTurnStart(){
-        LogHelper.info("===InesModMain: receiveOnPlayerTurnStart===");
-
-        // 重置“在本回合保留。”词条
-        for (AbstractCard c : AbstractDungeon.player.hand.group) {
-            resetCardsRetainThisTurn(c);
-        }
-
-        for (AbstractCard c : AbstractDungeon.player.discardPile.group) {
-            resetCardsRetainThisTurn(c);
-        }
-
-        for (AbstractCard c : AbstractDungeon.player.drawPile.group) {
-            resetCardsRetainThisTurn(c);
-        }
-
-        for (AbstractCard c : AbstractDungeon.player.exhaustPile.group) {
-            resetCardsRetainThisTurn(c);
-        }
-
-        // 尝试清除特效
-        TryClearDefenseArtilleryMeterUponAction.Work(null);
+        // 弃用此接口，改为patch
     }
 
     @Override
@@ -378,30 +348,15 @@ public class InesModMain implements
 
     private String selectLanguage(){
         String lang;
-        if (language == Settings.GameLanguage.ZHS) {
-            lang = "ZHS"; // 如果语言设置为简体中文，则加载ZHS文件夹的资源
+        if (language == Settings.GameLanguage.ZHS || Settings.language == Settings.GameLanguage.ZHT) {
+            lang = "ZHS"; // 如果语言设置为中文，则加载ZHS文件夹的资源 // 暂时没有繁体
         } else {
-            lang = "ENG"; // 如果没有相应语言的版本，默认加载英语 // TODO
-            lang = "ZHS"; // 如果语言设置为简体中文，则加载ZHS文件夹的资源
+            lang = "ENG"; // 如果没有相应语言的版本，默认加载英语
         }
         return lang;
     }
 
-    // 如果卡牌具有“在本回合保留。”，则重置
-    private void resetCardsRetainThisTurn(AbstractCard card) {
-        if (retainThisTurnStrings == null) {
-            retainThisTurnStrings = CardCrawlGame.languagePack.getUIString(PathHelper.nameToId("RetainCardsThisTurnAction"));
-        }
 
-        if (card.tags.contains(InesCardTags.RetainThisTurn)) {
-            // 删除tag（文本由patch处理）
-            card.tags.remove(InesCardTags.RetainThisTurn);
-            card.initializeDescription();
-
-            // 不再保留
-            card.retain = false;
-        }
-    }
 
 
 }

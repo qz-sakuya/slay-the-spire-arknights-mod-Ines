@@ -7,23 +7,15 @@
   "InesMod:Config": {
     "TEXT": [
       "Mod Config",
-      "Disable Additional Endings (No actual function at present)",
-      "Disable Log Printing (Slight performance improvement)"
+      "Disable Extra Level",
+      "Disable Log Printing"
     ]
   },
   "InesMod:Tips": {
     "TEXT": [
       "Insight",
       "Whenever you exhaust #b12 #ySteals in one combat, gain #b1 #yInsight .",
-      "For each stack of #yInsight , apply #b1 additional #ySteals after Attack (not counted as exhaust) and gain #b1 #yTruth after combat."
-    ]
-  },
-  "InesMod:UNUSEDSelectHandCard": {
-    "TEXT": [
-      "选择 %d 张牌",
-      "选择至少一张牌",
-      "选择任意张牌",
-      "选择至多 %d 张牌"
+      " For each stack of #yInsight , apply #b1 additional #ySteals after Attack (not counted as consume) and gain #b1 #yTruth after combat."
     ]
   },
   "InesMod:MoveCardsToDeckAction": {
@@ -34,25 +26,25 @@
   "InesMod:RetainCardsThisTurnAction": {
     "TEXT": [
       "retain for this turn.",
-      " NL  ines:RetainForThisTurn ."
+      " NL ines:RetainForThisTurn ."
     ]
   },
   "InesMod:CardTags": {
     "TEXT": [
-      " NL  ines:RetainForThisTurn ."
+      " NL ines:RetainForThisTurn ."
     ]
   },
   "InesMod:TruthTopItem": {
     "TEXT": [
       "Truth",
-      "All #yTruth collected from combat. NL It can be interpreted into #yRewards at #yRest #ySites.",
-      "All #yTruth collected from combat. NL It can be interpreted into #yRewards at #yRest #ySites, or used to uncover #bthe #bSecrets #bof #bthe #bSpire ..."
+      "All #yTruth collected from combat. NL It can be interpreted into #yRewards at #yRest #ySites .",
+      "All #yTruth collected from combat. NL It can be interpreted into #yRewards at #yRest #ySites , or used to uncover #bthe #bSecrets #bof #bthe #bSpire ..."
     ]
   },
   "InesMod:TruthReward": {
     "TEXT": [
-      "Truth",
-      "(Insight)"
+      " Truth",
+      "  (Insight)"
     ]
   },
   "InesMod:InterpretOption": {
@@ -68,6 +60,17 @@
       "Choose a Colorless card",
       "Choose a Rare card",
       "Choose a Relic"
+    ]
+  },
+  "InesMod:LevelChapter10": {
+    "TEXT": [
+      "Londinium"
+    ]
+  },
+  "InesMod:DexterityForMonsterPatch": {
+    "TEXT": [
+      "Increases #yBlock gained by #b%d .",
+      "Decreases #yBlock gained by #b%d ."
     ]
   }
 }

@@ -59,7 +59,10 @@ public class InformantPower extends AbstractInesPower {
         StringBuilder sb = new StringBuilder();
         if (cards != null) {
             for (AbstractCard c : cards) {
-                sb.append(" NL  #b").append(c.name).append(" ");
+                String cardName = c.name;
+                String result = cardName.replaceAll("\\S+", "#b$0");
+
+                sb.append(" NL ").append(result).append(" ");
             }
         }
 

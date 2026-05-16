@@ -14,7 +14,7 @@ import com.megacrit.cardcrawl.localization.UIStrings;
  *  （这么做的目的是，兼容部分卡牌的 EXTENDED_DESCRIPTION）
  *  不应该在其他任何地方再向 rawDescription 添加 tag文本
  */
-public class AddCardTagDescriptionPatch {
+public class CardTagTextPatch {
     public static final String ID = PathHelper.nameToId("CardTags");
     private static final UIStrings uiStrings = CardCrawlGame.languagePack.getUIString(ID);
 
@@ -24,11 +24,17 @@ public class AddCardTagDescriptionPatch {
         @SpirePrefixPatch
         public static void Prefix(AbstractCard __instance) {
             // 在本回合保留 tag
-            if (__instance.tags.contains(InesCardTags.RetainThisTurn)) {
-                __instance.rawDescription += uiStrings.TEXT[0];
-            }
+            Work(__instance, InesCardTags.RetainThisTurn, uiStrings.TEXT[0]);
         }
     }
 
-
+    private static void Work(AbstractCard card, AbstractCard.CardTags tag, String tagText) {
+        if (card.tags.contains(tag)) {
+            // 如果有该 tag，则追加文本
+            card.rawDescription += tagText;
+        } else {
+            // 如果没有该 tag，则删除所有匹配的文本
+            card.rawDescription = card.rawDescription.replace(tagText, "");
+        }
+    }
 }

@@ -1,49 +1,57 @@
 [
   {
     "NAMES": [
-      "Steals"
+      "Steals",
+      "steals"
     ],
-    "DESCRIPTION": "Consume #ySteals after Attack , let targets lose temporary #yStrength , you gains temporary #yStrength ."
+    "DESCRIPTION": "Consume #ySteals after Attack, let targets lose temporary #yStrength, you gain temporary #yStrength."
   },
   {
     "NAMES": [
-      "Invisibility"
+      "Invisibility",
+      "invisibility"
     ],
-    "DESCRIPTION": "Gain #b25% more #yBlock from cards. Whenever you play a #yAttack card, #yExhaust  #b1 #yShadow #yWhistle. NL At the end of turn, loss #b1 #yInvisibility and Gain #b1 #yIllusion . NL  NL  #yIllusion can prevent one instance of attack damage or convert into [E] at the start of turn."
+    "DESCRIPTION": "Gain #b25% more #yBlock from cards. Whenever you play a #yAttack card, #yExhaust #b1 #yShadow #yWhistle. NL At the end of turn, loss #b1 #yInvisibility and Gain #b1 #yIllusion. NL  NL #yIllusion can prevent one instance of attack damage or convert into [E] at the start of turn."
   },
   {
     "NAMES": [
-      "Illusion"
+      "Illusion",
+      "illusion"
     ],
     "DESCRIPTION": "Prevent one instance of attack damage or convert into [E] at the start of turn."
   },
   {
     "NAMES": [
-      "Inter"
+      "Inter",
+      "inter"
     ],
-    "DESCRIPTION": "After performing other draws, continue drawing #bX cards until your hand is full. Unused #yIntel is retained. NL Max #b10 #yIntel ."
+    "DESCRIPTION": "After performing other draws, continue drawing #bX cards until your hand is full. Unused #yIntel is retained. NL Max #b10 #yIntel."
   },
   {
     "NAMES": [
-      "Lurk"
+      "Lurk",
+      "lurk"
     ],
     "DESCRIPTION": "This card activates its effect while in your hand."
   },
   {
     "NAMES": [
-      "AutoPlay"
+      "AutoPlay",
+      "autoplay"
     ],
     "DESCRIPTION": "When this card enter your hand, immediately attempt to play it by spending energy."
   },
   {
     "NAMES": [
-      "RetainForThisTurn"
+      "RetainForThisTurn",
+      "retainforthisturn"
     ],
     "DESCRIPTION": "Retained cards are not discarded at the end of turn."
   },
   {
     "NAMES": [
-      "Search"
+      "Search",
+      "search"
     ],
     "DESCRIPTION": "Select qualifying cards from your draw pile and discard pile."
   }

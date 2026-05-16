@@ -10,7 +10,7 @@
     "NAME": "Rusted Needle",
     "FLAVOR": "Even more like the past she constantly buries.",
     "DESCRIPTIONS": [
-      "Replaces #yUnassuming #yNeedle . At the start of your first turn, gain #b3 #yines:Steals . At the start of subsequent turns, gain #b2 #yines:Steals ."
+      "Replaces #yUnassuming #yNeedle . At the start of your first turn, gain #b3 #yines:Steals . At the start of your subsequent turns, gain #b2 #yines:Steals ."
     ]
   },
   "InesMod:ShadowOfLondinium": {
@@ -34,7 +34,7 @@
     "NAME": "\"Roast Potato\"",
     "FLAVOR": "You'd better not actually roast it.",
     "DESCRIPTIONS": [
-      "At the end of your turn, deal damage to All enemies equal to the number of cards in your hand."
+      "At the end of your turn, deal damage to ALL enemies equal to the number of cards in your hand."
     ]
   },
   "InesMod:OneEyeMask": {
