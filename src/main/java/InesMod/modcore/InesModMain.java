@@ -110,7 +110,7 @@ public class InesModMain implements
                 SMALL_ORB           // cardEnergyOrb: 在卡牌和遗物描述中的能量图标
         );
 
-        LogHelper.info("===InesMod:版本1.2.4==="); // TODO：记得改
+        LogHelper.info("===InesMod:版本1.2.5==="); // TODO：记得改
 
 
 
