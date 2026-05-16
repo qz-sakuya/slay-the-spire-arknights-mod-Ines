@@ -2,7 +2,7 @@
   "InesMod:StealsPower": {
     "NAME": "Steals",
     "DESCRIPTIONS": [
-      "Consume #b1 #ySteals after Attack , let all hit targets lose #b%d temporary #yStrength , you gains #b%d temporary #yStrength ."
+      "Consume #b1 #ySteals after Attack , let all hit targets lose #b%d temporary #yStrength , you gain #b%d temporary #yStrength ."
     ]
   },
   "InesMod:StrengthStealPower": {
@@ -207,6 +207,101 @@
     "DESCRIPTIONS": [
       "For each #yShadow #yWhistle in your hand, your Attack Damage is increased by #b%d .",
       " NL (Damage #b+%d )"
+    ]
+  },
+
+  "InesMod:DefenseArtilleryMeterPower": {
+    "NAME": "Defense Artillery Meter",
+    "DESCRIPTIONS": [
+      "At the end of turn, fill the #yDefense #yArtillery #yMeter by #b1 . Upon reaching #b%d, clear the #yMeter and prepare to #yFire! . NL (Current Meter: #b%d )"
+    ]
+  },
+  "InesMod:MilitaryTrainingPower": {
+    "NAME": "Military Training",
+    "DESCRIPTIONS": [
+      "When attacked, dodge and reduce the damage by #b%s , add a #yCounter into your discard pile, The damage of #yCounter equal to the damage reduced. NL Whenever you play #yCounter , ",
+      " #ract #rat #ronce . NL  NL This power is disabled for #b%d turns when receiving #yDefense #yArtillery damage.",
+      "act at once. NL  NL (Disabled for #b%d turns)"
+    ]
+  },
+  "InesMod:RebornCreationPower": {
+    "NAME": "Reborn Creation",
+    "DESCRIPTIONS": [
+      "Receive #b50% less damage from #yAttacks ."
+    ]
+  },
+  "InesMod:LivingBlessingPower": {
+    "NAME": "Living Blessing",
+    "DESCRIPTIONS": [
+      "On death, reborn as #yTouch #yof #ythe #ySanguinarch .",
+      "On death, reborn as #yGift #yof #ythe #ySanguinarch ."
+    ]
+  },
+  "InesMod:SanguineInfusionPower": {
+    "NAME": "Sanguine Infusion",
+    "DESCRIPTIONS": [
+      "At the end of turn, apply #b%d #yVigor to all #yReborn #yCreations ."
+    ]
+  },
+  "InesMod:EnemyVigorPower": {
+    "NAME": "Vigor",
+    "DESCRIPTIONS": [
+      "Next attack deals #b%d additional damage."
+    ]
+  },
+  "InesMod:BouncePower": {
+    "NAME": "Bounce",
+    "DESCRIPTIONS": [
+      "When this enemy is about to hit you, if you have #yBlock, it deals #rdouble #rdamage to you."
+    ]
+  },
+  "InesMod:FirePower": {
+    "NAME": "Fire!",
+    "DESCRIPTIONS": [
+      "At the end of your turn, receive #b%d damage."
+    ]
+  },
+  "InesMod:ManfredFocusPower": {
+    "NAME": "Focus",
+    "DESCRIPTIONS": [
+      "Whenever you receive attack damage from this enemy, it gain #b%d #yStrength , otherwise it lose #b%d #yStrength (to a minimum of 0)."
+    ]
+  },
+  "InesMod:HatredPower": {
+    "NAME": "Hatred",
+    "DESCRIPTIONS": [
+      "Gain #b%d #yStrength for each #yReborn #yCreation on the field.",
+      " NL (Gain #b%d #yStrength )"
+    ]
+  },
+  "InesMod:NewBranchesPower": {
+    "NAME": "New Branches",
+    "DESCRIPTIONS": [
+      "When attack, fill the #yDefense #yArtillery #yMeter by #b1 for #yManfred . Immune to #yDefense #yArtillery damage."
+    ]
+  },
+  "InesMod:UnyieldingPower": {
+    "NAME": "Unyielding",
+    "DESCRIPTIONS": [
+      "When defeated for the first time, reborn and immediately prepare to #yFire! "
+    ]
+  },
+  "InesMod:SolidPower": {
+    "NAME": "Solid",
+    "DESCRIPTIONS": [
+      " #yALL damage received is capped at #b%d."
+    ]
+  },
+  "InesMod:ShadowDispersePower": {
+    "NAME": "Shadow Disperse",
+    "DESCRIPTIONS": [
+      "Whenever a #yShadow #yWhistle is #yExhausted , deal #b%d damage to ALL enemies."
+    ]
+  },
+  "InesMod:UNUSEDTestPower": {
+    "NAME": "UNUSEDTestPower",
+    "DESCRIPTIONS": [
+      "no need to translate"
     ]
   }
 }

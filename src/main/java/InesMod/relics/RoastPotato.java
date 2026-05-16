@@ -14,7 +14,7 @@ public class RoastPotato extends AbstractInesRelic {
     public static final String ID = PathHelper.nameToId(RoastPotato.class.getSimpleName());
 
     public RoastPotato(){
-        super(ID, true, false, RelicTier.UNCOMMON, LandingSound.FLAT);
+        super(ID, false, false, RelicTier.UNCOMMON, LandingSound.FLAT);
     }
 
     // 遗物初始描述

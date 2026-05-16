@@ -402,5 +402,21 @@
       "The effect of the relic",
       "The footnote of the relic"
     ]
+  },
+  "InesMod:Counter": {
+    "NAME": "Counter",
+    "DESCRIPTION": "Deal !D! damage. NL  Exhaust .",
+    "UPGRADE_DESCRIPTION":"Deal !D! damage. NL  Retain . Exhaust .",
+    "EXTENDED_DESCRIPTION":[
+      " NL ( *Manfred will act at once)"
+    ]
+  },
+  "InesMod:Sentinel": {
+    "NAME": "Sentinel",
+    "DESCRIPTION": "Deal !D! damage. NL Discard 1 card. NL If *Shadow *Whistle is discarded this way, add !M! *Shadow *Whistle into your draw pile."
+  },
+  "InesMod:ShadowDisperse": {
+    "NAME": "Shadow Disperse",
+    "DESCRIPTION": "Whenever a *Shadow *Whistle is Exhausted , deal !M! damage to ALL enemies."
   }
 }

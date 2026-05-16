@@ -15,7 +15,7 @@ public class OneEyeMask extends AbstractInesRelic {
     public static final String ID = PathHelper.nameToId(OneEyeMask.class.getSimpleName());
 
     public OneEyeMask(){
-        super(ID, true, false, RelicTier.UNCOMMON, LandingSound.FLAT);
+        super(ID, false, false, RelicTier.UNCOMMON, LandingSound.FLAT);
 
         this.counter = 0;
     }

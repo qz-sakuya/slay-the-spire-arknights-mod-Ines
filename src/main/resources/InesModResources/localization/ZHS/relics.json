@@ -27,7 +27,7 @@
     "NAME": "虚实绊线",
     "FLAVOR": "“影子在晃动。”",
     "DESCRIPTIONS": [
-      "偷取额外使目标失去 #b1 点临时 #y敏捷 ，自身获得 #b1 点临时 #y敏捷 。 NL 回合结束时， #r失去  #b1 层 #yines:偷取 。"
+      " #yines:偷取 额外使目标失去 #b1 点临时 #y敏捷 ，自身获得 #b1 点临时 #y敏捷 。 NL 回合结束时， #r失去  #b1 层 #yines:偷取 。"
     ]
   },
   "InesMod:RoastPotato": {

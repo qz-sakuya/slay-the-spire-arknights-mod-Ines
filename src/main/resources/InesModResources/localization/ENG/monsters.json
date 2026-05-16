@@ -1,0 +1,54 @@
+{
+  "InesMod:SarkazHeirbearerWarrior": {
+    "NAME": "Sarkaz Heirbearer Warrior",
+    "MOVES": [],
+    "DIALOG": []
+  },
+  "InesMod:GiftOfSanguinarch": {
+    "NAME": "Gift of the Sanguinarch",
+    "MOVES": [],
+    "DIALOG": []
+  },
+  "InesMod:Manfred": {
+    "NAME": "Manfred",
+    "MOVES": [],
+    "DIALOG": [
+      "The war in Londinium will never end.",
+      "The warriors of the Sarkaz will never fall.",
+      "How does this compare to the battlefields of Kazdel...?",
+      "When the Sarkaz hunger for war, the Sarkaz are war itself."
+    ]
+  },
+  "InesMod:SarkazHeirbearerArtificer": {
+    "NAME": "Sarkaz Heirbearer Artificer",
+    "MOVES": [],
+    "DIALOG": []
+  },
+  "InesMod:SarkazHeirbearerASV": {
+    "NAME": "Sarkaz Heirbearer ASV",
+    "MOVES": [],
+    "DIALOG": []
+  },
+  "InesMod:SarkazHeirbearerChainCaster": {
+    "NAME": "Sarkaz Heirbearer Chain Caster",
+    "MOVES": [],
+    "DIALOG": []
+  },
+  "InesMod:TouchOfSanguinarch": {
+    "NAME": "Touch of the Sanguinarch",
+    "MOVES": [],
+    "DIALOG": []
+  },
+  "InesMod:SarkazHeirbearerHatedrinker": {
+    "NAME": "Sarkaz Heirbearer Hatedrinker",
+    "MOVES": [],
+    "DIALOG": []
+  },
+  "InesMod:Teekazwurtzen": {
+    "NAME": "Teekazwurtzen",
+    "MOVES": [],
+    "DIALOG": []
+  }
+
+
+}

@@ -1,16 +1,47 @@
 {
   "InesMod:UnassumingNeedle": {
-    "NAME": "无锋绣针",
-    "FLAVOR": "犹如她那不断打磨的双角。",
+    "NAME": "Unassuming Needle",
+    "FLAVOR": "Like the horns she constantly carves.",
     "DESCRIPTIONS": [
-      "回合开始时，获得 #b3 层 #yines:偷取 ，然后使本层数-1。 NL 战斗开始时重置。"
+      "At the start of your turn, gain #b3 #yines:Steals , then reduce this number by #b1 . NL Resets at the start of combat."
     ]
   },
   "InesMod:RustedNeedle": {
-    "NAME": "破败绣针",
-    "FLAVOR": "更如她那不断掩埋的往事。",
+    "NAME": "Rusted Needle",
+    "FLAVOR": "Even more like the past she constantly buries.",
     "DESCRIPTIONS": [
-      " "
+      "Replaces #yUnassuming #yNeedle . At the start of your first turn, gain #b3 #yines:Steals . At the start of subsequent turns, gain #b2 #yines:Steals ."
+    ]
+  },
+  "InesMod:ShadowOfLondinium": {
+    "NAME": "Shadow of Londinium",
+    "FLAVOR": "The past surfaces like a shadow.",
+    "DESCRIPTIONS": [
+      "When you finish #yThe #yEnd, enter a special Extra Level.",
+      " NL  NL  #rExtra #rLevel #ris #rdisabled ",
+      " NL  NL  #yBoss #yRush is enabled",
+      " NL  NL Boss is fixed as #yManfred "
+    ]
+  },
+  "InesMod:FeintTripwire": {
+    "NAME": "Feint Tripwire",
+    "FLAVOR": "\"The shadow is moving.\"",
+    "DESCRIPTIONS": [
+      " #yines:Steals additionally let all targets lose #b1 temporary #yDexterity , you gain #b1 temporary #yDexterity . NL At the end of your turn, #rlose #b1 #yines:Steals ."
+    ]
+  },
+  "InesMod:RoastPotato": {
+    "NAME": "\"Roast Potato\"",
+    "FLAVOR": "You'd better not actually roast it.",
+    "DESCRIPTIONS": [
+      "At the end of your turn, deal damage to All enemies equal to the number of cards in your hand."
+    ]
+  },
+  "InesMod:OneEyeMask": {
+    "NAME": "One-Eye Mask",
+    "FLAVOR": "That's a small price he paid for pursuing perfection.",
+    "DESCRIPTIONS": [
+      "Gain #b1 Experience after each combat. At the start of combat, gain #b1 #yStrength for every #b7 Experience."
     ]
   }
 }
