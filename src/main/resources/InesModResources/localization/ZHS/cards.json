@@ -418,5 +418,9 @@
   "InesMod:ShadowDisperse": {
     "NAME": "影散",
     "DESCRIPTION": "每 消耗  1 张 *影哨 ，对所有敌人造成 !M! 点伤害。"
+  },
+  "InesMod:CageOfWars": {
+    "NAME": "战争囚笼",
+    "DESCRIPTION": "造成 !D! 点伤害。 NL 你只能攻击这个敌人，但每个其它敌人使其受到的伤害+50%。 NL 消耗 。"
   }
 }

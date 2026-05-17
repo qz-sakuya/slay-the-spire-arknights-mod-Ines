@@ -25,7 +25,7 @@ public class OnTheBrink extends AbstractInesCard {
     public static final String ID = PathHelper.nameToId(OnTheBrink.class.getSimpleName());
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID); // 从游戏系统读取本地化资源
 
-    public int initDamage = 6;
+    public int initDamage = 8;
     int updateAmount = 2;
 
     public OnTheBrink() {

@@ -1,14 +1,15 @@
 {
   "InesMod:ApplyPowerActionPatch": {
     "TEXT": [
-      "Cannot gain NL Invisibility now."
+      "Cannot gain NL Invisibility now..."
     ]
   },
   "InesMod:Config": {
     "TEXT": [
       "Mod Config",
       "Disable Extra Level",
-      "Disable Log Printing"
+      "Disable Log Printing",
+      "Apply Extra Level (relic) For All Character"
     ]
   },
   "InesMod:Tips": {
@@ -71,6 +72,11 @@
     "TEXT": [
       "Increases #yBlock gained by #b%d .",
       "Decreases #yBlock gained by #b%d ."
+    ]
+  },
+  "InesMod:CageOfWarsPatch": {
+    "TEXT": [
+      "Must attack the enemy in Cage of Wars..."
     ]
   }
 }

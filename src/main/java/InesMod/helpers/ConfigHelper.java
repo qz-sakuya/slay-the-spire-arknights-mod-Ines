@@ -20,6 +20,7 @@ public class ConfigHelper {
     // 禁用额外层级（优先级大于固定额外层级）
     public static boolean banExtraLevel = false;
 
+    // 关闭日志打印
     public static boolean dontShowLoggerInfo = false;
 
     // 是否固定额外层级
@@ -32,6 +33,9 @@ public class ConfigHelper {
     // 3 -> Chapter 13
     // -1 -> Boss Rush
     public static int setExtraLevelBossTo = 0; // TODO：未添加按钮
+
+    // 为所有角色应用额外层级
+    public static boolean applyExtraLevelForAllCharacter = false;
 
     // ---不可调整的config---
     public static boolean tutorialClosed1 = false;
@@ -49,6 +53,7 @@ public class ConfigHelper {
         defaultSetting.setProperty(PathHelper.nameToId("DONT_SHOW_LOGGER_INFO"), String.valueOf(dontShowLoggerInfo));
         defaultSetting.setProperty(PathHelper.nameToId("SET_EXTRA_LEVEL_BOSS"), String.valueOf(setExtraLevelBoss));
         defaultSetting.setProperty(PathHelper.nameToId("SET_EXTRA_LEVEL_BOSS_TO"), String.valueOf(setExtraLevelBossTo));
+        defaultSetting.setProperty(PathHelper.nameToId("APPLY_EXTRA_LEVEL_FOR_ALL_CHARACTER"), String.valueOf(applyExtraLevelForAllCharacter));
 
         defaultSetting.setProperty(PathHelper.nameToId("TUTORIAL_CLOSED_1"), String.valueOf(tutorialClosed1));
         // 默认值 end
@@ -62,6 +67,7 @@ public class ConfigHelper {
             dontShowLoggerInfo = config.getBool(PathHelper.nameToId("DONT_SHOW_LOGGER_INFO"));
             setExtraLevelBoss = config.getBool(PathHelper.nameToId("SET_EXTRA_LEVEL_BOSS"));
             setExtraLevelBossTo = config.getInt(PathHelper.nameToId("SET_EXTRA_LEVEL_BOSS_TO"));
+            applyExtraLevelForAllCharacter = config.getBool(PathHelper.nameToId("APPLY_EXTRA_LEVEL_FOR_ALL_CHARACTER"));
 
             tutorialClosed1 = config.getBool(PathHelper.nameToId("TUTORIAL_CLOSED_1"));
 
@@ -87,7 +93,7 @@ public class ConfigHelper {
     private static void addEnableMenu() {
         UIStrings uis = CardCrawlGame.languagePack.getUIString(PathHelper.nameToId("Config"));
 
-        // 设置1按钮
+        // 禁用额外层级 按钮
         ModLabeledToggleButton btn1 = new ModLabeledToggleButton(uis.TEXT[1], 350.0F, 800.0F, Settings.CREAM_COLOR, FontHelper.charDescFont,
                 banExtraLevel,
                 settingsPanel, modLabel -> {
@@ -102,7 +108,7 @@ public class ConfigHelper {
         });
         settingsPanel.addUIElement(btn1);
 
-        // 设置2按钮
+        // 关闭日志打印 按钮
         if(!FORCE_ENABLE_INFO){
             ModLabeledToggleButton btn2 = new ModLabeledToggleButton(uis.TEXT[2], 350.0F, 300.0F, Settings.CREAM_COLOR, FontHelper.charDescFont,
                     dontShowLoggerInfo,
@@ -118,6 +124,21 @@ public class ConfigHelper {
             });
             settingsPanel.addUIElement(btn2);
         }
+
+        // 为所有角色应用额外层级 按钮
+        ModLabeledToggleButton btn3 = new ModLabeledToggleButton(uis.TEXT[3], 350.0F, 650.0F, Settings.CREAM_COLOR, FontHelper.charDescFont,
+                applyExtraLevelForAllCharacter,
+                settingsPanel, modLabel -> {
+        }, modToggleButton -> {
+            applyExtraLevelForAllCharacter = modToggleButton.enabled;
+            config.setBool(PathHelper.nameToId("APPLY_EXTRA_LEVEL_FOR_ALL_CHARACTER"), applyExtraLevelForAllCharacter);
+            try {
+                config.save();
+            } catch (IOException e) {
+                LogHelper.info("===save config credit failed{}===",e.getLocalizedMessage());
+            }
+        });
+        settingsPanel.addUIElement(btn3);
 
 
     }

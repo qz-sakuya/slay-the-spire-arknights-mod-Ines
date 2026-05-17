@@ -418,5 +418,9 @@
   "InesMod:ShadowDisperse": {
     "NAME": "Shadow Disperse",
     "DESCRIPTION": "Whenever a *Shadow *Whistle is Exhausted, deal !M! damage to ALL enemies."
+  },
+  "InesMod:CageOfWars": {
+    "NAME": "Cage of Wars",
+    "DESCRIPTION": "Deal !D! damage. NL You can only attack this enemy, but it takes +50% damage per other enemy. NL Exhaust."
   }
 }

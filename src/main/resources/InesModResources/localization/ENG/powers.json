@@ -303,5 +303,12 @@
     "DESCRIPTIONS": [
       "no need to translate"
     ]
+  },
+  "InesMod:CageOfWarsPower": {
+    "NAME": "Cage of Wars",
+    "DESCRIPTIONS": [
+      "You can only attack this enemy, but it takes #b+50% damage per other enemy.",
+      " NL (Damage #b+%s )"
+    ]
   }
 }

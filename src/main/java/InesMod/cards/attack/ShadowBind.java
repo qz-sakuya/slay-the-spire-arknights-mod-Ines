@@ -35,7 +35,7 @@ public class ShadowBind extends AbstractInesCard {
                 CardRarity.UNCOMMON,
                 CardTarget.ENEMY,
                 Ines.Enums.INES_CARD);
-        this.damage = this.baseDamage = 6;
+        this.damage = this.baseDamage = 7;
 
         this.consumeSteals = 999;
     }

@@ -304,5 +304,12 @@
     "DESCRIPTIONS": [
       "no need to translate"
     ]
+  },
+  "InesMod:CageOfWarsPower": {
+    "NAME": "战争囚笼",
+    "DESCRIPTIONS": [
+      "你只能攻击这个敌人，但每个其它敌人使其受到的伤害 #b+50% 。",
+      " NL （伤害 #b+%s ）"
+    ]
   }
 }

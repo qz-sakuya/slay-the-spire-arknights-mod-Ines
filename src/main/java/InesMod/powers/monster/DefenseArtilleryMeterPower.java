@@ -45,7 +45,7 @@ public class DefenseArtilleryMeterPower extends AbstractInesPower {
 
         this.priority = 0; // 最左侧
 
-        this.isTurnBased = true;
+        this.isTurnBased = true; // 白色数字
         this.renderAmountZero = true;
 
         DefenseArtilleryMeterUponManager.initEffect(amount);

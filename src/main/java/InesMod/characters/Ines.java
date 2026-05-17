@@ -64,7 +64,7 @@ public class Ines extends CustomPlayer
     };
     // 每个图层的旋转速度
     private static final float[] LAYER_SPEED = new float[]{-40.0F, -32.0F, 20.0F, -20.0F, 0.0F, -10.0F, -8.0F, 5.0F, -5.0F, 0.0F};
-    // 人物的本地化文本，如卡牌的本地化文本一样，如何书写见下
+    // 人物的本地化文本
     private static final CharacterStrings characterStrings = CardCrawlGame.languagePack.getCharacterString("InesMod:Ines");
 
 
@@ -90,7 +90,7 @@ public class Ines extends CustomPlayer
         this.dialogY = (this.drawY + 150.0F * Settings.scale);
 
 
-        // 初始化你的人物，如果你的人物只有一张图，那么第一个参数填写你人物图片的路径。
+        // 初始化人物
         this.initializeClass(
                 null,  // 人物图片
                 MY_CHARACTER_SHOULDER_2, MY_CHARACTER_SHOULDER_1,
@@ -114,7 +114,7 @@ public class Ines extends CustomPlayer
 
     }
 
-    // 初始卡组的ID，可直接写或引用变量
+    // 初始卡组的ID
     public ArrayList<String> getStartingDeck() {
         ArrayList<String> cardList = new ArrayList<>();
 
@@ -134,7 +134,7 @@ public class Ines extends CustomPlayer
         return cardList;
     }
 
-    // 初始遗物的ID，可以先写个原版遗物凑数
+    // 初始遗物的ID
     public ArrayList<String> getStartingRelics() {
         ArrayList<String> relicList = new ArrayList<>();
         relicList.add(UnassumingNeedle.ID);
