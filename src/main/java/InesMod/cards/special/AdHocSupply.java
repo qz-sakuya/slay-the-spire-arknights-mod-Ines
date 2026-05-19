@@ -1,12 +1,14 @@
-package InesMod.cards.skill;
+package InesMod.cards.special;
 
 import InesMod.cards.AbstractInesCard;
 import InesMod.characters.Ines;
 import InesMod.helpers.PathHelper;
+import InesMod.powers.player.AdHocStrategyPower;
 import InesMod.powers.player.AdHocSupplyPower;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
@@ -23,16 +25,24 @@ public class AdHocSupply extends AbstractInesCard {
                 cardStrings,
                 0,
                 CardType.SKILL,
-                CardRarity.COMMON,
+                CardRarity.SPECIAL,
                 CardTarget.SELF,
-                Ines.Enums.INES_CARD);
+                CardColor.COLORLESS);
         this.magicNumber = this.baseMagicNumber = 1;
 
 
     }
 
+
+
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
+        onChoseThisOption();
+    }
+
+    @Override
+    public void onChoseThisOption() {
+        AbstractPlayer p = AbstractDungeon.player;
         addToBot(new ApplyPowerAction(p, p, new AdHocSupplyPower(p, magicNumber), magicNumber));
     }
 

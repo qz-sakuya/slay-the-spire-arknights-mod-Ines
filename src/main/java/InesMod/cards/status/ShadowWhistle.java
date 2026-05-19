@@ -27,7 +27,7 @@ public class ShadowWhistle extends AbstractInesCard {
                 cardStrings,
                 -2,
                 CardType.STATUS,
-                CardRarity.COMMON,
+                CardRarity.SPECIAL,
                 CardTarget.NONE,
                 CardColor.COLORLESS);
         this.block = this.baseBlock = 6;

@@ -19,6 +19,7 @@ import com.evacipated.cardcrawl.modthespire.lib.SpireInitializer;
 
 import basemod.BaseMod;
 import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
@@ -30,6 +31,8 @@ import com.megacrit.cardcrawl.rewards.RewardSave;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 
@@ -109,8 +112,6 @@ public class InesModMain implements
                 BIG_ORB,            // energyOrbPortrait: 在卡牌预览界面的能量图标
                 SMALL_ORB           // cardEnergyOrb: 在卡牌和遗物描述中的能量图标
         );
-
-        LogHelper.info("===InesMod:版本1.2.6==="); // TODO：记得改
 
 
 
@@ -355,8 +356,6 @@ public class InesModMain implements
         }
         return lang;
     }
-
-
 
 
 }

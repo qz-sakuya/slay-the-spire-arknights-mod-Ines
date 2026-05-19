@@ -33,7 +33,7 @@ public class MindProbe extends AbstractInesCard {
                 CardRarity.COMMON,
                 CardTarget.ALL_ENEMY,
                 Ines.Enums.INES_CARD);
-        this.baseDamage = 6;
+        this.baseDamage = 7;
         this.isMultiDamage = true;
 
         this.updateAmount = 1;
@@ -72,7 +72,7 @@ public class MindProbe extends AbstractInesCard {
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeDamage(3);
+            this.upgradeDamage(2);
 
         }
     }

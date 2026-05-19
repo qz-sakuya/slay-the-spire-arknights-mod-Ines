@@ -7,9 +7,7 @@ import InesMod.characters.Ines;
 import InesMod.helpers.PathHelper;
 import InesMod.powers.player.MasterTheGamePower;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.common.DamageAction;
-import com.megacrit.cardcrawl.cards.DamageInfo;
-import com.megacrit.cardcrawl.cards.DamageInfo.DamageType;
+import com.megacrit.cardcrawl.actions.common.DamageAllEnemiesAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
@@ -29,17 +27,19 @@ public class MasterTheGame extends AbstractInesCard {
                 1,
                 CardType.ATTACK,
                 CardRarity.UNCOMMON,
-                CardTarget.ENEMY,
+                CardTarget.ALL_ENEMY,
                 Ines.Enums.INES_CARD);
-        this.damage = this.baseDamage = 9;
-
+        this.baseDamage = 4;
+        this.isMultiDamage = true;
 
         this.cardsToPreview = new ShadowWhistle();
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        addToBot(new DamageAction(m, new DamageInfo(p, damage, DamageType.NORMAL), AbstractGameAction.AttackEffect.SLASH_VERTICAL));
+        addToBot(new DamageAllEnemiesAction(p, this.multiDamage, this.damageTypeForTurn, AbstractGameAction.AttackEffect.SLASH_VERTICAL));
+        addToBot(new DamageAllEnemiesAction(p, this.multiDamage, this.damageTypeForTurn, AbstractGameAction.AttackEffect.SLASH_VERTICAL));
+
         addToBot(new ApplyNonStackPowerAction(p, p, new MasterTheGamePower(p, -1)));
     }
 

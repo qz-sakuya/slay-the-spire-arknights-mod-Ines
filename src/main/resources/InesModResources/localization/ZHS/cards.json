@@ -137,8 +137,8 @@
   },
   "InesMod:MasterTheGame": {
     "NAME": "掌控全局",
-    "DESCRIPTION": "造成 !D! 点伤害。 NL 本回合在 ines:隐匿 下打出攻击牌改为丢弃 *影哨 。",
-    "UPGRADE_DESCRIPTION": "造成 !D! 点伤害。 NL 本回合在 ines:隐匿 下打出攻击牌改为丢弃 *影哨 。 NL  保留 。"
+    "DESCRIPTION": "对所有敌人造成 !D! 点伤害 2 次。 NL 本回合在 ines:隐匿 下打出攻击牌改为丢弃 *影哨 。",
+    "UPGRADE_DESCRIPTION": "对所有敌人造成 !D! 点伤害 2 次。 NL 本回合在 ines:隐匿 下打出攻击牌改为丢弃 *影哨 。 NL  保留 。"
   },
   "InesMod:WeaponStockpile": {
     "NAME": "武器储备",
@@ -422,5 +422,10 @@
   "InesMod:CageOfWars": {
     "NAME": "战争囚笼",
     "DESCRIPTION": "造成 !D! 点伤害。 NL 你只能攻击这个敌人，但每个其它敌人使其受到的伤害+50%。 NL 消耗 。"
+  },
+  "InesMod:Improvisation": {
+    "NAME": "应变",
+    "DESCRIPTION": "选择一种效果： NL *临时战略 或 NL *临时补给 。",
+    "UPGRADE_DESCRIPTION": "选择一种效果： NL *临时战略+ 或 NL *临时补给+ 。"
   }
 }

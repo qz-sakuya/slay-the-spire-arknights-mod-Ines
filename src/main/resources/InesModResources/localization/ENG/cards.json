@@ -137,8 +137,8 @@
   },
   "InesMod:MasterTheGame": {
     "NAME": "Master the Game",
-    "DESCRIPTION": "Deal !D! damage. NL This turn, Attack in ines:Invisibility is changed to discard *Shadow *Whistle.",
-    "UPGRADE_DESCRIPTION": "Deal !D! damage. NL This turn, Attack in ines:Invisibility is changed to discard *Shadow *Whistle. NL  Retain."
+    "DESCRIPTION": "Deal !D! damage to ALL enemies twice. NL This turn, Attack in ines:Invisibility is changed to discard *Shadow *Whistle.",
+    "UPGRADE_DESCRIPTION": "Deal !D! damage to ALL enemies twice. NL This turn, Attack in ines:Invisibility is changed to discard *Shadow *Whistle. NL  Retain."
   },
   "InesMod:WeaponStockpile": {
     "NAME": "Weapon Stockpile",
@@ -390,7 +390,7 @@
   },
   "InesMod:InterpretSecret": {
     "NAME": "Or...",
-    "DESCRIPTION": "Consume !M! *Truth. NL Gain a unique *Relic. 使故事走向不同的 *结局.",
+    "DESCRIPTION": "Consume !M! *Truth. NL Gain a unique *Relic. Lead the story to a different *ending.",
     "EXTENDED_DESCRIPTION": [
       " NL (Insufficient Truth)"
     ]
@@ -422,5 +422,10 @@
   "InesMod:CageOfWars": {
     "NAME": "Cage of Wars",
     "DESCRIPTION": "Deal !D! damage. NL You can only attack this enemy, but it takes +50% damage per other enemy. NL Exhaust."
+  },
+  "InesMod:Improvisation": {
+    "NAME": "Improvisation",
+    "DESCRIPTION": "Choose one effect: NL *Ad *Hoc *Strategy or NL *Ad *Hoc *Supply.",
+    "UPGRADE_DESCRIPTION": "Choose one effect: NL *Ad *Hoc *Strategy+ or NL *Ad *Hoc *Supply+."
   }
 }

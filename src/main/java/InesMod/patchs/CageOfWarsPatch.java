@@ -1,22 +1,17 @@
 package InesMod.patchs;
 
-import InesMod.helpers.LogHelper;
+
 import InesMod.helpers.PathHelper;
 import InesMod.powers.player.CageOfWarsPower;
-import InesMod.powers.player.InvisibilityPower;
-import InesMod.powers.player.NoInvisibilityPower;
-import basemod.ReflectionHacks;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePrefixPatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpireReturn;
-import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.UIStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.AbstractPower;
-import com.megacrit.cardcrawl.vfx.ThoughtBubble;
+
 
 import java.util.ArrayList;
 
