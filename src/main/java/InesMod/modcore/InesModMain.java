@@ -241,10 +241,6 @@ public class InesModMain implements
                 customReward -> new RewardSave(customReward.type.toString(),
                         null,
                         ((TruthReward)customReward).amount, 0));
-
-
-
-
     }
 
     // 开启新游戏或继续已有存档时

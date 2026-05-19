@@ -23,7 +23,7 @@ public class AdHocSupply extends AbstractInesCard {
         super(ID,
                 false,
                 cardStrings,
-                0,
+                -2,
                 CardType.SKILL,
                 CardRarity.SPECIAL,
                 CardTarget.SELF,
