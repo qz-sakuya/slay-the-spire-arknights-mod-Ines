@@ -46,7 +46,7 @@ public class Infiltration extends AbstractInesCard {
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeBlock(1);
+            this.upgradeBlock(2);
             this.upgradeMagicNumber(1);
 
 

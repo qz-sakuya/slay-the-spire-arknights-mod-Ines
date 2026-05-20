@@ -31,7 +31,7 @@ public class DataOrganization extends AbstractInesCard {
                 CardRarity.COMMON,
                 CardTarget.SELF,
                 Ines.Enums.INES_CARD);
-        this.block = this.baseBlock = 7;
+        this.block = this.baseBlock = 8;
     }
 
     @Override

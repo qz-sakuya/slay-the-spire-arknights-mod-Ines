@@ -28,7 +28,7 @@ public class GuidedThrow extends AbstractInesCard {
                 CardRarity.UNCOMMON,
                 CardTarget.ALL_ENEMY,
                 Ines.Enums.INES_CARD);
-        this.baseDamage = 10;
+        this.baseDamage = 9;
         this.isMultiDamage = true;
 
     }
@@ -52,7 +52,7 @@ public class GuidedThrow extends AbstractInesCard {
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeDamage(2);
+            this.upgradeDamage(3);
         }
     }
 }
