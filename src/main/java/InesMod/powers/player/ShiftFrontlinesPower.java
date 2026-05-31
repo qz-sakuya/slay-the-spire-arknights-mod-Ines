@@ -66,7 +66,7 @@ public class ShiftFrontlinesPower extends AbstractInesPower {
 
         int count = this.amount * this.secondAmount;
         if (count > 0){
-            addToBot(new ApplyPowerAction(owner, owner, new InterPower(owner, count), count));
+            addToBot(new ApplyPowerAction(owner, owner, new IntelPower(owner, count), count));
 
             LogHelper.info("===ShiftFrontlinesPower: 获得情报，层数：{}===",count);
         }

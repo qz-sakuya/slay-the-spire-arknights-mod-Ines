@@ -5,7 +5,7 @@ import InesMod.cards.status.ShadowWhistle;
 import InesMod.characters.Ines;
 import InesMod.helpers.PathHelper;
 import InesMod.patchs.ExhaustCountInCombatManager;
-import InesMod.powers.player.InterPower;
+import InesMod.powers.player.IntelPower;
 import InesMod.powers.player.InvisibilityPower;
 import InesMod.powers.player.StealsPower;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
@@ -45,7 +45,7 @@ public class ExperienceGain extends AbstractInesCard {
  
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        this.addToBot(new ApplyPowerAction(p, p, new InterPower(p, 1), 1));
+        this.addToBot(new ApplyPowerAction(p, p, new IntelPower(p, 1), 1));
         this.addToBot(new ApplyPowerAction(p, p, new InvisibilityPower(p, 1), 1));
         this.addToBot(new ApplyPowerAction(p, p, new StealsPower(p, 1), 1));
         this.addToBot(new MakeTempCardInHandAction(new ShadowWhistle(), 1)); // 生成1张影哨

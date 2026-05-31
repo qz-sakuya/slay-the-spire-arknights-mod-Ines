@@ -196,7 +196,7 @@ public class StealsPower extends AbstractInesPower {
                 agentVanguardPower.flash();
                 int tempNum = consumeNum*agentVanguardPower.amount;
 
-                addToBot(new ApplyPowerAction(owner, owner, new InterPower(owner, tempNum), tempNum));
+                addToBot(new ApplyPowerAction(owner, owner, new IntelPower(owner, tempNum), tempNum));
             }
         }
 

@@ -1,16 +1,10 @@
 package InesMod.action;
 
 import InesMod.cards.status.ShadowWhistle;
-import InesMod.helpers.LogHelper;
 import InesMod.powers.player.EndlessNightPower;
-import InesMod.powers.player.InterPower;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.common.DrawCardAction;
-import com.megacrit.cardcrawl.actions.common.ReducePowerAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.powers.AbstractPower;
 
 /**
  * 漫漫长夜 的效果

@@ -47,11 +47,11 @@
   "InesMod:AgentVanguardPower": {
     "NAME": "Agent Vanguard",
     "DESCRIPTIONS": [
-      "Whenever you consume #b1 #ySteals , gain #b1 #yInter ."
+      "Whenever you consume #b1 #ySteals , gain #b1 #yIntel ."
     ]
   },
-  "InesMod:InterPower": {
-    "NAME": "Inter",
+  "InesMod:IntelPower": {
+    "NAME": "Intel",
     "DESCRIPTIONS": [
       "After performing other draws, continue drawing #b%d cards until your hand is full. Unused #yIntel is retained. NL Max #b10 #yIntel ."
     ]
@@ -154,7 +154,7 @@
   "InesMod:ShiftFrontlinesPower": {
     "NAME": "Shift Frontlines",
     "DESCRIPTIONS": [
-      "Each time you discard or #yExhaust a card this turn, gain #b%d #yInter at the start of next turn.",
+      "Each time you discard or #yExhaust a card this turn, gain #b%d #yIntel at the start of next turn.",
       " NL (Total: #b%d card)",
       " NL (Total: #b%d cards)"
     ]

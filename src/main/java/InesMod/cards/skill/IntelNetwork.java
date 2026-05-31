@@ -3,7 +3,7 @@ package InesMod.cards.skill;
 import InesMod.cards.AbstractInesCard;
 import InesMod.characters.Ines;
 import InesMod.helpers.PathHelper;
-import InesMod.powers.player.InterPower;
+import InesMod.powers.player.IntelPower;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.DrawCardAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -32,7 +32,7 @@ public class IntelNetwork extends AbstractInesCard {
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        addToBot(new ApplyPowerAction(p, p, new InterPower(p, magicNumber), magicNumber));
+        addToBot(new ApplyPowerAction(p, p, new IntelPower(p, magicNumber), magicNumber));
         addToBot(new DrawCardAction(p, 1));
     }
 

@@ -13,8 +13,8 @@
   },
   "InesMod:AgentVanguard": {
     "NAME": "Agent Vanguard",
-    "DESCRIPTION": "Whenever you consume 1 ines:Steals, gain 1 ines:Inter.",
-    "UPGRADE_DESCRIPTION": " Innate. NL Whenever you consume 1 ines:Steals, gain 1 ines:Inter."
+    "DESCRIPTION": "Whenever you consume 1 ines:Steals, gain 1 ines:Intel.",
+    "UPGRADE_DESCRIPTION": " Innate. NL Whenever you consume 1 ines:Steals, gain 1 ines:Intel."
   },
   "InesMod:PlanOfAction": {
     "NAME": "Plan of Action",
@@ -95,7 +95,7 @@
   },
   "InesMod:PreciseRecon": {
     "NAME": "Precise Recon",
-    "DESCRIPTION": " ines:Lurk. NL Whenever consume ines:Steals in Attack, gain !M! ines:Inter."
+    "DESCRIPTION": " ines:Lurk. NL Whenever consume ines:Steals in Attack, gain !M! ines:Intel."
   },
   "InesMod:LayTraps": {
     "NAME": "Lay Traps",
@@ -204,7 +204,7 @@
   },
   "InesMod:IntelNetwork": {
     "NAME": "Intel Network",
-    "DESCRIPTION": "Gain !M! ines:Inter. NL then draw 1 card."
+    "DESCRIPTION": "Gain !M! ines:Intel. NL then draw 1 card."
   },
   "InesMod:EngageEnemy": {
     "NAME": "Engage Enemy",
@@ -268,8 +268,8 @@
   },
   "InesMod:ShiftFrontlines": {
     "NAME": "Shift Frontlines",
-    "DESCRIPTION": "Each time you discard or Exhaust a card this turn, gain 1 ines:Inter at the start of next turn.",
-    "UPGRADE_DESCRIPTION": "Each time you discard or Exhaust a card this turn, gain 1 ines:Inter at the start of next turn. NL  Retain."
+    "DESCRIPTION": "Each time you discard or Exhaust a card this turn, gain 1 ines:Intel at the start of next turn.",
+    "UPGRADE_DESCRIPTION": "Each time you discard or Exhaust a card this turn, gain 1 ines:Intel at the start of next turn. NL  Retain."
   },
   "InesMod:ShadowTerritory": {
     "NAME": "Shadow Territory",
@@ -294,8 +294,8 @@
   },
   "InesMod:ExperienceGain": {
     "NAME": "Experience Gain",
-    "DESCRIPTION": "Gain 1 ines:Inter, 1 ines:Invisibility, 1 ines:Steals and 1 *Shadow *Whistle. NL For every 3 cards Exhausted this combat, this Costs 1 less [E].",
-    "UPGRADE_DESCRIPTION": "Gain 1 ines:Inter, 1 ines:Invisibility, 1 ines:Steals and 1 *Shadow *Whistle. NL For every 2 cards Exhausted this combat, this Costs 1 less [E].",
+    "DESCRIPTION": "Gain 1 ines:Intel, 1 ines:Invisibility, 1 ines:Steals and 1 *Shadow *Whistle. NL For every 3 cards Exhausted this combat, this Costs 1 less [E].",
+    "UPGRADE_DESCRIPTION": "Gain 1 ines:Intel, 1 ines:Invisibility, 1 ines:Steals and 1 *Shadow *Whistle. NL For every 2 cards Exhausted this combat, this Costs 1 less [E].",
     "EXTENDED_DESCRIPTION": [
       "{@@} NL ( !M! card{!M!|>1=s} Exhausted )"
     ]
@@ -331,9 +331,9 @@
   },
   "InesMod:MindProbe": {
     "NAME": "Mind Probe",
-    "DESCRIPTION": "Deal !D! damage to ALL enemies. For each unique intent among enemies, gain 1 ines:Inter.",
+    "DESCRIPTION": "Deal !D! damage to ALL enemies. For each unique intent among enemies, gain 1 ines:Intel.",
     "EXTENDED_DESCRIPTION": [
-      " NL (Gain !M! Inter)"
+      " NL (Gain !M! Intel)"
     ]
   },
   "InesMod:EmotionalDisturbance": {

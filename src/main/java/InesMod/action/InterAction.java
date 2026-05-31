@@ -1,7 +1,7 @@
 package InesMod.action;
 
 import InesMod.helpers.LogHelper;
-import InesMod.powers.player.InterPower;
+import InesMod.powers.player.IntelPower;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DrawCardAction;
 import com.megacrit.cardcrawl.actions.common.ReducePowerAction;
@@ -33,7 +33,7 @@ public class InterAction extends AbstractGameAction {
             int cardToDraw = 1;
 
             // 如果有情报
-            AbstractPower powerToFind = p.getPower(InterPower.ID);
+            AbstractPower powerToFind = p.getPower(IntelPower.ID);
             if (powerToFind != null) {
                 LogHelper.info("===情报action：具有情报，层数：{}===",powerToFind.amount);
 
@@ -45,7 +45,7 @@ public class InterAction extends AbstractGameAction {
 
                     powerToFind.flash();
                     addToTop(new DrawCardAction(source, cardToDraw));
-                    addToTop(new ReducePowerAction(this.source, this.source, InterPower.ID, cardToDraw));
+                    addToTop(new ReducePowerAction(this.source, this.source, IntelPower.ID, cardToDraw));
                 }
             }
         }

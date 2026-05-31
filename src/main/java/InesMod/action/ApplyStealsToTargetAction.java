@@ -106,7 +106,7 @@ public class ApplyStealsToTargetAction extends AbstractGameAction {
                     // 精准探查
                     if (c.cardID.equals(PreciseRecon.ID)) {
                         LogHelper.info("===ApplyStealsToTargetAction: 触发精准探查===");
-                        addToBot(new ApplyPowerAction(source, source, new InterPower(source, c.magicNumber), c.magicNumber));
+                        addToBot(new ApplyPowerAction(source, source, new IntelPower(source, c.magicNumber), c.magicNumber));
                     }
 
                     // 布设陷阱

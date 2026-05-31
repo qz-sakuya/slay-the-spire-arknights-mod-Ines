@@ -1,6 +1,6 @@
 package InesMod.action;
 
-import InesMod.powers.player.InterPower;
+import InesMod.powers.player.IntelPower;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -39,7 +39,7 @@ public class MindProbeAction extends AbstractGameAction {
         initAmount += seenIntent.size() * updateAmount;
 
         if (initAmount > 0) {
-            addToBot(new ApplyPowerAction(p, p, new InterPower(p, initAmount), initAmount));
+            addToBot(new ApplyPowerAction(p, p, new IntelPower(p, initAmount), initAmount));
         }
 
 

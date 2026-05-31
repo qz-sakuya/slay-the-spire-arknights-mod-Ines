@@ -12,11 +12,11 @@ import com.megacrit.cardcrawl.localization.PowerStrings;
 /**
  * 中文名：情报
  */
-public class InterPower extends AbstractInesPower {
-    public static final String ID = PathHelper.nameToId(InterPower.class.getSimpleName());
+public class IntelPower extends AbstractInesPower {
+    public static final String ID = PathHelper.nameToId(IntelPower.class.getSimpleName());
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(ID); // 从游戏系统读取本地化资源
 
-    public InterPower(AbstractCreature owner, int amount) {
+    public IntelPower(AbstractCreature owner, int amount) {
         super(ID,
                 false,
                 powerStrings,
