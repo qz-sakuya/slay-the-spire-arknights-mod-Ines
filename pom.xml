@@ -69,6 +69,7 @@
                 <excludes>
                     <exclude>**/*.psd</exclude>  <!-- 排除所有 .psd 文件 -->
                     <exclude>**/*.xlsx</exclude> <!-- 排除所有 .xlsx 文件 -->
+                    <exclude>docs/**</exclude> <!-- 排除所有 .xlsx 文件 -->
                 </excludes>
             </resource>
         </resources>
