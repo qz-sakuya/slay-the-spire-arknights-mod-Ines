@@ -5,8 +5,8 @@ import InesMod.helpers.LogHelper;
 
 /**
  * 维护 战斗中消耗卡牌数 的计数器
- * 增加由 MoveToExhaustPilePatc 处理
- * 清空由 AtBattleStartPreDrawPatch 处理
+ * 增加由 MoveToExhaustPilePatch 处理
+ * 清空由 ResetHelper 处理
  */
 public class ExhaustCountInCombatManager {
     public static int exhaustCountInCombat = 0;

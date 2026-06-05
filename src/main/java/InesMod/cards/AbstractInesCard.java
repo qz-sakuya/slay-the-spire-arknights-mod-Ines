@@ -106,6 +106,10 @@ public abstract class AbstractInesCard extends CustomCard {
     // 战斗开始
     public void atBattleStartPreDraw() {}
 
+    // 战斗结束
+    public void atBattleEnd() {}
+
+
     // 任何卡被打出
     public void onReceiveCardUsed(AbstractCard c) {}
 

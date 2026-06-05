@@ -55,11 +55,16 @@ public class OnTheBrink extends AbstractInesCard {
     }
 
 
+
     @Override
     public void atBattleStartPreDraw() {
         resetDamage();
     }
 
+    @Override
+    public void atBattleEnd() {
+        resetDamage();
+    }
 
 
     @Override

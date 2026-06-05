@@ -23,6 +23,8 @@ public class ExperienceGain extends AbstractInesCard {
     public static final String ID = PathHelper.nameToId(ExperienceGain.class.getSimpleName());
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID); // 从游戏系统读取本地化资源
 
+    public int baseCost = 4;
+
     public int exhaustNeed;
     public int costHasDecreased = 0;  // 因为牌效而减费的量
 
@@ -55,6 +57,7 @@ public class ExperienceGain extends AbstractInesCard {
     public void applyPowers() {
         super.applyPowers();
 
+
         this.baseMagicNumber = ExhaustCountInCombatManager.exhaustCountInCombat;
         tryDecreaseCost();
     }
@@ -62,7 +65,7 @@ public class ExperienceGain extends AbstractInesCard {
 
     @Override
     public void onExhaust(AbstractCard c) {
-        this.baseMagicNumber += 1;
+        this.baseMagicNumber = ExhaustCountInCombatManager.exhaustCountInCombat;
         tryDecreaseCost();
     }
 
@@ -71,6 +74,8 @@ public class ExperienceGain extends AbstractInesCard {
         if (!this.upgraded) {
             this.upgradeName();
             this.exhaustNeed -= 1;
+
+            this.baseMagicNumber = ExhaustCountInCombatManager.exhaustCountInCombat;
             tryDecreaseCost();
 
             // 火堆等界面不显示额外信息
@@ -92,13 +97,32 @@ public class ExperienceGain extends AbstractInesCard {
 
     @Override
     public void atBattleStartPreDraw() {
+        resetSelf();
+    }
+
+    @Override
+    public void atBattleEnd() {
+        resetSelf();
+    }
+
+
+
+    // 辅助方法
+
+    // 重置自身状态
+    private void resetSelf() {
+        // 重置费用
+        this.cost = baseCost;
+        this.costForTurn = baseCost;
+        this.isCostModified = false;
+
         // 重置自定义变量
         this.costHasDecreased = 0;
         this.baseMagicNumber = 0;
     }
 
-    // 辅助方法
-    public void tryDecreaseCost() {
+    // 尝试减费
+    private void tryDecreaseCost() {
         int costCanDecrease = baseMagicNumber / exhaustNeed; // 向下取整
         while(costCanDecrease > costHasDecreased) { // 之前减过就不会再减
             this.updateCost(-1);
